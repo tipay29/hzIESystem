@@ -11,19 +11,23 @@ class CutController extends Controller
 
     public function index()
     {
+        $cuts = Cut::all();
 
+        return view('cut.index',compact('cuts'));
     }
 
 
     public function create()
     {
+        $cut = new Cut();
 
+        return view('cut.create', compact('cut'));
     }
 
 
     public function store(Request $request)
     {
-
+        dd(request()->all());
     }
 
     public function show(Cut $cut)

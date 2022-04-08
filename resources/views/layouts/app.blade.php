@@ -13,15 +13,17 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('storage/js/employee.js') }}" defer></script>
+    <script src="{{ asset('storage/js/main.js') }}" defer></script>
+    <script src="{{asset('storage/js/jquery2.js')}}"></script>  {{--for chosen--}}
+    <script src="{{asset('storage/js/chosen-jquery.js')}}"></script>{{--for chosen--}}
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
     <!-- Styles -->
-    {{-- <link href="{{ asset('storage/cs/employee.js') }}" rel="stylesheet"> --}}
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('storage/css/chosen.css') }}" rel="stylesheet">{{--for chosen--}}
+    <link href="{{ asset('storage/css/one.css') }}" rel="stylesheet">
     <style>
 
         .navbar-brand img{
@@ -30,6 +32,7 @@
             max-height: 132px;
         }
     </style>
+
 </head>
 <body>
     <div id="app">
@@ -61,7 +64,7 @@
                             <a class="nav-link" href="#">Sewing</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Cutting</a>
+                            <a class="nav-link" href="{{route('cuts.index')}}">Cutting</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('employees.index')}}">Employee</a>

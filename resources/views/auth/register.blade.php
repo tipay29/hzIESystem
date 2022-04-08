@@ -18,10 +18,14 @@
                                         id="emp_id" autofocus>
                                     <option disabled selected>Please select your ID</option>
                                     @foreach($employees as $employee)
-                                        <option value="{{$employee->id}}"
-                                            {{$employee->id == old('employee_id') ? 'selected' : ''}}>
-                                        {{$employee->id}}</option>
 
+                                        @if(is_null($employee->user_account_id))
+                                            <option value="{{$employee->id}}"
+                                                {{$employee->id == old('employee_id') ? 'selected' : ''}}>
+                                            {{$employee->id}}</option>
+                                        @else
+                                            <option value=""></option>
+                                        @endif
                                     @endforeach
 
                                 </select>

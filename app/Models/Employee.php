@@ -22,4 +22,8 @@ class Employee extends Model
     public function building(){
         return $this->belongsTo(Building::class);
     }
+
+    public function cuts(){
+        return $this->hasMany(Cut::class);
+    }
 }
