@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::group(['namespace' => 'Web'],function(){
     Route::resource('employees','EmployeeController');
     Route::resource('cuts','CutController');
+    Route::resource('purchase-orders','PurchaseOrderController');
+
+
 });
 
 

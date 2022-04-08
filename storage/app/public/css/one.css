@@ -1,21 +1,21 @@
-#cutForm ul {
+/*#cutForm ul {*/
 
-    display: block;
-    height: 38px;
-    border: 1px solid lightgrey;
-    border-radius: 5px;
-    background-image: none !important;
-    overflow: auto;
-    padding: 4px;
-}
+/*    display: block;*/
+/*    height: 38px;*/
+/*    border: 1px solid lightgrey;*/
+/*    border-radius: 5px;*/
+/*    background-image: none !important;*/
+/*    overflow: auto;*/
+/*    padding: 4px;*/
+/*!*}*!apply by .chosen-container-multi .chosen-choices*/
 
 
-#cutForm ul li input {
+/*#cutForm ul li input {*/
 
-    padding: 0px 0px 0px 8px;
-    font-size: 1.19em;
+/*    padding: 0px 0px 0px 8px;*/
+/*    font-size: 1.19em;*/
 
-}
+/*!*}*!apply by .chosen-container-multi .chosen-choices*/
 
 
 .chosen-drop ul{

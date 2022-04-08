@@ -13,15 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('purchase_orders', function (Blueprint $table) {
+        Schema::create('fabric_codes', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('purchase_order');
-            $table->string('style_code');
-            $table->integer('t_num');
-            $table->string('placement');
-            $table->unsignedInteger('fabric_color_id');
-            $table->unsignedInteger('fabric_code_id');
-            $table->unsignedInteger('fabric_type_id');
+            $table->string('fabric_code');
             $table->timestamps();
         });
     }
@@ -33,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('purchase_orders');
+        Schema::dropIfExists('fabric_codes');
     }
 };

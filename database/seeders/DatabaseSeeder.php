@@ -19,7 +19,13 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(1)->create();
         Employee::factory(20)->create();
-        $this->call(JobSeeder::class);
-        $this->call(BuildingSeeder::class);
+        $this->call([
+            JobSeeder::class,
+            BuildingSeeder::class,
+            FabricCodeSeeder::class,
+            FabricColorSeeder::class,
+            FabricTypeSeeder::class,
+        ]);
+
     }
 }

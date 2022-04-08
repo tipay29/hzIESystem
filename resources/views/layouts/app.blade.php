@@ -52,6 +52,9 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
+                            <a class="nav-link" href="{{route('purchase-orders.index')}}">Orders</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="#">Bags</a>
                         </li>
                         <li class="nav-item">

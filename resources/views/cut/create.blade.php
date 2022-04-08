@@ -31,9 +31,10 @@
 
                                         <div class="form-group">
                                             <label>Purchase Order
-                                                <button id="btn-add-po" class="btn btn-success btn-xsm">
+
+                                                <a class="btn btn-success btn-xsm" href="{{route('purchase-orders.create')}}">
                                                     <i class="fa fa-file-text-o" aria-hidden="true"></i>
-                                                </button>
+                                                </a>
                                             </label>
 
                                             <select id="purchase_order" data-placeholder="Select purchase order"
@@ -175,24 +176,6 @@
 
                             </form>
 
-                            <!-- Modal HTML -->
-                            <div id="myModal" class="modal fade" tabindex="-1">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Modal Title</h5>
-                                            <button type="button" class="btn-close" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>This is a simple Bootstrap modal. Click the "Cancel button", "cross icon" or "dark gray area" to close or hide the modal.</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                            <button type="button" class="btn btn-primary">Save</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
                         </div>
 
