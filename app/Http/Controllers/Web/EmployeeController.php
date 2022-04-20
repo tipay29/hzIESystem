@@ -17,9 +17,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::all();
-
-        $employees->load(['job','building']);
+        $employees = Employee::with(['job','building'])->get();
 
         return view('employee.index', compact('employees'));
 

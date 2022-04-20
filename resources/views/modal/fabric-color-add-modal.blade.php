@@ -25,7 +25,7 @@
 
 
                                 </div>
-                                <div class="modal-footer">
+                                <div class="modal-footer ">
 
                                         <button id="btn-save-fabric-color-modal" class="btn btn-primary">Save Fabric Color</button>
                                 </div>

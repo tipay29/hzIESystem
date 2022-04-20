@@ -19,20 +19,31 @@ Route::group(['namespace' => 'Web'],function(){
     Route::resource('purchase-orders','PurchaseOrderController');
 
 
+
+
+
+    Route::resource('fabric-colors','FabricColorController');
 });
 
 
+Auth::routes();
+
+
+//single route
 
 Route::get('/', function () {
     return view('home');
 });
 
-Auth::routes();
 
-
-
-
-
-
+Route::get('fabric-codes',function(){
+    return view('fabric-code.index');
+})->name('fabric-codes.index');
+Route::get('fabric-types',function(){
+    return view('fabric-type.index');
+})->name('fabric-types.index');
+Route::get('placements',function(){
+    return view('placement.index');
+})->name('placements.index');
 
 

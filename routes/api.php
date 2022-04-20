@@ -21,8 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::resource('employees','EmployeeApiController');
 
-Route::post('/fabric-colors','FabricColorApiController@store');
-Route::delete('/fabric-colors/{color}','FabricColorApiController@destroy');
-
-Route::post('/fabric-codes','FabricCodeApiController@store');
-Route::delete('/fabric-codes/{code}','FabricCodeApiController@destroy');
+Route::resource('fabric-colors','FabricColorApiController');
+Route::resource('fabric-codes','FabricCodeApiController');
+Route::resource('fabric-types','FabricTypeApiController');
+Route::resource('placements','PlacementApiController');

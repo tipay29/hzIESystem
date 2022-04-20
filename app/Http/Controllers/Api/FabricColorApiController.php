@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 use Validator;
 class FabricColorApiController extends Controller
 {
+
+    public function index(){
+
+       return response()->json(FabricColor::all(),200);
+
+    }
+
+
+
     public function store(Request $request)
     {
         $validator = Validator::make(request()->all(),$this->dataValidated());
@@ -19,31 +28,33 @@ class FabricColorApiController extends Controller
 
     }
 
-    public function destroy($fabric_color)
+    public function show(FabricColor $fabric_color)
+    {
+        return response()->json($fabric_color,200);
+    }
+
+    public function update(FabricColor $fabric_color)
     {
 
-
-
-        if($fabric_color == 'null'){
-            return response()->json(['message' => 'Record not found!'], 404);
-        }else{
-
-            $fabric_color = explode(',' ,$fabric_color);
-
-            if(count($fabric_color) == 1){
-                FabricColor::where('id',$fabric_color[0])->delete();
-                return response()->json(['success' => $fabric_color],200);
-            }else{
-                for($i=0;$i < count($fabric_color); $i++){
-                    $fabric_color_record[$i] = FabricColor::where('id',$fabric_color[$i])->delete();
-                }
-                return response()->json(['success' => $fabric_color],200);
-            }
-
-
-
+        if(is_null($fabric_color)){
+            return response()->json(['Message' =>'No input!'],404);
         }
 
+        $validator = Validator::make(request()->all(),$this->dataValidated());
+        if($validator->fails()){
+            return response()->json($validator->errors(),400);
+        }
+
+        return response()->json(['success' => $fabric_color->update([
+            'fabric_color' => request('fabric_color'),
+        ])],201);
+
+    }
+
+    public function destroy(FabricColor $fabric_color)
+    {
+
+        return response()->json(['success' => $fabric_color->delete(),201]);
 
     }
 

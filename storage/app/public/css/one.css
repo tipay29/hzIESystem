@@ -74,3 +74,17 @@
     margin: 5px 0px;
 }
 
+.fabric_color_row{
+     min-height: 500px;
+}
+
+.fabric_color_div_one{
+    min-height: 300px;
+}
+.fabric_color_div_two{
+    min-height: 150px;
+}
+.fabric_color_div_three{
+    display: none;
+    min-height: 150px;
+}

@@ -7,21 +7,17 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
 
-                        <h5 class="mt-2">Purchase Order List</h5>
+                        <h5 class="mt-2">Placements</h5>
 
                         <div>
 
-                            <a href="{{route('purchase-orders.create')}}"
-                               class="btn btn-outline-success float-right">
-                                Add Purchase Order </a>
+
 
                         </div>
 
                     </div>
 
                     <div class="card-body">
-
-
 
                         <table class="table">
 

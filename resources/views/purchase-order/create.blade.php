@@ -24,7 +24,10 @@
                         <form action="{{route('purchase-orders.store')}}" method="post">
 
                             <div class="row mb-3">
-                                <label for="purchase_order" class="col-md-4 col-form-label text-md-end">Purchase Order</label>
+                                <label for="purchase_order" class="col-md-4 col-form-label text-md-end">Purchase Order
+
+
+                                </label>
                                 <div class="col-md-7">
                                 <input id="purchase_order" name='purchase_order' type="text" class="form-control"
                                        placeholder="Enter PO number">
@@ -46,21 +49,30 @@
                                 </div>
                             </div>
 
+
+
                             <div class="row mb-3">
-                                <label for="placement" class="col-md-4 col-form-label text-md-end">Placement</label>
+                                <label class="col-md-4 col-form-label text-md-end">Placement
+                                    <button type="button" class="btn btn-secondary btn-xsm" data-toggle="tooltip"
+                                            data-placement="top" title="Add Placement: Go to Orders>Placement">
+                                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                    </button>
+                                </label>
                                 <div class="col-md-7">
-                                <input id=placement" name='placement' type="text" class="form-control" placeholder="Enter placement">
+                                    <select id="placement" data-placeholder="Select placement"
+                                            multiple class="chosen-select form-control" name="placement[]">
+                                        @foreach($placements as $placement)
+                                            <option value="{{$placement->id}}">{{$placement->placement}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
 
                             <div class="row mb-3">
                                 <label class="col-md-4 col-form-label text-md-end">Fabric Color
-                                    <button id="btn-add-fabric-color-modal" class="btn btn-success btn-xsm">
-                                        <i class="fa fa-file-text-o" aria-hidden="true"></i>
-                                    </button>
-                                    <button id="btn-del-fabric-color-modal" class="btn btn-danger btn-xsm"
-                                            onclick="return confirm('Are you sure to delete?')">
-                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    <button type="button" class="btn btn-secondary btn-xsm" data-toggle="tooltip"
+                                            data-placement="top" title="Add Fabric Color: Go to Orders>Fabric Colors">
+                                        <i class="fa fa-question-circle" aria-hidden="true"></i>
                                     </button>
                                 </label>
                                 <div class="col-md-7">
@@ -75,33 +87,37 @@
 
                             <div class="row mb-3">
                                 <label  class="col-md-4 col-form-label text-md-end">Fabric Code
-                                    <button id="btn-add-fabric-code-modal" class="btn btn-success btn-xsm">
-                                        <i class="fa fa-file-text-o" aria-hidden="true"></i>
-                                    </button>
-                                    <button id="btn-del-fabric-code-modal" class="btn btn-danger btn-xsm"
-                                            onclick="return confirm('Are you sure to delete?')">
-                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    <button type="button" class="btn btn-secondary btn-xsm" data-toggle="tooltip"
+                                            data-placement="top" title="Add Fabric Code: Go to Orders>Fabric Code">
+                                        <i class="fa fa-question-circle" aria-hidden="true"></i>
                                     </button>
                                 </label>
-                                <div class="col-md-7">
+                                <div id='div-fab-code' class="col-md-7">
                                     <select id="fabric_code" data-placeholder="Select fabric code"
                                             multiple class="chosen-select form-control" name="fabric_code[]">
                                         @foreach($fabric_codes as $fabric_code)
                                             <option value="{{$fabric_code->id}}">{{$fabric_code->fabric_code}}</option>
                                         @endforeach
+
                                     </select>
                                 </div>
                             </div>
 
                             <div class="row mb-3">
                                 <label class="col-md-4 col-form-label text-md-end">Fabric Type
+                                    <button type="button" class="btn btn-secondary btn-xsm" data-toggle="tooltip"
+                                            data-placement="top" title="Add Fabric Type: Go to Orders>Fabric Type">
+                                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                    </button>
                                 </label>
                                 <div class="col-md-7">
-                                        <select id="fabric_type" class="form-control"  name="fabric_type[]">
-                                            <option value="" disabled selected>Select fabric type</option>
+
+                                        <select id="fabric_type" data-placeholder="Select type code"
+                                                multiple class="chosen-select form-control" name="fabric_type[]">
                                             @foreach($fabric_types as $fabric_type)
                                                 <option value="{{$fabric_type->id}}">{{$fabric_type->fabric_type}}</option>
                                             @endforeach
+
                                         </select>
                                 </div>
                             </div>
@@ -121,10 +137,7 @@
     </div>
     <div>
 
-{{--        include modal here--}}
-        @include('modal.fabric-color-add-modal')
-        @include('modal.fabric-code-add-modal')
-        @include('modal.fabric-type-add-modal')
+
     </div>
 
 @endsection

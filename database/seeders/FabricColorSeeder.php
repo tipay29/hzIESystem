@@ -31,6 +31,42 @@ class FabricColorSeeder extends Seeder
             [
                 'fabric_color' => 'GREEN'
             ] ,
+            [
+                'fabric_color' => 'WHITE'
+            ] ,
+            [
+                'fabric_color' => 'GREY'
+            ] ,
+            [
+                'fabric_color' => 'GREEN'
+            ] ,
+            [
+                'fabric_color' => 'WHITE'
+            ] ,
+            [
+                'fabric_color' => 'GREY'
+            ] ,
+            [
+                'fabric_color' => 'GREEN'
+            ] ,
+            [
+                'fabric_color' => 'WHITE'
+            ] ,
+            [
+                'fabric_color' => 'GREY'
+            ] ,
+            [
+                'fabric_color' => 'GREEN'
+            ] ,
+            [
+                'fabric_color' => 'WHITE'
+            ] ,
+            [
+                'fabric_color' => 'GREY'
+            ] ,
+            [
+                'fabric_color' => 'GREEN'
+            ] ,
         ];
 
         foreach($fabric_colors as $fabric_color){

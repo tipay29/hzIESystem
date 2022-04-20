@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             FabricCodeSeeder::class,
             FabricColorSeeder::class,
             FabricTypeSeeder::class,
+            PlacementSeeder::class,
         ]);
 
     }

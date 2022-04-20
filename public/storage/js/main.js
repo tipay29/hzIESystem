@@ -1,8 +1,19 @@
 $('document').ready(function() {
 
-    $.getScript('http://127.0.0.1:8000/storage/js/cutting.js');
-    $.getScript('http://127.0.0.1:8000/storage/js/employee.js');
-    $.getScript('http://127.0.0.1:8000/storage/js/purchase-order.js');
+    let originUrl = window.location.origin;
+
+
+    $.getScript(originUrl + '/storage/js/cutting.js');
+    $.getScript(originUrl + '/storage/js/employee.js');
+    $.getScript(originUrl + '/storage/js/purchase-order.js');
+    $.getScript(originUrl + '/storage/js/fabric-color.js');
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+        $('.dropdown-toggle').dropdown()
+    });
+
+
 
     setInterval(function () {
         $('iframe').remove();

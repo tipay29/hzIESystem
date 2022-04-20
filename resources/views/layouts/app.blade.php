@@ -13,9 +13,9 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('storage/js/main.js') }}" defer></script>
     <script src="{{asset('storage/js/jquery2.js')}}"></script>  {{--for chosen--}}
     <script src="{{asset('storage/js/chosen-jquery.js')}}"></script>{{--for chosen--}}
+    <script src="{{ asset('storage/js/main.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -52,7 +52,21 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('purchase-orders.index')}}">Orders</a>
+
+                            <div class="btn-group dropdown">
+                                <a class="nav-link btn btn-light" href="{{route('purchase-orders.index')}}">Orders</a>
+                                <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
+                                        data-bs-toggle="dropdown">
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{{route('fabric-colors.index')}}">Fabric Colors</a></li>
+                                    <li><a class="dropdown-item" href="{{route('fabric-codes.index')}}">Fabric Codes</a></li>
+                                    <li><a class="dropdown-item" href="{{route('fabric-types.index')}}">Fabric Types</a></li>
+                                    <li><a class="dropdown-item" href="{{route('placements.index')}}">Placements</a></li>
+                                </ul>
+                            </div>
+
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Bags</a>
@@ -76,6 +90,7 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))

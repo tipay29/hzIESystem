@@ -8,6 +8,7 @@ use App\Http\View\Composers\FabricCodeComposer;
 use App\Http\View\Composers\FabricColorComposer;
 use App\Http\View\Composers\FabricTypeComposer;
 use App\Http\View\Composers\JobComposer;
+use App\Http\View\Composers\PlacementComposer;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -36,6 +37,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer('purchase-order.create',FabricColorComposer::class);
         View::composer('purchase-order.create',FabricCodeComposer::class);
         View::composer('purchase-order.create',FabricTypeComposer::class);
+        View::composer('purchase-order.create',PlacementComposer::class);
 
     }
 }
