@@ -43,9 +43,7 @@ class FabricCodeApiController extends Controller
             return response()->json($validator->errors(),400);
         }
 
-        return response()->json(['success' => $fabric_code->update([
-            'fabric_code' => request('fabric_code'),
-        ])],201);
+        return response()->json(['success' => $fabric_code->update($this->rawData())],201);
 
     }
 
@@ -58,7 +56,7 @@ class FabricCodeApiController extends Controller
 
     protected function rawData(){
         return [
-            'fabric_code' => request('fabric_code'),
+            'fabric_code' => strtoupper(request('fabric_code')),
         ];
     }
 

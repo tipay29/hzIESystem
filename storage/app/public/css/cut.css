@@ -30,7 +30,7 @@
 /*}*/
 
 #cutForm .container-one .row-one{
-    height: 100px;
+    min-height: 100px;
     /*background-color: lightblue;*/
     border-bottom: 1px solid #999;
 

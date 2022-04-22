@@ -47,9 +47,7 @@ class PlacementApiController extends Controller
             return response()->json($validator->errors(),400);
         }
 
-        return response()->json(['success' => $placement->update([
-            'placement' => request('placement'),
-        ])],201);
+        return response()->json(['success' => $placement->update($this->rawData())],201);
 
     }
 
@@ -62,7 +60,7 @@ class PlacementApiController extends Controller
 
     protected function rawData(){
         return [
-            'placement' => request('placement'),
+            'placement' => strtoupper(request('placement')),
         ];
     }
 

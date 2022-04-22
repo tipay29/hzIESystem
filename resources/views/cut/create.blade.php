@@ -44,6 +44,12 @@
                                             </select>
                                         </div>
 
+                                        <div class="form-group">
+                                            <label for="cut_count">Cut Count</label>
+                                            <input id="cut_count" name='cut_count' type="number" class="form-control"
+                                                   placeholder="Enter Cut Count">
+                                        </div>
+
                                     </div>
 
                                    <div class="row-two d-flex align-items-start flex-column flex-wrap">

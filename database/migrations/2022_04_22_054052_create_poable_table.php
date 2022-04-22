@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('purchase_orders', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('purchase_order');
-            $table->string('style_code');
+        Schema::create('poables', function (Blueprint $table) {
+            $table->unsignedBigInteger('purchase_order_id');
+            $table->unsignedBigInteger('poable_id');
+            $table->string('poable_type');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('purchase_orders');
+        Schema::dropIfExists('poables');
     }
 };

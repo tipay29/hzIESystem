@@ -59,7 +59,7 @@ class FabricTypeApiController extends Controller
 
     protected function rawData(){
         return [
-            'fabric_type' => request('fabric_type'),
+            'fabric_type' => strtoupper(request('fabric_type')),
             'sas' => request('sas'),
             'sas_cut' => request('sas_cut'),
         ];

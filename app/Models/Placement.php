@@ -11,4 +11,8 @@ class Placement extends Model
 
     protected $table='placements';
     protected $guarded = [];
+
+    public function purchase_orders(){
+        return $this->morphToMany(PurchaseOrder::class,'poable')->withTimestamps();
+    }
 }

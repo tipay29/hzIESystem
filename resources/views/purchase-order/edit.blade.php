@@ -7,13 +7,13 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
 
-                        <h5 class="mt-2">Add Purchase Order</h5>
+                        <h5 class="mt-2">Edit Purchase Order</h5>
 
                         <div>
 
-{{--                            <a href="{{route('purchase-orders.create')}}"--}}
-{{--                               class="btn btn-outline-success float-right">--}}
-{{--                                Add Purchase Order </a>--}}
+                            {{--                            <a href="{{route('purchase-orders.create')}}"--}}
+                            {{--                               class="btn btn-outline-success float-right">--}}
+                            {{--                                Add Purchase Order </a>--}}
 
                         </div>
 
@@ -21,13 +21,15 @@
 
                     <div class="card-body">
 
-                        <form action="{{route('purchase-orders.store')}}" method="post">
+                        <form action="{{route('purchase-orders.update',$purchase_order->id)}}" method="post">
+
+                            @method('PATCH')
 
                             @include('purchase-order.form')
 
                             @csrf
                             <div class="d-flex justify-content-center">
-                                <button type="submit" class="btn btn-primary">Save Purchase Order</button>
+                                <button type="submit" class="btn btn-primary">Update Purchase Order</button>
                             </div>
 
                         </form>

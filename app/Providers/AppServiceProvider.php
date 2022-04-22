@@ -34,10 +34,10 @@ class AppServiceProvider extends ServiceProvider
         View::composer(['auth.register','cut.create'],EmployeeComposer::class);
         View::composer('employee.form',JobComposer::class);
         View::composer('employee.form',BuildingComposer::class);
-        View::composer('purchase-order.create',FabricColorComposer::class);
-        View::composer('purchase-order.create',FabricCodeComposer::class);
-        View::composer('purchase-order.create',FabricTypeComposer::class);
-        View::composer('purchase-order.create',PlacementComposer::class);
+        View::composer('purchase-order.form',FabricColorComposer::class);
+        View::composer('purchase-order.form',FabricCodeComposer::class);
+        View::composer('purchase-order.form',FabricTypeComposer::class);
+        View::composer('purchase-order.form',PlacementComposer::class);
 
     }
 }
