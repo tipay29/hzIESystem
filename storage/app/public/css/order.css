@@ -1,0 +1,31 @@
+
+.fabric_color_row,
+.fabric_code_row,
+.fabric_type_row,
+.placement_row
+{
+    min-height: 500px;
+}
+
+.fabric_color_div_one,
+.fabric_code_div_one,
+.fabric_type_div_one,
+.placement_div_one
+{
+    min-height: 300px;
+}
+.fabric_color_div_two,
+.fabric_code_div_two,
+.fabric_type_div_two,
+.placement_div_two
+{
+    min-height: 150px;
+}
+.fabric_color_div_three,
+.fabric_code_div_three,
+.fabric_type_div_three,
+.placement_div_three
+{
+    display: none;
+    min-height: 150px;
+}

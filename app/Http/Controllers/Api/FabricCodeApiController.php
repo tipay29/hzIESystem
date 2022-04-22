@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 use Validator;
 class FabricCodeApiController extends Controller
 {
+
+    public function index(){
+
+        return response()->json(FabricCode::all(),200);
+
+    }
+
     public function store(Request $request)
     {
         $validator = Validator::make(request()->all(),$this->dataValidated());
@@ -19,29 +26,33 @@ class FabricCodeApiController extends Controller
 
     }
 
-    public function destroy($fabric_code)
+    public function show(FabricCode $fabric_code)
+    {
+        return response()->json($fabric_code,200);
+    }
+
+    public function update(FabricCode $fabric_code)
     {
 
-        if($fabric_code == 'null'){
-            return response()->json(['message' => 'Record not found!'], 404);
-        }else{
-
-            $fabric_code = explode(',' ,$fabric_code);
-
-            if(count($fabric_code) == 1){
-                FabricCode::where('id',$fabric_code[0])->delete();
-                return response()->json(['success' => $fabric_code],200);
-            }else{
-                for($i=0; $i < count($fabric_code); $i++){
-                    $fabric_color_record[$i] = FabricCode::where('id',$fabric_code[$i])->delete();
-                }
-                return response()->json(['success' => $fabric_code],200);
-            }
-
-
-
+        if(is_null($fabric_code)){
+            return response()->json(['Message' =>'No input!'],404);
         }
 
+        $validator = Validator::make(request()->all(),$this->dataValidated());
+        if($validator->fails()){
+            return response()->json($validator->errors(),400);
+        }
+
+        return response()->json(['success' => $fabric_code->update([
+            'fabric_code' => request('fabric_code'),
+        ])],201);
+
+    }
+
+    public function destroy(FabricCode $fabric_code)
+    {
+
+        return response()->json(['success' => $fabric_code->delete(),201]);
 
     }
 
@@ -56,4 +67,6 @@ class FabricCodeApiController extends Controller
             'fabric_code' => 'required',
         ];
     }
+
+
 }

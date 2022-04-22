@@ -1,71 +1,9 @@
-/*#cutForm ul {*/
-
-/*    display: block;*/
-/*    height: 38px;*/
-/*    border: 1px solid lightgrey;*/
-/*    border-radius: 5px;*/
-/*    background-image: none !important;*/
-/*    overflow: auto;*/
-/*    padding: 4px;*/
-/*!*}*!apply by .chosen-container-multi .chosen-choices*/
-
-
-/*#cutForm ul li input {*/
-
-/*    padding: 0px 0px 0px 8px;*/
-/*    font-size: 1.19em;*/
-
-/*!*}*!apply by .chosen-container-multi .chosen-choices*/
-
 
 .chosen-drop ul{
  height: 200px !important;
 }
 
-#cutForm .container-one{
-    height: 600px;
 
-}
-/*#cutForm .container-one .row-one{*/
-
-/*    background-color: lightgoldenrodyellow;*/
-
-/*}*/
-
-#cutForm .container-one .row-one{
-    height: 100px;
-    /*background-color: lightblue;*/
-    border-bottom: 1px solid #999;
-
-}
-
-#cutForm .container-one .row-one div.form-group{
-    padding: 8px;
-}
-
-#cutForm .container-one .row-two{
-    height: 250px;
-
-    border-bottom: 1px solid #999;
-}
-
-#cutForm .container-one .row-two div.form-group{
-    width: 50%;
-    padding: 8px;
-
-}
-
-#cutForm .container-one .row-three{
-    height: 290px;
-
-
-}
-
-#cutForm .container-one .row-three div.form-group{
-    width: 50%;
-    padding: 8px;
-
-}
 
 .btn-xsm{
     padding: 0px 4px;
@@ -74,17 +12,4 @@
     margin: 5px 0px;
 }
 
-.fabric_color_row{
-     min-height: 500px;
-}
 
-.fabric_color_div_one{
-    min-height: 300px;
-}
-.fabric_color_div_two{
-    min-height: 150px;
-}
-.fabric_color_div_three{
-    display: none;
-    min-height: 150px;
-}

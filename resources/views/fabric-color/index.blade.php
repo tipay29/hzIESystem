@@ -2,6 +2,8 @@
 
 @section('content')
     <div class="container">
+
+
         <div class="row justify-content-around fabric_color_row">
             <div class="col-md-5 ">
                 <div class="card fabric_color_div_one">
@@ -18,7 +20,7 @@
                     </div>
 
                     <div class="card-body">
-                        <div id="fabric_color_div_show fabric-color-container">
+                        <div id=" fabric-color-container">
 
                             <table class="table fabric_color_table">
                                 <thead>
@@ -66,7 +68,7 @@
                 <div class="card fabric_color_div_two">
                     <div class="card-header d-flex justify-content-between">
 
-                        <h5 class="mt-2">Add Fabric Colors</h5>
+                        <h5 class="mt-2">Add Fabric Color</h5>
 
                         <div>
 
@@ -81,7 +83,7 @@
 
                                 @csrf
                                 <div class="row mb-3">
-                                    <label for="fabric_color" class="col-md-4 col-form-label text-md-end">Fabric Color</label>
+                                    <label for="fabric_color_create" class="col-md-4 col-form-label text-md-end">Fabric Color</label>
                                     <div class="col-md-7">
 
                                         <input id="fabric_color_create" type="text" class="form-control"
@@ -104,7 +106,7 @@
                 <div class="card fabric_color_div_three">
                     <div class="card-header d-flex justify-content-between">
 
-                        <h5 class="mt-2">Update Fabric Colors</h5>
+                        <h5 class="mt-2">Update Fabric Color</h5>
 
                         <div>
 

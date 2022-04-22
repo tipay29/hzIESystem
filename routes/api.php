@@ -18,10 +18,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::group(['as' => 'api.'],function() {
+    Route::resource('employees', 'EmployeeApiController');
 
-Route::resource('employees','EmployeeApiController');
-
-Route::resource('fabric-colors','FabricColorApiController');
-Route::resource('fabric-codes','FabricCodeApiController');
-Route::resource('fabric-types','FabricTypeApiController');
-Route::resource('placements','PlacementApiController');
+    Route::resource('fabric-colors', 'FabricColorApiController');
+    Route::resource('fabric-codes', 'FabricCodeApiController');
+    Route::resource('fabric-types', 'FabricTypeApiController');
+    Route::resource('placements', 'PlacementApiController');
+});

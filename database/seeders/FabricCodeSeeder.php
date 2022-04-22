@@ -31,6 +31,51 @@ class FabricCodeSeeder extends Seeder
             [
                 'fabric_code' => 'ZCV'
             ] ,
+            [
+                'fabric_code' => 'SH4'
+            ] ,
+            [
+                'fabric_code' => 'JK3'
+            ] ,
+            [
+                'fabric_code' => 'M19'
+            ] ,
+            [
+                'fabric_code' => '400D'
+            ] ,
+            [
+                'fabric_code' => 'ZCV'
+            ] ,
+            [
+                'fabric_code' => 'SH4'
+            ] ,
+            [
+                'fabric_code' => 'JK3'
+            ] ,
+            [
+                'fabric_code' => 'M19'
+            ] ,
+            [
+                'fabric_code' => '400D'
+            ] ,
+            [
+                'fabric_code' => 'ZCV'
+            ] ,
+            [
+                'fabric_code' => 'SH4'
+            ] ,
+            [
+                'fabric_code' => 'JK3'
+            ] ,
+            [
+                'fabric_code' => 'M19'
+            ] ,
+            [
+                'fabric_code' => '400D'
+            ] ,
+            [
+                'fabric_code' => 'ZCV'
+            ] ,
         ];
 
         foreach($fabric_codes as $fabric_code){

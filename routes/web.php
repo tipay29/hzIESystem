@@ -22,7 +22,10 @@ Route::group(['namespace' => 'Web'],function(){
 
 
 
-    Route::resource('fabric-colors','FabricColorController');
+    Route::get('fabric-colors','FabricColorController@index')->name('fabric-colors.index');
+    Route::get('fabric-codes','FabricCodeController@index')->name('fabric-codes.index');
+    Route::get('fabric-types','FabricTypeController@index')->name('fabric-types.index');
+    Route::get('placements','PlacementController@index')->name('placements.index');
 });
 
 
@@ -34,16 +37,5 @@ Auth::routes();
 Route::get('/', function () {
     return view('home');
 });
-
-
-Route::get('fabric-codes',function(){
-    return view('fabric-code.index');
-})->name('fabric-codes.index');
-Route::get('fabric-types',function(){
-    return view('fabric-type.index');
-})->name('fabric-types.index');
-Route::get('placements',function(){
-    return view('placement.index');
-})->name('placements.index');
 
 

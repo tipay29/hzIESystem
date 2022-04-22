@@ -17,6 +17,7 @@
     <script src="{{asset('storage/js/chosen-jquery.js')}}"></script>{{--for chosen--}}
     <script src="{{ asset('storage/js/main.js') }}" defer></script>
 
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -24,6 +25,8 @@
      <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('storage/css/chosen.css') }}" rel="stylesheet">{{--for chosen--}}
     <link href="{{ asset('storage/css/one.css') }}" rel="stylesheet">
+    <link href="{{ asset('storage/css/cut.css') }}" rel="stylesheet">
+    <link href="{{ asset('storage/css/order.css') }}" rel="stylesheet">
     <style>
 
         .navbar-brand img{
