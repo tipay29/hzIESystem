@@ -25,8 +25,9 @@ if(l.pathname === '/fabric-codes') {
                     alert(code.fabric_code + ' Saved');
                     location.reload();
                 },
-                error: function () {
-                    alert('error saving fabric code');
+                error: function(XHR, textStatus, errorThrown)
+                {
+                    alert(textStatus + ': ' + errorThrown + '\n' + XHR.responseJSON['fabric_code'][0]);
                 }
             });
 
@@ -68,8 +69,8 @@ if(l.pathname === '/fabric-codes') {
 
         });
 
-        $('.btn_edit_fabric_code').click(function () {
-
+        $('.btn_edit_fabric_code').click(function (e) {
+            e.preventDefault();
             $('.fabric_code_div_two').css('display', 'none');
 
             $('.fabric_code_div_three').css('display', 'block');
@@ -90,7 +91,7 @@ if(l.pathname === '/fabric-codes') {
             //UPDATE fabric COLOR
 
             $('#btn-update-fabric-code').click(function (e) {
-
+                e.preventDefault();
                 let fabric_code= {
                     fabric_code: $('#fabric_code_edit').val(),
                 }
@@ -103,8 +104,9 @@ if(l.pathname === '/fabric-codes') {
                         alert('Fabric Code ID ' + fabric_code_id + ' Updated');
                         location.reload();
                     },
-                    error: function () {
-                        alert('error updating fabric code');
+                    error: function(XHR, textStatus, errorThrown)
+                    {
+                        alert(textStatus + ': ' + errorThrown + '\n' + XHR.responseJSON['fabric_code'][0]);
                     }
 
                 });

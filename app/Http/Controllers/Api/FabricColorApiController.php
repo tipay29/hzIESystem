@@ -63,7 +63,7 @@ class FabricColorApiController extends Controller
 
     protected function dataValidated(){
         return [
-            'fabric_color' => 'required',
+            'fabric_color' => 'required|unique:fabric_colors,fabric_color',
         ];
     }
 }

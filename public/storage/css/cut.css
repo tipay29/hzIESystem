@@ -20,7 +20,7 @@
 
 
 #cutForm .container-one{
-    height: 600px;
+    min-height: 700px;
 
 }
 /*#cutForm .container-one .row-one{*/

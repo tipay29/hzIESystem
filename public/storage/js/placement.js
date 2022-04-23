@@ -25,8 +25,9 @@ if(l.pathname === '/placements') {
                 alert(placement.placement + ' Saved');
                 location.reload();
             },
-            error: function () {
-                alert('error saving placement');
+            error: function(XHR, textStatus, errorThrown)
+            {
+                alert(textStatus + ': ' + errorThrown + '\n' + XHR.responseJSON['placement'][0]);
             }
         });
 
@@ -68,8 +69,8 @@ if(l.pathname === '/placements') {
 
     });
 
-    $('.btn_edit_placement').click(function () {
-
+    $('.btn_edit_placement').click(function (e) {
+        e.preventDefault();
         $('.placement_div_two').css('display', 'none');
 
         $('.placement_div_three').css('display', 'block');
@@ -90,7 +91,7 @@ if(l.pathname === '/placements') {
         //UPDATE fabric COLOR
 
         $('#btn-update-placement').click(function (e) {
-
+            e.preventDefault();
             let placement = {
                 placement: $('#placement_edit').val(),
             }
@@ -103,8 +104,9 @@ if(l.pathname === '/placements') {
                     alert('Placement ID ' + placement_id + ' Updated');
                     location.reload();
                 },
-                error: function () {
-                    alert('error updating placement');
+                error: function(XHR, textStatus, errorThrown)
+                {
+                    alert(textStatus + ': ' + errorThrown + '\n' + XHR.responseJSON['placement'][0]);
                 }
 
             });

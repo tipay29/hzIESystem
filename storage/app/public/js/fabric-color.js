@@ -26,10 +26,12 @@ if(l.pathname === '/fabric-colors'){
             data: color,
             success: function (fabric_color) {
                 alert(color.fabric_color + ' Saved');
+
                 location.reload();
             },
-            error: function () {
-                alert('error saving fabric color');
+            error: function(XHR, textStatus, errorThrown)
+            {
+                alert(textStatus + ': ' + errorThrown + '\n' + XHR.responseJSON['fabric_color'][0]);
             }
         });
 
@@ -76,7 +78,9 @@ if(l.pathname === '/fabric-colors'){
 
     });
 
-    $('.btn_edit_fabric_color').click(function(){
+    $('.btn_edit_fabric_color').click(function(e){
+
+        e.preventDefault();
 
         $('.fabric_color_div_two').css('display','none');
 
@@ -99,6 +103,8 @@ if(l.pathname === '/fabric-colors'){
 
         $('#btn-update-fabric-color').click(function(e){
 
+            e.preventDefault();
+
             let fabric_color = {
                 fabric_color: $('#fabric_color_edit').val(),
             }
@@ -111,8 +117,9 @@ if(l.pathname === '/fabric-colors'){
                     alert('Fabric Color ID ' + fabric_color_id + ' Updated');
                     location.reload();
                 },
-                error: function(){
-                    alert('error updating fabric color');
+                error: function(XHR, textStatus, errorThrown)
+                {
+                    alert(textStatus + ': ' + errorThrown + '\n' + XHR.responseJSON['fabric_color'][0]);
                 }
 
             });

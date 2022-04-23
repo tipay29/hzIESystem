@@ -43,18 +43,20 @@ class PurchaseOrderController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store()
     {
 
+        $data = $this->requestValidate();
+
         $purchase_order = PurchaseOrder::create([
-            'purchase_order' => $this->requestValidate()['purchase_order'],
-            'style_code' => strtoupper($this->requestValidate()['style_code']),
+            'purchase_order' => $data['purchase_order'],
+            'style_code' => strtoupper($data['style_code']),
         ]);
 
-        $purchase_order->placements()->sync($this->requestValidate()['placement']);
-        $purchase_order->fabric_colors()->sync($this->requestValidate()['fabric_color']);
-        $purchase_order->fabric_codes()->sync($this->requestValidate()['fabric_code']);
-        $purchase_order->fabric_types()->sync($this->requestValidate()['fabric_type']);
+        $purchase_order->placements()->sync($data['placement']);
+        $purchase_order->fabric_colors()->sync($data['fabric_color']);
+        $purchase_order->fabric_codes()->sync($data['fabric_code']);
+        $purchase_order->fabric_types()->sync($data['fabric_type']);
 
         return redirect(route('purchase-orders.index'));
 
@@ -74,27 +76,40 @@ class PurchaseOrderController extends Controller
 
     public function update(Request $request, PurchaseOrder $purchase_order)
     {
+        $data = $this->requestValidate();
 
-        $purchase_order->placements()->sync($this->requestValidate()['placement']);
-        $purchase_order->fabric_colors()->sync($this->requestValidate()['fabric_color']);
-        $purchase_order->fabric_codes()->sync($this->requestValidate()['fabric_code']);
-        $purchase_order->fabric_types()->sync($this->requestValidate()['fabric_type']);
+        $purchase_order->update([
+            'purchase_order' => $data['purchase_order'],
+            'style_code' => strtoupper($data['style_code']),
+        ]);
+
+        $purchase_order->placements()->sync($data['placement']);
+        $purchase_order->fabric_colors()->sync($data['fabric_color']);
+        $purchase_order->fabric_codes()->sync($data['fabric_code']);
+        $purchase_order->fabric_types()->sync($data['fabric_type']);
 
         return redirect(route('purchase-orders.index'));
 
     }
 
 
-    public function destroy(PurchaseOrder $purchaseOrder)
+    public function destroy(PurchaseOrder $purchase_order)
     {
-        $purchaseOrder->delete();
+
+        $purchase_order->fabric_colors()->detach();
+        $purchase_order->fabric_codes()->detach();
+        $purchase_order->fabric_types()->detach();
+        $purchase_order->placements()->detach();
+        $purchase_order->delete();
 
         return redirect(route('purchase-orders.index'));
     }
+
+
 
     protected function requestValidate(){
         return request()->validate([
-            'purchase_order' => 'required',
+            'purchase_order' => 'required|unique:purchase_orders,purchase_order',
             'style_code' => 'required|max:255',
             'placement' => 'required|array',
             'fabric_color' => 'required|array',

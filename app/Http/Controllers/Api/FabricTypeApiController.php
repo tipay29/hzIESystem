@@ -67,7 +67,7 @@ class FabricTypeApiController extends Controller
 
     protected function dataValidated(){
         return [
-            'fabric_type' => 'required',
+            'fabric_type' => 'required|unique:fabric_types,fabric_type',
             'sas' => 'required',
             'sas_cut' => 'required',
         ];

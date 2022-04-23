@@ -66,7 +66,7 @@ class PlacementApiController extends Controller
 
     protected function dataValidated(){
         return [
-            'placement' => 'required',
+            'placement' => 'required|unique:placements,placement',
         ];
     }
 }

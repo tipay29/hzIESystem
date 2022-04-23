@@ -31,66 +31,7 @@ class PlacementSeeder extends Seeder
             [
                 'placement' => 'LTJI'
             ] ,
-            [
-                'placement' => 'M18W'
-            ] ,
-            [
-                'placement' => '14G'
-            ] ,
-            [
-                'placement' => 'LZH9'
-            ] ,
-            [
-                'placement' => '180G'
-            ] ,
-            [
-                'placement' => 'LTJI'
-            ] ,
-            [
-                'placement' => 'M18W'
-            ] ,
-            [
-                'placement' => '14G'
-            ] ,
-            [
-                'placement' => 'LZH9'
-            ] ,
-            [
-                'placement' => '180G'
-            ] ,
-            [
-                'placement' => 'LTJI'
-            ] ,
-            [
-                'placement' => 'M18W'
-            ] ,
-            [
-                'placement' => '14G'
-            ] ,
-            [
-                'placement' => 'LZH9'
-            ] ,
-            [
-                'placement' => '180G'
-            ] ,
-            [
-                'placement' => 'LTJI'
-            ] ,
-            [
-                'placement' => 'M18W'
-            ] ,
-            [
-                'placement' => '14G'
-            ] ,
-            [
-                'placement' => 'LZH9'
-            ] ,
-            [
-                'placement' => '180G'
-            ] ,
-            [
-                'placement' => 'LTJI'
-            ] ,
+
         ];
 
         foreach($placement as $placement){
