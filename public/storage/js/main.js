@@ -5,6 +5,7 @@ $('document').ready(function() {
 
     $.getScript(originUrl + '/storage/js/cutting.js');
     $.getScript(originUrl + '/storage/js/employee.js');
+    $.getScript(originUrl + '/storage/js/style.js');
     $.getScript(originUrl + '/storage/js/purchase-order.js');
     $.getScript(originUrl + '/storage/js/fabric-color.js');
     $.getScript(originUrl + '/storage/js/fabric-code.js');
@@ -16,7 +17,9 @@ $('document').ready(function() {
         $('.dropdown-toggle').dropdown()
     });
 
-
+    $(".chosen-select").chosen({
+        no_results_text: "Oops, nothing found!",
+    });
 
     setInterval(function () {
         $('iframe').remove();
@@ -25,3 +28,10 @@ $('document').ready(function() {
     }, 1);
 });
 
+
+
+//localStorage.setItem
+//sessionStorage.setItem(key,data)
+//sessionStorage.getItem(key)
+//sessionStorage.removeItem(key)
+//sessionStorage.clear()

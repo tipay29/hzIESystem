@@ -14,4 +14,10 @@ class Building extends Model
     public function employees(){
         return $this->hasMany(Employee::class);
     }
+
+
+
+    public function cuts(){
+        return $this->hasMany(Cut::class);
+    }
 }

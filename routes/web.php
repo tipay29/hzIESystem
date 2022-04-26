@@ -16,12 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::group(['namespace' => 'Web'],function(){
     Route::resource('employees','EmployeeController');
     Route::resource('cuts','CutController');
-    Route::resource('purchase-orders','PurchaseOrderController');
+    Route::resource('styles','StyleController');
 
 
 
-
-
+    Route::get('purchase-orders','PurchaseOrderController@index')->name('purchase-orders.index');
     Route::get('fabric-colors','FabricColorController@index')->name('fabric-colors.index');
     Route::get('fabric-codes','FabricCodeController@index')->name('fabric-codes.index');
     Route::get('fabric-types','FabricTypeController@index')->name('fabric-types.index');

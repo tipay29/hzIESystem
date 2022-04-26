@@ -16,7 +16,7 @@
                             <div class="col-md-6 " >
                                 <select name="employee_id" class="form-control @error('employee_id') is-invalid @enderror"
                                         id="emp_id" autofocus>
-                                    <option disabled selected>Please select your ID</option>
+                                    <option disabled selected value="null">Please select your ID</option>
                                     @foreach($employees as $employee)
 
                                         @if(is_null($employee->user_account_id))
@@ -24,7 +24,7 @@
                                                 {{$employee->id == old('employee_id') ? 'selected' : ''}}>
                                             {{$employee->id}}</option>
                                         @else
-                                            <option value=""></option>
+                                            <option value="null" selected disabled>No Employee</option>
                                         @endif
                                     @endforeach
 

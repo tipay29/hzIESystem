@@ -55,7 +55,7 @@
                                             @endcannot
                                     </th>
                                     <td scope="row">
-                                        @if(!is_null($employee->user_account_id))
+                                        @if(!is_null($employee->user))
                                             <i class="fa fa-key"
                                                style="color:greenyellow;"
                                                aria-hidden="true"></i>

@@ -68,18 +68,16 @@ class RegisterController extends Controller
     {
 
         if(isset($data['employee_id'])){
-            $user = User::create([
+
+
+            return User::create([
                 'employee_id' => $data['employee_id'],
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
             ]);
 
-            $employee = Employee::findOrFail($data['employee_id']);
-            $employee->user_account_id = $user->id;
-            $employee->save();
 
-            return $user;
         }
 
         return User::create([

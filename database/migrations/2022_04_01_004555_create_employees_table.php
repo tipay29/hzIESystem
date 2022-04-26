@@ -23,7 +23,6 @@ return new class extends Migration
             $table->date('birthday')->nullable();
             $table->date('join_date')->nullable();
             $table->unsignedInteger('user_id')->nullable();
-            $table->unsignedInteger('user_account_id')->nullable();
             $table->timestamps();
         });
     }

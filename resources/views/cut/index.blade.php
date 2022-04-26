@@ -21,9 +21,22 @@
 
                     <div class="card-body">
 
+                        @foreach($cuts as $cut)
+
+                            @foreach($cut->employees as $employee)
+                                {{$employee->name}} as {{dump($employee->job->job)}}</p>
+                            @endforeach
+
+
+                        @endforeach
+
                         <table class="table">
+                            <tr>
 
+                            </tr>
+                            <tr>
 
+                            </tr>
 
 
                         </table>

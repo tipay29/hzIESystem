@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
 
-                        <h5 class="mt-2">Add Purchase Order</h5>
+                        <h5 class="mt-2">Add Style</h5>
 
                         <div>
 
@@ -21,13 +21,13 @@
 
                     <div class="card-body">
 
-                        <form action="{{route('purchase-orders.store')}}" method="post">
+                        <form action="{{route('styles.store')}}" method="post">
 
-                            @include('purchase-order.form')
+                            @include('style.form')
 
                             @csrf
                             <div class="d-flex justify-content-center">
-                                <button type="submit" class="btn btn-primary">Save Purchase Order</button>
+                                <button type="submit" class="btn btn-primary">Save Style</button>
                             </div>
 
                         </form>

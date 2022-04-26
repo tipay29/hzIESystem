@@ -15,6 +15,19 @@ return new class extends Migration
     {
         Schema::create('cuts', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('building_id');
+            $table->integer('table_num');
+            $table->integer('work_hours');
+            $table->integer('cut_count');
+            $table->double('marker_length');
+            $table->integer('layer_count');
+            $table->integer('part_count');
+            $table->integer('size_ratio');
+            $table->dateTime('spread_start');
+            $table->dateTime('spread_end');
+            $table->dateTime('cut_start');
+            $table->dateTime('cut_end');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
     }

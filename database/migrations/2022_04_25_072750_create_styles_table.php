@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('purchase_orders', function (Blueprint $table) {
+        Schema::create('styles', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('purchase_order');
+            $table->string('style_code');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('purchase_orders');
+        Schema::dropIfExists('styles');
     }
 };

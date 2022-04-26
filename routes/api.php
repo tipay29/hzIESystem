@@ -25,4 +25,8 @@ Route::group(['as' => 'api.'],function() {
     Route::resource('fabric-codes', 'FabricCodeApiController');
     Route::resource('fabric-types', 'FabricTypeApiController');
     Route::resource('placements', 'PlacementApiController');
+
+
+    Route::resource('purchase-orders', 'PurchaseOrderApiController');
+    Route::resource('styles', 'StyleApiController');
 });

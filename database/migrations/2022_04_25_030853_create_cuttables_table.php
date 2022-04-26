@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('purchase_orders', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('purchase_order');
+        Schema::create('cuttables', function (Blueprint $table) {
+            $table->unsignedBigInteger('cut_id');
+            $table->unsignedBigInteger('cuttable_id');
+            $table->string('cuttable_type');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('purchase_orders');
+        Schema::dropIfExists('cuttables');
     }
 };

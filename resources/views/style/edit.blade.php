@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
 
-                        <h5 class="mt-2">Edit Purchase Order</h5>
+                        <h5 class="mt-2">Edit Style</h5>
 
                         <div>
 
@@ -21,15 +21,15 @@
 
                     <div class="card-body">
 
-                        <form action="{{route('purchase-orders.update',$purchase_order->id)}}" method="post">
+                        <form action="{{route('styles.update',$style->id)}}" method="post">
 
                             @method('PATCH')
 
-                            @include('purchase-order.form')
+                            @include('style.form')
 
                             @csrf
                             <div class="d-flex justify-content-center">
-                                <button type="submit" class="btn btn-primary">Update Purchase Order</button>
+                                <button type="submit" class="btn btn-primary">Update Style</button>
                             </div>
 
                         </form>

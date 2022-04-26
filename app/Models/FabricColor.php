@@ -11,8 +11,12 @@ class FabricColor extends Model
     protected $table='fabric_colors';
     protected $guarded = [];
 
-    public function purchase_orders(){
-        return $this->morphToMany(PurchaseOrder::class,'poable')->withTimestamps();
+    public function styles(){
+        return $this->morphToMany(Style::class,'styleable')->withTimestamps();
+    }
+
+    public function cuts(){
+        return $this->morphToMany(Cut::class,'cuttable')->withTimestamps();
     }
 
 }

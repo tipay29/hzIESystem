@@ -57,12 +57,13 @@
                         <li class="nav-item">
 
                             <div class="btn-group dropdown">
-                                <a class="nav-link btn btn-light" href="{{route('purchase-orders.index')}}">Orders</a>
+                                <a class="nav-link btn btn-light" href="{{route('styles.index')}}">Styles</a>
                                 <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
                                         data-bs-toggle="dropdown">
                                     <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{{route('purchase-orders.index')}}">Purchase Orders</a></li>
                                     <li><a class="dropdown-item" href="{{route('fabric-colors.index')}}">Fabric Colors</a></li>
                                     <li><a class="dropdown-item" href="{{route('fabric-codes.index')}}">Fabric Codes</a></li>
                                     <li><a class="dropdown-item" href="{{route('fabric-types.index')}}">Fabric Types</a></li>

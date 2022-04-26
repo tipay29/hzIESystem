@@ -30,18 +30,19 @@
 /*}*/
 
 #cutForm .container-one .row-one{
-    min-height: 100px;
+    height: 300px;
     /*background-color: lightblue;*/
     border-bottom: 1px solid #999;
 
 }
 
 #cutForm .container-one .row-one div.form-group{
+    width: 50%;
     padding: 8px;
 }
 
 #cutForm .container-one .row-two{
-    height: 250px;
+    height: 350px;
 
     border-bottom: 1px solid #999;
 }
@@ -53,7 +54,7 @@
 }
 
 #cutForm .container-one .row-three{
-    height: 290px;
+    height: 300px;
 
 
 }

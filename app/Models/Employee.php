@@ -12,7 +12,7 @@ class Employee extends Model
     protected $guarded = [];
 
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->hasOne(User::class);
     }
 
     public function job(){
@@ -24,6 +24,7 @@ class Employee extends Model
     }
 
     public function cuts(){
-        return $this->hasMany(Cut::class);
+        return $this->morphToMany(Cut::class,'cuttable')->withTimestamps();
     }
+
 }

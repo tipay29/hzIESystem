@@ -35,6 +35,12 @@ class User extends Authenticatable
 
     public function employee(){
 
-        return $this->hasOne(Employee::class);
+        return $this->belongsTo(Employee::class);
+    }
+
+
+    public function cuts(){
+
+        return $this->hasMany(Cut::class);
     }
 }
