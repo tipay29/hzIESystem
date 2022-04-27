@@ -34,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer(['auth.register','cut.create'],EmployeeComposer::class);
+        View::composer(['auth.register','cut.create','cut.edit'],EmployeeComposer::class);
         View::composer('employee.form',JobComposer::class);
         View::composer('employee.form',BuildingComposer::class);
         View::composer('style.form',FabricColorComposer::class);
@@ -43,6 +43,6 @@ class AppServiceProvider extends ServiceProvider
         View::composer('style.form',PlacementComposer::class);
         View::composer('style.form',PurchaseOrderComposer::class);
         View::composer('style.form',StylePOComposer::class);
-        View::composer('cut.create',StyleComposer::class);
+        View::composer(['cut.edit','cut.create'],StyleComposer::class);
     }
 }

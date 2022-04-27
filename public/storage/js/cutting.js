@@ -1,8 +1,6 @@
 
 let l = window.location;
-if(l.pathname !== '/cuts/create') {
-    sessionStorage.clear();
-}//delete session value
+let lsplit = l.pathname.split('/');
 
 
 let cut_style = $("#cut_style");
@@ -12,9 +10,27 @@ let cut_fabric_color = $('#cut_fabric_color');
 let cut_fabric_type = $('#cut_fabric_type');
 let cut_placement = $('#cut_placement');
 
-if(cut_style.val() !== null){
-    getStyle(cut_style);
+
+
+if(lsplit.includes('cuts')){
+
+    if(l.pathname === '/cuts/create') {
+        if(cut_style.val() !== null){
+            getStyle(cut_style);
+        }
+    }else{
+        sessionStorage.clear();        //delete session value
+    }
+
+    if(lsplit.includes('edit') && lsplit.includes('cuts')) {
+
+            setCutSession(lsplit[2]);
+
+        getStyle(cut_style);
+    }
 }
+
+
 
 cut_style.change(function(){
 
@@ -66,14 +82,10 @@ cut_placement.change(function(){
 
  function getStyle(style){
 
-
-
      $.ajax({
          type: 'GET',
          url: '/api/styles/' + style.val(),
          success: function (style) {
-
-
 
              cut_purchase_order.empty();
              $.each(style.purchase_orders, function(i,purchase_order){
@@ -141,6 +153,20 @@ cut_placement.change(function(){
          },
          error: function(x,h,r){
              console.log(x);
+         },
+     });
+ }
+
+ function setCutSession(cut){
+     $.ajax({
+         type: 'GET',
+         url: '/api/cuts/' + cut,
+         success: function (cut) {
+             sessionStorage.setItem('fabric_color', cut.fabric_colors.map(c => c.id));
+             sessionStorage.setItem('fabric_code', cut.fabric_codes.map(c => c.id));
+             sessionStorage.setItem('fabric_type', cut.fabric_types.map(c => c.id));
+             sessionStorage.setItem('placement', cut.placements.map(c => c.id));
+             sessionStorage.setItem('purchase_order', cut.purchase_orders.map(c => c.id));
          },
      });
  }

@@ -29,4 +29,7 @@ Route::group(['as' => 'api.'],function() {
 
     Route::resource('purchase-orders', 'PurchaseOrderApiController');
     Route::resource('styles', 'StyleApiController');
+
+    Route::get('cuts/eff', 'CutApiController@eff')->name('cuts.eff');
+    Route::resource('cuts', 'CutApiController');
 });

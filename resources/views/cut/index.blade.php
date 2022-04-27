@@ -21,25 +21,84 @@
 
                     <div class="card-body">
 
-                        @foreach($cuts as $cut)
-
-                            @foreach($cut->employees as $employee)
-                                {{$employee->name}} as {{dump($employee->job->job)}}</p>
-                            @endforeach
 
 
-                        @endforeach
-
-                        <table class="table">
-                            <tr>
-
-                            </tr>
-                            <tr>
-
-                            </tr>
 
 
-                        </table>
+
+
+                        <div class="table-responsive">
+                            <table class="table ">
+                                <thead>
+                                    <tr>
+                                        <th width="5%" scope="col">CutID</th>
+                                        <th width="5%" scope="col">Cut#</th>
+                                        <th width="10%" scope="col">Style</th>
+                                        <th width="15%" scope="col">Purchase Order</th>
+                                        <th width="5%" scope="col">Building</th>
+                                        <th width="5%" scope="col">Table</th>
+                                        <th width="18%" scope="col">Spread DateTime</th>
+                                        <th width="18%" scope="col">Cut DateTime</th>
+                                        <th width="15%" scope="col">User</th>
+                                        <th width="4%" scope="col">Option</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                @foreach($cuts as $cut)
+                                    <tr>
+                                        <td  scope="row">
+                                            <a href="{{route('cuts.show', $cut->id)}}">
+                                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                                {{$cut->id}} </a>
+                                        </td>
+                                        <td  scope="row">
+                                            {{$cut->cut_count}}
+                                        </td>
+                                        <td  scope="row">
+                                            @foreach($cut->styles as $style)
+                                                {{$style->style_code}}
+                                            @endforeach
+                                        </td>
+                                        <td  scope="row">
+                                            @foreach($cut->purchase_orders as $purchase_order)
+                                                {{$purchase_order->purchase_order}}
+                                            @endforeach
+                                        </td>
+                                        <td  scope="row">
+                                            {{$cut->building->building}}
+                                        </td>
+                                        <td  scope="row">
+                                            {{$cut->table_num}}
+                                        </td>
+                                        <td  scope="row">
+                                            {{$cut->spread_start}}</td>
+                                        <td  scope="row">
+                                            {{$cut->cut_start}}</td>
+                                        <td  scope="row">
+                                            {{$cut->user->name}}
+                                        </td>
+                                        <td  scope="row">
+
+                                            <a style="text-decoration: none;color:darkorange;" href="{{route('cuts.edit', $cut->id)}}" >
+                                                <i class="fa fa-pencil-square" aria-hidden="true"></i> </a>
+
+                                            <form style="display:inline;" action="{{route('cuts.destroy', $cut->id)}}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button style="border: none;background-color: white;color:darkred;"
+                                                        onclick="return confirm('Delete CutID {{$style->id}}  ?')" >
+                                                    <i class="fa fa-trash" aria-hidden="true"></i></button>
+                                            </form>
+
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+
+
+                            </table>
+                        </div>
 
                     </div>
                 </div>

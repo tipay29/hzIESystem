@@ -61,6 +61,7 @@ class StyleController extends Controller
 
     public function edit(Style $style)
     {
+
         return view('style.edit',compact('style'));
     }
 

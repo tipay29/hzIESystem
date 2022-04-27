@@ -20,75 +20,75 @@
                     </div>
 
                     <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
 
-                        <table class="table">
 
+                                @forelse($employees as $key => $employee)
 
-                            @forelse($employees as $key => $employee)
+                                    @if($key ==0)
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Job</th>
+                                            <th scope="col">Building</th>
+                                            @can('update', $employee)
+                                                @can('delete', $employee)
+                                                    <th scope="col">Option</th>
+                                                @endcan
+                                            @endcan
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                    @endif
 
-                                @if($key ==0)
-                                    <thead>
                                     <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Job</th>
-                                        <th scope="col">Building</th>
+                                        <th scope="row">
+                                            @can('view',$employee)
+                                            <a href="{{route('employees.show', $employee->id)}}">
+                                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                                {{$employee->id}} </a>
+                                            @endcan
+                                            @cannot('view',$employee)
+                                                {{$employee->id}}
+                                                @endcannot
+                                        </th>
+                                        <td scope="row">
+                                            @if(!is_null($employee->user))
+                                                <i class="fa fa-key"
+                                                   style="color:greenyellow;"
+                                                   aria-hidden="true"></i>
+                                            @endif
+                                            {{$employee->name}}
+                                        </td>
+                                        <td scope="row">{{$employee->job->job}}</td>
+                                        <td scope="row">{{$employee->building->building}}</td>
                                         @can('update', $employee)
                                             @can('delete', $employee)
-                                                <th scope="col">Option</th>
+                                                <td scope="row">
+                                                    <a style="text-decoration: none;color:darkorange;" href="{{route('employees.edit', $employee->id)}}" >
+                                                        <i class="fa fa-pencil-square" aria-hidden="true"></i> </a>
+
+                                                    <form style="display:inline;" action="{{route('employees.destroy', $employee->id)}}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button style="border: none;background-color: white;color:darkred;"
+                                                                onclick="return confirm('Are you sure to delete?')" >
+                                                            <i class="fa fa-trash" aria-hidden="true"></i></button>
+                                                    </form>
+
+                                                </td>
                                             @endcan
                                         @endcan
                                     </tr>
-                                    </thead>
-                                    <tbody>
-                                @endif
+                                @empty
+                                    <p class="text-danger">No Employee</p>
+                                @endforelse
 
-                                <tr>
-                                    <th scope="row">
-                                        @can('view',$employee)
-                                        <a href="{{route('employees.show', $employee->id)}}">
-                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                            {{$employee->id}} </a>
-                                        @endcan
-                                        @cannot('view',$employee)
-                                            {{$employee->id}}
-                                            @endcannot
-                                    </th>
-                                    <td scope="row">
-                                        @if(!is_null($employee->user))
-                                            <i class="fa fa-key"
-                                               style="color:greenyellow;"
-                                               aria-hidden="true"></i>
-                                        @endif
-                                        {{$employee->name}}
-                                    </td>
-                                    <td scope="row">{{$employee->job->job}}</td>
-                                    <td scope="row">{{$employee->building->building}}</td>
-                                    @can('update', $employee)
-                                        @can('delete', $employee)
-                                            <td scope="row">
-                                                <a style="text-decoration: none;color:darkorange;" href="{{route('employees.edit', $employee->id)}}" >
-                                                    <i class="fa fa-pencil-square" aria-hidden="true"></i> </a>
-
-                                                <form style="display:inline;" action="{{route('employees.destroy', $employee->id)}}" method="post">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button style="border: none;background-color: white;color:darkred;"
-                                                            onclick="return confirm('Are you sure to delete?')" >
-                                                        <i class="fa fa-trash" aria-hidden="true"></i></button>
-                                                </form>
-
-                                            </td>
-                                        @endcan
-                                    @endcan
-                                </tr>
-                            @empty
-                                <p class="text-danger">No Employee</p>
-                            @endforelse
-
-                            </tbody>
-                        </table>
-
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
