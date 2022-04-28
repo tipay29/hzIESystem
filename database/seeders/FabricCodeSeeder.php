@@ -29,7 +29,37 @@ class FabricCodeSeeder extends Seeder
                 'fabric_code' => '400D'
             ] ,
             [
-                'fabric_code' => 'ZCV'
+                'fabric_code' => '300D'
+            ] ,
+            [
+                'fabric_code' => 'AK47'
+            ] ,
+            [
+                'fabric_code' => 'M16'
+            ] ,
+            [
+                'fabric_code' => 'UZ1'
+            ] ,
+            [
+                'fabric_code' => 'M4A1'
+            ] ,
+            [
+                'fabric_code' => 'PSG1'
+            ] ,
+            [
+                'fabric_code' => 'PSU'
+            ] ,
+            [
+                'fabric_code' => 'DRG4'
+            ] ,
+            [
+                'fabric_code' => 'FMS'
+            ] ,
+            [
+                'fabric_code' => 'GL1L'
+            ] ,
+            [
+                'fabric_code' => 'M13'
             ] ,
 
         ];

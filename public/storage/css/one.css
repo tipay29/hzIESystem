@@ -12,11 +12,34 @@
     margin: 5px 0px;
 }
 
+.hide, .hide *{
+    visibility: hidden;
+}
+
 @media print
 {
-    .no-print, .no-print *
-    {
-        display: none !important;
+    body * {
+        visibility: hidden;
+    }
+
+    .section-to-no-print {
+        visibility: hidden !important;
+    }
+
+    .cut_section-to-print-indv{
+        position: absolute;
+        top: 0;
+        left: 170px;
+        visibility: visible;
+    }
+
+    #cut_section-to-print, #cut_section-to-print * {
+        visibility: visible;
+    }
+    #cut_section-to-print {
+        position: absolute;
+        top: 120px;
+        left: 80px;
     }
 }
 

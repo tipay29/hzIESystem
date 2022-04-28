@@ -28,6 +28,8 @@ class DatabaseSeeder extends Seeder
             PlacementSeeder::class,
             PurchaseOrderSeeder::class,
             UserSeeder::class,
+            StyleSeeder::class,
+            CutSeeder::class,
         ]);
 
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Events\GetCutEffEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Cut;
 use Illuminate\Http\Request;
@@ -127,15 +128,11 @@ class CutController extends Controller
 
     }
 
-    public function eff()
+    public function util()
     {
-        $cuts = Cut::with([
-            'styles','purchase_orders','fabric_codes',
-            'fabric_colors','fabric_types','placements',
-            'employees',
-        ])->get();
 
-        return view('cut.eff',compact('cuts'));
+        return view('cut.util');
+
     }
 
     protected function requestValidate(){

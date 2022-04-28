@@ -31,6 +31,42 @@ class FabricColorSeeder extends Seeder
             [
                 'fabric_color' => 'GREEN'
             ] ,
+            [
+                'fabric_color' => 'RED'
+            ] ,
+            [
+                'fabric_color' => 'YELLOW'
+            ] ,
+            [
+                'fabric_color' => 'ORANGE'
+            ] ,
+            [
+                'fabric_color' => 'PINK'
+            ] ,
+            [
+                'fabric_color' => 'VIOLET'
+            ] ,
+            [
+                'fabric_color' => 'DARK GREY'
+            ] ,
+            [
+                'fabric_color' => 'AQUA'
+            ] ,
+            [
+                'fabric_color' => 'YELLOW GREEN'
+            ] ,
+            [
+                'fabric_color' => 'OCEAN'
+            ] ,
+            [
+                'fabric_color' => 'MODERN STEEL'
+            ] ,
+            [
+                'fabric_color' => 'SPORTY RED'
+            ] ,
+            [
+                'fabric_color' => 'RAFFETA WHITE'
+            ] ,
 
         ];
 

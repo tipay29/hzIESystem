@@ -1,0 +1,369 @@
+<?php
+
+namespace App\Listeners;
+
+use App\Events\GetCutEffEvent;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
+
+class CalculateCutEffListener
+{
+
+
+    public function handle(GetCutEffEvent $event)
+    {
+        $event->cuts;
+        $datas = array(
+            'building' => array(
+                'B2' => array(
+                    'table' => array(
+                        1 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        2 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        3 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        4 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        5 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        6 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        7 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        8 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        9 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        10 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        11 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        12 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        13 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        14 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        15 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                    ),
+                ),
+                'D4' => array(
+                    'table' => array(
+                        1 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        2 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        3 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        4 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        5 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        6 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        7 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        8 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        9 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        10 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        11 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        12 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        13 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        14 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        15 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                    ),
+                ),
+                'E5' => array(
+                    'table' => array(
+                        1 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        2 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        3 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        4 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        5 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        6 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        7 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        8 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        9 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        10 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        11 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        12 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        13 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        14 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                        15 => array(
+                            'days' => 0,
+                            'work_hours' => 0,
+                            'actual_yards' => 0,
+                            'target_yards' => 0,
+                            'table_util' => 0,
+                        ),
+                    ),
+                ),
+
+            ),
+        );
+
+        foreach($event->cuts as $key => $cut)
+        {
+
+                $datas['building'][$cut->building->building]['table'][$cut->table_num]['days']+=1;
+                $datas['building'][$cut->building->building]['table'][$cut->table_num]['work_hours']+=$cut->work_hours;
+                $datas['building'][$cut->building->building]['table'][$cut->table_num]['actual_yards']+=round(($cut->marker_length * $cut->layer_count));
+                $datas['building'][$cut->building->building]['table'][$cut->table_num]['target_yards']+=round(($cut->work_hours * 319.55));
+                $datas['building'][$cut->building->building]['table'][$cut->table_num]['table_util'] = round(
+                ($datas['building'][$cut->building->building]['table'][$cut->table_num]['actual_yards']/$datas['building'][$cut->building->building]['table'][$cut->table_num]['target_yards'])
+                *100);
+
+        }
+
+
+
+
+        return $datas;
+
+
+    }
+}

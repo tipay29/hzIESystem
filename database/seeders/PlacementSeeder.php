@@ -31,6 +31,36 @@ class PlacementSeeder extends Seeder
             [
                 'placement' => 'LTJI'
             ] ,
+            [
+                'placement' => 'AWP'
+            ] ,
+            [
+                'placement' => 'L3ON'
+            ] ,
+            [
+                'placement' => 'CHR1S'
+            ] ,
+            [
+                'placement' => '4D4'
+            ] ,
+            [
+                'placement' => '4SH'
+            ] ,
+            [
+                'placement' => '4lY'
+            ] ,
+            [
+                'placement' => '33S'
+            ] ,
+            [
+                'placement' => '55S'
+            ] ,
+            [
+                'placement' => '4TT'
+            ] ,
+            [
+                'placement' => 'G55'
+            ] ,
 
         ];
 

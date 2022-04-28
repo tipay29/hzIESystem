@@ -20,16 +20,49 @@ class PurchaseOrderSeeder extends Seeder
                 'purchase_order' => 123
             ] ,
             [
-                'purchase_order' => 1112
+                'purchase_order' => 124
             ] ,
             [
-                'purchase_order' => 110
+                'purchase_order' => 125
             ] ,
             [
-                'purchase_order' => 113
+                'purchase_order' => 126
             ] ,
             [
                 'purchase_order' => 131
+            ] ,
+            [
+                'purchase_order' => 132
+            ] ,
+            [
+                'purchase_order' => 133
+            ] ,
+            [
+                'purchase_order' => 134
+            ] ,
+            [
+                'purchase_order' => 135
+            ] ,
+            [
+                'purchase_order' => 141
+            ] ,
+            [
+                'purchase_order' => 142
+            ] ,
+            [
+                'purchase_order' => 143
+            ] ,
+            [
+                'purchase_order' => 144
+            ] ,
+            [
+                'purchase_order' => 145
+            ] ,
+            [
+                'purchase_order' => 155
+            ] ,
+            [
+                'purchase_order' => 156
             ] ,
 
         ];

@@ -42,6 +42,7 @@ class FabricTypeSeeder extends Seeder
                 'sas_cut' => 0.49,
             ] ,
 
+
         ];
 
         foreach($fabric_types as $fabric_type){

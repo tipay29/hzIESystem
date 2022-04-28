@@ -12,8 +12,12 @@
                         <div>
 
                                 <a href="{{route('cuts.create')}}"
-                                   class="btn btn-outline-success float-right">
+                                   class="btn btn-outline-success">
                                     Add Cut </a>
+
+                            <a href="{{route('cuts.util')}}"
+                               class="btn btn-outline-success float-right">
+                                Cut Util </a>
 
                         </div>
 
