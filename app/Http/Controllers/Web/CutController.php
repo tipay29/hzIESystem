@@ -135,6 +135,86 @@ class CutController extends Controller
 
     }
 
+    public function totalUtil()
+    {
+
+        $cuts = Cut::with([
+            'styles','purchase_orders','fabric_codes',
+            'fabric_colors','fabric_types','placements',
+            'employees',
+        ])
+
+//            ->whereBetween('spread_start',['2022-03-13 00:01:00','2022-03-19 23:23:58'])
+            ->get();
+
+        $datas = array(
+            'building' => array(
+                'B2' => array(
+
+                ),
+                'D4' => array(
+
+                ),
+                'E5' => array(
+
+                ),
+            ),
+        );
+        $ctr = 0;
+
+
+
+        foreach($cuts as $cut){
+
+
+                $date = $this->formatDate($cut->spread_start);
+
+                if (array_key_exists($date, $datas['building'][$cut->building->building])){
+
+
+                    if(array_key_exists($cut->table_num,$datas['building'][$cut->building->building][$date])){
+                        $datas['building'][$cut->building->building][$date][$cut->table_num]['actual_yards'] =
+                            $datas['building'][$cut->building->building][$date][$cut->table_num]['actual_yards'] + ($cut->marker_length*$cut->layer_count);
+                        $datas['building'][$cut->building->building][$date][$cut->table_num]['work_hours'] =
+                            $datas['building'][$cut->building->building][$date][$cut->table_num]['work_hours'] + $cut->work_hours;
+                        $datas['building'][$cut->building->building][$date][$cut->table_num]['count'] =
+                             $datas['building'][$cut->building->building][$date][$cut->table_num]['count'] + 1;
+                    }else{
+                        $datas['building'][$cut->building->building][$date][$cut->table_num] = array();
+                        $datas['building'][$cut->building->building][$date][$cut->table_num]['actual_yards'] = $cut->marker_length*$cut->layer_count;
+                        $datas['building'][$cut->building->building][$date][$cut->table_num]['work_hours'] = $cut->work_hours;
+                        $datas['building'][$cut->building->building][$date][$cut->table_num]['count'] = 1;
+                        $datas['building'][$cut->building->building][$date][$cut->table_num]['avg_work_hours'] = 0;
+                    }
+
+
+                }else{
+                    $datas['building'][$cut->building->building][$date][$cut->table_num] = array();
+                    $datas['building'][$cut->building->building][$date][$cut->table_num]['actual_yards'] = $cut->marker_length*$cut->layer_count;
+                    $datas['building'][$cut->building->building][$date][$cut->table_num]['work_hours'] = $cut->work_hours;
+                    $datas['building'][$cut->building->building][$date][$cut->table_num]['count'] = 1;
+                    $datas['building'][$cut->building->building][$date][$cut->table_num]['avg_work_hours'] = 0;
+
+
+                }
+
+
+
+        }
+
+
+
+        dump($datas);
+
+        return view('cut.total-util');
+
+    }
+
+    protected function formatDate($date){
+        $date = new DateTime($date);
+        return $date->format('Y-m-d');
+    }
+
     protected function requestValidate(){
         return request()->validate([
             'purchase_order' => 'required|array',

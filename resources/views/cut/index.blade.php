@@ -16,8 +16,11 @@
                                     Add Cut </a>
 
                             <a href="{{route('cuts.util')}}"
-                               class="btn btn-outline-success float-right">
+                               class="btn btn-outline-success">
                                 Cut Util </a>
+                            <a href="{{route('cuts.total-util')}}"
+                               class="btn btn-outline-success">
+                                Total Cut Util </a>
 
                         </div>
 

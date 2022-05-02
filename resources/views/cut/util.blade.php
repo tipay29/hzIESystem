@@ -3,16 +3,31 @@
 @section('content')
     <div class="container">
 
-        <h1 class="text-center cut_section-to-print-indv">Cutting Utilization Report</h1>
+        <h1 class="text-center cut-section-h1-to-print">Cutting Utilization Report</h1>
+
+        <div class="d-flex justify-content-center ">
+
+            <select class="cut-section-bldg-to-print" name="building" id="cut_util_building" >
+                <option value="0" selected>ALL</option>
+                <option value="2">B2</option>
+                <option value="4">D4</option>
+                <option value="5">E5</option>
+            </select>
+
+            <input class="cut-section-start-to-print" type="datetime-local" id="cut_util_start_date">
+            <input class="cut-section-end-to-print" type="datetime-local" id="cut_util_end_date">
+
+
+        </div>
+
 
 
         <div class="row justify-content-center">
 
 
+                <div class="col-md-10 mt-5 cut-all-b2">
 
-                <div class="col-md-10 mt-5">
-
-                    <div class="card cut-all-b2">
+                    <div class="card ">
 
                         <div class="card-header d-flex justify-content-between">
 
@@ -74,9 +89,9 @@
 
 
 
-            <div class="col-md-10 mt-5">
+            <div class="col-md-10 mt-5 cut-all-d4">
 
-                <div class="card cut-all-d4">
+                <div class="card ">
                     <div class="card-header d-flex justify-content-between">
 
                         <h5 class="mt-2">Building D4</h5>
@@ -90,7 +105,7 @@
                         </div>
                     </div>
 
-                    <div class="card-body cut-util-body-e5">
+                    <div class="card-body cut-util-body-d4">
 
 
                         <div class="table-responsive cut-table-all-d4">
@@ -138,9 +153,9 @@
 
 
 
-            <div class="col-md-10 mt-5">
+            <div class="col-md-10 mt-5 cut-all-e5">
 
-                <div class="card cut-all-e5">
+                <div class="card ">
                     <div class="card-header d-flex justify-content-between">
 
                         <h5 class="mt-2">Building E5</h5>
@@ -170,7 +185,7 @@
                                     <th scope="col">Table Util</th>
                                 </tr>
                                 </thead>
-                                <tbody class="cut-util-table-b2">
+                                <tbody class="cut-util-table-e5">
                                 </tbody>
                             </table>
 

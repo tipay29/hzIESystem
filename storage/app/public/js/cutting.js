@@ -38,6 +38,13 @@ if(l.pathname === '/cuts/utilization'){
     h5_b2 = $('#h5-b2');
     h5_d4 = $('#h5-d4');
     h5_e5 = $('#h5-e5');
+    cut_util_building = $('#cut_util_building');
+    cut_util_start = $('#cut_util_start_date');
+    cut_util_end = $('#cut_util_end_date');
+
+    cut_all_b2 = $('.cut-all-b2');
+    cut_all_d4 = $('.cut-all-d4');
+    cut_all_e5 = $('.cut-all-e5');
 
     getCutUtilAll();
 
@@ -71,6 +78,35 @@ if(l.pathname === '/cuts/utilization'){
 
     });
 
+    cut_util_building.change(function(e){
+        if($(this).val() == 2){
+            cut_all_b2.show();
+            cut_all_d4.hide();
+            cut_all_e5.hide();
+        }else if($(this).val() == 4){
+            cut_all_d4.show();
+            cut_all_b2.hide();
+            cut_all_e5.hide();
+        }else if($(this).val() == 5){
+            cut_all_e5.show();
+            cut_all_b2.hide();
+            cut_all_d4.hide();
+        }else if($(this).val() == 0){
+            cut_all_e5.show();
+            cut_all_b2.show();
+            cut_all_d4.show();
+        }
+    });
+
+    cut_util_start.change(function(){
+        cut_util_end.val('');
+        getCutUtilDate(cut_util_start,cut_util_end);
+    });
+
+    cut_util_end.change(function(){
+
+        getCutUtilDate(cut_util_start,cut_util_end);
+    });
 
 }
 
@@ -292,7 +328,7 @@ function getCutUtilAll(){
         type: 'GET',
         url: '/api/cuts/utilizations',
         success: function (util) {
-
+            console.log(util);
             $.each(util[0]['building'], function(i_b,buildings){
 
                     if(i_b === 'B2'){
@@ -451,5 +487,193 @@ function getCutUtilAll(){
             console.log(x);
         },
     });
+
+}
+
+function getCutUtilDate(start,end){
+
+    if(end.val() && start.val()) {
+
+        let cut_dates = {
+            spread_start: start.val(),
+            spread_end: end.val(),
+        }
+        $.ajax({
+
+            type:'POST',
+            url: '/api/cuts/utilizations',
+            data: cut_dates,
+            success: function (util) {
+                console.log(util);
+                cut_util_table_b2.empty();
+                cut_util_table_d4.empty();
+                cut_util_table_e5.empty();
+                $.each(util[0]['building'], function(i_b,buildings){
+
+                    if(i_b === 'B2'){
+
+                        let totalDaysb2 = 0;
+                        let totalWorkHoursb2 = 0;
+                        let totalActualYardsb2 = 0;
+                        let totalTargetYardsb2 = 0;
+                        let totalUtilb2 = 0;
+
+                        $.each(buildings['table'], function(i_t,table) {
+
+                            totalDaysb2 = totalDaysb2 + table['days'];
+                            totalWorkHoursb2 = totalWorkHoursb2 + table['work_hours'];
+                            totalActualYardsb2 = totalActualYardsb2 + table['actual_yards'];
+                            totalTargetYardsb2 = Math.round(totalWorkHoursb2 * 319.55);
+                            totalUtilb2  = Math.round(((totalActualYardsb2/totalTargetYardsb2)*100));
+
+
+                            cut_util_table_b2.append(''
+                                +
+
+                                '    <tr>\n' +
+                                '      <td scope="row">'+ i_t +'</td>\n' +
+                                '      <td scope="row">'+ table['days'] +'</td>\n' +
+                                '      <td scope="row">'+ table['work_hours'] +'</td>\n' +
+                                '      <td scope="row">'+ table['actual_yards'] +'</td>\n' +
+                                '      <td scope="row">'+ table['target_yards'] +'</td>\n' +
+                                '      <td scope="row">'+ table['table_util']+ '%' +'</td>\n' +
+                                '    </tr>\n' +
+
+                                '');
+
+                        });
+
+                        cut_util_table_b2.append(''
+                            +
+
+                            '    <tr>\n' +
+                            '      <th scope="col">Total</th>\n' +
+                            '      <th scope="col">'+ totalDaysb2 +'</th>\n' +
+                            '      <th scope="col">'+ totalWorkHoursb2 +'</th>\n' +
+                            '      <th scope="col">'+ totalActualYardsb2 +'</th>\n' +
+                            '      <th scope="col">'+ totalTargetYardsb2 +'</th>\n' +
+                            '      <th scope="col">'+ totalUtilb2 + '%' +'</th>\n' +
+                            '    </tr>\n' +
+
+                            '');
+
+                    }
+
+                    if(i_b === 'D4'){
+
+                        let totalDaysd4 = 0;
+                        let totalWorkHoursd4 = 0;
+                        let totalActualYardsd4 = 0;
+                        let totalTargetYardsd4 = 0;
+                        let totalUtild4 = 0;
+
+                        $.each(buildings['table'], function(i_t,table) {
+
+                            totalDaysd4 = totalDaysd4 + table['days'];
+                            totalWorkHoursd4 = totalWorkHoursd4 + table['work_hours'];
+                            totalActualYardsd4 = totalActualYardsd4 + table['actual_yards'];
+                            totalTargetYardsd4 = Math.round(totalWorkHoursd4 * 319.55);
+                            totalUtild4  = Math.round(((totalActualYardsd4/totalTargetYardsd4)*100));
+
+                            cut_util_table_d4.append(''
+                                +
+
+                                '    <tr>\n' +
+                                '      <td scope="row">'+ i_t +'</td>\n' +
+                                '      <td scope="row">'+ table['days'] +'</td>\n' +
+                                '      <td scope="row">'+ table['work_hours'] +'</td>\n' +
+                                '      <td scope="row">'+ table['actual_yards'] +'</td>\n' +
+                                '      <td scope="row">'+ table['target_yards'] +'</td>\n' +
+                                '      <td scope="row">'+ table['table_util'] + '%' +'</td>\n' +
+                                '    </tr>\n' +
+
+                                '');
+                        });
+
+                        cut_util_table_d4.append(''
+                            +
+
+                            '    <tr>\n' +
+                            '      <th scope="col">Total</th>\n' +
+                            '      <th scope="col">'+ totalDaysd4 +'</th>\n' +
+                            '      <th scope="col">'+ totalWorkHoursd4 +'</th>\n' +
+                            '      <th scope="col">'+ totalActualYardsd4 +'</th>\n' +
+                            '      <th scope="col">'+ totalTargetYardsd4 +'</th>\n' +
+                            '      <th scope="col">'+ totalUtild4 + '%' +'</th>\n' +
+                            '    </tr>\n' +
+
+                            '');
+
+                    }
+
+                    if(i_b === 'E5'){
+
+                        let totalDayse5 = 0;
+                        let totalWorkHourse5 = 0;
+                        let totalActualYardse5 = 0;
+                        let totalTargetYardse5 = 0;
+                        let totalUtile5 = 0;
+
+                        $.each(buildings['table'], function(i_t,table) {
+
+                            totalDayse5 = totalDayse5 + table['days'];
+                            totalWorkHourse5 = totalWorkHourse5 + table['work_hours'];
+                            totalActualYardse5 = totalActualYardse5 + table['actual_yards'];
+                            totalTargetYardse5 = Math.round(totalWorkHourse5 * 319.55);
+                            totalUtile5 = Math.round(((totalActualYardse5/totalTargetYardse5)*100));
+
+
+                            cut_util_table_e5.append(''
+                                +
+                                '    <tr>\n' +
+                                '      <td scope="row">'+ i_t +'</td>\n' +
+                                '      <td scope="row">'+ table['days'] +'</td>\n' +
+                                '      <td scope="row">'+ table['work_hours'] +'</td>\n' +
+                                '      <td scope="row">'+ table['actual_yards'] +'</td>\n' +
+                                '      <td scope="row">'+ table['target_yards'] +'</td>\n' +
+                                '      <td scope="row">'+ table['table_util']+ '%' +'</td>\n' +
+                                '    </tr>\n' +
+
+                                '');
+                        });
+
+                        cut_util_table_e5.append(''
+                            +
+
+                            '    <tr>\n' +
+                            '      <th scope="col">Total</th>\n' +
+                            '      <th scope="col">'+ totalDayse5 +'</th>\n' +
+                            '      <th scope="col">'+ totalWorkHourse5 +'</th>\n' +
+                            '      <th scope="col">'+ totalActualYardse5 +'</th>\n' +
+                            '      <th scope="col">'+ totalTargetYardse5 +'</th>\n' +
+                            '      <th scope="col">'+ totalUtile5 + '%' +'</th>\n' +
+                            '    </tr>\n' +
+
+                            '');
+
+
+                    }
+
+
+                });
+
+
+
+            },
+            error: function (x,h,r) {
+                if(x.responseJSON['spread_end']){
+                    alert(x.responseJSON['spread_end'][0]);
+                }
+                if(x.responseJSON['spread_start']){
+                    alert(x.responseJSON['spread_start'][0]);
+                }
+
+            }
+
+        });
+
+    }
+
+
 
 }

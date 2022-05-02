@@ -31,5 +31,6 @@ Route::group(['as' => 'api.'],function() {
     Route::resource('styles', 'StyleApiController');
 
     Route::get('cuts/utilizations', 'CutApiController@util')->name('cuts.util');
+    Route::post('cuts/utilizations', 'CutApiController@retrieve')->name('cuts.retr');
     Route::resource('cuts', 'CutApiController');
 });

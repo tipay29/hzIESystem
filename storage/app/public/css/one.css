@@ -26,10 +26,31 @@
         visibility: hidden !important;
     }
 
-    .cut_section-to-print-indv{
+    .cut-section-h1-to-print{
         position: absolute;
         top: 0;
         left: 170px;
+        visibility: visible;
+    }
+
+    .cut-section-bldg-to-print{
+        position: absolute;
+        top: 42px;
+        left: 110px;
+        visibility: visible;
+    }
+
+    .cut-section-start-to-print{
+        position: absolute;
+        top: 40px;
+        left: 160px;
+        visibility: visible;
+    }
+
+    .cut-section-end-to-print{
+        position: absolute;
+        top: 40px;
+        left: 385px;
         visibility: visible;
     }
 
@@ -38,8 +59,8 @@
     }
     #cut_section-to-print {
         position: absolute;
-        top: 120px;
-        left: 80px;
+        top: 50px;
+        left: 0;
     }
 }
 
