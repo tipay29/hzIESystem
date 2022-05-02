@@ -110,6 +110,24 @@ if(l.pathname === '/cuts/utilization'){
 
 }
 
+if(l.pathname === '/cuts/total-utilization'){
+
+    cut_total_util_table = $('.cut-total-util-table');
+    cut_total_util_start = $('#cut-total-util-start-date');
+    cut_total_util_end = $('#cut-total-util-end-date');
+
+    cut_total_util_start.change(function(){
+        cut_total_util_end.val('');
+        getTotalCutUtilDate(cut_total_util_start.val(), cut_total_util_end.val());
+    });
+
+    cut_total_util_end.change(function(){
+
+        getTotalCutUtilDate(cut_total_util_start.val(), cut_total_util_end.val());
+    });
+
+}
+
 
 cut_style.change(function(){
 
@@ -675,5 +693,116 @@ function getCutUtilDate(start,end){
     }
 
 
+
+}
+
+function getTotalCutUtilDate(start,end){
+        if(end && start) {
+
+            let cut_dates = {
+                spread_start: start,
+                spread_end: end,
+            }
+
+            $.ajax({
+
+                type:'POST',
+                url: '/api/cuts/total-utilizations',
+                data: cut_dates,
+                success: function (util) {
+
+
+                    $.each(util[0]['building'], function(i_b,buildings){
+
+
+                            $.each(buildings, function(i_d,dates) {
+
+                                console.log(dates);
+
+
+                                avg_work_hours = getAVGWorkHours(dates);
+                                actual_yards = getActualYards(dates);
+                                table_count = _.size(dates);
+                                table_util = ((actual_yards/(table_count*Math.round(Math.round(avg_work_hours)*319.55)))*100).toFixed(2);
+
+                                cut_total_util_table.append('<tr>\n' +
+                                    '<th scope="col">'+i_d+'</th>\n' +
+                                    '<th scope="col">'+getBuilding(i_b)+'</th>\n' +
+                                    '<th scope="col">'+Math.round(actual_yards)+'</th>\n' +
+                                    '<th scope="col">'+avg_work_hours+'</th>\n' +
+                                    '<th scope="col">'+actual_yards+'</th>\n' +
+                                    '<th scope="col">'+Math.round(avg_work_hours)+'</th>\n' +
+                                    '<th scope="col">'+Math.round(Math.round(avg_work_hours)*319.55)+'</th>\n' +
+                                    '<th scope="col">'+table_util+'%'+ '</th>\n' +
+                                    '<th scope="col">'+i_d+'</th>\n' +
+                                    '<th scope="col">'+i_d+'</th>\n' +
+                                    '<th scope="col">Spreading</th>\n' +
+                                    '<th scope="col">1</th>\n' +
+                                    '<th scope="col">'+Math.round(avg_work_hours)+'</th>\n' +
+                                    '<th scope="col">'+Math.round(table_count*Math.round(Math.round(avg_work_hours)*319.55))+'</th>\n' +
+                                    '<th scope="col">'+table_count+'</th>\n' +
+                                    '<th scope="col">'+table_count+'</th>\n' +
+                                    '<th scope="col">'+table_count+'</th>\n' +
+                                    '<th scope="col">'+table_count*Math.round(Math.round(avg_work_hours)*319.55)+'</th>\n' +
+                                    '                                </tr>');
+
+
+                            });
+
+
+
+
+                    });
+
+                },
+                error: function (x,h,r) {
+                    if(x.responseJSON['spread_end']){
+                        alert(x.responseJSON['spread_end'][0]);
+                    }
+                    if(x.responseJSON['spread_start']){
+                        alert(x.responseJSON['spread_start'][0]);
+                    }
+
+                }
+
+            });
+
+        }
+}
+
+function getAVGWorkHours(dates){
+     let avg_work_hours = 0;
+    let avg_divider = 0;
+
+    $.each(dates, function(i_t,tables) {
+        avg_work_hours = avg_work_hours + tables['work_hours'];
+        avg_divider = avg_divider + tables['count'];
+    });
+    avg_work_hours = avg_work_hours/avg_divider;
+
+    return avg_work_hours;
+}
+
+function getActualYards(dates){
+    let actual_yards = 0;
+
+    $.each(dates, function(i_t,tables) {
+        actual_yards = actual_yards + tables['actual_yards'];
+    });
+
+    return actual_yards;
+}
+
+function getBuilding(b){
+
+     if(b === 'B2'){
+         return 2;
+     }
+    if(b === 'D4'){
+        return 4;
+    }
+    if(b === 'E5'){
+        return 5;
+    }
 
 }

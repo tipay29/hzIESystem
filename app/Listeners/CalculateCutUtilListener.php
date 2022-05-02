@@ -6,13 +6,12 @@ use App\Events\GetCutEffEvent;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class CalculateCutEffListener
+class CalculateCutUtilListener
 {
 
 
     public function handle(GetCutEffEvent $event)
     {
-        $event->cuts;
         $datas = array(
             'building' => array(
                 'B2' => array(

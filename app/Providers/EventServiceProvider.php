@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Events\GetCutEffEvent;
+use App\Events\GetTotalCutUtilEvent;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -20,7 +21,10 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         GetCutEffEvent::class => [
-            \App\Listeners\CalculateCutEffListener::class,
+            \App\Listeners\CalculateCutUtilListener::class,
+        ],
+        GetTotalCutUtilEvent::class => [
+            \App\Listeners\CalculateTotalCutUtilListener::class,
         ],
     ];
 
