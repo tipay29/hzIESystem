@@ -35,34 +35,21 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('admin'), // password
                 'remember_token' => Str::random(10),
             ],
+            [
+                'name' => 'Nina Payabyab',
+                'email' => 'payabyabnischelle@gmail.com',
+                'email_verified_at' => now(),
+                'employee_id' => 3,
+                'password' => Hash::make('nina1234'), // password
+                'remember_token' => Str::random(10),
+            ],
         ];
 
         foreach($users as $user){
             User::create($user);
         }
 
-        $employees = [
-            [
-                'id' => 1,
-                'name' => 'Warren Hernandez',
-                'phone' => mt_rand(1,9999999999),
-                'job_id' => 1,
-                'building_id' => mt_rand(1,7),
-                'user_id' => 1,
-            ],
-            [
-                'id' => 2,
-                'name' => 'Admin admin',
-                'phone' => mt_rand(1,9999999999),
-                'job_id' => 6,
-                'building_id' => mt_rand(1,7),
-                'user_id' => 1,
-            ],
-        ];
-
-        foreach($employees as $employee){
-            Employee::create($employee);
-        }
+        
 
     }
 }

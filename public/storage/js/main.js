@@ -2,7 +2,10 @@ $('document').ready(function() {
 
     let originUrl = window.location.origin;
 
+<<<<<<< HEAD
     alert('aw');
+=======
+>>>>>>> 3b1a9dde3832104f85f30e632b6ce7181290dfc7
     $.getScript(originUrl + '/storage/js/cutting.js');
     $.getScript(originUrl + '/storage/js/employee.js');
     $.getScript(originUrl + '/storage/js/style.js');
@@ -28,10 +31,3 @@ $('document').ready(function() {
     }, 1);
 });
 
-
-
-//localStorage.setItem
-//sessionStorage.setItem(key,data)
-//sessionStorage.getItem(key)
-//sessionStorage.removeItem(key)
-//sessionStorage.clear()

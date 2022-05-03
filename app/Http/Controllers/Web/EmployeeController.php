@@ -100,9 +100,9 @@ class EmployeeController extends Controller
 
     protected function requestValidate(){
         return request()->validate([
-            'id' => 'required',
-            'name' => 'required|max:255',
-            'phone' => 'required',
+            'id' => 'required|unique:employees,id',
+            'name' => 'max:255',
+            'phone' => '',
             'job_id' => 'required',
             'building_id' => 'required',
             'address' => '',

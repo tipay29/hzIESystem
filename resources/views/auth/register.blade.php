@@ -22,7 +22,9 @@
                                         @if(is_null($employee->user_account_id))
                                             <option value="{{$employee->id}}"
                                                 {{$employee->id == old('employee_id') ? 'selected' : ''}}>
-                                            {{$employee->id}}</option>
+                                            {{$employee->id }}
+                                            &nbsp; {{ $employee->name}}
+                                        </option>
                                         @else
                                             <option value="null" selected disabled>No Employee</option>
                                         @endif
