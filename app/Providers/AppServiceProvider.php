@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Http\View\Composers\BuildingComposer;
 use App\Http\View\Composers\EmployeeComposer;
+use App\Http\View\Composers\EmployeeRegisterComposer;
 use App\Http\View\Composers\FabricCodeComposer;
 use App\Http\View\Composers\FabricColorComposer;
 use App\Http\View\Composers\FabricTypeComposer;
@@ -34,7 +35,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer(['auth.register','cut.create','cut.edit'],EmployeeComposer::class);
+
+        View::composer('auth.register',EmployeeRegisterComposer::class);
+        View::composer(['cut.create','cut.edit'],EmployeeComposer::class);
         View::composer('employee.form',JobComposer::class);
         View::composer('employee.form',BuildingComposer::class);
         View::composer('style.form',FabricColorComposer::class);

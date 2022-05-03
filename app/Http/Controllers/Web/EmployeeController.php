@@ -17,6 +17,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
+
+
         $employees = Employee::with(['job','building'])->get();
 
         return view('employee.index', compact('employees'));
@@ -56,8 +58,11 @@ class EmployeeController extends Controller
 
     public function show(Employee $employee)
     {
-        $employee->load(['job','building']);
+
         $this->authorize('view',$employee);
+
+        $employee->load(['job','building']);
+
         return view('employee.show', compact('employee'));
 
     }
@@ -65,8 +70,9 @@ class EmployeeController extends Controller
 
     public function edit(Employee $employee)
     {
-        $employee->load(['job','building']);
         $this->authorize('update',$employee);
+
+        $employee->load(['job','building']);
 
         return view('employee.edit',compact('employee'));
     }

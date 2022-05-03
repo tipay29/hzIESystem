@@ -26,7 +26,9 @@
                                 <tr>
                                     <th width="20%">ID</th>
                                     <th width="70%">PO#</th>
-                                    <th>Option</th>
+                                    @can('update',1)
+                                        <th>Option</th>
+                                    @endcan
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -34,19 +36,22 @@
                                     <tr>
                                         <td>{{ $purchase_order->id }}</td>
                                         <td>{{ $purchase_order->purchase_order }}</td>
-                                        <td>
-                                            <button type='button' style="text-decoration: none;
-                                            color:darkorange;border:none;padding:0px;background-color: white;"
-                                                    class="btn_edit_purchase_order" value="{{$purchase_order->id}}">
-                                                <i class="fa fa-pencil-square" aria-hidden="true"></i> </button>
+                                        @can('update',$purchase_order->id)
+                                            <td>
 
-                                            <button type='button' style="text-decoration: none;
-                                            border: none;background-color: white;color:darkred;padding:0px;"
-                                                    class="btn_delete_purchase_order" value="{{$purchase_order->id}}">
-                                                <i class="fa fa-trash" aria-hidden="true"></i> </button>
+                                                    <button type='button' style="text-decoration: none;
+                                                    color:darkorange;border:none;padding:0px;background-color: white;"
+                                                            class="btn_edit_purchase_order" value="{{$purchase_order->id}}">
+                                                        <i class="fa fa-pencil-square" aria-hidden="true"></i> </button>
+
+                                                    <button type='button' style="text-decoration: none;
+                                                    border: none;background-color: white;color:darkred;padding:0px;"
+                                                            class="btn_delete_purchase_order" value="{{$purchase_order->id}}">
+                                                        <i class="fa fa-trash" aria-hidden="true"></i> </button>
 
 
-                                        </td>
+                                            </td>
+                                        @endcan
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -63,7 +68,11 @@
                 </div>
             </div>
 
+
+
             <div class="col-md-5 ">
+
+                @can('create',App\Models\PurchaseOrder::class)
                 <div class="card purchase_order_div_two">
                     <div class="card-header d-flex justify-content-between">
 
@@ -100,6 +109,7 @@
                     </form>
 
                 </div>
+                @endcan
 
 
                 <div class="card purchase_order_div_three">

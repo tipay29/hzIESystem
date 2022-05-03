@@ -11,17 +11,19 @@
 
                         <div>
 
-                                <a href="{{route('cuts.create')}}"
-                                   class="btn btn-outline-success">
-                                    Add Cut </a>
-
+                            @can('create', App\Models\Cut::class)
+                            <a href="{{route('cuts.create')}}"
+                               class="btn btn-outline-success">
+                                Add Cut </a>
+                            @endcan
+                            @can('viewUtil', App\Models\Cut::class)
                             <a href="{{route('cuts.util')}}"
                                class="btn btn-outline-success">
                                 Cut Util </a>
                             <a href="{{route('cuts.total-util')}}"
                                class="btn btn-outline-success">
                                 Total Cut Util </a>
-
+                            @endcan
                         </div>
 
                     </div>
@@ -47,7 +49,9 @@
                                         <th width="18%" scope="col">Spread DateTime</th>
                                         <th width="18%" scope="col">Cut DateTime</th>
                                         <th width="15%" scope="col">User</th>
+                                        @can('update',1)
                                         <th width="4%" scope="col">Option</th>
+                                        @endcan
                                     </tr>
                                 </thead>
 
@@ -55,9 +59,14 @@
                                 @foreach($cuts as $cut)
                                     <tr>
                                         <td  scope="row">
+                                            @can('view',$cut->id)
                                             <a href="{{route('cuts.show', $cut->id)}}">
                                                 <i class="fa fa-eye" aria-hidden="true"></i>
                                                 {{$cut->id}} </a>
+                                            @endcan
+                                            @cannot('view',$cut->id)
+                                                    {{$cut->id}}
+                                            @endcannot
                                         </td>
                                         <td  scope="row">
                                             {{$cut->cut_count}}
@@ -85,20 +94,22 @@
                                         <td  scope="row">
                                             {{$cut->user->name}}
                                         </td>
-                                        <td  scope="row">
+                                        @can('update',$cut->id)
+                                            <td  scope="row">
 
-                                            <a style="text-decoration: none;color:darkorange;" href="{{route('cuts.edit', $cut->id)}}" >
-                                                <i class="fa fa-pencil-square" aria-hidden="true"></i> </a>
+                                                <a style="text-decoration: none;color:darkorange;" href="{{route('cuts.edit', $cut->id)}}" >
+                                                    <i class="fa fa-pencil-square" aria-hidden="true"></i> </a>
 
-                                            <form style="display:inline;" action="{{route('cuts.destroy', $cut->id)}}" method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button style="border: none;background-color: white;color:darkred;"
-                                                        onclick="return confirm('Delete CutID {{$style->id}}  ?')" >
-                                                    <i class="fa fa-trash" aria-hidden="true"></i></button>
-                                            </form>
+                                                <form style="display:inline;" action="{{route('cuts.destroy', $cut->id)}}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button style="border: none;background-color: white;color:darkred;"
+                                                            onclick="return confirm('Delete CutID {{$style->id}}  ?')" >
+                                                        <i class="fa fa-trash" aria-hidden="true"></i></button>
+                                                </form>
 
-                                        </td>
+                                            </td>
+                                        @endcan
                                     </tr>
                                 @endforeach
                                 </tbody>

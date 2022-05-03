@@ -26,7 +26,9 @@
                                 <tr>
                                     <th width="20%">ID</th>
                                     <th width="70%">Code</th>
-                                    <th>Option</th>
+                                    @can('update',1)
+                                        <th>Option</th>
+                                    @endcan
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -34,19 +36,22 @@
                                     <tr>
                                         <td>{{ $fabric_code->id }}</td>
                                         <td>{{ $fabric_code->fabric_code }}</td>
-                                        <td>
-                                            <button type='button' style="text-decoration: none;
-                                            color:darkorange;border:none;padding:0px;background-color: white;"
-                                                    class="btn_edit_fabric_code" value="{{$fabric_code->id}}">
-                                                <i class="fa fa-pencil-square" aria-hidden="true"></i> </button>
 
-                                            <button type='button' style="text-decoration: none;
-                                            border: none;background-color: white;color:darkred;padding:0px;"
-                                                    class="btn_delete_fabric_code" value="{{$fabric_code->id}}">
-                                                <i class="fa fa-trash" aria-hidden="true"></i> </button>
+                                        @can('update',$fabric_code->id)
+                                            <td>
+                                                <button type='button' style="text-decoration: none;
+                                                color:darkorange;border:none;padding:0px;background-color: white;"
+                                                        class="btn_edit_fabric_code" value="{{$fabric_code->id}}">
+                                                    <i class="fa fa-pencil-square" aria-hidden="true"></i> </button>
+
+                                                <button type='button' style="text-decoration: none;
+                                                border: none;background-color: white;color:darkred;padding:0px;"
+                                                        class="btn_delete_fabric_code" value="{{$fabric_code->id}}">
+                                                    <i class="fa fa-trash" aria-hidden="true"></i> </button>
 
 
-                                        </td>
+                                            </td>
+                                        @endcan
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -64,6 +69,8 @@
             </div>
 
             <div class="col-md-5 ">
+
+                @can('create',App\Models\FabricCode::class)
                 <div class="card fabric_code_div_two">
                     <div class="card-header d-flex justify-content-between">
 
@@ -100,6 +107,7 @@
                     </form>
 
                 </div>
+                @endcan
 
 
                 <div class="card fabric_code_div_three">

@@ -12,10 +12,11 @@
                         <h5 class="mt-2">Style List</h5>
 
                         <div>
-
+                            @can('create', App\Models\Style::class)
                             <a href="{{route('styles.create')}}"
                                class="btn btn-outline-success float-right">
                                 Add Style </a>
+                            @endcan
 
                         </div>
 
@@ -34,7 +35,9 @@
                                     <th width="18%" scope="col">Fabric Colors</th>
                                     <th width="18%" scope="col">Fabric Types</th>
                                     <th width="18%" scope="col">Placements</th>
+                                    @can('update',1)
                                     <th width="5%" scope="col">Option</th>
+                                    @endcan
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -88,18 +91,23 @@
                                                     @endforeach
                                                 @endif
                                             </td>
-                                            <td>
-                                                <a style="text-decoration: none;color:darkorange;" href="{{route('styles.edit', $style->id)}}" >
-                                                    <i class="fa fa-pencil-square" aria-hidden="true"></i> </a>
+                                            @can('update',$style->id)
+                                                <td>
 
-                                                <form style="display:inline;" action="{{route('styles.destroy', $style->id)}}" method="post">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button style="border: none;background-color: white;color:darkred;"
-                                                            onclick="return confirm('Delete PO#{{$style->id}}  ?')" >
-                                                        <i class="fa fa-trash" aria-hidden="true"></i></button>
-                                                </form>
-                                            </td>
+
+                                                        <a style="text-decoration: none;color:darkorange;" href="{{route('styles.edit', $style->id)}}" >
+                                                            <i class="fa fa-pencil-square" aria-hidden="true"></i> </a>
+
+                                                        <form style="display:inline;" action="{{route('styles.destroy', $style->id)}}" method="post">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button style="border: none;background-color: white;color:darkred;"
+                                                                    onclick="return confirm('Delete PO#{{$style->id}}  ?')" >
+                                                                <i class="fa fa-trash" aria-hidden="true"></i></button>
+                                                        </form>
+
+                                                </td>
+                                            @endcan
                                         </tr>
                                     @empty
                                         <h3 class="text-danger">No Purchase Order Available!</h3>

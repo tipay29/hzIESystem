@@ -32,6 +32,8 @@ class CutController extends Controller
 
     public function create()
     {
+        $this->authorize('create',Cut::class);
+
         $cut = new Cut();
 
         return view('cut.create', compact('cut'));
@@ -40,6 +42,8 @@ class CutController extends Controller
 
     public function store()
     {
+
+        $this->authorize('create',Cut::class);
 
         $this->requestValidate();
 //        dd(request()->spread_start);
@@ -70,6 +74,8 @@ class CutController extends Controller
 
     public function show(Cut $cut)
     {
+        $this->authorize('view',$cut);
+
         $cut->load(['building','user','styles','purchase_orders',
                     'fabric_codes','fabric_colors','fabric_types',
                     'placements','employees.job']);
@@ -79,6 +85,8 @@ class CutController extends Controller
 
     public function edit(Cut $cut)
     {
+        $this->authorize('update',$cut);
+
         $cut->load(['building','user','styles','purchase_orders',
             'fabric_codes','fabric_colors','fabric_types',
             'placements','employees.job']);
@@ -88,6 +96,8 @@ class CutController extends Controller
 
     public function update(Cut $cut)
     {
+        $this->authorize('update',$cut);
+
         $this->requestValidate();
 
         $cut->update([
@@ -115,6 +125,8 @@ class CutController extends Controller
 
     public function destroy(Cut $cut)
     {
+        $this->authorize('delete',$cut);
+
         $cut->styles()->detach();
         $cut->purchase_orders()->detach();
         $cut->fabric_colors()->detach();
@@ -131,6 +143,8 @@ class CutController extends Controller
     public function util()
     {
 
+        $this->authorize('viewUtil',Cut::class);
+
         return view('cut.util');
 
     }
@@ -138,7 +152,7 @@ class CutController extends Controller
     public function totalUtil()
     {
 
-
+        $this->authorize('viewUtil',Cut::class);
 
         return view('cut.total-util');
 

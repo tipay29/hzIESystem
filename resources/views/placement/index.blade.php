@@ -26,7 +26,9 @@
                                 <tr>
                                     <th width="20%">ID</th>
                                     <th width="70%">Type</th>
-                                    <th>Option</th>
+                                    @can('update',1)
+                                        <th>Option</th>
+                                    @endcan
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -34,19 +36,21 @@
                                     <tr>
                                         <td>{{ $placement->id }}</td>
                                         <td>{{ $placement->placement }}</td>
-                                        <td>
-                                            <button type='button' style="text-decoration: none;
-                                            color:darkorange;border:none;padding:0px;background-color: white;"
-                                                    class="btn_edit_placement" value="{{$placement->id}}">
-                                                <i class="fa fa-pencil-square" aria-hidden="true"></i> </button>
+                                        @can('update', $placement->id)
+                                            <td>
+                                                <button type='button' style="text-decoration: none;
+                                                color:darkorange;border:none;padding:0px;background-color: white;"
+                                                        class="btn_edit_placement" value="{{$placement->id}}">
+                                                    <i class="fa fa-pencil-square" aria-hidden="true"></i> </button>
 
-                                            <button type='button' style="text-decoration: none;
-                                            border: none;background-color: white;color:darkred;padding:0px;"
-                                                    class="btn_delete_placement" value="{{$placement->id}}">
-                                                <i class="fa fa-trash" aria-hidden="true"></i> </button>
+                                                <button type='button' style="text-decoration: none;
+                                                border: none;background-color: white;color:darkred;padding:0px;"
+                                                        class="btn_delete_placement" value="{{$placement->id}}">
+                                                    <i class="fa fa-trash" aria-hidden="true"></i> </button>
 
 
-                                        </td>
+                                            </td>
+                                        @endcan
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -64,6 +68,7 @@
             </div>
 
             <div class="col-md-5 ">
+                @can('create', App\Models\Placement::class)
                 <div class="card placement_div_two">
                     <div class="card-header d-flex justify-content-between">
 
@@ -100,6 +105,7 @@
                     </form>
 
                 </div>
+                @endcan
 
 
                 <div class="card placement_div_three">

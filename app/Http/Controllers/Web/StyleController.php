@@ -32,6 +32,8 @@ class StyleController extends Controller
 
     public function create()
     {
+        $this->authorize('create',Style::class);
+
         $style = new Style();
 
         return view('style.create', compact('style'));
@@ -40,6 +42,8 @@ class StyleController extends Controller
 
     public function store(Request $request)
     {
+
+        $this->authorize('create',Style::class);
 
         $style = Style::create([
             'style_code' => strtoupper($this->requestValidate()['style_code']),
@@ -61,13 +65,14 @@ class StyleController extends Controller
 
     public function edit(Style $style)
     {
+        $this->authorize('update',$style);
 
         return view('style.edit',compact('style'));
     }
 
     public function update(Style $style)
     {
-
+        $this->authorize('update',$style);
         $style->update([
             'style_code' => strtoupper(request()->style_code)
         ]);
@@ -83,6 +88,8 @@ class StyleController extends Controller
 
     public function destroy(Style $style)
     {
+        $this->authorize('delete',$style);
+
         $style->purchase_orders()->detach();
         $style->fabric_colors()->detach();
         $style->fabric_codes()->detach();
