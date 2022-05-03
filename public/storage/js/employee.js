@@ -12,7 +12,7 @@
 
         $.ajax({
             type: 'GET',
-            url: 'http://127.0.0.1:8000/api/employees/' + $(this).val(),
+            url: '/api/employees/' + $(this).val(),
             success: function (employee) {
                 empNameInput.val(employee.name);
                 empNameInput.prop('readonly',true);

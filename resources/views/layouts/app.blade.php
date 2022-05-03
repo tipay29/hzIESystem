@@ -16,7 +16,7 @@
     <script src="{{asset('storage/js/jquery2.js')}}"></script>  {{--for chosen--}}
     <script src="{{asset('storage/js/chosen-jquery.js')}}"></script>{{--for chosen--}}
     <script src="{{ asset('storage/js/main.js') }}" defer></script>
-
+      
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
