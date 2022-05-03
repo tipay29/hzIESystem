@@ -26,7 +26,7 @@
                                 <tr>
                                     <th width="20%">ID</th>
                                     <th width="70%">Type</th>
-                                    @can('update',1)
+                                    @can('create', App\Models\Placement::class)
                                         <th>Option</th>
                                     @endcan
                                 </tr>
@@ -36,7 +36,7 @@
                                     <tr>
                                         <td>{{ $placement->id }}</td>
                                         <td>{{ $placement->placement }}</td>
-                                        @can('update', $placement->id)
+                                        @can('update', $placement)
                                             <td>
                                                 <button type='button' style="text-decoration: none;
                                                 color:darkorange;border:none;padding:0px;background-color: white;"

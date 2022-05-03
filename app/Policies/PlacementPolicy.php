@@ -53,7 +53,7 @@ class PlacementPolicy
      */
     public function update(User $user, Placement $placement)
     {
-        return in_array($user->employee->job->id,[1,6]);
+        return in_array($user->employee->job->id,[1]);
     }
 
     /**
@@ -65,7 +65,7 @@ class PlacementPolicy
      */
     public function delete(User $user, Placement $placement)
     {
-        return in_array($user->employee->job->id,[1,6]);
+        return in_array($user->employee->job->id,[1]);
     }
 
     /**
@@ -77,7 +77,7 @@ class PlacementPolicy
      */
     public function restore(User $user, Placement $placement)
     {
-        return in_array($user->employee->job->id,[1,6]);
+        return in_array($user->employee->job->id,[1]);
     }
 
     /**
@@ -89,6 +89,6 @@ class PlacementPolicy
      */
     public function forceDelete(User $user, Placement $placement)
     {
-        return in_array($user->employee->job->id,[1,6]);
+        return in_array($user->employee->job->id,[1]);
     }
 }

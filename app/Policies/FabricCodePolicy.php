@@ -53,7 +53,7 @@ class FabricCodePolicy
      */
     public function update(User $user, FabricCode $fabricCode)
     {
-        return in_array($user->employee->job->id,[1,6]);
+        return in_array($user->employee->job->id,[1]);
     }
 
     /**
@@ -65,7 +65,7 @@ class FabricCodePolicy
      */
     public function delete(User $user, FabricCode $fabricCode)
     {
-        return in_array($user->employee->job->id,[1,6]);
+        return in_array($user->employee->job->id,[1]);
     }
 
     /**
@@ -77,7 +77,7 @@ class FabricCodePolicy
      */
     public function restore(User $user, FabricCode $fabricCode)
     {
-        return in_array($user->employee->job->id,[1,6]);
+        return in_array($user->employee->job->id,[1]);
     }
 
     /**
@@ -89,6 +89,6 @@ class FabricCodePolicy
      */
     public function forceDelete(User $user, FabricCode $fabricCode)
     {
-        return in_array($user->employee->job->id,[1,6]);
+        return in_array($user->employee->job->id,[1]);
     }
 }

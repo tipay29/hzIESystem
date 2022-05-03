@@ -27,7 +27,7 @@
                                 <tr>
                                     <th width="20%">ID</th>
                                     <th width="70%">Color</th>
-                                    @can('update',1)
+                                    @can('create',App\Models\FabricColor::class)
                                         <th>Option</th>
                                     @endcan
                                 </tr>
@@ -37,7 +37,7 @@
                                     <tr>
                                         <td>{{ $fabric_color->id }}</td>
                                         <td>{{ $fabric_color->fabric_color }}</td>
-                                        @can('update',$fabric_color->id)
+                                        @can('update',$fabric_color)
                                             <td>
                                                 <button type='button' style="text-decoration: none;
                                                 color:darkorange;border:none;padding:0px;background-color: white;"

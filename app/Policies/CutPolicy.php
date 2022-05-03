@@ -58,6 +58,8 @@ class CutPolicy
      */
     public function update(User $user, Cut $cut)
     {
+      
+
         return in_array($user->employee->job->id,[1]);
     }
 

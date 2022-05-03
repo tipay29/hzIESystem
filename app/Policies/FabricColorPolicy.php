@@ -53,7 +53,7 @@ class FabricColorPolicy
      */
     public function update(User $user, FabricColor $fabricColor)
     {
-        return in_array($user->employee->job->id,[1,6]);
+        return in_array($user->employee->job->id,[1]);
     }
 
     /**
@@ -65,7 +65,7 @@ class FabricColorPolicy
      */
     public function delete(User $user, FabricColor $fabricColor)
     {
-        return in_array($user->employee->job->id,[1,6]);
+        return in_array($user->employee->job->id,[1]);
     }
 
     /**
@@ -77,7 +77,7 @@ class FabricColorPolicy
      */
     public function restore(User $user, FabricColor $fabricColor)
     {
-        return in_array($user->employee->job->id,[1,6]);
+        return in_array($user->employee->job->id,[1]);
     }
 
     /**
@@ -89,6 +89,6 @@ class FabricColorPolicy
      */
     public function forceDelete(User $user, FabricColor $fabricColor)
     {
-        return in_array($user->employee->job->id,[1,6]);
+        return in_array($user->employee->job->id,[1]);
     }
 }

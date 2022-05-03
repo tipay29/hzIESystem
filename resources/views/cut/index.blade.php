@@ -49,7 +49,7 @@
                                         <th width="18%" scope="col">Spread DateTime</th>
                                         <th width="18%" scope="col">Cut DateTime</th>
                                         <th width="15%" scope="col">User</th>
-                                        @can('update',1)
+                                        @can('create', App\Models\Cut::class)
                                         <th width="4%" scope="col">Option</th>
                                         @endcan
                                     </tr>
@@ -59,12 +59,12 @@
                                 @foreach($cuts as $cut)
                                     <tr>
                                         <td  scope="row">
-                                            @can('view',$cut->id)
+                                            @can('view',$cut)
                                             <a href="{{route('cuts.show', $cut->id)}}">
                                                 <i class="fa fa-eye" aria-hidden="true"></i>
                                                 {{$cut->id}} </a>
                                             @endcan
-                                            @cannot('view',$cut->id)
+                                            @cannot('view',$cut)
                                                     {{$cut->id}}
                                             @endcannot
                                         </td>
@@ -94,7 +94,7 @@
                                         <td  scope="row">
                                             {{$cut->user->name}}
                                         </td>
-                                        @can('update',$cut->id)
+                                        @can('update',$cut)
                                             <td  scope="row">
 
                                                 <a style="text-decoration: none;color:darkorange;" href="{{route('cuts.edit', $cut->id)}}" >

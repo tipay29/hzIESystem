@@ -26,7 +26,7 @@
                                 <tr>
                                     <th width="20%">ID</th>
                                     <th width="70%">Type</th>
-                                    @can('update',1)
+                                    @can('create',App\Models\FabricType::class)
                                         <th>Option</th>
                                     @endcan
                                 </tr>
@@ -36,7 +36,7 @@
                                     <tr>
                                         <td>{{ $fabric_type->id }}</td>
                                         <td>{{ $fabric_type->fabric_type }}</td>
-                                        @can('update',$fabric_type->id)
+                                        @can('update',$fabric_type)
                                             <td>
                                                 <button type='button' style="text-decoration: none;
                                                 color:darkorange;border:none;padding:0px;background-color: white;"

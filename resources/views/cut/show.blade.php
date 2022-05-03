@@ -11,7 +11,7 @@
 
                         <div>
 
-
+                                @can('update',$cut)
                                 <a href="{{route('cuts.edit', $cut->id)}}"
                                    class="btn btn-outline-warning">
                                     Edit Cut </a>
@@ -22,6 +22,7 @@
                                     @method('DELETE')
                                     <button class="btn btn-outline-danger" onclick="return confirm('Delete CutID {{$cut->id}}  ?')" >Delete Cut</button>
                                 </form>
+                                @endcan
 
                         </div>
 

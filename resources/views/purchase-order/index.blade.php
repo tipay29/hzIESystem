@@ -26,7 +26,7 @@
                                 <tr>
                                     <th width="20%">ID</th>
                                     <th width="70%">PO#</th>
-                                    @can('update',1)
+                                    @can('create',App\Models\PurchaseOrder::class)
                                         <th>Option</th>
                                     @endcan
                                 </tr>
@@ -36,7 +36,7 @@
                                     <tr>
                                         <td>{{ $purchase_order->id }}</td>
                                         <td>{{ $purchase_order->purchase_order }}</td>
-                                        @can('update',$purchase_order->id)
+                                        @can('update',$purchase_order)
                                             <td>
 
                                                     <button type='button' style="text-decoration: none;

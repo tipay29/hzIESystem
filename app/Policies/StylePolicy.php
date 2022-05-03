@@ -53,7 +53,7 @@ class StylePolicy
      */
     public function update(User $user, Style $style)
     {
-        return in_array($user->employee->job->id,[1,6]);
+        return in_array($user->employee->job->id,[1]);
     }
 
     /**
@@ -65,7 +65,7 @@ class StylePolicy
      */
     public function delete(User $user, Style $style)
     {
-        return in_array($user->employee->job->id,[1,6]);
+        return in_array($user->employee->job->id,[1]);
     }
 
     /**
@@ -77,7 +77,7 @@ class StylePolicy
      */
     public function restore(User $user, Style $style)
     {
-        return in_array($user->employee->job->id,[1,6]);
+        return in_array($user->employee->job->id,[1]);
     }
 
     /**
@@ -89,6 +89,6 @@ class StylePolicy
      */
     public function forceDelete(User $user, Style $style)
     {
-        return in_array($user->employee->job->id,[1,6]);
+        return in_array($user->employee->job->id,[1]);
     }
 }

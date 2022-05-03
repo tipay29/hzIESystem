@@ -35,7 +35,7 @@
                                     <th width="18%" scope="col">Fabric Colors</th>
                                     <th width="18%" scope="col">Fabric Types</th>
                                     <th width="18%" scope="col">Placements</th>
-                                    @can('update',1)
+                                    @can('create',App\Models\Style::class)
                                     <th width="5%" scope="col">Option</th>
                                     @endcan
                                 </tr>
@@ -91,7 +91,7 @@
                                                     @endforeach
                                                 @endif
                                             </td>
-                                            @can('update',$style->id)
+                                            @can('update',$style)
                                                 <td>
 
 
