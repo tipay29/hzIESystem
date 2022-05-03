@@ -2,7 +2,7 @@ $('document').ready(function() {
 
     let originUrl = window.location.origin;
 
-
+    alert('aw');
     $.getScript(originUrl + '/storage/js/cutting.js');
     $.getScript(originUrl + '/storage/js/employee.js');
     $.getScript(originUrl + '/storage/js/style.js');
