@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 class FabricColorController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+
+    }
+
     public function index()
     {
         $fabric_colors = FabricColor::paginate(10);

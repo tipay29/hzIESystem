@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 class FabricTypeController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+
+    }
+
     public function index()
     {
         $fabric_types = FabricType::paginate(10);

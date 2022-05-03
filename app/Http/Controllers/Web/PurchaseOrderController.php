@@ -8,6 +8,12 @@ use App\Models\PurchaseOrder;
 class PurchaseOrderController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+
+    }
+
     public function index()
     {
         $purchase_orders = PurchaseOrder::paginate(10);
