@@ -139,7 +139,7 @@
                         </div>
 
                         <div class="card-footer d-flex justify-content-between">
-                            <button id="btn-create-placement" class="btn btn-secondary">Cancel</button>
+                            <button id="btn-create-placement" class="btn btn-secondary">{{__('text.Cancel')}}</button>
                             <button id="btn-update-placement" class="btn btn-primary">{{__('text.Update').' '.__('text.Placement')}}</button>
                         </div>
                     </form>

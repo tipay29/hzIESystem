@@ -143,7 +143,7 @@
                         </div>
 
                         <div class="card-footer d-flex justify-content-between">
-                            <button id="btn-create-purchase-order" class="btn btn-secondary">Cancel</button>
+                            <button id="btn-create-purchase-order" class="btn btn-secondary">{{__('text.Cancel')}}</button>
                             <button id="btn-update-purchase-order" class="btn btn-primary">{{__('text.Update') . ' ' . __('text.PurchaseOrder')}}</button>
                         </div>
                     </form>

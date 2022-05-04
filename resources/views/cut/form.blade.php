@@ -133,7 +133,7 @@
     <div class="row-two d-flex align-items-start flex-column flex-wrap">
 
         <div class="form-group">
-            <label for="table_num">Table
+            <label for="table_num">{{__('text.Table')}}
                 @error('table_num') <small class="text-danger">{{$message}}</small> @enderror
             </label>
             <select id="table_num" class="form-control" name="table_num" >
@@ -152,7 +152,7 @@
 
 
         <div class="form-group">
-            <label for="marker_length">Marker Length
+            <label for="marker_length">{{__('text.Marker') .' '. __('text.Length') }}
                 @error('marker_length') <small class="text-danger">{{$message}}</small>  @enderror
             </label>
             <input id="marker_length" name='marker_length' type="number" class="form-control"
@@ -162,7 +162,7 @@
         </div>
 
         <div class="form-group">
-            <label for="layer_count">Layers
+            <label for="layer_count">{{__('text.Layers')}}
                 @error('layer_count') <small class="text-danger">{{$message}}</small>  @enderror
             </label>
             <input id="layer_count" name='layer_count' type="number" class="form-control"
@@ -171,7 +171,7 @@
         </div>
 
         <div class="form-group">
-            <label for="part_count">Parts
+            <label for="part_count">{{__('text.Parts')}}
                 @error('part_count') <small class="text-danger">{{$message}}</small>  @enderror
             </label>
             <input id="part_count" name='part_count' type="number" class="form-control"
@@ -179,7 +179,7 @@
 
         </div>
         <div class="form-group">
-            <label for="size_ratio">Size Ratio
+            <label for="size_ratio">{{__('text.Size') .' '. __('text.Ratio')}}
                 @error('size_ratio') <small class="text-danger">{{$message}}</small>  @enderror
             </label>
             <input id="size_ratio" name='size_ratio' type="number" class="form-control"
@@ -188,7 +188,7 @@
         </div>
 
         <div class="form-group">
-            <label for="cut_count">Cut Count
+            <label for="cut_count">{{__('text.Cut') .' '. __('text.Count')}}
                 @error('cut_count') <small class="text-danger">{{$message}}</small>  @enderror
             </label>
             <input id="cut_count" name='cut_count' type="number" class="form-control"
@@ -199,7 +199,7 @@
         <div class="form-group">
 
 
-            <label for="work_hours">Work Time
+            <label for="work_hours">{{__('text.Work') .' '. __('text.Time')}}
                 @error('work_hours') <small class="text-danger">{{$message}}</small>  @enderror
             </label>
             <div class="mt-2">
@@ -231,11 +231,11 @@
     <div class="row-three d-flex align-items-start flex-column flex-wrap">
 
 
-        <h6 class="px-2 mt-2">Spread details</h6>
+        <h6 class="px-2 mt-2">{{__('text.Spread') .' '. __('text.Details')}}</h6>
 
 
         <div class="form-group">
-            <label>Spreader
+            <label>{{__('text.Spreader')}}
                 @error('spreader_id') <small class="text-danger">{{$message}}</small>  @enderror
             </label>
 
@@ -255,7 +255,7 @@
         </div>
 
         <div class="form-group">
-            <label for="spread_start">Spread Start
+            <label for="spread_start">{{__('text.Spread') .' '. __('text.Start')}}
                 @error('spread_start') <small class="text-danger">{{$message}}</small>  @enderror
             </label>
             <input id="spread_start" name='spread_start' type="datetime-local"
@@ -264,7 +264,7 @@
         </div>
 
         <div class="form-group">
-            <label for="spread_end">Spread End
+            <label for="spread_end">{{__('text.Spread') .' '. __('text.End')}}
                 @error('spread_end') <small class="text-danger">{{$message}}</small>  @enderror
             </label>
             <input id="spread_end" name='spread_end' type="datetime-local"
@@ -272,10 +272,10 @@
 
         </div>
 
-        <h6 class="px-2 mt-2" >Cut details</h6>
+        <h6 class="px-2 mt-2" >{{__('text.Cut') .' '. __('text.Details')}}</h6>
 
         <div class="form-group">
-            <label>Cutter
+            <label>{{__('text.Cutter')}}
                 @error('cutter_id') <small class="text-danger">{{$message}}</small>  @enderror
             </label>
 
@@ -295,7 +295,7 @@
         </div>
 
         <div class="form-group">
-            <label for="cut_start">Cut Start
+            <label for="cut_start">{{__('text.Cut').' '. __('text.Start')}}
                 @error('cut_start') <small class="text-danger">{{$message}}</small>  @enderror
             </label>
             <input id="cut_start" name='cut_start' type="datetime-local"
@@ -304,7 +304,7 @@
         </div>
 
         <div class="form-group">
-            <label for="cut_end">Cut End
+            <label for="cut_end">{{__('text.Cut').' '. __('text.End')}}
                 @error('cut_end') <small class="text-danger">{{$message}}</small>  @enderror
             </label>
             <input id="cut_end" name='cut_end' type="datetime-local"

@@ -45,9 +45,9 @@
                                         <th width="10%" scope="col">{{__('text.Style')}}</th>
                                         <th width="15%" scope="col">{{__('text.PurchaseOrder')}}</th>
                                         <th width="5%" scope="col">{{__('text.Building')}}</th>
-                                        <th width="5%" scope="col">Table</th>
-                                        <th width="18%" scope="col">Spread DateTime</th>
-                                        <th width="18%" scope="col">Cut DateTime</th>
+                                        <th width="5%" scope="col">{{__('text.Table')}}</th>
+                                        <th width="18%" scope="col">{{__('text.Spread').' '. __('text.Date') .''. __('text.Time')}}</th>
+                                        <th width="18%" scope="col">{{__('text.Cut').' '. __('text.Date') .''. __('text.Time')}}</th>
                                         <th width="15%" scope="col">{{__('text.User')}}</th>
                                         @can('create', App\Models\Cut::class)
                                         <th width="4%" scope="col">{{__('text.Option')}}</th>

@@ -141,7 +141,7 @@
                         </div>
 
                         <div class="card-footer d-flex justify-content-between">
-                            <button id="btn-create-fabric-code" class="btn btn-secondary">Cancel</button>
+                            <button id="btn-create-fabric-code" class="btn btn-secondary">{{__('text.Cancel')}}</button>
                             <button id="btn-update-fabric-code" class="btn btn-primary">{{__('text.Update'). ' '.__('text.FabricCode')}}</button>
                         </div>
                     </form>

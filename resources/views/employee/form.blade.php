@@ -15,7 +15,7 @@
 </div>
 
 <div class="row mb-3">
-    <label for="name" class="col-md-4 col-form-label text-md-end">{{__('text.Name')}}*</label>
+    <label for="name" class="col-md-4 col-form-label text-md-end">{{__('text.Name')}}</label>
 
     <div class="col-md-6">
         <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
@@ -33,7 +33,7 @@
 
 
 <div class="row mb-3">
-    <label for="phone" class="col-md-4 col-form-label text-md-end">Phone*</label>
+    <label for="phone" class="col-md-4 col-form-label text-md-end">{{__('text.Phone')}}</label>
     <div class="col-md-6 ">
         <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror"
                name="phone" value="{{ old('phone') ?? $employee->phone }}" autocomplete="phone"
@@ -89,7 +89,7 @@
 </div>
 
 <div class="row mb-3">
-    <label for="address" class="col-md-4 col-form-label text-md-end">Address</label>
+    <label for="address" class="col-md-4 col-form-label text-md-end">{{__('text.Address')}}</label>
     <div class="col-md-6 ">
         <input id="address" type="text" class="form-control @error('address') is-invalid @enderror"
                name="address" value="{{ old('address') ?? $employee->address }}" autocomplete="address"
@@ -104,7 +104,7 @@
 </div>
 
 <div class="row mb-3">
-    <label for="birthday" class="col-md-4 col-form-label text-md-end">Birthday</label>
+    <label for="birthday" class="col-md-4 col-form-label text-md-end">{{__('text.Birthday')}}</label>
     <div class="col-md-6 ">
         <input id="birthday" type="date" class="form-control @error('birthday') is-invalid @enderror"
                name="birthday" value="{{ old('birthday') ?? $employee->birthday }}" autocomplete="birthday">
@@ -118,7 +118,7 @@
 </div>
 
 <div class="row mb-3">
-    <label for="join_date" class="col-md-4 col-form-label text-md-end">Join Date</label>
+    <label for="join_date" class="col-md-4 col-form-label text-md-end">{{__('text.Join') .' '. __('text.Date')}}</label>
     <div class="col-md-6 ">
         <input id="join_date" type="date" class="form-control @error('join_date') is-invalid @enderror"
                name="join_date" value="{{ old('join_date') ?? $employee->join_date }}" autocomplete="join_date">
