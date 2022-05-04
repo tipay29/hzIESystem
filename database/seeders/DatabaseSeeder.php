@@ -27,11 +27,11 @@ class DatabaseSeeder extends Seeder
             FabricTypeSeeder::class,
             PlacementSeeder::class,
             PurchaseOrderSeeder::class,
-            Employee::class,
+            EmployeeSeeder::class,
             UserSeeder::class,
             StyleSeeder::class,
             CutSeeder::class,
-            
+
         ]);
 
     }

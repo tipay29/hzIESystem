@@ -19,7 +19,12 @@ class EmployeeController extends Controller
     {
 
 
-        $employees = Employee::with(['job','building'])->get();
+        $employees = Employee::with(['job','building'])->paginate(20);
+
+
+        if (request()->ajax()) {
+            return view('employee.index', compact('employees'));
+        }
 
         return view('employee.index', compact('employees'));
 
