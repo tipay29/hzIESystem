@@ -8,7 +8,7 @@
                 <div class="card purchase_order_div_one">
                     <div class="card-header d-flex justify-content-between">
 
-                        <h5 class="mt-2">Purchase Orders</h5>
+                        <h5 class="mt-2">{{__('text.PurchaseOrders')}}</h5>
 
                         <div>
 
@@ -24,10 +24,10 @@
                             <table class="table purchase_order_table">
                                 <thead>
                                 <tr>
-                                    <th width="20%">ID</th>
-                                    <th width="70%">PO#</th>
+                                    <th width="20%">{{__('text.ID')}}</th>
+                                    <th width="70%">{{__('text.PurchaseOrder')}}</th>
                                     @can('create',App\Models\PurchaseOrder::class)
-                                        <th>Option</th>
+                                        <th>{{__('text.Option')}}</th>
                                     @endcan
                                 </tr>
                                 </thead>
@@ -76,7 +76,7 @@
                 <div class="card purchase_order_div_two">
                     <div class="card-header d-flex justify-content-between">
 
-                        <h5 class="mt-2">Add Purchase Order</h5>
+                        <h5 class="mt-2">{{__('text.Add') . ' ' . __('text.PurchaseOrder')}}</h5>
 
                         <div>
 
@@ -91,7 +91,7 @@
 
                             @csrf
                             <div class="row mb-3">
-                                <label for="purchase_order_create" class="col-md-4 col-form-label text-md-end">Purchase Order</label>
+                                <label for="purchase_order_create" class="col-md-4 col-form-label text-md-end">{{__('text.PurchaseOrder')}}</label>
                                 <div class="col-md-7">
 
                                     <input id="purchase_order_create" type="number" class="form-control"
@@ -104,7 +104,7 @@
                         </div>
 
                         <div class="card-footer d-flex justify-content-end">
-                            <button id="btn-save-purchase-order" class="btn btn-primary">Save Purchase Order</button>
+                            <button id="btn-save-purchase-order" class="btn btn-primary">{{__('text.Save') . ' ' . __('text.PurchaseOrder')}}</button>
                         </div>
                     </form>
 
@@ -115,7 +115,7 @@
                 <div class="card purchase_order_div_three">
                     <div class="card-header d-flex justify-content-between">
 
-                        <h5 class="mt-2">Update Purchase Order</h5>
+                        <h5 class="mt-2">{{__('text.Update') . ' ' . __('text.PurchaseOrder')}}</h5>
 
                         <div>
 
@@ -130,7 +130,7 @@
 
                             @csrf
                             <div class="row mb-3">
-                                <label for="purchase_order_edit" class="col-md-4 col-form-label text-md-end">Purchase Order</label>
+                                <label for="purchase_order_edit" class="col-md-4 col-form-label text-md-end">{{ __('text.PurchaseOrder')}}</label>
                                 <div class="col-md-7">
 
                                     <input id="purchase_order_edit" type="number" class="form-control"
@@ -144,7 +144,7 @@
 
                         <div class="card-footer d-flex justify-content-between">
                             <button id="btn-create-purchase-order" class="btn btn-secondary">Cancel</button>
-                            <button id="btn-update-purchase-order" class="btn btn-primary">Update Purchase Order</button>
+                            <button id="btn-update-purchase-order" class="btn btn-primary">{{__('text.Update') . ' ' . __('text.PurchaseOrder')}}</button>
                         </div>
                     </form>
 

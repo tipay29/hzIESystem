@@ -9,7 +9,7 @@
                 <div class="card fabric_color_div_one">
                     <div class="card-header d-flex justify-content-between">
 
-                        <h5 class="mt-2">Fabric Colors</h5>
+                        <h5 class="mt-2">{{ __('text.FabricColors')}}</h5>
 
                         <div>
 
@@ -25,10 +25,10 @@
                             <table class="table fabric_color_table">
                                 <thead>
                                 <tr>
-                                    <th width="20%">ID</th>
-                                    <th width="70%">Color</th>
+                                    <th width="20%">{{__('text.ID')}}</th>
+                                    <th width="70%">{{__('text.FabricColor')}}</th>
                                     @can('create',App\Models\FabricColor::class)
-                                        <th>Option</th>
+                                        <th>{{__('text.Option')}}</th>
                                     @endcan
                                 </tr>
                                 </thead>
@@ -74,7 +74,7 @@
                 <div class="card fabric_color_div_two">
                     <div class="card-header d-flex justify-content-between">
 
-                        <h5 class="mt-2">Add Fabric Color</h5>
+                        <h5 class="mt-2">{{__('text.Add') . ' ' . __('text.FabricColor')}}</h5>
 
                         <div>
 
@@ -89,7 +89,7 @@
 
                                 @csrf
                                 <div class="row mb-3">
-                                    <label for="fabric_color_create" class="col-md-4 col-form-label text-md-end">Fabric Color</label>
+                                    <label for="fabric_color_create" class="col-md-4 col-form-label text-md-end">{{__('text.FabricColor')}}</label>
                                     <div class="col-md-7">
 
                                         <input id="fabric_color_create" type="text" class="form-control"
@@ -102,7 +102,7 @@
                         </div>
 
                         <div class="card-footer d-flex justify-content-end">
-                            <button id="btn-save-fabric-color" class="btn btn-primary">Save Fabric Color</button>
+                            <button id="btn-save-fabric-color" class="btn btn-primary">{{__('text.Save') . ' ' . __('text.FabricColor')}}</button>
                         </div>
                     </form>
 
@@ -113,7 +113,7 @@
                 <div class="card fabric_color_div_three">
                     <div class="card-header d-flex justify-content-between">
 
-                        <h5 class="mt-2">Update Fabric Color</h5>
+                        <h5 class="mt-2">{{__('text.Update') . ' ' . __('text.FabricColor')}}</h5>
 
                         <div>
 
@@ -128,7 +128,7 @@
 
                             @csrf
                             <div class="row mb-3">
-                                <label for="fabric_color" class="col-md-4 col-form-label text-md-end">Fabric Color</label>
+                                <label for="fabric_color" class="col-md-4 col-form-label text-md-end">{{ __('text.FabricColor')}}</label>
                                 <div class="col-md-7">
 
                                     <input id="fabric_color_edit" type="text" class="form-control"
@@ -142,7 +142,7 @@
 
                         <div class="card-footer d-flex justify-content-between">
                             <button id="btn-create-fabric-color" class="btn btn-secondary">Cancel</button>
-                            <button id="btn-update-fabric-color" class="btn btn-primary">Update Fabric Color</button>
+                            <button id="btn-update-fabric-color" class="btn btn-primary">{{__('text.Update') . ' ' . __('text.FabricColor')}}</button>
                         </div>
                     </form>
 

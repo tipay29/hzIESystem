@@ -4,7 +4,7 @@
     <div class="row-one d-flex align-items-start flex-column flex-wrap">
 
         <div class="form-group">
-            <label>Style
+            <label>{{__('text.Style') }}
 
                 <button type="button" class="btn btn-secondary btn-xsm" data-toggle="tooltip"
                         data-placement="top" title="Add Style:
@@ -32,7 +32,7 @@
         </div>
 
         <div class="form-group">
-            <label>Purchase Order
+            <label>{{__('text.PurchaseOrder') }}
 
                 <button type="button" class="btn btn-secondary btn-xsm" data-toggle="tooltip"
                         data-placement="top" title="Add Purchase Order for this Style:
@@ -51,7 +51,7 @@
         </div>
 
         <div class="form-group">
-            <label>Fabric Code
+            <label>{{__('text.FabricCode') }}
 
                 <button type="button" class="btn btn-secondary btn-xsm" data-toggle="tooltip"
                         data-placement="top" title="Add Fabric Code for this Style:
@@ -70,7 +70,7 @@
         </div>
 
         <div class="form-group">
-            <label>Fabric Color
+            <label>{{__('text.FabricColor') }}
 
                 <button type="button" class="btn btn-secondary btn-xsm" data-toggle="tooltip"
                         data-placement="top" title="Add Fabric Color for this PO:
@@ -89,7 +89,7 @@
         </div>
 
         <div class="form-group">
-            <label>Fabric Type
+            <label>{{__('text.FabricType') }}
 
                 <button type="button" class="btn btn-secondary btn-xsm" data-toggle="tooltip"
                         data-placement="top" title="Add Fabric Type for this PO:
@@ -108,7 +108,7 @@
         </div>
 
         <div class="form-group">
-            <label>Placement
+            <label>{{__('text.Placement') }}
 
                 <button type="button" class="btn btn-secondary btn-xsm" data-toggle="tooltip"
                         data-placement="top" title="Add Placement for this PO:

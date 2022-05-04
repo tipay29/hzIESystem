@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
 
-                        <h5 class="mt-2">Edit Style</h5>
+                        <h5 class="mt-2">{{__('text.Edit') .' '. __('text.Style')}}</h5>
 
                         <div>
 
@@ -29,7 +29,7 @@
 
                             @csrf
                             <div class="d-flex justify-content-center">
-                                <button type="submit" class="btn btn-primary">Update Style</button>
+                                <button type="submit" class="btn btn-primary">{{__('text.Update') .' '. __('text.Style')}}</button>
                             </div>
 
                         </form>

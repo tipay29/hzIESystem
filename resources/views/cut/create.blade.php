@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
 
-                        <h5 class="mt-2">Add Cut</h5>
+                        <h5 class="mt-2">{{__('text.Add') .' ' . __('text.Cut') }}</h5>
 
                         <div>
 
@@ -32,7 +32,7 @@
                                 @csrf
 
                                   <div class="d-flex justify-content-center">
-                                    <button type="submit" class="btn btn-primary mt-5">Save Cut</button>
+                                    <button type="submit" class="btn btn-primary mt-5">{{__('text.Save') .' ' . __('text.Cut') }}</button>
 
                                   </div>
 

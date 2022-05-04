@@ -8,7 +8,7 @@
                 <div class="card fabric_type_div_one">
                     <div class="card-header d-flex justify-content-between">
 
-                        <h5 class="mt-2">Fabric Types</h5>
+                        <h5 class="mt-2">{{ __('text.FabricTypes')}}</h5>
 
                         <div>
 
@@ -24,10 +24,10 @@
                             <table class="table fabric_type_table">
                                 <thead>
                                 <tr>
-                                    <th width="20%">ID</th>
-                                    <th width="70%">Type</th>
+                                    <th width="20%">{{__('text.ID')}}</th>
+                                    <th width="70%">{{__('text.FabricType')}}</th>
                                     @can('create',App\Models\FabricType::class)
-                                        <th>Option</th>
+                                        <th>{{__('text.Option')}}</th>
                                     @endcan
                                 </tr>
                                 </thead>
@@ -72,7 +72,7 @@
                 <div class="card fabric_type_div_two">
                     <div class="card-header d-flex justify-content-between">
 
-                        <h5 class="mt-2">Add Fabric Type</h5>
+                        <h5 class="mt-2">{{__('text.Add') . ' ' . __('text.FabricType')}}</h5>
 
                         <div>
 
@@ -87,7 +87,7 @@
 
                             @csrf
                             <div class="row mb-3">
-                                <label for="fabric_type_create" class="col-md-4 col-form-label text-md-end">Fabric Type</label>
+                                <label for="fabric_type_create" class="col-md-4 col-form-label text-md-end">{{ __('text.FabricType')}}</label>
                                 <div class="col-md-7">
 
                                     <input id="fabric_type_create" type="text" class="form-control"
@@ -105,7 +105,7 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="sas_cut_create" class="col-md-4 col-form-label text-md-end">SAS Cut</label>
+                                <label for="sas_cut_create" class="col-md-4 col-form-label text-md-end">SAS {{__('text.Cut')}}</label>
                                 <div class="col-md-7">
 
                                     <input id="sas_cut_create" type="number" class="form-control" step="0.01"
@@ -118,7 +118,7 @@
                         </div>
 
                         <div class="card-footer d-flex justify-content-end">
-                            <button id="btn-save-fabric-type" class="btn btn-primary">Save Fabric Type</button>
+                            <button id="btn-save-fabric-type" class="btn btn-primary">{{__('text.Save') . ' ' . __('text.FabricType')}}</button>
                         </div>
                     </form>
 
@@ -129,7 +129,7 @@
                 <div class="card fabric_type_div_three">
                     <div class="card-header d-flex justify-content-between">
 
-                        <h5 class="mt-2">Update Fabric Type</h5>
+                        <h5 class="mt-2">{{__('text.Update') . ' ' . __('text.FabricType')}}</h5>
 
                         <div>
 
@@ -144,7 +144,7 @@
 
                             @csrf
                             <div class="row mb-3">
-                                <label for="fabric_type_edit" class="col-md-4 col-form-label text-md-end">Fabric Type</label>
+                                <label for="fabric_type_edit" class="col-md-4 col-form-label text-md-end">{{ __('text.FabricType')}}</label>
                                 <div class="col-md-7">
 
                                     <input id="fabric_type_edit" type="text" class="form-control"
@@ -162,7 +162,7 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="sas_cut_edit" class="col-md-4 col-form-label text-md-end">SAS Cut</label>
+                                <label for="sas_cut_edit" class="col-md-4 col-form-label text-md-end">SAS {{ __('text.Cut')}}</label>
                                 <div class="col-md-7">
 
                                     <input id="sas_cut_edit" type="number" class="form-control" step="0.01"
@@ -177,7 +177,7 @@
 
                         <div class="card-footer d-flex justify-content-between">
                             <button id="btn-create-fabric-type" class="btn btn-secondary">Cancel</button>
-                            <button id="btn-update-fabric-type" class="btn btn-primary">Update Fabric Type</button>
+                            <button id="btn-update-fabric-type" class="btn btn-primary">{{__('text.Update') . ' ' . __('text.FabricType')}}</button>
                         </div>
                     </form>
 

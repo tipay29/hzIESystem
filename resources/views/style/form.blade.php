@@ -2,7 +2,8 @@
 
 
 <div class="row mb-3">
-    <label for="style_code" class="col-md-4 col-form-label text-md-end">Style</label>
+    <label for="style_code" class="col-md-4 col-form-label text-md-end">
+        {{__('text.Style')}}</label>
     <div class="col-md-7">
         <input id="style_code" name='style_code' type="text" class="form-control"
                placeholder="Enter style code" value="{{old('style_code')  ?? $style->style_code}}">
@@ -11,7 +12,7 @@
 </div>
 
 <div class="row mb-3">
-    <label  class="col-md-4 col-form-label text-md-end">Purchase Order
+    <label  class="col-md-4 col-form-label text-md-end">{{__('text.PurchaseOrder')}}
         <button type="button" class="btn btn-secondary btn-xsm" data-toggle="tooltip"
                 data-placement="top" title="Add Fabric Code: Go to Orders>Purchase Order">
             <i class="fa fa-question-circle" aria-hidden="true"></i>
@@ -36,7 +37,7 @@
 </div>
 
 <div class="row mb-3">
-    <label  class="col-md-4 col-form-label text-md-end">Fabric Code
+    <label  class="col-md-4 col-form-label text-md-end">{{__('text.FabricCode')}}
         <button type="button" class="btn btn-secondary btn-xsm" data-toggle="tooltip"
                 data-placement="top" title="Add Fabric Code: Go to Orders>Fabric Code">
             <i class="fa fa-question-circle" aria-hidden="true"></i>
@@ -59,7 +60,7 @@
 
 
 <div class="row mb-3">
-    <label class="col-md-4 col-form-label text-md-end">Fabric Color
+    <label class="col-md-4 col-form-label text-md-end">{{__('text.FabricColor')}}
         <button type="button" class="btn btn-secondary btn-xsm" data-toggle="tooltip"
                 data-placement="top" title="Add Fabric Color: Go to Orders>Fabric Colors">
             <i class="fa fa-question-circle" aria-hidden="true"></i>
@@ -82,7 +83,7 @@
 </div>
 
 <div class="row mb-3">
-    <label class="col-md-4 col-form-label text-md-end">Fabric Type
+    <label class="col-md-4 col-form-label text-md-end">{{__('text.FabricType')}}
         <button type="button" class="btn btn-secondary btn-xsm" data-toggle="tooltip"
                 data-placement="top" title="Add Fabric Type: Go to Orders>Fabric Type">
             <i class="fa fa-question-circle" aria-hidden="true"></i>
@@ -105,7 +106,7 @@
 </div>
 
 <div class="row mb-3">
-    <label class="col-md-4 col-form-label text-md-end">Placement
+    <label class="col-md-4 col-form-label text-md-end">{{__('text.Placement')}}
         <button type="button" class="btn btn-secondary btn-xsm" data-toggle="tooltip"
                 data-placement="top" title="Add Placement: Go to Orders>Placement">
             <i class="fa fa-question-circle" aria-hidden="true"></i>

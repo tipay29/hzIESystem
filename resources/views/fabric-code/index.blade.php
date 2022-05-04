@@ -8,7 +8,7 @@
                 <div class="card fabric_code_div_one">
                     <div class="card-header d-flex justify-content-between">
 
-                        <h5 class="mt-2">Fabric Codes</h5>
+                        <h5 class="mt-2">{{__('text.FabricCodes')}}</h5>
 
                         <div>
 
@@ -24,10 +24,10 @@
                             <table class="table fabric_code_table">
                                 <thead>
                                 <tr>
-                                    <th width="20%">ID</th>
-                                    <th width="70%">Code</th>
+                                    <th width="20%">{{__('text.ID')}}</th>
+                                    <th width="70%">{{__('text.FabricCode')}}</th>
                                     @can('create',App\Models\FabricCode::class)
-                                        <th>Option</th>
+                                        <th>{{__('text.Option')}}</th>
                                     @endcan
                                 </tr>
                                 </thead>
@@ -74,7 +74,7 @@
                 <div class="card fabric_code_div_two">
                     <div class="card-header d-flex justify-content-between">
 
-                        <h5 class="mt-2">Add Fabric Code</h5>
+                        <h5 class="mt-2">{{__('text.Add'). ' '.__('text.FabricCode')}}</h5>
 
                         <div>
 
@@ -89,7 +89,7 @@
 
                             @csrf
                             <div class="row mb-3">
-                                <label for="fabric_code_create" class="col-md-4 col-form-label text-md-end">Fabric Code</label>
+                                <label for="fabric_code_create" class="col-md-4 col-form-label text-md-end">{{__('text.FabricCode')}}</label>
                                 <div class="col-md-7">
 
                                     <input id="fabric_code_create" type="text" class="form-control"
@@ -102,7 +102,7 @@
                         </div>
 
                         <div class="card-footer d-flex justify-content-end">
-                            <button id="btn-save-fabric-code" class="btn btn-primary">Save Fabric Code</button>
+                            <button id="btn-save-fabric-code" class="btn btn-primary">{{__('text.Save'). ' '.__('text.FabricCode')}}</button>
                         </div>
                     </form>
 
@@ -113,7 +113,7 @@
                 <div class="card fabric_code_div_three">
                     <div class="card-header d-flex justify-content-between">
 
-                        <h5 class="mt-2">Update Fabric Code</h5>
+                        <h5 class="mt-2">{{__('text.Update'). ' '.__('text.FabricCode')}}</h5>
 
                         <div>
 
@@ -128,7 +128,7 @@
 
                             @csrf
                             <div class="row mb-3">
-                                <label for="fabric_code_edit" class="col-md-4 col-form-label text-md-end">Fabric Code</label>
+                                <label for="fabric_code_edit" class="col-md-4 col-form-label text-md-end">{{__('text.FabricCode')}}</label>
                                 <div class="col-md-7">
 
                                     <input id="fabric_code_edit" type="text" class="form-control"
@@ -142,7 +142,7 @@
 
                         <div class="card-footer d-flex justify-content-between">
                             <button id="btn-create-fabric-code" class="btn btn-secondary">Cancel</button>
-                            <button id="btn-update-fabric-code" class="btn btn-primary">Update Fabric Code</button>
+                            <button id="btn-update-fabric-code" class="btn btn-primary">{{__('text.Update'). ' '.__('text.FabricCode')}}</button>
                         </div>
                     </form>
 

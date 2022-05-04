@@ -7,13 +7,13 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
 
-                        <h5 class="mt-2">Employee List</h5>
+                        <h5 class="mt-2">{{__('text.Employee') .' '. __('text.List')}}</h5>
 
                         <div>
                             @can('create',\App\Models\Employee::class)
                                 <a href="{{route('employees.create')}}"
                                    class="btn btn-outline-success float-right">
-                                    Add Employee </a>
+                                    {{__('text.Add') .' '. __('text.Employee')}} </a>
                             @endcan
                         </div>
 
@@ -29,13 +29,13 @@
                                     @if($key ==0)
                                         <thead>
                                         <tr>
-                                            <th scope="col">ID</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Job</th>
-                                            <th scope="col">Building</th>
+                                            <th scope="col">{{ __('text.ID')}}</th>
+                                            <th scope="col">{{__('text.Name')}}</th>
+                                            <th scope="col">{{__('text.Job')}}</th>
+                                            <th scope="col">{{__('text.Building')}}</th>
                                             @can('update', $employee)
                                                 @can('delete', $employee)
-                                                    <th scope="col">Option</th>
+                                                    <th scope="col">{{__('text.Option')}}</th>
                                                 @endcan
                                             @endcan
                                         </tr>
@@ -83,7 +83,7 @@
                                         @endcan
                                     </tr>
                                 @empty
-                                    <p class="text-danger">No Employee</p>
+                                    <p class="text-danger">No {{__('text.Employee')}}</p>
                                 @endforelse
 
                                 </tbody>

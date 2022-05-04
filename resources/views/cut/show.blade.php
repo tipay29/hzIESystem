@@ -6,7 +6,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
-                        <h5 class="mt-2">Cut {{$cut->id}}  Details</h5>
+                        <h5 class="mt-2">{{__('text.Cut')}} {{$cut->id}}  Details</h5>
 
 
                         <div>
@@ -14,13 +14,16 @@
                                 @can('update',$cut)
                                 <a href="{{route('cuts.edit', $cut->id)}}"
                                    class="btn btn-outline-warning">
-                                    Edit Cut </a>
+                                    {{__('text.Edit') .' '. __('text.Cut')}} </a>
 
 
                                 <form style="display:inline;" action="{{route('cuts.destroy', $cut->id)}}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-outline-danger" onclick="return confirm('Delete CutID {{$cut->id}}  ?')" >Delete Cut</button>
+                                    <button class="btn btn-outline-danger" onclick="return confirm('Delete CutID {{$cut->id}}  ?')" >
+
+                                        {{__('text.Delete') .' '. __('text.Cut')}}
+                                    </button>
                                 </form>
                                 @endcan
 
@@ -34,7 +37,7 @@
                         <div id="cut-show-div-one">
                             <div>
                                 <strong>
-                                    Cut ID
+                                    {{__('text.Cut') .' '. __('text.ID')}}
                                 </strong>
                                 <p>
                                    {{$cut->id}}

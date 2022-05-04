@@ -9,13 +9,13 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
 
-                        <h5 class="mt-2">Style List</h5>
+                        <h5 class="mt-2">{{ __('text.Style') .' '. __('text.List') }}</h5>
 
                         <div>
                             @can('create', App\Models\Style::class)
                             <a href="{{route('styles.create')}}"
                                class="btn btn-outline-success float-right">
-                                Add Style </a>
+                                {{ __('text.Add') .' '. __('text.Style') }} </a>
                             @endcan
 
                         </div>
@@ -29,14 +29,14 @@
                             <table class="table" >
                                 <thead>
                                 <tr>
-                                    <th width="5%" scope="col">Style</th>
-                                    <th width="18%" scope="col">PO #</th>
-                                    <th width="18%" scope="col">Fabric Codes</th>
-                                    <th width="18%" scope="col">Fabric Colors</th>
-                                    <th width="18%" scope="col">Fabric Types</th>
-                                    <th width="18%" scope="col">Placements</th>
+                                    <th width="5%" scope="col">{{ __('text.Styles') }} </th>
+                                    <th width="18%" scope="col">{{ __('text.PurchaseOrders') }} </th>
+                                    <th width="18%" scope="col">{{ __('text.FabricCodes') }} </th>
+                                    <th width="18%" scope="col">{{ __('text.FabricColors') }} </th>
+                                    <th width="18%" scope="col">{{ __('text.FabricTypes') }}/th>
+                                    <th width="18%" scope="col">{{ __('text.Placements') }}</th>
                                     @can('create',App\Models\Style::class)
-                                    <th width="5%" scope="col">Option</th>
+                                    <th width="5%" scope="col">{{ __('text.Option') }}</th>
                                     @endcan
                                 </tr>
                                 </thead>

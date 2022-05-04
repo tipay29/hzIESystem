@@ -7,22 +7,22 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
 
-                        <h5 class="mt-2">Cut List</h5>
+                        <h5 class="mt-2">{{__('text.Cut').' '.__('text.List')}}</h5>
 
                         <div>
 
                             @can('create', App\Models\Cut::class)
                             <a href="{{route('cuts.create')}}"
                                class="btn btn-outline-success">
-                                Add Cut </a>
+                                {{__('text.Add').' '.__('text.Cut')}} </a>
                             @endcan
                             @can('viewUtil', App\Models\Cut::class)
                             <a href="{{route('cuts.util')}}"
                                class="btn btn-outline-success">
-                                Cut Util </a>
+                                {{__('text.Cut').' '.__('text.Util')}} </a>
                             <a href="{{route('cuts.total-util')}}"
                                class="btn btn-outline-success">
-                                Total Cut Util </a>
+                                {{__('text.Total').' '.__('text.Cut') .' '. __('text.Util')}} </a>
                             @endcan
                         </div>
 
@@ -40,17 +40,17 @@
                             <table class="table ">
                                 <thead>
                                     <tr>
-                                        <th width="5%" scope="col">CutID</th>
-                                        <th width="5%" scope="col">Cut#</th>
-                                        <th width="10%" scope="col">Style</th>
-                                        <th width="15%" scope="col">Purchase Order</th>
-                                        <th width="5%" scope="col">Building</th>
+                                        <th width="5%" scope="col">{{__('text.Cut').' '.__('text.ID')}}</th>
+                                        <th width="5%" scope="col">{{__('text.Cut')}}#</th>
+                                        <th width="10%" scope="col">{{__('text.Style')}}</th>
+                                        <th width="15%" scope="col">{{__('text.PurchaseOrder')}}</th>
+                                        <th width="5%" scope="col">{{__('text.Building')}}</th>
                                         <th width="5%" scope="col">Table</th>
                                         <th width="18%" scope="col">Spread DateTime</th>
                                         <th width="18%" scope="col">Cut DateTime</th>
-                                        <th width="15%" scope="col">User</th>
+                                        <th width="15%" scope="col">{{__('text.User')}}</th>
                                         @can('create', App\Models\Cut::class)
-                                        <th width="4%" scope="col">Option</th>
+                                        <th width="4%" scope="col">{{__('text.Option')}}</th>
                                         @endcan
                                     </tr>
                                 </thead>

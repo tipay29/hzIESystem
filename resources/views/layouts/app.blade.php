@@ -16,7 +16,7 @@
     <script src="{{asset('storage/js/jquery2.js')}}"></script>  {{--for chosen--}}
     <script src="{{asset('storage/js/chosen-jquery.js')}}"></script>{{--for chosen--}}
     <script src="{{ asset('storage/js/main.js') }}" defer></script>
-      
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -57,55 +57,79 @@
                         <li class="nav-item">
 
                             <div class="btn-group dropdown">
-                                <a class="nav-link btn btn-light" href="{{route('styles.index')}}">Styles</a>
+                                <a class="nav-link btn btn-light" href="{{route('styles.index')}}"> {{ __('text.Styles') }} </a>
                                 <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
                                         data-bs-toggle="dropdown">
                                     <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="{{route('purchase-orders.index')}}">Purchase Orders</a></li>
-                                    <li><a class="dropdown-item" href="{{route('fabric-colors.index')}}">Fabric Colors</a></li>
-                                    <li><a class="dropdown-item" href="{{route('fabric-codes.index')}}">Fabric Codes</a></li>
-                                    <li><a class="dropdown-item" href="{{route('fabric-types.index')}}">Fabric Types</a></li>
-                                    <li><a class="dropdown-item" href="{{route('placements.index')}}">Placements</a></li>
+                                    <li><a class="dropdown-item" href="{{route('purchase-orders.index')}}">
+                                            {{ __('text.PurchaseOrders') }}
+                                        </a></li>
+                                    <li><a class="dropdown-item" href="{{route('fabric-colors.index')}}">{{ __('text.FabricColors') }}</a></li>
+                                    <li><a class="dropdown-item" href="{{route('fabric-codes.index')}}">{{ __('text.FabricCodes') }}</a></li>
+                                    <li><a class="dropdown-item" href="{{route('fabric-types.index')}}">{{ __('text.FabricTypes') }}</a></li>
+                                    <li><a class="dropdown-item" href="{{route('placements.index')}}">{{ __('text.Placements') }}</a></li>
                                 </ul>
                             </div>
 
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Bags</a>
+                            <a class="nav-link" href="#">{{ __('text.Bags') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Jackets</a>
+                            <a class="nav-link" href="#">{{ __('text.Jackets') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Pants</a>
+                            <a class="nav-link" href="#">{{ __('text.Pants') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Sewing</a>
+                            <a class="nav-link" href="#">{{ __('text.Sewing') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('cuts.index')}}">Cutting</a>
+                            <a class="nav-link" href="{{route('cuts.index')}}">{{ __('text.Cutting') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('employees.index')}}">Employee</a>
+                            <a class="nav-link" href="{{route('employees.index')}}">{{ __('text.Employees') }}</a>
                         </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
 
+
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <button type="button" class="btn btn-secondary"
+                                        data-bs-toggle="dropdown">
+                                    Lang
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                    <a class="dropdown-item" href="{{url('locale/en')}}">English</a>
+
+                                    <li>
+                                    <a class="dropdown-item" href="{{url('locale/kh')}}">Khmer </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+
+
+
+                        </li>
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('text.Login') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('text.Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -118,7 +142,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('text.Logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

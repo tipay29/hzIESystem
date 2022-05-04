@@ -1,5 +1,5 @@
 <div class="row mb-3">
-    <label for="id" class="col-md-4 col-form-label text-md-end">ID*</label>
+    <label for="id" class="col-md-4 col-form-label text-md-end">{{__('text.ID')}}*</label>
 
     <div class="col-md-6">
         <input id="id" type="number" class="form-control @error('id') is-invalid @enderror"
@@ -15,7 +15,7 @@
 </div>
 
 <div class="row mb-3">
-    <label for="name" class="col-md-4 col-form-label text-md-end">Name*</label>
+    <label for="name" class="col-md-4 col-form-label text-md-end">{{__('text.Name')}}*</label>
 
     <div class="col-md-6">
         <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
@@ -48,7 +48,7 @@
 </div>
 
 <div class="row mb-3">
-    <label for="job" class="col-md-4 col-form-label text-md-end">Job*</label>
+    <label for="job" class="col-md-4 col-form-label text-md-end">{{__('text.Job')}}*</label>
     <div class="col-md-6 ">
         <select name="job_id" class="form-control @error('job_id') is-invalid @enderror"
                 id="job">
@@ -69,7 +69,7 @@
 
 
 <div class="row mb-3">
-    <label for="building" class="col-md-4 col-form-label text-md-end">Building*</label>
+    <label for="building" class="col-md-4 col-form-label text-md-end">{{__('text.Building')}}*</label>
     <div class="col-md-6 ">
         <select name="building_id" class="form-control @error('building_id') is-invalid @enderror"
                 id="building">
