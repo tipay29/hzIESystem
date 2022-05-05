@@ -32,7 +32,6 @@ Route::group(['as' => 'api.'],function() {
 
 
     Route::post('cuts/total-utilizations', 'CutApiController@totalutil')->name('cuts.totalutil');
-    Route::get('cuts/utilizations', 'CutApiController@util')->name('cuts.util');
-    Route::post('cuts/utilizations', 'CutApiController@retrieve')->name('cuts.retr');
+    Route::post('cuts/utilizations', 'CutApiController@util')->name('cuts.util');
     Route::resource('cuts', 'CutApiController');
 });

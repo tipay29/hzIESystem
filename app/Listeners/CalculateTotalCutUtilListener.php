@@ -13,6 +13,17 @@ class CalculateTotalCutUtilListener
     public function handle(GetTotalCutUtilEvent $event)
     {
 
+        $total_work_hours = 0;
+
+        for($i = $event->spread_start; $i <= $event->spread_end; $i->modify('+1 day')){
+            if($i->format("l") === 'Sunday'){
+                $total_work_hours = $total_work_hours + 0;
+            }elseif ($i->format("l") === 'Saturday'){
+                $total_work_hours = $total_work_hours + 8;
+            }else{
+                $total_work_hours = $total_work_hours + 10;
+            }
+        }
 
         $datas = array(
             'building' => array(
@@ -28,6 +39,7 @@ class CalculateTotalCutUtilListener
             ),
             'spread_start' => $this->formatDate($event->spread_start),
             'spread_end' => $this->formatDate($event->spread_end),
+
 
         );
 
