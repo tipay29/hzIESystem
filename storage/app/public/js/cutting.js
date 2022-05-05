@@ -240,7 +240,7 @@ cut_placement.change(function(){
                  let newOption = '<option value="'+placement.id+'"  '
                      +
                      oldPlacementFunction(placement.id)
-                     + '>'+placement.placement+'</option>';
+                     + ' >'+placement.placement+'</option>';
                  cut_placement.append(newOption);
 
              });
@@ -279,8 +279,11 @@ function oldPOFunction(data){
         }
     }
 
-    return '';
-
+    if(lsplit.includes('edit') && lsplit.includes('cuts')){
+        return '';
+    }else{
+        return 'selected';
+    }
 }
 
 function oldFabricCodeFunction(data){
@@ -294,7 +297,11 @@ function oldFabricCodeFunction(data){
         }
     }
 
-    return '';
+    if(lsplit.includes('edit') && lsplit.includes('cuts')){
+        return '';
+    }else{
+        return 'selected';
+    }
 }
 
 function oldFabricColorFunction(data){
@@ -308,7 +315,11 @@ function oldFabricColorFunction(data){
         }
     }
 
-    return '';
+    if(lsplit.includes('edit') && lsplit.includes('cuts')){
+        return '';
+    }else{
+        return 'selected';
+    }
 }
 
 function oldFabricTypeFunction(data){
@@ -322,7 +333,11 @@ function oldFabricTypeFunction(data){
         }
     }
 
-    return '';
+    if(lsplit.includes('edit') && lsplit.includes('cuts')){
+        return '';
+    }else{
+        return 'selected';
+    }
 }
 
 function oldPlacementFunction(data){
@@ -336,7 +351,11 @@ function oldPlacementFunction(data){
         }
     }
 
-    return '';
+    if(lsplit.includes('edit') && lsplit.includes('cuts')){
+        return '';
+    }else{
+        return 'selected';
+    }
 }
 
 function getCutUtilAll(){
