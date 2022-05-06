@@ -559,7 +559,7 @@ function getCutUtilDate(start,end){
                             totalDaysb2 = totalDaysb2 + table['days'];
                             totalWorkHoursb2 = totalWorkHoursb2 + table['work_hours'];
                             totalActualYardsb2 = totalActualYardsb2 + table['actual_yards'];
-                            totalTargetYardsb2 = Math.round(total_work_hours * 319.55);
+                            totalTargetYardsb2 = totalTargetYardsb2 + table['target_yards'];
                             totalUtilb2  = Math.round(((totalActualYardsb2/totalTargetYardsb2)*100));
 
                             cut_util_table_b2.append(''
@@ -607,7 +607,7 @@ function getCutUtilDate(start,end){
                             totalDaysd4 = totalDaysd4 + table['days'];
                             totalWorkHoursd4 = totalWorkHoursd4 + table['work_hours'];
                             totalActualYardsd4 = totalActualYardsd4 + table['actual_yards'];
-                            totalTargetYardsd4 = Math.round(total_work_hours * 319.55);
+                            totalTargetYardsd4 = totalTargetYardsd4 + table['target_yards'];
                             totalUtild4  = Math.round(((totalActualYardsd4/totalTargetYardsd4)*100));
 
                             cut_util_table_d4.append(''
@@ -654,7 +654,7 @@ function getCutUtilDate(start,end){
                             totalDayse5 = totalDayse5 + table['days'];
                             totalWorkHourse5 = totalWorkHourse5 + table['work_hours'];
                             totalActualYardse5 = totalActualYardse5 + table['actual_yards'];
-                            totalTargetYardse5 = Math.round(total_work_hours * 319.55);
+                            totalTargetYardse5 = totalTargetYardse5 + table['target_yards'];
                             totalUtile5 = Math.round(((totalActualYardse5/totalTargetYardse5)*100));
 
 
@@ -728,13 +728,14 @@ function getTotalCutUtilDate(start,end){
                 data: cut_dates,
                 success: function (util) {
 
-
+                    cut_total_util_table.empty();
                     $.each(util[0]['building'], function(i_b,buildings){
 
-
+                        console.log(buildings);
                             $.each(buildings, function(i_d,dates) {
 
-                                console.log(dates);
+
+
 
 
                                 avg_work_hours = getAVGWorkHours(dates);
@@ -790,11 +791,12 @@ function getTotalCutUtilDate(start,end){
 function getAVGWorkHours(dates){
      let avg_work_hours = 0;
     let avg_divider = 0;
+    let addDay = 0;
 
-    $.each(dates, function(i_t,tables) {
-        avg_work_hours = avg_work_hours + tables['work_hours'];
-        avg_divider = avg_divider + tables['count'];
-    });
+        $.each(dates, function(i_t,tables) {
+            avg_work_hours = avg_work_hours + tables['work_hours'];
+            avg_divider = avg_divider + tables['count'];
+        });
     avg_work_hours = avg_work_hours/avg_divider;
 
     return avg_work_hours;
@@ -823,3 +825,26 @@ function getBuilding(b){
     }
 
 }
+
+// function getUniTbl(buildings){
+//
+//     let table_count = 0;
+//     let table_array = [];
+//
+//
+//     $.each(buildings, function(i_d,dates) {
+//
+//         $.each(dates,function(i_t,tables){
+//
+//                 if(!table_array.includes(i_t)){
+//                     table_array.push(i_t);
+//                 }
+//
+//         });
+//
+//     });
+//
+//    return table_array.length;
+//
+//
+// }

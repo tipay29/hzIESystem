@@ -14,7 +14,7 @@ class CalculateCutUtilListener
     {
 
         $total_work_hours = 0;
-
+        $total_days = 0;
         for($i = $event->spread_start; $i <= $event->spread_end; $i->modify('+1 day')){
             if($i->format("l") === 'Sunday'){
                 $total_work_hours = $total_work_hours + 0;
@@ -23,6 +23,7 @@ class CalculateCutUtilListener
             }else{
                 $total_work_hours = $total_work_hours + 10;
             }
+            $total_days++;
         }
 
         $datas = array(
@@ -362,8 +363,11 @@ class CalculateCutUtilListener
         foreach($event->cuts as $key => $cut)
         {
 
-                $datas['building'][$cut->building->building]['table'][$cut->table_num]['days']+=1;
-                $datas['building'][$cut->building->building]['table'][$cut->table_num]['work_hours']+=$cut->work_hours;
+                $datas['building'][$cut->building->building]['table'][$cut->table_num]['days']= $total_days;
+
+
+                $datas['building'][$cut->building->building]['table'][$cut->table_num]['work_hours']= $total_work_hours;
+
                 $datas['building'][$cut->building->building]['table'][$cut->table_num]['actual_yards']+=round(($cut->marker_length * $cut->layer_count));
                 $datas['building'][$cut->building->building]['table'][$cut->table_num]['target_yards'] = round(($total_work_hours * 319.55));
                 $datas['building'][$cut->building->building]['table'][$cut->table_num]['table_util'] = round(
