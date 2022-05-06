@@ -40,25 +40,7 @@ class CutApiController extends Controller
         //
     }
 
-    public function util()
-    {
-        $cuts = Cut::with([
-            'styles','purchase_orders','fabric_codes',
-            'fabric_colors','fabric_types','placements',
-            'employees',
-        ])
-            ->get();
-//        ->whereIn('building_id', array(2,4,5))
-//        ->whereBetween('spread_start',['2022-03-14 00:00:01','2022-03-15 23:59:59'])
-//        ->whereBetween('spread_end',['2022-03-14 00:00:01','2022-03-15 23:59:59'])
-
-        $datas = event(new GetCutEffEvent($cuts));
-
-        return response()->json($datas,200);
-
-    }
-
-    public function retrieve(){
+    public function util(){
 
         $validator = Validator::make(request()->all(),$this->dataValidated());
         if($validator->fails()){
@@ -79,7 +61,7 @@ class CutApiController extends Controller
         ->whereBetween('spread_end',[$spread_start,$spread_end])
             ->get();
 
-        $datas = event(new GetCutEffEvent($cuts));
+        $datas = event(new GetCutEffEvent($cuts,$spread_start,$spread_end));
 
         return response()->json($datas,200);
     }

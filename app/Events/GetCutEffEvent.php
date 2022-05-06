@@ -15,10 +15,14 @@ class GetCutEffEvent
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $cuts;
+    public $spread_start;
+    public $spread_end;
 
-    public function __construct($cuts)
+    public function __construct($cuts,$spread_start,$spread_end)
     {
         $this->cuts = $cuts;
+        $this->spread_start = $spread_start;
+        $this->spread_end = $spread_end;
     }
 
 }
