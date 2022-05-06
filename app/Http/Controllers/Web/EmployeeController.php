@@ -89,7 +89,15 @@ class EmployeeController extends Controller
 
         $this->authorize('update',$employee);
 
-        $employee->update($this->requestValidate());
+        $employee->update([
+            'name' => request()->name,
+            'phone' => request()->phone,
+            'job_id' => request()->job_id,
+            'building_id' => request()->building_id,
+            'address' => request()->address,
+            'birthday' => request()->birthday,
+            'join_date' => request()->join_date,
+        ]);
 
         return redirect(route('employees.show', $employee->id));
     }

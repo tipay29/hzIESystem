@@ -176,11 +176,11 @@ class CutController extends Controller
             'cut_count' => 'required',
             'work_hours' => 'required',
             'spreader_id' => 'required',
-            'spread_start' => 'required|before:spread_end|before:now',
-            'spread_end' => 'required|after:spread_start|before:now',
+            'spread_start' => 'required|before:spread_end',
+            'spread_end' => 'required|after:spread_start',
             'cutter_id' => 'required',
-            'cut_start' => 'required|before:cut_end|before:now',
-            'cut_end' => 'required|after:cut_start|before:now',
+            'cut_start' => 'required|before:cut_end',
+            'cut_end' => 'required|after:cut_start',
         ]);
     }
 
