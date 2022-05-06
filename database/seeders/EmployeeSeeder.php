@@ -41,6 +41,14 @@ class EmployeeSeeder extends Seeder
                 'user_id' => 1,
             ],
             [
+                'id' => 4,
+                'name' => 'Meoun Srey',
+                'phone' => mt_rand(1,9999999999),
+                'job_id' => 1,
+                'building_id' => 5,
+                'user_id' => 1,
+            ],
+            [
                 'id' => 1075,
                 'job_id' => 4,
                 'building_id' => 2,
