@@ -56,41 +56,45 @@ class CalculateTotalCutUtilListener
 
 
             $date = $this->formatDate($cut->spread_start);
+            $sundayCheck = new \DateTime($cut->spread_start);
+            if($sundayCheck->format("l") === 'Sunday'){
+                //nothing to do
+            }else{
 
-            if(!in_array($cut->table_num, $tables_array, true)){
-                array_push($tables_array, $cut->table_num);
-            }
+                if(!in_array($cut->table_num, $tables_array, true)){
+                    array_push($tables_array, $cut->table_num);
+                }
 
 
-            if (array_key_exists($date, $datas['building'][$cut->building->building])){
+                if (array_key_exists($date, $datas['building'][$cut->building->building])){
 
-                if(array_key_exists($cut->table_num,$datas['building'][$cut->building->building][$date])){
-                    $datas['building'][$cut->building->building][$date][$cut->table_num]['actual_yards'] =
-                        $datas['building'][$cut->building->building][$date][$cut->table_num]['actual_yards'] + ($cut->marker_length*$cut->layer_count);
-                    $datas['building'][$cut->building->building][$date][$cut->table_num]['work_hours'] =
-                        $datas['building'][$cut->building->building][$date][$cut->table_num]['work_hours'] + $cut->work_hours;
-                    $datas['building'][$cut->building->building][$date][$cut->table_num]['count'] =
-                        $datas['building'][$cut->building->building][$date][$cut->table_num]['count'] + 1;
+                    if(array_key_exists($cut->table_num,$datas['building'][$cut->building->building][$date])){
+                        $datas['building'][$cut->building->building][$date][$cut->table_num]['actual_yards'] =
+                            $datas['building'][$cut->building->building][$date][$cut->table_num]['actual_yards'] + ($cut->marker_length*$cut->layer_count);
+                        $datas['building'][$cut->building->building][$date][$cut->table_num]['work_hours'] =
+                            $datas['building'][$cut->building->building][$date][$cut->table_num]['work_hours'] + $cut->work_hours;
+                        $datas['building'][$cut->building->building][$date][$cut->table_num]['count'] =
+                            $datas['building'][$cut->building->building][$date][$cut->table_num]['count'] + 1;
+                    }else{
+                        $datas['building'][$cut->building->building][$date][$cut->table_num] = array();
+                        $datas['building'][$cut->building->building][$date][$cut->table_num]['actual_yards'] = $cut->marker_length*$cut->layer_count;
+                        $datas['building'][$cut->building->building][$date][$cut->table_num]['work_hours'] = $cut->work_hours;
+                        $datas['building'][$cut->building->building][$date][$cut->table_num]['count'] = 1;
+                        $datas['building'][$cut->building->building][$date][$cut->table_num]['avg_work_hours'] = 0;
+                    }
+
+
                 }else{
                     $datas['building'][$cut->building->building][$date][$cut->table_num] = array();
                     $datas['building'][$cut->building->building][$date][$cut->table_num]['actual_yards'] = $cut->marker_length*$cut->layer_count;
                     $datas['building'][$cut->building->building][$date][$cut->table_num]['work_hours'] = $cut->work_hours;
                     $datas['building'][$cut->building->building][$date][$cut->table_num]['count'] = 1;
                     $datas['building'][$cut->building->building][$date][$cut->table_num]['avg_work_hours'] = 0;
+
+
                 }
 
-
-            }else{
-                $datas['building'][$cut->building->building][$date][$cut->table_num] = array();
-                $datas['building'][$cut->building->building][$date][$cut->table_num]['actual_yards'] = $cut->marker_length*$cut->layer_count;
-                $datas['building'][$cut->building->building][$date][$cut->table_num]['work_hours'] = $cut->work_hours;
-                $datas['building'][$cut->building->building][$date][$cut->table_num]['count'] = 1;
-                $datas['building'][$cut->building->building][$date][$cut->table_num]['avg_work_hours'] = 0;
-
-
             }
-
-
 
         }
 
@@ -113,31 +117,36 @@ class CalculateTotalCutUtilListener
                 $total_work_hour =  10;
             }
 
-            if (array_key_exists($date, $datas['building']['B2'])){
+            if($i->format("l") === 'Sunday'){
+                //nothing to do
+            }else {
+
+                if (array_key_exists($date, $datas['building']['B2'])) {
 
 
-                foreach($tables_array as $key => $table_array){
-                    if (array_key_exists($tables_array[$key], $datas['building']['B2'][$date])){
+                    foreach ($tables_array as $key => $table_array) {
+                        if (array_key_exists($tables_array[$key], $datas['building']['B2'][$date])) {
 
-                    }else{
-                        $datas['building']['B2'][$date][$tables_array[$key]] = array();
-                        $datas['building']['B2'][$date][$tables_array[$key]]['actual_yards'] = 0;
-                        $datas['building']['B2'][$date][$tables_array[$key]]['work_hours'] = $total_work_hour;
-                        $datas['building']['B2'][$date][$tables_array[$key]]['count'] = 1;
-                        $datas['building']['B2'][$date][$tables_array[$key]]['avg_work_hours'] = 0;
+                        } else {
+                            $datas['building']['B2'][$date][$tables_array[$key]] = array();
+                            $datas['building']['B2'][$date][$tables_array[$key]]['actual_yards'] = 0;
+                            $datas['building']['B2'][$date][$tables_array[$key]]['work_hours'] = $total_work_hour;
+                            $datas['building']['B2'][$date][$tables_array[$key]]['count'] = 1;
+                            $datas['building']['B2'][$date][$tables_array[$key]]['avg_work_hours'] = 0;
+                        }
                     }
-                }
 
 
-            }else{
-                $datas['building']['B2'][$date] = array();
+                } else {
+                    $datas['building']['B2'][$date] = array();
 
-                for($tb = 0;$tb < count($tables_array);$tb++){
-                    $datas['building']['B2'][$date][$tables_array[$tb]] = array();
-                    $datas['building']['B2'][$date][$tables_array[$tb]]['actual_yards'] = 0;
-                    $datas['building']['B2'][$date][$tables_array[$tb]]['work_hours'] = $total_work_hour;
-                    $datas['building']['B2'][$date][$tables_array[$tb]]['count'] = 1;
-                    $datas['building']['B2'][$date][$tables_array[$tb]]['avg_work_hours'] = 0;
+                    for ($tb = 0; $tb < count($tables_array); $tb++) {
+                        $datas['building']['B2'][$date][$tables_array[$tb]] = array();
+                        $datas['building']['B2'][$date][$tables_array[$tb]]['actual_yards'] = 0;
+                        $datas['building']['B2'][$date][$tables_array[$tb]]['work_hours'] = $total_work_hour;
+                        $datas['building']['B2'][$date][$tables_array[$tb]]['count'] = 1;
+                        $datas['building']['B2'][$date][$tables_array[$tb]]['avg_work_hours'] = 0;
+                    }
                 }
             }
 

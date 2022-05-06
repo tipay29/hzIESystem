@@ -362,18 +362,21 @@ class CalculateCutUtilListener
 
         foreach($event->cuts as $key => $cut)
         {
+            $sundayCheck = new \DateTime($cut->spread_start);
+            if($sundayCheck->format("l") === 'Sunday'){
+                //nothing to do
+            }else {
+                $datas['building'][$cut->building->building]['table'][$cut->table_num]['days'] = $total_days;
 
-                $datas['building'][$cut->building->building]['table'][$cut->table_num]['days']= $total_days;
 
+                $datas['building'][$cut->building->building]['table'][$cut->table_num]['work_hours'] = $total_work_hours;
 
-                $datas['building'][$cut->building->building]['table'][$cut->table_num]['work_hours']= $total_work_hours;
-
-                $datas['building'][$cut->building->building]['table'][$cut->table_num]['actual_yards']+=round(($cut->marker_length * $cut->layer_count));
+                $datas['building'][$cut->building->building]['table'][$cut->table_num]['actual_yards'] += round(($cut->marker_length * $cut->layer_count));
                 $datas['building'][$cut->building->building]['table'][$cut->table_num]['target_yards'] = round(($total_work_hours * 319.55));
                 $datas['building'][$cut->building->building]['table'][$cut->table_num]['table_util'] = round(
-                ($datas['building'][$cut->building->building]['table'][$cut->table_num]['actual_yards']/$datas['building'][$cut->building->building]['table'][$cut->table_num]['target_yards'])
-                *100);
-
+                    ($datas['building'][$cut->building->building]['table'][$cut->table_num]['actual_yards'] / $datas['building'][$cut->building->building]['table'][$cut->table_num]['target_yards'])
+                    * 100);
+            }
         }
 
 
