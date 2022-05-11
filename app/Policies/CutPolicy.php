@@ -23,7 +23,7 @@ class CutPolicy
 
     public function viewUtil(User $user)
     {
-        return in_array($user->employee->job->id,[1,6]);
+        return in_array($user->employee->job->id,[1]);
     }
 
     /**
