@@ -24,7 +24,35 @@ class PlacementApiController extends Controller
             return response()->json($validator->errors(),400);
         }
 
-        return response()->json(Placement::create($this->rawData()),200);
+        $placements = strtoupper(request()->placement);
+        $placementsA=[];
+        if (str_contains($placements, '/')) {
+            $newPlacements = explode('/',$placements);
+
+            for ($x = 0; $x < count($newPlacements); $x++) {
+
+                if ($placement = Placement::where('placement', $newPlacements[$x])->first()) {
+                    $placementsA[] = $placement;
+                }else{
+                    $placementsA[] = Placement::create([
+                        'placement' => $newPlacements[$x],
+                    ]);
+                }
+            }
+
+            return response()->json($placementsA,200);
+        }
+
+
+        if ($placement = Placement::where('placement', $placements)->first()) {
+            $placementsA[] = $placement;
+        }else {
+            $placementsA[] = Placement::create([
+                'placement' => $placements,
+            ]);
+        }
+
+        return response()->json($placementsA,200);
 
     }
 
@@ -47,8 +75,13 @@ class PlacementApiController extends Controller
             return response()->json($validator->errors(),400);
         }
 
-        return response()->json(['success' => $placement->update($this->rawData())],201);
+        $placement = strtoupper(request()->placement);
 
+        if (Placement::where('placement', $placement)->first()) {
+            return response()->json(['Placement' => 'Already exists!'],400);
+        }else {
+            return response()->json(['success' => $placement->update($this->rawData())], 201);
+        }
     }
 
     public function destroy(Placement $placement)
@@ -66,7 +99,7 @@ class PlacementApiController extends Controller
 
     protected function dataValidated(){
         return [
-            'placement' => 'required|unique:placements,placement',
+            'placement' => 'required|regex:/^[A-z0-9\\/]+$/',
         ];
     }
 }

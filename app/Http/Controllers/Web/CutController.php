@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Events\GetCutEffEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Cut;
+use App\Models\Style;
 use Illuminate\Http\Request;
 use DateTime;
 class CutController extends Controller
@@ -12,7 +13,7 @@ class CutController extends Controller
 
     public function __construct()
     {
-        
+
 
     }
 
@@ -185,6 +186,14 @@ class CutController extends Controller
     }
 
     protected function insertRelations($cut){
+        $style = Style::where('id',request()->style)->first();
+
+        $style->purchase_orders()->sync(request()->purchase_order);
+        $style->placements()->sync(request()->placement);
+        $style->fabric_colors()->sync(request()->fabric_color);
+        $style->fabric_codes()->sync(request()->fabric_code);
+        $style->fabric_types()->sync(request()->fabric_type);
+
         $cut->styles()->sync(request()->style);
         $cut->purchase_orders()->sync(request()->purchase_order);
         $cut->placements()->sync(request()->placement);

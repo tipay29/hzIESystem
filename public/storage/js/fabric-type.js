@@ -26,7 +26,7 @@ if(l.pathname === '/fabric-types') {
             url: '/api/fabric-types',
             data: type,
             success: function (fabric_type) {
-                alert(fabric_type.fabric_type + ' Saved');
+                alert('Fabric Type Saved');
                 location.reload();
             },
             error: function(XHR, textStatus, errorThrown)
@@ -113,12 +113,12 @@ if(l.pathname === '/fabric-types') {
                 url: '/api/fabric-types/' + fabric_type_id,
                 data: type,
                 success: function (fabric_code) {
-                    alert('Fabric Type ID ' + fabric_type_id + ' Updated');
+                    alert('Fabric Type Updated');
                     location.reload();
                 },
                 error: function(XHR, textStatus, errorThrown)
                 {
-                    alert(textStatus + ': ' + errorThrown + '\n' + XHR.responseJSON['fabric_type'][0]);
+                    alert(textStatus + ': ' + errorThrown + '\n' + XHR.responseText);
                 }
 
             });

@@ -12,7 +12,7 @@ class StyleController extends Controller
 
     public function __construct()
     {
-       
+
 
     }
 
@@ -108,12 +108,12 @@ class StyleController extends Controller
 
     protected function requestValidate(){
         return request()->validate([
-            'purchase_order' => 'required|unique:purchase_orders,purchase_order',
+            'purchase_order' => 'unique:purchase_orders,purchase_order',
             'style_code' => 'required|max:255|unique:styles,style_code',
-            'placement' => 'required|array',
-            'fabric_color' => 'required|array',
-            'fabric_code' => 'required|array',
-            'fabric_type' => 'required|array',
+            'placement' => 'array',
+            'fabric_color' => 'array',
+            'fabric_code' => 'array',
+            'fabric_type' => 'array',
         ]);
     }
 }

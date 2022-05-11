@@ -24,7 +24,7 @@ class CutApiController extends Controller
 
     public function show(Cut $cut)
     {
-        $cut->load(['purchase_orders','fabric_codes','fabric_colors','fabric_types','placements']);
+        $cut->load(['styles','purchase_orders','fabric_codes','fabric_colors','fabric_types','placements']);
 
         return response()->json($cut,200);
     }
@@ -58,7 +58,6 @@ class CutApiController extends Controller
             'employees',
         ])
         ->whereBetween('spread_start',[$spread_start,$spread_end])
-        ->whereBetween('spread_end',[$spread_start,$spread_end])
             ->get();
 
         $datas = event(new GetCutEffEvent($cuts,$spread_start,$spread_end));

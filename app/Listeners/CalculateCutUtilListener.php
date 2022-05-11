@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Events\GetCutEffEvent;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\Session;
 
 class CalculateCutUtilListener
 {
@@ -24,6 +25,8 @@ class CalculateCutUtilListener
                 $total_work_hours = $total_work_hours + 10;
             }
             $total_days++;
+
+
         }
 
         $datas = array(
@@ -359,18 +362,20 @@ class CalculateCutUtilListener
             ),
             'total_work_hours' => $total_work_hours,
         );
-
+        $tables_array = array();
         foreach($event->cuts as $key => $cut)
         {
             $sundayCheck = new \DateTime($cut->spread_start);
+            $dateCheck = new \DateTime($cut->spread_start);
+            $dateCheck->format('Y-m-d H:i:s');
+
+
+
             if($sundayCheck->format("l") === 'Sunday'){
                 //nothing to do
             }else {
                 $datas['building'][$cut->building->building]['table'][$cut->table_num]['days'] = $total_days;
-
-
-                $datas['building'][$cut->building->building]['table'][$cut->table_num]['work_hours'] = $total_work_hours;
-
+                    $datas['building'][$cut->building->building]['table'][$cut->table_num]['work_hours'] = $total_work_hours;
                 $datas['building'][$cut->building->building]['table'][$cut->table_num]['actual_yards'] += round(($cut->marker_length * $cut->layer_count));
                 $datas['building'][$cut->building->building]['table'][$cut->table_num]['target_yards'] = round(($total_work_hours * 319.55));
                 $datas['building'][$cut->building->building]['table'][$cut->table_num]['table_util'] = round(
@@ -386,5 +391,7 @@ class CalculateCutUtilListener
 
 
     }
+
+
 
 }

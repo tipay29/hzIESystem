@@ -6,123 +6,189 @@
         <div class="form-group">
             <label>{{__('text.Style') }}
 
-                <button type="button" class="btn btn-secondary btn-xsm" data-toggle="tooltip"
-                        data-placement="top" title="Add Style:
-                                                        Go to Styles>Add Style">
-                    <i class="fa fa-question-circle" aria-hidden="true"></i>
+                <button id="cut_switch_add_style_one" type="button" class="btn btn-xsm"
+                        style="background-color: white;color: #0a53be;" >
+                    <i class="fa fa-sticky-note" aria-hidden="true"></i>
+                </button>
+                <button id="cut_switch_add_style_two" type="button" class="btn btn-xsm"
+                        style="background-color: #0a53be;color: white;display: none;" >
+                    <i class="fa fa-sticky-note" aria-hidden="true"></i>
                 </button>
 
                 @error('style') <small class="text-danger">{{$message}}</small>  @enderror
             </label>
 
-            <select id="cut_style"
-                    class="form-control" name="style">
-                <option value="#" disabled selected>Select style</option>
-                @forelse($styles as $style)
-                    <option value="{{$style->id}}"
-                        {{$style->id == old('style') ? 'selected' :
-                            (($cut->styles)->contains($style->id) ? 'selected':'')
-                        }}
-                    > {{$style->style_code}} </option>
-                @empty
+            <select id="cut_switch_input_style_one"
+                    class="form-control" name="style" >
 
-                @endforelse
+
             </select>
+
+
+
+            <div class="input-group">
+                <input id="cut_switch_input_style_two" type="text" class="form-control"
+                       placeholder="Enter Style" style="display: none;">
+                <div class="input-group-append">
+                    <button id="cut_btn_style_two" class="btn btn-outline-secondary" type="button"
+                            style="display: none;">Enter</button>
+                </div>
+            </div>
 
         </div>
 
         <div class="form-group">
             <label>{{__('text.PurchaseOrder') }}
 
-                <button type="button" class="btn btn-secondary btn-xsm" data-toggle="tooltip"
-                        data-placement="top" title="Add Purchase Order for this Style:
-                                                        Go to Orders>Edit Style>Select Another Order">
-                    <i class="fa fa-question-circle" aria-hidden="true"></i>
+                <button id="cut_switch_add_po_one" type="button" class="btn btn-xsm"
+                        style="background-color: white;color: #0a53be;" >
+                    <i class="fa fa-sticky-note" aria-hidden="true"></i>
+                </button>
+                <button id="cut_switch_add_po_two" type="button" class="btn btn-xsm"
+                        style="background-color: #0a53be;color: white;display: none;" >
+                    <i class="fa fa-sticky-note" aria-hidden="true"></i>
                 </button>
 
                 @error('purchase_order') <small  class="text-danger">{{$message}}</small>  @enderror
             </label>
 
-            <select id="cut_purchase_order" data-placeholder="Select Purchase Order"
-                    multiple class="chosen-select  form-control" name="purchase_order[]" >
+            <select id="cut_switch_input_po_one" data-placeholder="Select Purchase Order"
+                    multiple class="chosen-select  form-control" name="purchase_order[]">
+
             </select>
 
+            <div class="input-group">
+                <input id="cut_switch_input_po_two" type="text" class="form-control"
+                       placeholder="Enter Purchase Order" style="display: none;">
+                <div class="input-group-append">
+                    <button id="cut_btn_po_two" class="btn btn-outline-secondary" type="button"
+                            style="display: none;">Enter</button>
+                </div>
+            </div>
 
         </div>
 
         <div class="form-group">
             <label>{{__('text.FabricCode') }}
 
-                <button type="button" class="btn btn-secondary btn-xsm" data-toggle="tooltip"
-                        data-placement="top" title="Add Fabric Code for this Style:
-                                                        Go to Orders>Edit PO>Select Another Code">
-                    <i class="fa fa-question-circle" aria-hidden="true"></i>
+                <button id="cut_switch_add_fcode_one" type="button" class="btn btn-xsm"
+                        style="background-color: white;color: #0a53be;" >
+                    <i class="fa fa-sticky-note" aria-hidden="true"></i>
+                </button>
+                <button id="cut_switch_add_fcode_two" type="button" class="btn btn-xsm"
+                        style="background-color: #0a53be;color: white;display: none;" >
+                    <i class="fa fa-sticky-note" aria-hidden="true"></i>
                 </button>
 
                 @error('fabric_code') <small class="text-danger">{{$message}}</small>  @enderror
             </label>
 
-            <select id="cut_fabric_code" data-placeholder="Select Fabric Code"
+            <select id="cut_switch_input_fcode_one" data-placeholder="Select Fabric Code"
                     multiple class="chosen-select  form-control" name="fabric_code[]">
 
             </select>
+
+            <div class="input-group">
+                <input id="cut_switch_input_fcode_two" type="text" class="form-control"
+                       placeholder="Enter Fabric Code" style="display: none;">
+                <div class="input-group-append">
+                    <button id="cut_btn_fcode_two" class="btn btn-outline-secondary" type="button"
+                            style="display: none;">Enter</button>
+                </div>
+            </div>
 
         </div>
 
         <div class="form-group">
             <label>{{__('text.FabricColor') }}
 
-                <button type="button" class="btn btn-secondary btn-xsm" data-toggle="tooltip"
-                        data-placement="top" title="Add Fabric Color for this PO:
-                                                        Go to Orders>Edit PO>Select Another Color">
-                    <i class="fa fa-question-circle" aria-hidden="true"></i>
+                <button id="cut_switch_add_fcolor_one" type="button" class="btn btn-xsm"
+                        style="background-color: white;color: #0a53be;" >
+                    <i class="fa fa-sticky-note" aria-hidden="true"></i>
+                </button>
+                <button id="cut_switch_add_fcolor_two" type="button" class="btn btn-xsm"
+                        style="background-color: #0a53be;color: white;display: none;" >
+                    <i class="fa fa-sticky-note" aria-hidden="true"></i>
                 </button>
 
                 @error('fabric_color') <small class="text-danger">{{$message}}</small>  @enderror
             </label>
 
-            <select id="cut_fabric_color" data-placeholder="Select Fabric Color"
+            <select id="cut_switch_input_fcolor_one" data-placeholder="Select Fabric Color"
                     multiple class="chosen-select form-control" name="fabric_color[]">
 
             </select>
+
+            <div class="input-group">
+                <input id="cut_switch_input_fcolor_two" type="text" class="form-control"
+                       placeholder="Enter Fabric Color" style="display: none;">
+                <div class="input-group-append">
+                    <button id="cut_btn_fcolor_two" class="btn btn-outline-secondary" type="button"
+                            style="display: none;">Enter</button>
+                </div>
+            </div>
 
         </div>
 
         <div class="form-group">
             <label>{{__('text.FabricType') }}
 
-                <button type="button" class="btn btn-secondary btn-xsm" data-toggle="tooltip"
-                        data-placement="top" title="Add Fabric Type for this PO:
-                                                        Go to Orders>Edit PO>Select Another Type">
-                    <i class="fa fa-question-circle" aria-hidden="true"></i>
+                <button id="cut_switch_add_ftype_one" type="button" class="btn btn-xsm"
+                        style="background-color: white;color: #0a53be;" >
+                    <i class="fa fa-sticky-note" aria-hidden="true"></i>
+                </button>
+                <button id="cut_switch_add_ftype_two" type="button" class="btn btn-xsm"
+                        style="background-color: #0a53be;color: white;display: none;" >
+                    <i class="fa fa-sticky-note" aria-hidden="true"></i>
                 </button>
 
                 @error('fabric_type') <small class="text-danger">{{$message}}</small>  @enderror
             </label>
 
-            <select id="cut_fabric_type" data-placeholder="Select Fabric Type"
+            <select id="cut_switch_input_ftype_one" data-placeholder="Select Fabric Type"
                     multiple class="chosen-select form-control" name="fabric_type[]">
 
             </select>
+
+            <div class="input-group">
+                <input id="cut_switch_input_ftype_two" type="text" class="form-control"
+                       placeholder="Enter Fabric Type" style="display: none;">
+                <div class="input-group-append">
+                    <button id="cut_btn_ftype_two" class="btn btn-outline-secondary" type="button"
+                            style="display: none;">Enter</button>
+                </div>
+            </div>
 
         </div>
 
         <div class="form-group">
             <label>{{__('text.Placement') }}
 
-                <button type="button" class="btn btn-secondary btn-xsm" data-toggle="tooltip"
-                        data-placement="top" title="Add Placement for this PO:
-                                                        Go to Orders>Edit PO>Select Another Placement">
-                    <i class="fa fa-question-circle" aria-hidden="true"></i>
+                <button id="cut_switch_add_placement_one" type="button" class="btn btn-xsm"
+                        style="background-color: white;color: #0a53be;" >
+                    <i class="fa fa-sticky-note" aria-hidden="true"></i>
+                </button>
+                <button id="cut_switch_add_placement_two" type="button" class="btn btn-xsm"
+                        style="background-color: #0a53be;color: white;display: none;" >
+                    <i class="fa fa-sticky-note" aria-hidden="true"></i>
                 </button>
 
                 @error('placement') <small class="text-danger">{{$message}}</small>  @enderror
             </label>
 
-            <select id="cut_placement" data-placeholder="Select Placement"
-                    multiple class="chosen-select form-control" name="placement[]">
+            <select id="cut_switch_input_placement_one" data-placeholder="Select Placement"
+                    multiple class="chosen-select form-control" name="placement[]" >
 
             </select>
+
+            <div class="input-group">
+                <input id="cut_switch_input_placement_two" type="text" class="form-control"
+                       placeholder="Enter Placement" style="display: none">
+                <div class="input-group-append">
+                    <button id="cut_btn_placement_two" class="btn btn-outline-secondary" type="button"
+                            style="display: none">Enter</button>
+                </div>
+            </div>
 
         </div>
 

@@ -25,7 +25,7 @@ if(l.pathname === '/fabric-colors'){
             url: '/api/fabric-colors',
             data: color,
             success: function (fabric_color) {
-                alert(color.fabric_color + ' Saved');
+                alert('Fabric Color Saved');
 
                 location.reload();
             },
@@ -114,12 +114,12 @@ if(l.pathname === '/fabric-colors'){
                 url: '/api/fabric-colors/' + fabric_color_id,
                 data: fabric_color,
                 success: function(fabric_color){
-                    alert('Fabric Color ID ' + fabric_color_id + ' Updated');
+                    alert('Fabric Color Updated');
                     location.reload();
                 },
                 error: function(XHR, textStatus, errorThrown)
                 {
-                    alert(textStatus + ': ' + errorThrown + '\n' + XHR.responseJSON['fabric_color'][0]);
+                    alert(textStatus + ': ' + errorThrown + '\n' + XHR.responseText);
                 }
 
             });

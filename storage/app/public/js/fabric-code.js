@@ -21,8 +21,8 @@ if(l.pathname === '/fabric-codes') {
                 type: 'POST',
                 url: '/api/fabric-codes',
                 data: code,
-                success: function (fabric_color) {
-                    alert(code.fabric_code + ' Saved');
+                success: function (fabric_code) {
+                    alert('Fabric Code Saved');
                     location.reload();
                 },
                 error: function(XHR, textStatus, errorThrown)
@@ -101,12 +101,12 @@ if(l.pathname === '/fabric-codes') {
                     url: '/api/fabric-codes/' + fabric_code_id,
                     data: fabric_code,
                     success: function (fabric_code) {
-                        alert('Fabric Code ID ' + fabric_code_id + ' Updated');
+                        alert('Fabric Code Updated');
                         location.reload();
                     },
                     error: function(XHR, textStatus, errorThrown)
                     {
-                        alert(textStatus + ': ' + errorThrown + '\n' + XHR.responseJSON['fabric_code'][0]);
+                        alert(textStatus + ': ' + errorThrown + '\n' + XHR.responseText);
                     }
 
                 });
