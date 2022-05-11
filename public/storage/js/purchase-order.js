@@ -22,12 +22,12 @@ if(l.pathname === '/purchase-orders') {
             url: '/api/purchase-orders',
             data: order,
             success: function (purchase_order) {
-                alert(purchase_order.purchase_order + ' Saved');
+                alert('Purchase Order Saved');
                 location.reload();
             },
             error: function(XHR, textStatus, errorThrown)
             {
-                alert(textStatus + ': ' + errorThrown + '\n' + XHR.responseJSON['purchase_order'][0]);
+                alert(textStatus + ': ' + errorThrown + '\n' + XHR.responseText);
             }
         });
 
@@ -105,12 +105,12 @@ if(l.pathname === '/purchase-orders') {
                 url: '/api/purchase-orders/' + purchase_order_id,
                 data: order,
                 success: function (purchase_order) {
-                    alert('Purchase Order ID ' + purchase_order_id + ' Updated');
+                    alert('Purchase Order Updated');
                     location.reload();
                 },
                 error: function(XHR, textStatus, errorThrown)
                 {
-                    alert(textStatus + ': ' + errorThrown + '\n' + XHR.responseJSON['purchase_order'][0]);
+                    alert(textStatus + ': ' + errorThrown + '\n' + XHR.responseText);
                 }
 
             });

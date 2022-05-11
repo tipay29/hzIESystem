@@ -23,7 +23,33 @@ class FabricTypeApiController extends Controller
             return response()->json($validator->errors(),400);
         }
 
-        return response()->json(FabricType::create($this->rawData()),200);
+        $ftypes = strtoupper(request()->fabric_type);
+        $ftypesA=[];
+        if (str_contains($ftypes, '/')) {
+            $newFtypes = explode('/',$ftypes);
+
+            for ($x = 0; $x < count($newFtypes); $x++) {
+
+                if ($ftype = FabricType::where('fabric_type', $newFtypes[$x])->first()) {
+                    $ftypesA[] = $ftype;
+                }else{
+                    $ftypesA[] = FabricType::create([
+                        'fabric_type' => $newFtypes[$x],
+                    ]);
+                }
+            }
+
+            return response()->json($ftypesA,200);
+        }
+
+        if ($fabric_type = FabricType::where('fabric_type', $ftypes)->first()) {
+            $ftypesA[] = $fabric_type;
+        }else {
+            $ftypesA[] = FabricType::create([
+                'fabric_type' => $ftypes,
+            ]);
+        }
+        return response()->json($ftypesA,200);
 
     }
 
@@ -46,8 +72,13 @@ class FabricTypeApiController extends Controller
             return response()->json($validator->errors(),400);
         }
 
-        return response()->json(['success' => $fabric_type->update($this->rawData())],201);
+        $ftype = strtoupper(request()->fabric_type);
 
+        if (FabricType::where('fabric_type', $ftype)->first()) {
+            return response()->json(['Fabric Type' => 'Already exists!'],400);
+        }else {
+            return response()->json(['success' => $fabric_type->update($this->rawData())], 201);
+        }
     }
 
     public function destroy(FabricType $fabric_type)
@@ -67,9 +98,7 @@ class FabricTypeApiController extends Controller
 
     protected function dataValidated(){
         return [
-            'fabric_type' => 'required|unique:fabric_types,fabric_type',
-            'sas' => 'required',
-            'sas_cut' => 'required',
+            'fabric_type' => 'required|regex:/^[A-z0-9\\/]+$/',
         ];
     }
 }

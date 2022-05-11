@@ -16,6 +16,13 @@
     visibility: hidden;
 }
 
+.no-display{
+    display: none;
+}
+
+
+
+
 @media print
 {
     body * {

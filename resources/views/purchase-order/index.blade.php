@@ -94,7 +94,7 @@
                                 <label for="purchase_order_create" class="col-md-4 col-form-label text-md-end">{{__('text.PurchaseOrder')}}</label>
                                 <div class="col-md-7">
 
-                                    <input id="purchase_order_create" type="number" class="form-control"
+                                    <input id="purchase_order_create" type="text" class="form-control"
                                            placeholder="Enter Purchase Order">
 
                                 </div>
@@ -133,7 +133,7 @@
                                 <label for="purchase_order_edit" class="col-md-4 col-form-label text-md-end">{{ __('text.PurchaseOrder')}}</label>
                                 <div class="col-md-7">
 
-                                    <input id="purchase_order_edit" type="number" class="form-control"
+                                    <input id="purchase_order_edit" type="text" class="form-control"
                                            placeholder="Enter Purchase Order">
 
                                 </div>

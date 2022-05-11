@@ -22,7 +22,33 @@ class FabricCodeApiController extends Controller
             return response()->json($validator->errors(),400);
         }
 
-        return response()->json(FabricCode::create($this->rawData()),200);
+        $fcodes = strtoupper(request()->fabric_code);
+        $fcodesA=[];
+        if (str_contains($fcodes, '/')) {
+            $newFcodes = explode('/',$fcodes);
+
+            for ($x = 0; $x < count($newFcodes); $x++) {
+
+                if ($fcode = FabricCode::where('fabric_code', $newFcodes[$x])->first()) {
+                    $fcodesA[] = $fcode;
+                }else{
+                    $fcodesA[] = FabricCode::create([
+                        'fabric_code' => $newFcodes[$x],
+                    ]);
+                }
+            }
+
+            return response()->json($fcodesA,200);
+        }
+
+        if ($fabric_code = FabricCode::where('fabric_code', $fcodes)->first()) {
+            $fcodesA[] = $fabric_code;
+        }else {
+            $fcodesA[] = FabricCode::create([
+                'fabric_code' => $fcodes,
+            ]);
+        }
+        return response()->json($fcodesA,200);
 
     }
 
@@ -43,8 +69,13 @@ class FabricCodeApiController extends Controller
             return response()->json($validator->errors(),400);
         }
 
-        return response()->json(['success' => $fabric_code->update($this->rawData())],201);
+        $fcode = strtoupper(request()->fabric_code);
 
+        if (FabricCode::where('fabric_code', $fcode)->first()) {
+            return response()->json(['Fabric Code' => 'Already exists!'],400);
+        }else {
+            return response()->json(['success' => $fabric_code->update($this->rawData())], 201);
+        }
     }
 
     public function destroy(FabricCode $fabric_code)
@@ -62,7 +93,7 @@ class FabricCodeApiController extends Controller
 
     protected function dataValidated(){
         return [
-            'fabric_code' => 'required|unique:fabric_codes,fabric_code',
+            'fabric_code' => 'required|regex:/^[A-z0-9\\/]+$/',
         ];
     }
 

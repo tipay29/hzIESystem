@@ -15,14 +15,41 @@ class PurchaseOrderApiController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store()
     {
         $validator = Validator::make(request()->all(),$this->dataValidated());
         if($validator->fails()){
             return response()->json($validator->errors(),400);
         }
 
-        return response()->json(PurchaseOrder::create($this->rawData()),200);
+        $pos = request()->purchase_order;
+        $posA=[];
+        if (str_contains($pos, '/')) {
+            $newPos = explode('/',$pos);
+
+            for ($x = 0; $x < count($newPos); $x++) {
+
+                if ($po = PurchaseOrder::where('purchase_order', $newPos[$x])->first()) {
+                    $posA[] = $po;
+                }else{
+                    $posA[] = PurchaseOrder::create([
+                        'purchase_order' => $newPos[$x],
+                    ]);
+                }
+            }
+
+            return response()->json($posA,200);
+        }
+
+        if ($po = PurchaseOrder::where('purchase_order', $pos)->first()) {
+            $posA[] = $po;
+        }else {
+            $posA[] = PurchaseOrder::create([
+                'purchase_order' => $pos,
+            ]);
+        }
+        return response()->json($posA,200);
+
     }
 
 
@@ -43,7 +70,14 @@ class PurchaseOrderApiController extends Controller
             return response()->json($validator->errors(),400);
         }
 
-        return response()->json(['success' => $purchase_order->update($this->rawData())],201);
+        $po = strtoupper(request()->purchase_order);
+
+        if (PurchaseOrder::where('purchase_order', $po)->first()) {
+            return response()->json(['Purchase Order' => 'Already exists!'],400);
+        }else{
+            return response()->json(['success' => $purchase_order->update($this->rawData())],201);
+        }
+
     }
 
 
@@ -60,7 +94,7 @@ class PurchaseOrderApiController extends Controller
 
     protected function dataValidated(){
         return [
-            'purchase_order' => 'required|unique:purchase_orders,purchase_order',
+            'purchase_order' => 'required|regex:/^[0-9\\/]+$/',
         ];
     }
 }

@@ -64,3 +64,23 @@
     padding: 8px;
 
 }
+
+#cut_switch_input_po_one_chosen{
+    display: none;
+}
+
+#cut_switch_input_fcode_one_chosen{
+    display: none;
+}
+
+#cut_switch_input_fcolor_one_chosen{
+    display: none;
+}
+
+#cut_switch_input_ftype_one_chosen{
+    display: none;
+}
+
+#cut_switch_input_placement_one_chosen{
+    display: none;
+}

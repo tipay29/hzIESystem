@@ -23,7 +23,34 @@ class FabricColorApiController extends Controller
             return response()->json($validator->errors(),400);
         }
 
-        return response()->json(FabricColor::create($this->rawData()),200);
+        $fcolors = strtoupper(request()->fabric_color);
+        $fcolorsA=[];
+        if (str_contains($fcolors, '/')) {
+            $newFcolors = explode('/',$fcolors);
+
+            for ($x = 0; $x < count($newFcolors); $x++) {
+
+                if ($fcolor = FabricColor::where('fabric_color', $newFcolors[$x])->first()) {
+                    $fcolorsA[] = $fcolor;
+                }else{
+                    $fcolorsA[] = FabricColor::create([
+                        'fabric_color' => $newFcolors[$x],
+                    ]);
+                }
+            }
+
+            return response()->json($fcolorsA,200);
+        }
+
+
+        if ($fabric_color = FabricColor::where('fabric_color', $fcolors)->first()) {
+            $fcolorsA[] = $fabric_color;
+        }else {
+            $fcolorsA[] = FabricColor::create([
+                'fabric_color' => $fcolors,
+            ]);
+        }
+        return response()->json($fcolorsA,200);
 
     }
 
@@ -44,8 +71,13 @@ class FabricColorApiController extends Controller
             return response()->json($validator->errors(),400);
         }
 
-        return response()->json(['success' => $fabric_color->update($this->rawData())],201);
+        $fcolor = strtoupper(request()->fabric_color);
 
+        if (FabricColor::where('fabric_color', $fcolor)->first()) {
+            return response()->json(['Fabric Color' => 'Already exists!'],400);
+        }else {
+            return response()->json(['success' => $fabric_color->update($this->rawData())], 201);
+        }
     }
 
     public function destroy(FabricColor $fabric_color)
@@ -63,7 +95,7 @@ class FabricColorApiController extends Controller
 
     protected function dataValidated(){
         return [
-            'fabric_color' => 'required|unique:fabric_colors,fabric_color',
+            'fabric_color' => 'required|regex:/^[A-z0-9\\/]+$/',
         ];
     }
 }

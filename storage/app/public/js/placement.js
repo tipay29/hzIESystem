@@ -22,7 +22,7 @@ if(l.pathname === '/placements') {
             url: '/api/placements',
             data: place,
             success: function (placement) {
-                alert(placement.placement + ' Saved');
+                alert('Placement Saved');
                 location.reload();
             },
             error: function(XHR, textStatus, errorThrown)
@@ -101,12 +101,12 @@ if(l.pathname === '/placements') {
                 url: '/api/placements/' + placement_id,
                 data: placement,
                 success: function (placement) {
-                    alert('Placement ID ' + placement_id + ' Updated');
+                    alert('Placement Updated');
                     location.reload();
                 },
                 error: function(XHR, textStatus, errorThrown)
                 {
-                    alert(textStatus + ': ' + errorThrown + '\n' + XHR.responseJSON['placement'][0]);
+                    alert(textStatus + ': ' + errorThrown + '\n' + XHR.responseText);
                 }
 
             });
