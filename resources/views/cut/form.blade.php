@@ -7,11 +7,11 @@
             <label>{{__('text.Style') }}
 
                 <button id="cut_switch_add_style_one" type="button" class="btn btn-xsm"
-                        style="background-color: white;color: #0a53be;display: none;" >
+                        style="background-color: white;color: #0a53be;" >
                     <i class="fa fa-sticky-note" aria-hidden="true"></i>
                 </button>
                 <button id="cut_switch_add_style_two" type="button" class="btn btn-xsm"
-                        style="background-color: #0a53be;color: white;" >
+                        style="background-color: #0a53be;color: white;display: none;" >
                     <i class="fa fa-sticky-note" aria-hidden="true"></i>
                 </button>
 
@@ -19,7 +19,7 @@
             </label>
 
             <select id="cut_switch_input_style_one"
-                    class="form-control" name="style" style="display: none;">
+                    class="form-control" name="style" >
 
 
             </select>
@@ -28,10 +28,10 @@
 
             <div class="input-group">
                 <input id="cut_switch_input_style_two" type="text" class="form-control"
-                       placeholder="Enter Style" >
+                       placeholder="Enter Style" style="display: none;">
                 <div class="input-group-append">
                     <button id="cut_btn_style_two" class="btn btn-outline-secondary" type="button"
-                            >Enter</button>
+                            style="display: none;">Enter</button>
                 </div>
             </div>
 
@@ -41,11 +41,11 @@
             <label>{{__('text.PurchaseOrder') }}
 
                 <button id="cut_switch_add_po_one" type="button" class="btn btn-xsm"
-                        style="background-color: white;color: #0a53be;display: none;" >
+                        style="background-color: white;color: #0a53be;" >
                     <i class="fa fa-sticky-note" aria-hidden="true"></i>
                 </button>
                 <button id="cut_switch_add_po_two" type="button" class="btn btn-xsm"
-                        style="background-color: #0a53be;color: white;" >
+                        style="background-color: #0a53be;color: white;display: none;" >
                     <i class="fa fa-sticky-note" aria-hidden="true"></i>
                 </button>
 
@@ -59,10 +59,10 @@
 
             <div class="input-group">
                 <input id="cut_switch_input_po_two" type="text" class="form-control"
-                       placeholder="Enter Purchase Order" >
+                       placeholder="Enter Purchase Order" style="display: none;">
                 <div class="input-group-append">
                     <button id="cut_btn_po_two" class="btn btn-outline-secondary" type="button"
-                            >Enter</button>
+                            style="display: none;">Enter</button>
                 </div>
             </div>
 
@@ -72,11 +72,11 @@
             <label>{{__('text.FabricCode') }}
 
                 <button id="cut_switch_add_fcode_one" type="button" class="btn btn-xsm"
-                        style="background-color: white;color: #0a53be;display: none;" >
+                        style="background-color: white;color: #0a53be;" >
                     <i class="fa fa-sticky-note" aria-hidden="true"></i>
                 </button>
                 <button id="cut_switch_add_fcode_two" type="button" class="btn btn-xsm"
-                        style="background-color: #0a53be;color: white;" >
+                        style="background-color: #0a53be;color: white;display: none;" >
                     <i class="fa fa-sticky-note" aria-hidden="true"></i>
                 </button>
 
@@ -90,10 +90,10 @@
 
             <div class="input-group">
                 <input id="cut_switch_input_fcode_two" type="text" class="form-control"
-                       placeholder="Enter Fabric Code   " >
+                       placeholder="Enter Fabric Code" style="display: none;">
                 <div class="input-group-append">
                     <button id="cut_btn_fcode_two" class="btn btn-outline-secondary" type="button"
-                            >Enter</button>
+                            style="display: none;">Enter</button>
                 </div>
             </div>
 
@@ -103,11 +103,11 @@
             <label>{{__('text.FabricColor') }}
 
                 <button id="cut_switch_add_fcolor_one" type="button" class="btn btn-xsm"
-                        style="background-color: white;color: #0a53be;display: none;" >
+                        style="background-color: white;color: #0a53be;" >
                     <i class="fa fa-sticky-note" aria-hidden="true"></i>
                 </button>
                 <button id="cut_switch_add_fcolor_two" type="button" class="btn btn-xsm"
-                        style="background-color: #0a53be;color: white;" >
+                        style="background-color: #0a53be;color: white;display: none;" >
                     <i class="fa fa-sticky-note" aria-hidden="true"></i>
                 </button>
 
@@ -121,10 +121,10 @@
 
             <div class="input-group">
                 <input id="cut_switch_input_fcolor_two" type="text" class="form-control"
-                       placeholder="Enter Fabric Color" >
+                       placeholder="Enter Fabric Color" style="display: none;">
                 <div class="input-group-append">
                     <button id="cut_btn_fcolor_two" class="btn btn-outline-secondary" type="button"
-                            >Enter</button>
+                            style="display: none;">Enter</button>
                 </div>
             </div>
 
@@ -134,11 +134,11 @@
             <label>{{__('text.FabricType') }}
 
                 <button id="cut_switch_add_ftype_one" type="button" class="btn btn-xsm"
-                        style="background-color: white;color: #0a53be;display: none;" >
+                        style="background-color: white;color: #0a53be;" >
                     <i class="fa fa-sticky-note" aria-hidden="true"></i>
                 </button>
                 <button id="cut_switch_add_ftype_two" type="button" class="btn btn-xsm"
-                        style="background-color: #0a53be;color: white;" >
+                        style="background-color: #0a53be;color: white;display: none;" >
                     <i class="fa fa-sticky-note" aria-hidden="true"></i>
                 </button>
 
@@ -152,10 +152,10 @@
 
             <div class="input-group">
                 <input id="cut_switch_input_ftype_two" type="text" class="form-control"
-                       placeholder="Enter Fabric Type" >
+                       placeholder="Enter Fabric Type" style="display: none;">
                 <div class="input-group-append">
                     <button id="cut_btn_ftype_two" class="btn btn-outline-secondary" type="button"
-                            >Enter</button>
+                            style="display: none;">Enter</button>
                 </div>
             </div>
 
@@ -165,11 +165,11 @@
             <label>{{__('text.Placement') }}
 
                 <button id="cut_switch_add_placement_one" type="button" class="btn btn-xsm"
-                        style="background-color: white;color: #0a53be;display: none;" >
+                        style="background-color: white;color: #0a53be;" >
                     <i class="fa fa-sticky-note" aria-hidden="true"></i>
                 </button>
                 <button id="cut_switch_add_placement_two" type="button" class="btn btn-xsm"
-                        style="background-color: #0a53be;color: white;" >
+                        style="background-color: #0a53be;color: white;display: none;" >
                     <i class="fa fa-sticky-note" aria-hidden="true"></i>
                 </button>
 
@@ -183,10 +183,10 @@
 
             <div class="input-group">
                 <input id="cut_switch_input_placement_two" type="text" class="form-control"
-                       placeholder="Enter Placement" >
+                       placeholder="Enter Placement" style="display: none">
                 <div class="input-group-append">
                     <button id="cut_btn_placement_two" class="btn btn-outline-secondary" type="button"
-                            >Enter</button>
+                            style="display: none">Enter</button>
                 </div>
             </div>
 
