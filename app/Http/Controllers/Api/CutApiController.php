@@ -92,8 +92,8 @@ class CutApiController extends Controller
 
     protected function dataValidated(){
         return [
-            'spread_start' => 'required|before:spread_end|before:now',
-            'spread_end' => 'required|after:spread_start|before:now',
+            'spread_start' => 'required|before:spread_end',
+            'spread_end' => 'required|after:spread_start',
         ];
     }
 }

@@ -53,7 +53,7 @@ class FabricColorPolicy
      */
     public function update(User $user, FabricColor $fabricColor)
     {
-        return in_array($user->employee->job->id,[1]);
+        return in_array($user->employee->job->id,[1,6]);
     }
 
     /**

@@ -42,7 +42,7 @@ class EmployeePolicy
      */
     public function create(User $user)
     {
-        return in_array($user->employee->job->id,[1]);
+        return in_array($user->employee->job->id,[1,6]);
     }
 
     /**
@@ -54,7 +54,7 @@ class EmployeePolicy
      */
     public function update(User $user, Employee $employee)
     {
-        return in_array($user->employee->job->id,[1]);
+        return in_array($user->employee->job->id,[1,6]);
     }
 
     /**

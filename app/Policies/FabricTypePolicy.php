@@ -53,7 +53,7 @@ class FabricTypePolicy
      */
     public function update(User $user, FabricType $fabricType)
     {
-        return in_array($user->employee->job->id,[1]);
+        return in_array($user->employee->job->id,[1,6]);
     }
 
     /**

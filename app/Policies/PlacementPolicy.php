@@ -53,7 +53,7 @@ class PlacementPolicy
      */
     public function update(User $user, Placement $placement)
     {
-        return in_array($user->employee->job->id,[1]);
+        return in_array($user->employee->job->id,[1,6]);
     }
 
     /**
