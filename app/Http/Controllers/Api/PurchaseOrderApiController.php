@@ -94,7 +94,7 @@ class PurchaseOrderApiController extends Controller
 
     protected function dataValidated(){
         return [
-            'purchase_order' => 'required|regex:/^[0-9\\/]+$/',
+            'purchase_order' => 'required|regex:/^[0-9\\/ ]+$/',
         ];
     }
 }

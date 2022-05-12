@@ -99,7 +99,7 @@ class PlacementApiController extends Controller
 
     protected function dataValidated(){
         return [
-            'placement' => 'required|regex:/^[A-z0-9\\/]+$/',
+            'placement' => 'required|regex:/^[A-z0-9\\/ ]+$/',
         ];
     }
 }

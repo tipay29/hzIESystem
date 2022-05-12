@@ -27,11 +27,15 @@ class StyleApiController extends Controller
 
         $style_code = strtoupper(request()->style_code);
 
-        $style = Style::create([
-            'style_code' => $style_code,
-        ]);
+        if ($style = Style::where('style_code', $style_code)->first()) {
+            return response()->json( $style,200);
+        }else {
+            $style = Style::create([
+                'style_code' => $style_code,
+            ]);
+            return response()->json( $style,200);
+        }
 
-        return response()->json( $style,200);
 
 
     }
@@ -66,7 +70,7 @@ class StyleApiController extends Controller
 
     protected function dataValidated(){
         return [
-            'style_code' => 'required|unique:styles,style_code|alpha_num',
+            'style_code' => 'required|alpha_num',
         ];
     }
 }

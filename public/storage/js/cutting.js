@@ -795,6 +795,9 @@ if(l.pathname === '/cuts/total-utilization'){
 
 }
 
+
+
+
 function getCutUtilDate(start,end){
 
     if(end.val() && start.val()) {

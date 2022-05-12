@@ -93,7 +93,7 @@ class FabricCodeApiController extends Controller
 
     protected function dataValidated(){
         return [
-            'fabric_code' => 'required|regex:/^[A-z0-9\\/]+$/',
+            'fabric_code' => 'required|regex:/^[A-z0-9\\/ ]+$/',
         ];
     }
 
