@@ -17,25 +17,35 @@ class BuildingSeeder extends Seeder
     {
         $buildings = [
             [
-                'building' => 'A1'
+                'building' => 'A1',
+
             ] ,
             [
-              'building' => 'B2'
+              'building' => 'B2',
+                'cutting' => 1,
+                'cut_tables' => 13,
             ] ,
             [
-                'building' => 'C3'
+                'building' => 'C3',
+
             ] ,
             [
-                'building' => 'D4'
+                'building' => 'D4',
+                'cutting' => 1,
+                'cut_tables' => 13,
             ] ,
             [
-                'building' => 'E5'
+                'building' => 'E5',
+                'cutting' => 1,
+                'cut_tables' => 13,
             ] ,
             [
-                'building' => 'F6'
+                'building' => 'F6',
+
             ] ,
             [
-                'building' => 'K11'
+                'building' => 'K11',
+
             ] ,
         ];
 

@@ -14,8 +14,8 @@
                 <option value="5">E5</option>
             </select>
 
-            <input class="cut-section-start-to-print" type="datetime-local" id="cut_util_start_date">
-            <input class="cut-section-end-to-print" type="datetime-local" id="cut_util_end_date">
+            <input class="cut-section-start-to-print" type="date" id="cut_util_start_date">
+            <input class="cut-section-end-to-print" type="date" id="cut_util_end_date">
 
 
         </div>

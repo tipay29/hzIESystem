@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('buildings', function (Blueprint $table) {
+        Schema::create('special_days', function (Blueprint $table) {
             $table->id();
-            $table->string('building');
-            $table->integer('cutting')->default(0);
-            $table->integer('cut_tables')->default(0);
+            $table->date('special_date');
+            $table->string('event')->nullable();
+            $table->float('work_hour')->default(0);
+            $table->string('bldg')->default('2,4,5');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('buildings');
+        Schema::dropIfExists('special_days');
     }
 };
