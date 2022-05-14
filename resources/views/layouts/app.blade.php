@@ -67,9 +67,10 @@
                                             {{ __('text.PurchaseOrders') }}
                                         </a></li>
                                     <li><a class="dropdown-item" href="{{route('fabric-colors.index')}}">{{ __('text.FabricColors') }}</a></li>
-                                    <li><a class="dropdown-item" href="{{route('fabric-codes.index')}}">{{ __('text.FabricCodes') }}</a></li>
+                                    <li><a class="dropdown-item" href="{{route('fabric-codes.index')}}">{{ __('text.ColorCodes') }}</a></li>
+                                    <li><a class="dropdown-item" href="{{route('placements.index')}}">{{ __('text.FabricCodes') }}</a></li>
                                     <li><a class="dropdown-item" href="{{route('fabric-types.index')}}">{{ __('text.FabricTypes') }}</a></li>
-                                    <li><a class="dropdown-item" href="{{route('placements.index')}}">{{ __('text.Placements') }}</a></li>
+
                                 </ul>
                             </div>
 

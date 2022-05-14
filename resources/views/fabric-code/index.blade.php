@@ -8,7 +8,7 @@
                 <div class="card fabric_code_div_one">
                     <div class="card-header d-flex justify-content-between">
 
-                        <h5 class="mt-2">{{__('text.FabricCodes')}}</h5>
+                        <h5 class="mt-2">{{__('text.ColorCodes')}}</h5>
 
                         <div>
 
@@ -25,7 +25,7 @@
                                 <thead>
                                 <tr>
                                     <th width="20%">{{__('text.ID')}}</th>
-                                    <th width="70%">{{__('text.FabricCode')}}</th>
+                                    <th width="70%">{{__('text.ColorCode')}}</th>
                                     @can('create',App\Models\FabricCode::class)
                                         <th>{{__('text.Option')}}</th>
                                     @endcan
@@ -74,7 +74,7 @@
                 <div class="card fabric_code_div_two">
                     <div class="card-header d-flex justify-content-between">
 
-                        <h5 class="mt-2">{{__('text.Add'). ' '.__('text.FabricCode')}}</h5>
+                        <h5 class="mt-2">{{__('text.Add'). ' '.__('text.ColorCode')}}</h5>
 
                         <div>
 
@@ -89,11 +89,11 @@
 
                             @csrf
                             <div class="row mb-3">
-                                <label for="fabric_code_create" class="col-md-4 col-form-label text-md-end">{{__('text.FabricCode')}}</label>
+                                <label for="fabric_code_create" class="col-md-4 col-form-label text-md-end">{{__('text.ColorCode')}}</label>
                                 <div class="col-md-7">
 
                                     <input id="fabric_code_create" type="text" class="form-control"
-                                           placeholder="Enter fabric code">
+                                           placeholder="Enter color code">
 
                                 </div>
                             </div>
@@ -102,7 +102,7 @@
                         </div>
 
                         <div class="card-footer d-flex justify-content-end">
-                            <button id="btn-save-fabric-code" class="btn btn-primary">{{__('text.Save'). ' '.__('text.FabricCode')}}</button>
+                            <button id="btn-save-fabric-code" class="btn btn-primary">{{__('text.Save'). ' '.__('text.ColorCode')}}</button>
                         </div>
                     </form>
 
@@ -113,7 +113,7 @@
                 <div class="card fabric_code_div_three">
                     <div class="card-header d-flex justify-content-between">
 
-                        <h5 class="mt-2">{{__('text.Update'). ' '.__('text.FabricCode')}}</h5>
+                        <h5 class="mt-2">{{__('text.Update'). ' '.__('text.ColorCode')}}</h5>
 
                         <div>
 
@@ -128,11 +128,11 @@
 
                             @csrf
                             <div class="row mb-3">
-                                <label for="fabric_code_edit" class="col-md-4 col-form-label text-md-end">{{__('text.FabricCode')}}</label>
+                                <label for="fabric_code_edit" class="col-md-4 col-form-label text-md-end">{{__('text.ColorCode')}}</label>
                                 <div class="col-md-7">
 
                                     <input id="fabric_code_edit" type="text" class="form-control"
-                                           placeholder="Enter fabric code">
+                                           placeholder="Enter color code">
 
                                 </div>
                             </div>
@@ -142,7 +142,7 @@
 
                         <div class="card-footer d-flex justify-content-between">
                             <button id="btn-create-fabric-code" class="btn btn-secondary">{{__('text.Cancel')}}</button>
-                            <button id="btn-update-fabric-code" class="btn btn-primary">{{__('text.Update'). ' '.__('text.FabricCode')}}</button>
+                            <button id="btn-update-fabric-code" class="btn btn-primary">{{__('text.Update'). ' '.__('text.ColorCode')}}</button>
                         </div>
                     </form>
 

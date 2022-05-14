@@ -43,21 +43,21 @@
     .cut-section-bldg-to-print{
         position: absolute;
         top: 42px;
-        left: 110px;
+        left: 190px;
         visibility: visible;
     }
 
     .cut-section-start-to-print{
         position: absolute;
         top: 40px;
-        left: 160px;
+        left: 245px;
         visibility: visible;
     }
 
     .cut-section-end-to-print{
         position: absolute;
         top: 40px;
-        left: 385px;
+        left: 395px;
         visibility: visible;
     }
 

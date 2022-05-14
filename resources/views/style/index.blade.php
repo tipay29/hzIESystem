@@ -31,10 +31,10 @@
                                 <tr>
                                     <th width="5%" scope="col">{{ __('text.Styles') }} </th>
                                     <th width="18%" scope="col">{{ __('text.PurchaseOrders') }} </th>
-                                    <th width="18%" scope="col">{{ __('text.FabricCodes') }} </th>
+                                    <th width="18%" scope="col">{{ __('text.ColorCodes') }} </th>
                                     <th width="18%" scope="col">{{ __('text.FabricColors') }} </th>
                                     <th width="18%" scope="col">{{ __('text.FabricTypes') }}</th>
-                                    <th width="18%" scope="col">{{ __('text.Placements') }}</th>
+                                    <th width="18%" scope="col">{{ __('text.FabricCodes') }}</th>
                                     @can('create',App\Models\Style::class)
                                     <th width="5%" scope="col">{{ __('text.Option') }}</th>
                                     @endcan

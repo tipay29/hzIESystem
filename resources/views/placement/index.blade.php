@@ -8,7 +8,7 @@
                 <div class="card placement_div_one">
                     <div class="card-header d-flex justify-content-between">
 
-                        <h5 class="mt-2">{{__('text.Placements')}}</h5>
+                        <h5 class="mt-2">{{__('text.FabricCodes')}}</h5>
 
                         <div>
 
@@ -25,7 +25,7 @@
                                 <thead>
                                 <tr>
                                     <th width="20%">{{__('text.ID')}}</th>
-                                    <th width="70%">{{__('text.Placement')}}</th>
+                                    <th width="70%">{{__('text.FabricCode')}}</th>
                                     @can('create', App\Models\Placement::class)
                                         <th>{{__('text.Option')}}</th>
                                     @endcan
@@ -72,7 +72,7 @@
                 <div class="card placement_div_two">
                     <div class="card-header d-flex justify-content-between">
 
-                        <h5 class="mt-2">{{__('text.Add').' '.__('text.Placement')}}</h5>
+                        <h5 class="mt-2">{{__('text.Add').' '.__('text.FabricCode')}}</h5>
 
                         <div>
 
@@ -87,11 +87,11 @@
 
                             @csrf
                             <div class="row mb-3">
-                                <label for="placement_create" class="col-md-4 col-form-label text-md-end">{{__('text.Placement')}}</label>
+                                <label for="placement_create" class="col-md-4 col-form-label text-md-end">{{__('text.FabricCode')}}</label>
                                 <div class="col-md-7">
 
                                     <input id="placement_create" type="text" class="form-control"
-                                           placeholder="Enter Placement">
+                                           placeholder="Enter Fabric Code">
 
                                 </div>
                             </div>
@@ -100,7 +100,7 @@
                         </div>
 
                         <div class="card-footer d-flex justify-content-end">
-                            <button id="btn-save-placement" class="btn btn-primary">{{__('text.Save').' '.__('text.Placement')}}</button>
+                            <button id="btn-save-placement" class="btn btn-primary">{{__('text.Save').' '.__('text.FabricCode')}}</button>
                         </div>
                     </form>
 
@@ -111,7 +111,7 @@
                 <div class="card placement_div_three">
                     <div class="card-header d-flex justify-content-between">
 
-                        <h5 class="mt-2">{{__('text.Update').' '.__('text.Placement')}}</h5>
+                        <h5 class="mt-2">{{__('text.Update').' '.__('text.FabricCode')}}</h5>
 
                         <div>
 
@@ -126,11 +126,11 @@
 
                             @csrf
                             <div class="row mb-3">
-                                <label for="placement_edit" class="col-md-4 col-form-label text-md-end">{{__('text.Placement')}}</label>
+                                <label for="placement_edit" class="col-md-4 col-form-label text-md-end">{{__('text.FabricCode')}}</label>
                                 <div class="col-md-7">
 
                                     <input id="placement_edit" type="text" class="form-control"
-                                           placeholder="Enter Placement">
+                                           placeholder="Enter Fabric Code">
 
                                 </div>
                             </div>
@@ -140,7 +140,7 @@
 
                         <div class="card-footer d-flex justify-content-between">
                             <button id="btn-create-placement" class="btn btn-secondary">{{__('text.Cancel')}}</button>
-                            <button id="btn-update-placement" class="btn btn-primary">{{__('text.Update').' '.__('text.Placement')}}</button>
+                            <button id="btn-update-placement" class="btn btn-primary">{{__('text.Update').' '.__('text.FabricCode')}}</button>
                         </div>
                     </form>
 
