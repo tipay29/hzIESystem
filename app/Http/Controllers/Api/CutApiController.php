@@ -41,7 +41,7 @@ class CutApiController extends Controller
     }
 
     public function util(){
-        
+
         $validator = Validator::make(request()->all(),$this->dataValidated());
         if($validator->fails()){
             return response()->json($validator->errors(),400);
@@ -60,11 +60,11 @@ class CutApiController extends Controller
         ->whereBetween('spread_start',[$spread_start,$spread_end])
             ->get();
 
-         
+
 
         $datas = event(new GetCutEffEvent($cuts,$spread_start,$spread_end));
 
-       
+
 
         return response()->json($datas,200);
     }
@@ -88,7 +88,7 @@ class CutApiController extends Controller
             ->whereBetween('spread_start',[$spread_start,$spread_end])
             ->get();
 
-        $datas = event(new GetTotalCutUtilEvent($cuts,request('spread_start'),request('spread_end')));
+        $datas = event(new GetTotalCutUtilEvent($cuts,$spread_start,$spread_end));
 
         return response()->json($datas,200);
 

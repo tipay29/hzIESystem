@@ -25,7 +25,11 @@ class CutController extends Controller
             'styles','purchase_orders','fabric_codes',
             'fabric_colors','fabric_types','placements',
             'employees',
-        ])->get();
+        ])->paginate(20);
+
+        if (request()->ajax()) {
+            return view('cut.index',compact('cuts'));
+        }
 
         return view('cut.index',compact('cuts'));
     }

@@ -64,9 +64,44 @@ if(lsplit.includes('cuts')){
         getFabricType(null);
         getPlacement(null);
 
+    }else if(l.pathname === '/cuts'){
+        $('window').change(function () {
+            if (window.location.hash) {
+                var page = window.location.hash.replace('#', '');
+                if (page == Number.NaN || page <= 0) {
+                    return false;
+                } else {
+                    getData(page);
+                }
+            }
+        });
+
+        $('.pagination a').onclick(function (event) {
+            event.preventDefault();
+            $('li').removeClass('active');
+            $(this).parent('li').addClass('active');
+            var url = $(this).attr('href');
+            var page = $(this).attr('href').split('page=')[1];
+            getData(page);
+        });
+
+        function getData(page) {
+            // body...
+            $.ajax({
+                url: '?page=' + page,
+                type: 'get',
+                datatype: 'html',
+            }).done(function (data) {
+                $('#cut-container').empty().html(data);
+                location.hash = page;
+            }).fail(function (jqXHR, ajaxOptions, thrownError) {
+                alert('No response from server');
+            });
+        }
     }else{
         sessionStorage.clear();
     }
+
 
 
 }
@@ -785,18 +820,15 @@ if(l.pathname === '/cuts/total-utilization'){
 
     cut_total_util_start.change(function(){
         cut_total_util_end.val('');
-        getTotalCutUtilDate(cut_total_util_start.val(), cut_total_util_end.val());
+        getTotalCutUtilDate(cut_total_util_start, cut_total_util_end);
     });
 
     cut_total_util_end.change(function(){
 
-        getTotalCutUtilDate(cut_total_util_start.val(), cut_total_util_end.val());
+        getTotalCutUtilDate(cut_total_util_start, cut_total_util_end);
     });
 
 }
-
-
-
 
 function getCutUtilDate(start,end){
 
@@ -1047,12 +1079,19 @@ function getCutUtilDate(start,end){
 
 }
 
+
+
+
+
+
+
 function getTotalCutUtilDate(start,end){
-    if(end && start) {
+
+    if(end.val() && start.val()) {
 
         let cut_dates = {
-            spread_start: start,
-            spread_end: end,
+            spread_start: start.val() + ' 00:00:01',
+            spread_end: end.val() + ' 23:59:59',
         }
 
         $.ajax({
@@ -1062,45 +1101,181 @@ function getTotalCutUtilDate(start,end){
             data: cut_dates,
             success: function (util) {
 
+                console.log(util);
+
+
                 cut_total_util_table.empty();
-                $.each(util[0]['building'], function(i_b,buildings){
+                $.each(util[0], function(i_b,building){//building
 
-                    console.log(buildings);
-                    $.each(buildings, function(i_d,dates) {
+                    if(i_b == 2){
+
+                       $.each(building['dates'],function(i_d,date){//date
+
+                           let yard_total = 0;
+                           let yard_total_r = 0;
+                           let work_hour_divider = 0;
+                           let work_hour = 0;
+                           let avg_work_hour = 0;
+                           let target_yard = 0;
+                           let total_target_yard = 0;
+                           let total_target_yard_r = 0;
+                           let table_count = 0;
+                           let table_target = building['target_table'];
+                           let table_util = 0;
+                           $.each(date,function(i_t,table){//table
+                               yard_total = yard_total + table.actual_yard;
+                                yard_total = yard_total + table.actual_yard;
+                                work_hour = work_hour + table.work_hour;
+                                work_hour_divider = work_hour_divider + 1;
+                                if(table.input == 1){
+                                    table_count = table_count + 1;
+                                }
+
+                           });
+                           yard_total_r = Math.round(yard_total);
+                            avg_work_hour = work_hour/work_hour_divider;
+                            target_yard = avg_work_hour*319.5;
+                            total_target_yard = table_target*target_yard;
+                           total_target_yard_r = Math.round(total_target_yard);
+                            table_util = Math.round((yard_total/total_target_yard)*100);
+
+                           cut_total_util_table.append(' <tr>\n' +
+                               '<td scope="col">'+i_d+'</td>\n' +
+                               '<td scope="col">'+i_b+'</td>\n' +
+                               '<td scope="col">'+yard_total_r+'</td>\n' +
+                               '<td scope="col">'+avg_work_hour+'</td>\n' +
+                               '<td scope="col">'+yard_total+'</td>\n' +
+                               '<td scope="col">'+avg_work_hour+'</td>\n' +
+                               '<td scope="col">'+target_yard+'</td>\n' +
+                               '<td scope="col">'+table_util+'%</td>\n' +
+                               '<td scope="col">'+i_d+'</td>\n' +
+                               '<td scope="col">'+i_d+'</td>\n' +
+                               '<td scope="col">Spreading</td>\n' +
+                               '<td scope="col">1</td>\n' +
+                               '<td scope="col">'+avg_work_hour+'</td>\n' +
+                               '<td scope="col">'+total_target_yard_r+'</td>\n' +
+                               '<td scope="col">'+table_target+'</td>\n' +
+                               '<td scope="col">'+table_target+'</td>\n' +
+                               '<td scope="col">'+table_count+'</td>\n' +
+                               '<td scope="col">'+total_target_yard+'</td>\n' +
+                               '</tr>');
+
+                       });
 
 
+                    }
+                    if(i_b == 4){
 
+                        $.each(building['dates'],function(i_d,date){//date
 
+                            let yard_total = 0;
+                            let yard_total_r = 0;
+                            let work_hour_divider = 0;
+                            let work_hour = 0;
+                            let avg_work_hour = 0;
+                            let target_yard = 0;
+                            let total_target_yard = 0;
+                            let total_target_yard_r = 0;
+                            let table_count = 0;
+                            let table_target = building['target_table'];
+                            let table_util = 0;
+                            $.each(date,function(i_t,table){//table
+                                yard_total = yard_total + table.actual_yard;
+                                yard_total = yard_total + table.actual_yard;
+                                work_hour = work_hour + table.work_hour;
+                                work_hour_divider = work_hour_divider + 1;
+                                if(table.input == 1){
+                                    table_count = table_count + 1;
+                                }
 
-                        avg_work_hours = getAVGWorkHours(dates);
-                        actual_yards = getActualYards(dates);
-                        table_count = _.size(dates);
-                        table_util = ((actual_yards/(table_count*Math.round(Math.round(avg_work_hours)*319.55)))*100).toFixed(2);
+                            });
+                            yard_total_r = Math.round(yard_total);
+                            avg_work_hour = work_hour/work_hour_divider;
+                            target_yard = avg_work_hour*319.5;
+                            total_target_yard = table_target*target_yard;
+                            total_target_yard_r = Math.round(total_target_yard);
+                            table_util = Math.round((yard_total/total_target_yard)*100);
 
-                        cut_total_util_table.append('<tr>\n' +
-                            '<th scope="col">'+i_d+'</th>\n' +
-                            '<th scope="col">'+getBuilding(i_b)+'</th>\n' +
-                            '<th scope="col">'+Math.round(actual_yards)+'</th>\n' +
-                            '<th scope="col">'+avg_work_hours+'</th>\n' +
-                            '<th scope="col">'+actual_yards+'</th>\n' +
-                            '<th scope="col">'+Math.round(avg_work_hours)+'</th>\n' +
-                            '<th scope="col">'+Math.round(Math.round(avg_work_hours)*319.55)+'</th>\n' +
-                            '<th scope="col">'+table_util+'%'+ '</th>\n' +
-                            '<th scope="col">'+i_d+'</th>\n' +
-                            '<th scope="col">'+i_d+'</th>\n' +
-                            '<th scope="col">Spreading</th>\n' +
-                            '<th scope="col">1</th>\n' +
-                            '<th scope="col">'+Math.round(avg_work_hours)+'</th>\n' +
-                            '<th scope="col">'+Math.round(table_count*Math.round(Math.round(avg_work_hours)*319.55))+'</th>\n' +
-                            '<th scope="col">'+table_count+'</th>\n' +
-                            '<th scope="col">'+table_count+'</th>\n' +
-                            '<th scope="col">'+table_count+'</th>\n' +
-                            '<th scope="col">'+table_count*Math.round(Math.round(avg_work_hours)*319.55)+'</th>\n' +
-                            '                                </tr>');
+                            cut_total_util_table.append(' <tr>\n' +
+                                '<td scope="col">'+i_d+'</td>\n' +
+                                '<td scope="col">'+i_b+'</td>\n' +
+                                '<td scope="col">'+yard_total_r+'</td>\n' +
+                                '<td scope="col">'+avg_work_hour+'</td>\n' +
+                                '<td scope="col">'+yard_total+'</td>\n' +
+                                '<td scope="col">'+avg_work_hour+'</td>\n' +
+                                '<td scope="col">'+target_yard+'</td>\n' +
+                                '<td scope="col">'+table_util+'%</td>\n' +
+                                '<td scope="col">'+i_d+'</td>\n' +
+                                '<td scope="col">'+i_d+'</td>\n' +
+                                '<td scope="col">Spreading</td>\n' +
+                                '<td scope="col">1</td>\n' +
+                                '<td scope="col">'+avg_work_hour+'</td>\n' +
+                                '<td scope="col">'+total_target_yard_r+'</td>\n' +
+                                '<td scope="col">'+table_target+'</td>\n' +
+                                '<td scope="col">'+table_target+'</td>\n' +
+                                '<td scope="col">'+table_count+'</td>\n' +
+                                '<td scope="col">'+total_target_yard+'</td>\n' +
+                                '</tr>');
 
+                        });
 
-                    });
+                    }
+                    if(i_b == 5){
 
+                        $.each(building['dates'],function(i_d,date){//date
+
+                            let yard_total = 0;
+                            let yard_total_r = 0;
+                            let work_hour_divider = 0;
+                            let work_hour = 0;
+                            let avg_work_hour = 0;
+                            let target_yard = 0;
+                            let total_target_yard = 0;
+                            let total_target_yard_r = 0;
+                            let table_count = 0;
+                            let table_target = building['target_table'];
+                            let table_util = 0;
+                            $.each(date,function(i_t,table){//table
+                                yard_total = yard_total + table.actual_yard;
+                                yard_total = yard_total + table.actual_yard;
+                                work_hour = work_hour + table.work_hour;
+                                work_hour_divider = work_hour_divider + 1;
+                                if(table.input == 1){
+                                    table_count = table_count + 1;
+                                }
+
+                            });
+                            yard_total_r = Math.round(yard_total);
+                            avg_work_hour = work_hour/work_hour_divider;
+                            target_yard = avg_work_hour*319.5;
+                            total_target_yard = table_target*target_yard;
+                            total_target_yard_r = Math.round(total_target_yard);
+                            table_util = Math.round((yard_total/total_target_yard)*100);
+
+                            cut_total_util_table.append(' <tr>\n' +
+                                '<td scope="col">'+i_d+'</td>\n' +
+                                '<td scope="col">'+i_b+'</td>\n' +
+                                '<td scope="col">'+yard_total_r+'</td>\n' +
+                                '<td scope="col">'+avg_work_hour+'</td>\n' +
+                                '<td scope="col">'+yard_total+'</td>\n' +
+                                '<td scope="col">'+avg_work_hour+'</td>\n' +
+                                '<td scope="col">'+target_yard+'</td>\n' +
+                                '<td scope="col">'+table_util+'%</td>\n' +
+                                '<td scope="col">'+i_d+'</td>\n' +
+                                '<td scope="col">'+i_d+'</td>\n' +
+                                '<td scope="col">Spreading</td>\n' +
+                                '<td scope="col">1</td>\n' +
+                                '<td scope="col">'+avg_work_hour+'</td>\n' +
+                                '<td scope="col">'+total_target_yard_r+'</td>\n' +
+                                '<td scope="col">'+table_target+'</td>\n' +
+                                '<td scope="col">'+table_target+'</td>\n' +
+                                '<td scope="col">'+table_count+'</td>\n' +
+                                '<td scope="col">'+total_target_yard+'</td>\n' +
+                                '</tr>');
+
+                        });
+
+                    }
 
 
 
@@ -1120,42 +1295,4 @@ function getTotalCutUtilDate(start,end){
         });
 
     }
-}
-
-function getAVGWorkHours(dates){
-    let avg_work_hours = 0;
-    let avg_divider = 0;
-    let addDay = 0;
-
-    $.each(dates, function(i_t,tables) {
-        avg_work_hours = avg_work_hours + tables['work_hours'];
-        avg_divider = avg_divider + tables['count'];
-    });
-    avg_work_hours = avg_work_hours/avg_divider;
-
-    return avg_work_hours;
-}
-
-function getActualYards(dates){
-    let actual_yards = 0;
-
-    $.each(dates, function(i_t,tables) {
-        actual_yards = actual_yards + tables['actual_yards'];
-    });
-
-    return actual_yards;
-}
-
-function getBuilding(b){
-
-    if(b === 'B2'){
-        return 2;
-    }
-    if(b === 'D4'){
-        return 4;
-    }
-    if(b === 'E5'){
-        return 5;
-    }
-
 }

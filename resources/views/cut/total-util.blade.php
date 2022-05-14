@@ -9,8 +9,8 @@
 
                         <div class="mt-2">
                             <h5 class="d-inline">Total Cut Utilization</h5>
-                            <input type="datetime-local" id="cut-total-util-start-date">
-                            <input type="datetime-local" id="cut-total-util-end-date">
+                            <input type="date" id="cut-total-util-start-date">
+                            <input type="date" id="cut-total-util-end-date">
                         </div>
 
 

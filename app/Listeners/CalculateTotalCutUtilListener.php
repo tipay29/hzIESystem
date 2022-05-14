@@ -3,7 +3,9 @@
 namespace App\Listeners;
 
 use App\Events\GetTotalCutUtilEvent;
+use App\Models\Building;
 use App\Models\Cut;
+use App\Models\SpecialDay;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
@@ -14,143 +16,76 @@ class CalculateTotalCutUtilListener
     {
 
 
-        $spread_start = new \DateTime($event->spread_start);
-        $spread_start->format('Y-m-d H:i:s');
-        $spread_end = new \DateTime($event->spread_end);
-        $spread_end->format('Y-m-d H:i:s');
+        $buildings = Building::select('id','cut_tables')->where('cutting',1)->get()->toArray();
 
-        $total_work_hours = 0;
-        $total_days = 0;
-        $tables_array = array();
-        for($i = $spread_start; $i <= $spread_end; $i->modify('+1 day')){
-            if($i->format("l") === 'Sunday'){
-                $total_work_hours = $total_work_hours + 0;
-            }elseif ($i->format("l") === 'Saturday'){
-                $total_work_hours = $total_work_hours + 8;
-            }else{
-                $total_work_hours = $total_work_hours + 10;
-            }
-            $total_days++;
-        }
-
-        $datas = array(
-            'building' => array(
-                'B2' => array(
-
-                ),
-                'D4' => array(
-
-                ),
-                'E5' => array(
-
-                ),
-            ),
-            'spread_start' => $this->formatDate($event->spread_start),
-            'spread_end' => $this->formatDate($event->spread_end),
-            'total_work_hours' => $total_work_hours,
-            'total_days' => $total_days,
-
-        );
-
-        foreach($event->cuts as $key => $cut){
+        $datas = array();
 
 
-            $date = $this->formatDate($cut->spread_start);
-            $sundayCheck = new \DateTime($cut->spread_start);
-            if($sundayCheck->format("l") === 'Sunday'){
-                //nothing to do
-            }else{
+        $dates = array();
+        $daysBetween = 0;
 
-                if(!in_array($cut->table_num, $tables_array, true)){
-                    array_push($tables_array, $cut->table_num);
-                }
+        for($x = 0; $x < count($buildings);$x++){
 
 
-                if (array_key_exists($date, $datas['building'][$cut->building->building])){
-
-                    if(array_key_exists($cut->table_num,$datas['building'][$cut->building->building][$date])){
-                        $datas['building'][$cut->building->building][$date][$cut->table_num]['actual_yards'] =
-                            $datas['building'][$cut->building->building][$date][$cut->table_num]['actual_yards'] + ($cut->marker_length*$cut->layer_count);
-                        $datas['building'][$cut->building->building][$date][$cut->table_num]['work_hours'] =
-                            $datas['building'][$cut->building->building][$date][$cut->table_num]['work_hours'] + $cut->work_hours;
-                        $datas['building'][$cut->building->building][$date][$cut->table_num]['count'] =
-                            $datas['building'][$cut->building->building][$date][$cut->table_num]['count'] + 1;
-                    }else{
-                        $datas['building'][$cut->building->building][$date][$cut->table_num] = array();
-                        $datas['building'][$cut->building->building][$date][$cut->table_num]['actual_yards'] = $cut->marker_length*$cut->layer_count;
-                        $datas['building'][$cut->building->building][$date][$cut->table_num]['work_hours'] = $cut->work_hours;
-                        $datas['building'][$cut->building->building][$date][$cut->table_num]['count'] = 1;
-                        $datas['building'][$cut->building->building][$date][$cut->table_num]['avg_work_hours'] = 0;
-                    }
+            $datas[$buildings[$x]['id']] = array();
+            $datas[$buildings[$x]['id']]['target_table'] = $buildings[$x]['cut_tables'];
+            $datas[$buildings[$x]['id']]['dates'] = array();
 
 
-                }else{
-                    $datas['building'][$cut->building->building][$date][$cut->table_num] = array();
-                    $datas['building'][$cut->building->building][$date][$cut->table_num]['actual_yards'] = $cut->marker_length*$cut->layer_count;
-                    $datas['building'][$cut->building->building][$date][$cut->table_num]['work_hours'] = $cut->work_hours;
-                    $datas['building'][$cut->building->building][$date][$cut->table_num]['count'] = 1;
-                    $datas['building'][$cut->building->building][$date][$cut->table_num]['avg_work_hours'] = 0;
 
+            for($i = $event->spread_start; $i <= $event->spread_end; $i->modify('+1 day')){
 
-                }
+                if($i->format("l") != 'Sunday'){
+                    if($this->getWorkHours($i,$buildings[$x]['id']) != 0){
 
-            }
+                        $datas[$buildings[$x]['id']]['dates'][$i->format('m/d/Y')] = array();
 
-        }
+                        foreach($event->cuts as $cut){
 
-//        dd($tables_array);
+                            $cut_spread_start = new \DateTime($cut->spread_start);
+                            if($cut->building_id == $buildings[$x]['id']){
+                                if($cut_spread_start->format('Y-m-d') === $i->format('Y-m-d')){
 
-        $spread_start = new \DateTime($event->spread_start);
-        $spread_start->format('Y-m-d H:i:s');
-        $spread_end = new \DateTime($event->spread_end);
-        $spread_end->format('Y-m-d H:i:s');
+                                        if(isset($datas[$buildings[$x]['id']]['dates'][$i->format('m/d/Y')][$cut->table_num]['work_hour'])) {
+                                            $datas[$buildings[$x]['id']]['dates'][$i->format('m/d/Y')][$cut->table_num]['work_hour'] = $cut->work_hours;
+                                            $datas[$buildings[$x]['id']]['dates'][$i->format('m/d/Y')][$cut->table_num]['actual_yard'] +=
+                                                $cut->marker_length*$cut->layer_count;
+                                            $datas[$buildings[$x]['id']]['dates'][$i->format('m/d/Y')][$cut->table_num]['input'] = 1;
+                                        }else{
+                                            $datas[$buildings[$x]['id']]['dates'][$i->format('m/d/Y')][$cut->table_num]['work_hour'] = $cut->work_hours;
+                                            $datas[$buildings[$x]['id']]['dates'][$i->format('m/d/Y')][$cut->table_num]['actual_yard'] =
+                                                $cut->marker_length*$cut->layer_count;
+                                            $datas[$buildings[$x]['id']]['dates'][$i->format('m/d/Y')][$cut->table_num]['input'] = 1;
+                                        }
 
-        for($i = $spread_start; $i <= $spread_end; $i->modify('+1 day')){
+                                }else{
+                                    if(!isset($datas[$buildings[$x]['id']]['dates'][$i->format('m/d/Y')][$cut->table_num]['work_hour'])){
+                                        $datas[$buildings[$x]['id']]['dates'][$i->format('m/d/Y')][$cut->table_num]['work_hour'] = $this->getWorkHours($i,$buildings[$x]['id']);
+                                        $datas[$buildings[$x]['id']]['dates'][$i->format('m/d/Y')][$cut->table_num]['actual_yard'] = 0;
+                                        $datas[$buildings[$x]['id']]['dates'][$i->format('m/d/Y')][$cut->table_num]['input'] = 0;
+                                    }
+                                }
+                            }
 
-            $date = $i->format('m/d/Y');
-
-            if($i->format("l") === 'Sunday'){
-                $total_work_hour =  0;
-            }elseif ($i->format("l") === 'Saturday'){
-                $total_work_hour =  8;
-            }else{
-                $total_work_hour =  10;
-            }
-
-            if($i->format("l") === 'Sunday'){
-                //nothing to do
-            }else {
-
-                if (array_key_exists($date, $datas['building']['B2'])) {
-
-
-                    foreach ($tables_array as $key => $table_array) {
-                        if (array_key_exists($tables_array[$key], $datas['building']['B2'][$date])) {
-
-                        } else {
-                            $datas['building']['B2'][$date][$tables_array[$key]] = array();
-                            $datas['building']['B2'][$date][$tables_array[$key]]['actual_yards'] = 0;
-                            $datas['building']['B2'][$date][$tables_array[$key]]['work_hours'] = $total_work_hour;
-                            $datas['building']['B2'][$date][$tables_array[$key]]['count'] = 1;
-                            $datas['building']['B2'][$date][$tables_array[$key]]['avg_work_hours'] = 0;
                         }
-                    }
 
 
-                } else {
-                    $datas['building']['B2'][$date] = array();
-
-                    for ($tb = 0; $tb < count($tables_array); $tb++) {
-                        $datas['building']['B2'][$date][$tables_array[$tb]] = array();
-                        $datas['building']['B2'][$date][$tables_array[$tb]]['actual_yards'] = 0;
-                        $datas['building']['B2'][$date][$tables_array[$tb]]['work_hours'] = $total_work_hour;
-                        $datas['building']['B2'][$date][$tables_array[$tb]]['count'] = 1;
-                        $datas['building']['B2'][$date][$tables_array[$tb]]['avg_work_hours'] = 0;
                     }
                 }
+                $daysBetween++;
             }
 
+            $daysMinus = '-' . $daysBetween . ' day';
+            $event->spread_start->modify($daysMinus);
+            $daysBetween = 0;
+
+
         }
+
+
+
+
+
 
 
 
@@ -159,8 +94,29 @@ class CalculateTotalCutUtilListener
 
     }
 
-    protected function formatDate($date){
-        $date = new \DateTime($date);
-        return $date->format('m/d/Y');
+    protected function getWorkHours($i,$bldg){
+
+        $whs = SpecialDay::pluck('work_hour','special_date')->toArray();
+        $bldgs = SpecialDay::pluck('bldg','special_date')->toArray();
+
+
+        $work_hours = 10;
+
+        if($i->format("l") == 'Saturday'){
+            $work_hours = 8;
+        }
+        if(array_key_exists($i->format('Y-m-d'),$whs)){
+
+            $bldgs = array_map('intval', explode(',',$bldgs[$i->format('Y-m-d')]));
+
+            if(in_array($bldg,$bldgs)){
+                $work_hours = $whs[$i->format('Y-m-d')];
+            }
+
+        }
+
+        return $work_hours;
     }
+
+
 }

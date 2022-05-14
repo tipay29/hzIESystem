@@ -46,14 +46,7 @@
 
 
 
-                            <div>
-                                <strong>
-                                    Cut Count
-                                </strong>
-                                <p>
-                                    {{$cut->cut_count}}
-                                </p>
-                            </div>
+
                             <div>
                                 <strong>
                                     Market Length
