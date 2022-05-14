@@ -49,7 +49,7 @@
 
                             <div>
                                 <strong>
-                                    Market Length
+                                    {{__('text.MarkerLength')}}
                                 </strong>
                                 <p>
                                     {{$cut->marker_length}}
@@ -60,12 +60,12 @@
                                     Layer Count
                                 </strong>
                                 <p>
-                                    {{$cut->layer_count}}
+                                    {{__('text.TotalLayers')}}
                                 </p>
                             </div>
                             <div>
                                 <strong>
-                                    Part Count
+                                    {{__('text.TotalParts')}}
                                 </strong>
                                 <p>
                                     {{$cut->part_count}}
@@ -73,7 +73,7 @@
                             </div>
                             <div>
                                 <strong>
-                                    Size Ratio
+                                    {{__('text.SizeRatio')}}
                                 </strong>
                                 <p>
                                     {{$cut->size_ratio}}
@@ -82,7 +82,7 @@
 
                             <div>
                                 <strong>
-                                    Table
+                                    {{__('text.Table')}}
                                 </strong>
                                 <p>
                                     {{$cut->table_num}}
@@ -90,7 +90,7 @@
                             </div>
                             <div>
                                 <strong>
-                                    Work Hours
+                                    {{__('text.WorkTime')}}
                                 </strong>
                                 <p>
                                     {{$cut->work_hours}}
@@ -104,7 +104,7 @@
 
                             <div>
                                 <strong>
-                                    Spreader
+                                    {{__('text.Spreader')}}
                                 </strong>
                                 @foreach($cut->employees as $employee)
                                     @if($employee->job->job === 'Spreader')
@@ -117,7 +117,7 @@
 
                             <div>
                                 <strong>
-                                    Cutter
+                                    {{__('text.Cutter')}}
                                 </strong>
                                 @foreach($cut->employees as $employee)
                                     @if($employee->job->job === 'Cutter')
@@ -130,7 +130,7 @@
 
                             <div>
                                 <strong>
-                                    Spread Start
+                                    {{__('text.SpreadStart(date/time)')}}
                                 </strong>
                                 <p>
                                     {{$cut->spread_start}}
@@ -138,7 +138,7 @@
                             </div>
                             <div>
                                 <strong>
-                                    Spread End
+                                    {{__('text.SpreadEnd(date/time)')}}
                                 </strong>
                                 <p>
                                     {{$cut->spread_end}}
@@ -146,7 +146,7 @@
                             </div>
                             <div>
                                 <strong>
-                                    Cut Start
+                                    {{__('text.CutStart(date/time)')}}
                                 </strong>
                                 <p>
                                     {{$cut->cut_start}}
@@ -154,7 +154,7 @@
                             </div>
                             <div>
                                 <strong>
-                                    Cut End
+                                    {{__('text.CutEnd(date/time)')}}
                                 </strong>
                                 <p>
                                     {{$cut->cut_end}}
@@ -168,7 +168,7 @@
 
                             <div>
                                 <strong>
-                                    Style
+                                    {{__('text.Style')}}
                                 </strong>
                                 <p>
                                     @foreach($cut->styles as $style)
@@ -178,7 +178,7 @@
                             </div>
                             <div>
                                 <strong>
-                                    Purchase Orders
+                                    {{__('text.PurchaseOrders')}}
                                 </strong>
                                 <p>
                                     @foreach($cut->purchase_orders as $purchase_order)
@@ -188,17 +188,7 @@
                             </div>
                             <div>
                                 <strong>
-                                    Fabric Codes
-                                </strong>
-                                <p>
-                                    @foreach($cut->fabric_codes as $fabric_code)
-                                        {{$fabric_code->fabric_code}} ,
-                                    @endforeach
-                                </p>
-                            </div>
-                            <div>
-                                <strong>
-                                    Fabric Colors
+                                    {{__('text.FabricColors')}}
                                 </strong>
                                 <p>
                                     @foreach($cut->fabric_colors as $fabric_color)
@@ -208,7 +198,18 @@
                             </div>
                             <div>
                                 <strong>
-                                    Fabric Types
+                                    {{__('text.ColorCodes')}}
+                                </strong>
+                                <p>
+                                    @foreach($cut->fabric_codes as $fabric_code)
+                                        {{$fabric_code->fabric_code}} ,
+                                    @endforeach
+                                </p>
+                            </div>
+
+                            <div>
+                                <strong>
+                                    {{__('text.FabricTypes')}}
                                 </strong>
                                 <p>
                                     @foreach($cut->fabric_types as $fabric_type)
@@ -218,7 +219,7 @@
                             </div>
                             <div>
                                 <strong>
-                                    Placement
+                                    {{__('text.FabricCodes')}}
                                 </strong>
                                 <p>
                                     @foreach($cut->placements as $placement)
@@ -231,7 +232,7 @@
 
                             <div>
                                 <strong>
-                                    User
+                                    {{__('text.User')}}
                                 </strong>
                                 <p>
                                     {{$cut->user->name}}
@@ -239,7 +240,7 @@
                             </div>
                             <div>
                                 <strong>
-                                    Building
+                                    {{__('text.Building')}}
                                 </strong>
                                 <p>
                                     {{$cut->building->building}}

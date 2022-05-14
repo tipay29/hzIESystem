@@ -64,7 +64,11 @@ if(lsplit.includes('cuts')){
         getFabricType(null);
         getPlacement(null);
 
-    }else if(l.pathname === '/cuts'){
+    }else{
+        sessionStorage.clear();
+    }
+
+    if(l.pathname === '/cuts'){
         $('window').change(function () {
             if (window.location.hash) {
                 var page = window.location.hash.replace('#', '');
@@ -98,8 +102,6 @@ if(lsplit.includes('cuts')){
                 alert('No response from server');
             });
         }
-    }else{
-        sessionStorage.clear();
     }
 
 
