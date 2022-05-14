@@ -153,7 +153,7 @@ class CutController extends Controller
     public function totalUtil()
     {
 
-        $this->authorize('viewUtil',Cut::class);
+        $this->authorize('viewTotalUtil',Cut::class);
 
         return view('cut.total-util');
 

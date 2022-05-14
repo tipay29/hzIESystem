@@ -20,10 +20,13 @@
                             <a href="{{route('cuts.util')}}"
                                class="btn btn-outline-success">
                                 {{__('text.Cut').' '.__('text.Util')}} </a>
-                            <a href="{{route('cuts.total-util')}}"
-                               class="btn btn-outline-success">
-                                {{__('text.Total').' '.__('text.Cut') .' '. __('text.Util')}} </a>
                             @endcan
+                            @can('viewTotalUtil',App\Models\Cut::class)
+                                    <a href="{{route('cuts.total-util')}}"
+                                       class="btn btn-outline-success">
+                                        {{__('text.Total').' '.__('text.Cut') .' '. __('text.Util')}} </a>
+                            @endcan
+
                         </div>
 
                     </div>

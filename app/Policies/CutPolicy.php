@@ -23,8 +23,13 @@ class CutPolicy
 
     public function viewUtil(User $user)
     {
-        return in_array($user->employee->job->id,[1]);
+        return in_array($user->employee->job->id,[1,6]);
     }
+    public function viewTotalUtil(User $user)
+    {
+        return in_array($user->employee->job->id,[1,6]);
+    }
+
 
     /**
      * Determine whether the user can view the model.
@@ -58,7 +63,7 @@ class CutPolicy
      */
     public function update(User $user, Cut $cut)
     {
-      
+
 
         return in_array($user->employee->job->id,[1,6]);
     }

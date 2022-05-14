@@ -803,8 +803,8 @@ function getCutUtilDate(start,end){
     if(end.val() && start.val()) {
 
         let cut_dates = {
-            spread_start: start.val(),
-            spread_end: end.val(),
+            spread_start: start.val() + ' 00:00:01',
+            spread_end: end.val() + ' 23:59:59',
         }
         $.ajax({
 
@@ -813,9 +813,219 @@ function getCutUtilDate(start,end){
             data: cut_dates,
             success: function (util) {
                 console.log(util);
+
                 cut_util_table_b2.empty();
                 cut_util_table_d4.empty();
                 cut_util_table_e5.empty();
+
+                $.each(util[0], function(i_b,building){//building
+
+
+                    if(i_b == 2){
+
+                        let target_table = building['target_table'];
+                        let all_table_days = 0;
+                        let all_table_work_hours = 0;
+                        let all_table_yards = 0;
+                        let all_target_table_days = 0;
+                        let all_target_table_work_hours = 0;
+                        let all_target_table_yards = 0;
+                        let all_table_util = 0;
+                        $.each(building['tables'], function(i_t,table){//table
+
+                            let days = 0;
+                            let work_hours = 0;
+                            let yards = 0;
+                            let target_days = 0;
+                            let target_work_hours = 0;
+                            let target_yards = 0;
+                            let table_util = 0;
+                            $.each(table, function(i_d,date){//date
+
+                                if(date['input'] == 1){
+                                    days = days + 1;
+                                    work_hours = work_hours + date['work_hour'];
+                                    yards = Math.round(yards + date['actual_yard']);
+                                }
+                                target_days = target_days + 1;
+                                target_work_hours = target_work_hours + date['work_hour'];
+                                target_yards = Math.round(target_work_hours * 319.5);
+                                table_util = Math.round((yards/target_yards)*100);
+                            });
+
+                            //totalpertable
+                            cut_util_table_b2.append('<tr>\n' +
+                                '<td scope="col">'+i_t+'</td>\n' +
+                                '<td scope="col">'+days+'</td>\n' +
+                                '<td scope="col">'+work_hours+'</td>\n' +
+                                '<td scope="col">'+yards+'</td>\n' +
+                                '<td scope="col">'+target_days+'</td>\n' +
+                                '<td scope="col">'+target_work_hours+'</td>\n' +
+                                '<td scope="col">'+target_yards+'</td>\n' +
+                                '<td scope="col">'+table_util+'%</td>\n' +
+                                '</tr>');
+
+                            all_table_days = all_table_days + days;
+                            all_table_work_hours = all_table_work_hours + work_hours;
+                            all_table_yards = all_table_yards + yards;
+                            all_target_table_days = target_table * target_days;
+                            all_target_table_work_hours = target_table * target_work_hours;
+                            all_target_table_yards = target_table * target_yards;
+                            all_table_util = Math.round((all_table_yards/all_target_table_yards)*100);
+                        });
+
+                        //totalall
+                        cut_util_table_b2.append('<tr>\n' +
+                            '<th scope="col">Total</th>\n' +
+                            '<th scope="col">'+all_table_days+'</th>\n' +
+                            '<th scope="col">'+all_table_work_hours+'</th>\n' +
+                            '<th scope="col">'+all_table_yards+'</th>\n' +
+                            '<th scope="col">'+all_target_table_days+'</th>\n' +
+                            '<th scope="col">'+all_target_table_work_hours+'</th>\n' +
+                            '<th scope="col">'+all_target_table_yards+'</th>\n' +
+                            '<th scope="col">'+all_table_util+'%</th>\n' +
+                            '</tr>');
+
+                    }
+
+                    if(i_b == 4){
+
+                        let target_table = building['target_table'];
+                        let all_table_days = 0;
+                        let all_table_work_hours = 0;
+                        let all_table_yards = 0;
+                        let all_target_table_days = 0;
+                        let all_target_table_work_hours = 0;
+                        let all_target_table_yards = 0;
+                        let all_table_util = 0;
+                        $.each(building['tables'], function(i_t,table){//table
+
+                            let days = 0;
+                            let work_hours = 0;
+                            let yards = 0;
+                            let target_days = 0;
+                            let target_work_hours = 0;
+                            let target_yards = 0;
+                            let table_util = 0;
+                            $.each(table, function(i_d,date){//date
+
+                                if(date['input'] == 1){
+                                    days = days + 1;
+                                    work_hours = work_hours + date['work_hour'];
+                                    yards = Math.round(yards + date['actual_yard']);
+                                }
+                                target_days = target_days + 1;
+                                target_work_hours = target_work_hours + date['work_hour'];
+                                target_yards = Math.round(target_work_hours * 319.5);
+                                table_util = Math.round((yards/target_yards)*100);
+                            });
+
+                            //totalpertable
+                            cut_util_table_d4.append('<tr>\n' +
+                                '<td scope="col">'+i_t+'</td>\n' +
+                                '<td scope="col">'+days+'</td>\n' +
+                                '<td scope="col">'+work_hours+'</td>\n' +
+                                '<td scope="col">'+yards+'</td>\n' +
+                                '<td scope="col">'+target_days+'</td>\n' +
+                                '<td scope="col">'+target_work_hours+'</td>\n' +
+                                '<td scope="col">'+target_yards+'</td>\n' +
+                                '<td scope="col">'+table_util+'%</td>\n' +
+                                '</tr>');
+
+                            all_table_days = all_table_days + days;
+                            all_table_work_hours = all_table_work_hours + work_hours;
+                            all_table_yards = all_table_yards + yards;
+                            all_target_table_days = target_table * target_days;
+                            all_target_table_work_hours = target_table * target_work_hours;
+                            all_target_table_yards = target_table * target_yards;
+                            all_table_util = Math.round((all_table_yards/all_target_table_yards)*100);
+                        });
+
+                        //totalall
+                        cut_util_table_d4.append('<tr>\n' +
+                            '<th scope="col">Total</th>\n' +
+                            '<th scope="col">'+all_table_days+'</th>\n' +
+                            '<th scope="col">'+all_table_work_hours+'</th>\n' +
+                            '<th scope="col">'+all_table_yards+'</th>\n' +
+                            '<th scope="col">'+all_target_table_days+'</th>\n' +
+                            '<th scope="col">'+all_target_table_work_hours+'</th>\n' +
+                            '<th scope="col">'+all_target_table_yards+'</th>\n' +
+                            '<th scope="col">'+all_table_util+'%</th>\n' +
+                            '</tr>');
+
+                    }
+
+                    if(i_b == 5){
+
+                        let target_table = building['target_table'];
+                        let all_table_days = 0;
+                        let all_table_work_hours = 0;
+                        let all_table_yards = 0;
+                        let all_target_table_days = 0;
+                        let all_target_table_work_hours = 0;
+                        let all_target_table_yards = 0;
+                        let all_table_util = 0;
+                        $.each(building['tables'], function(i_t,table){//table
+
+                            let days = 0;
+                            let work_hours = 0;
+                            let yards = 0;
+                            let target_days = 0;
+                            let target_work_hours = 0;
+                            let target_yards = 0;
+                            let table_util = 0;
+                            $.each(table, function(i_d,date){//date
+
+                                if(date['input'] == 1){
+                                    days = days + 1;
+                                    work_hours = work_hours + date['work_hour'];
+                                    yards = Math.round(yards + date['actual_yard']);
+                                }
+                                target_days = target_days + 1;
+                                target_work_hours = target_work_hours + date['work_hour'];
+                                target_yards = Math.round(target_work_hours * 319.5);
+                                table_util = Math.round((yards/target_yards)*100);
+                            });
+
+                            //totalpertable
+                            cut_util_table_e5.append('<tr>\n' +
+                                '<td scope="col">'+i_t+'</td>\n' +
+                                '<td scope="col">'+days+'</td>\n' +
+                                '<td scope="col">'+work_hours+'</td>\n' +
+                                '<td scope="col">'+yards+'</td>\n' +
+                                '<td scope="col">'+target_days+'</td>\n' +
+                                '<td scope="col">'+target_work_hours+'</td>\n' +
+                                '<td scope="col">'+target_yards+'</td>\n' +
+                                '<td scope="col">'+table_util+'%</td>\n' +
+                                '</tr>');
+
+                            all_table_days = all_table_days + days;
+                            all_table_work_hours = all_table_work_hours + work_hours;
+                            all_table_yards = all_table_yards + yards;
+                            all_target_table_days = target_table * target_days;
+                            all_target_table_work_hours = target_table * target_work_hours;
+                            all_target_table_yards = target_table * target_yards;
+                            all_table_util = Math.round((all_table_yards/all_target_table_yards)*100);
+                        });
+
+                        //totalall
+                        cut_util_table_e5.append('<tr>\n' +
+                            '<th scope="col">Total</th>\n' +
+                            '<th scope="col">'+all_table_days+'</th>\n' +
+                            '<th scope="col">'+all_table_work_hours+'</th>\n' +
+                            '<th scope="col">'+all_table_yards+'</th>\n' +
+                            '<th scope="col">'+all_target_table_days+'</th>\n' +
+                            '<th scope="col">'+all_target_table_work_hours+'</th>\n' +
+                            '<th scope="col">'+all_target_table_yards+'</th>\n' +
+                            '<th scope="col">'+all_table_util+'%</th>\n' +
+                            '</tr>');
+
+                    }
+
+
+                });
+
+
 
 
             },

@@ -53,6 +53,8 @@
                                             <th scope="col">Days</th>
                                             <th scope="col">Work Hours</th>
                                             <th scope="col">Actual Yards</th>
+                                            <th scope="col">Target Days</th>
+                                            <th scope="col">Target Work Hours</th>
                                             <th scope="col">Target Yards</th>
                                             <th scope="col">Table Util</th>
                                         </tr>

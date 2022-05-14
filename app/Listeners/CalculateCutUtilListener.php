@@ -42,33 +42,38 @@ class CalculateCutUtilListener
                         for($i = $event->spread_start; $i <= $event->spread_end; $i->modify('+1 day')){
 
                             if($i->format("l") != 'Sunday'){
-                                $cut_spread_start = new \DateTime($cut->spread_start);
+                                if($this->getWorkHours($i,$buildings[$x]['id']) != 0){
 
-                                if($cut_spread_start->format('Y-m-d') === $i->format('Y-m-d')){
+                                    $cut_spread_start = new \DateTime($cut->spread_start);
 
-                                    if(isset($datas[$buildings[$x]['id']]['tables'][$cut->table_num][$i->format('Y-m-d')]['work_hour'])){
-                                        $datas[$buildings[$x]['id']]['tables'][$cut->table_num][$i->format('Y-m-d')]['work_hour'] = $cut->work_hours;
-                                        $datas[$buildings[$x]['id']]['tables'][$cut->table_num][$i->format('Y-m-d')]['actual_yard'] +=
-                                            $cut->marker_length*$cut->layer_count;
+                                    if($cut_spread_start->format('Y-m-d') === $i->format('Y-m-d')){
+
+                                        if(isset($datas[$buildings[$x]['id']]['tables'][$cut->table_num][$i->format('Y-m-d')]['work_hour'])){
+                                            $datas[$buildings[$x]['id']]['tables'][$cut->table_num][$i->format('Y-m-d')]['work_hour'] = $cut->work_hours;
+                                            $datas[$buildings[$x]['id']]['tables'][$cut->table_num][$i->format('Y-m-d')]['actual_yard'] +=
+                                                $cut->marker_length*$cut->layer_count;
+                                            $datas[$buildings[$x]['id']]['tables'][$cut->table_num][$i->format('Y-m-d')]['input'] = 1;
+                                        }else{
+                                            $datas[$buildings[$x]['id']]['tables'][$cut->table_num][$i->format('Y-m-d')]['work_hour'] = $cut->work_hours;
+                                            $datas[$buildings[$x]['id']]['tables'][$cut->table_num][$i->format('Y-m-d')]['actual_yard'] = $cut->marker_length*$cut->layer_count;
+                                            $datas[$buildings[$x]['id']]['tables'][$cut->table_num][$i->format('Y-m-d')]['input'] = 1;
+                                        }
+
+
+
                                     }else{
-                                        $datas[$buildings[$x]['id']]['tables'][$cut->table_num][$i->format('Y-m-d')]['work_hour'] = $cut->work_hours;
-                                        $datas[$buildings[$x]['id']]['tables'][$cut->table_num][$i->format('Y-m-d')]['actual_yard'] = $cut->marker_length*$cut->layer_count;
-                                    }
+
+                                        if(!isset($datas[$buildings[$x]['id']]['tables'][$cut->table_num][$i->format('Y-m-d')]['work_hour'])){
+                                            $datas[$buildings[$x]['id']]['tables'][$cut->table_num][$i->format('Y-m-d')]['work_hour'] = $this->getWorkHours($i,$buildings[$x]['id']);
+                                            $datas[$buildings[$x]['id']]['tables'][$cut->table_num][$i->format('Y-m-d')]['actual_yard'] = 0;
+                                            $datas[$buildings[$x]['id']]['tables'][$cut->table_num][$i->format('Y-m-d')]['input'] = 0;
+                                        }
 
 
-
-                                }else{
-
-                                    if(!isset($datas[$buildings[$x]['id']]['tables'][$cut->table_num][$i->format('Y-m-d')]['work_hour'])){
-                                        $datas[$buildings[$x]['id']]['tables'][$cut->table_num][$i->format('Y-m-d')]['work_hour'] = $this->getWorkHours($i,$buildings[$x]['id']);
-                                        $datas[$buildings[$x]['id']]['tables'][$cut->table_num][$i->format('Y-m-d')]['actual_yard'] = 0;
                                     }
 
 
                                 }
-
-
-
                             }
                             $daysBetween++;
                         }
