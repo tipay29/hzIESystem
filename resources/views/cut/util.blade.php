@@ -115,12 +115,14 @@
                             <table class="table ">
                                 <thead>
                                 <tr>
-                                    <th scope="col">Table#</th>
-                                    <th scope="col">Days</th>
-                                    <th scope="col">Work Hours</th>
-                                    <th scope="col">Actual Yards</th>
-                                    <th scope="col">Target Yards</th>
-                                    <th scope="col">Table Util</th>
+                                            <th scope="col">Table#</th>
+                                            <th scope="col">Days</th>
+                                            <th scope="col">Work Hours</th>
+                                            <th scope="col">Actual Yards</th>
+                                            <th scope="col">Target Days</th>
+                                            <th scope="col">Target Work Hours</th>
+                                            <th scope="col">Target Yards</th>
+                                            <th scope="col">Table Util</th>
                                 </tr>
                                 </thead>
                                 <tbody class="cut-util-table-d4">
@@ -179,12 +181,14 @@
                             <table class="table ">
                                 <thead>
                                 <tr>
-                                    <th scope="col">Table#</th>
-                                    <th scope="col">Days</th>
-                                    <th scope="col">Work Hours</th>
-                                    <th scope="col">Actual Yards</th>
-                                    <th scope="col">Target Yards</th>
-                                    <th scope="col">Table Util</th>
+                                            <th scope="col">Table#</th>
+                                            <th scope="col">Days</th>
+                                            <th scope="col">Work Hours</th>
+                                            <th scope="col">Actual Yards</th>
+                                            <th scope="col">Target Days</th>
+                                            <th scope="col">Target Work Hours</th>
+                                            <th scope="col">Target Yards</th>
+                                            <th scope="col">Table Util</th>
                                 </tr>
                                 </thead>
                                 <tbody class="cut-util-table-e5">

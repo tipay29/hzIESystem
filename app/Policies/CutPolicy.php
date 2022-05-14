@@ -27,7 +27,7 @@ class CutPolicy
     }
     public function viewTotalUtil(User $user)
     {
-        return in_array($user->employee->job->id,[1,6]);
+        return in_array($user->employee->job->id,[1]);
     }
 
 

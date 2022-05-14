@@ -32,7 +32,7 @@ class BuildingSeeder extends Seeder
             [
                 'building' => 'D4',
                 'cutting' => 1,
-                'cut_tables' => 13,
+                'cut_tables' => 14,
             ] ,
             [
                 'building' => 'E5',
