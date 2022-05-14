@@ -31,7 +31,8 @@ Route::group(['as' => 'api.'],function() {
     Route::resource('styles', 'StyleApiController');
 
 
-    Route::post('cuts/total-utilizations', 'CutApiController@totalutil')->name('cuts.totalutil');
+
     Route::post('cuts/utilizations', 'CutApiController@util')->name('cuts.util');
+    Route::post('cuts/total-utilizations', 'CutApiController@totalutil')->name('cuts.totalutil');
     Route::resource('cuts', 'CutApiController');
 });
