@@ -3,7 +3,7 @@
 return [
 
 
-
+    'CuttingReport' => 'របាយការតុកាត់',
     'Bag' => 'កាតាប',
     'Bags' => 'កាតាប',
     'Jacket' => 'អាវក្រៅ',
@@ -58,8 +58,7 @@ return [
     'Password' => 'លេខកូដសម្ងាត់',
     'Confirm' => 'បញ្ជាក់',
 
-
-    'Style' => 'Style',
+    'Style' => 'ស្ទាយ',
     'Styles' => 'ស្ទាយ',
     'PurchaseOrder' => 'លេខកម្មង់',
     'PurchaseOrders' => 'លេខកម្មង់',
@@ -86,8 +85,6 @@ return [
     'CutEnd(date/time)' => 'ថ្ងៃ/ម៉ោងកាត់ក្រណាត់រួច',
     'SizeRatio' => 'ចំនួនសេរី',
     'WorkTime' => 'ម៉ោងធ្វើការ',
-    'CuttingReport1' => 'របាយការតុកាត់ (1)',
-    'CuttingReport2' => 'របាយការតុកាត់ (2)',
     'ID' => 'អត្តលេខ',
     'AddEmployee' => 'បញ្ចូលឈ្មោះ',
     'Job' => 'មុខងារ',

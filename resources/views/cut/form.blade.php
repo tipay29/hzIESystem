@@ -69,35 +69,36 @@
         </div>
 
         <div class="form-group">
-            <label>{{__('text.FabricCode') }}
+            <label>{{__('text.FabricType') }}
 
-                <button id="cut_switch_add_fcode_one" type="button" class="btn btn-xsm"
+                <button id="cut_switch_add_ftype_one" type="button" class="btn btn-xsm"
                         style="background-color: white;color: #0a53be;" >
                     <i class="fa fa-sticky-note" aria-hidden="true"></i>
                 </button>
-                <button id="cut_switch_add_fcode_two" type="button" class="btn btn-xsm"
+                <button id="cut_switch_add_ftype_two" type="button" class="btn btn-xsm"
                         style="background-color: #0a53be;color: white;display: none;" >
                     <i class="fa fa-sticky-note" aria-hidden="true"></i>
                 </button>
 
-                @error('fabric_code') <small class="text-danger">{{$message}}</small>  @enderror
+                @error('fabric_type') <small class="text-danger">{{$message}}</small>  @enderror
             </label>
 
-            <select id="cut_switch_input_fcode_one" data-placeholder="Select Fabric Code"
-                    multiple class="chosen-select  form-control" name="fabric_code[]">
+            <select id="cut_switch_input_ftype_one" data-placeholder="Select Fabric Type"
+                    multiple class="chosen-select form-control" name="fabric_type[]">
 
             </select>
 
             <div class="input-group">
-                <input id="cut_switch_input_fcode_two" type="text" class="form-control"
-                       placeholder="Enter Fabric Code" style="display: none;">
+                <input id="cut_switch_input_ftype_two" type="text" class="form-control"
+                       placeholder="Enter Fabric Type" style="display: none;">
                 <div class="input-group-append">
-                    <button id="cut_btn_fcode_two" class="btn btn-outline-secondary" type="button"
+                    <button id="cut_btn_ftype_two" class="btn btn-outline-secondary" type="button"
                             style="display: none;">Enter</button>
                 </div>
             </div>
 
         </div>
+
 
         <div class="form-group">
             <label>{{__('text.FabricColor') }}
@@ -131,38 +132,39 @@
         </div>
 
         <div class="form-group">
-            <label>{{__('text.FabricType') }}
+            <label>{{__('text.ColorCode') }}
 
-                <button id="cut_switch_add_ftype_one" type="button" class="btn btn-xsm"
+                <button id="cut_switch_add_fcode_one" type="button" class="btn btn-xsm"
                         style="background-color: white;color: #0a53be;" >
                     <i class="fa fa-sticky-note" aria-hidden="true"></i>
                 </button>
-                <button id="cut_switch_add_ftype_two" type="button" class="btn btn-xsm"
+                <button id="cut_switch_add_fcode_two" type="button" class="btn btn-xsm"
                         style="background-color: #0a53be;color: white;display: none;" >
                     <i class="fa fa-sticky-note" aria-hidden="true"></i>
                 </button>
 
-                @error('fabric_type') <small class="text-danger">{{$message}}</small>  @enderror
+                @error('fabric_code') <small class="text-danger">{{$message}}</small>  @enderror
             </label>
 
-            <select id="cut_switch_input_ftype_one" data-placeholder="Select Fabric Type"
-                    multiple class="chosen-select form-control" name="fabric_type[]">
+            <select id="cut_switch_input_fcode_one" data-placeholder="Select Color Code"
+                    multiple class="chosen-select  form-control" name="fabric_code[]">
 
             </select>
 
             <div class="input-group">
-                <input id="cut_switch_input_ftype_two" type="text" class="form-control"
-                       placeholder="Enter Fabric Type" style="display: none;">
+                <input id="cut_switch_input_fcode_two" type="text" class="form-control"
+                       placeholder="Enter Color Code" style="display: none;">
                 <div class="input-group-append">
-                    <button id="cut_btn_ftype_two" class="btn btn-outline-secondary" type="button"
+                    <button id="cut_btn_fcode_two" class="btn btn-outline-secondary" type="button"
                             style="display: none;">Enter</button>
                 </div>
             </div>
 
         </div>
 
+
         <div class="form-group">
-            <label>{{__('text.Placement') }}
+            <label>{{__('text.FabricCode') }}
 
                 <button id="cut_switch_add_placement_one" type="button" class="btn btn-xsm"
                         style="background-color: white;color: #0a53be;" >
@@ -176,14 +178,14 @@
                 @error('placement') <small class="text-danger">{{$message}}</small>  @enderror
             </label>
 
-            <select id="cut_switch_input_placement_one" data-placeholder="Select Placement"
+            <select id="cut_switch_input_placement_one" data-placeholder="Select Fabric Code"
                     multiple class="chosen-select form-control" name="placement[]" >
 
             </select>
 
             <div class="input-group">
                 <input id="cut_switch_input_placement_two" type="text" class="form-control"
-                       placeholder="Enter Placement" style="display: none">
+                       placeholder="Enter Fabric Code" style="display: none">
                 <div class="input-group-append">
                     <button id="cut_btn_placement_two" class="btn btn-outline-secondary" type="button"
                             style="display: none">Enter</button>
@@ -218,7 +220,7 @@
 
 
         <div class="form-group">
-            <label for="marker_length">{{__('text.Marker') .' '. __('text.Length') }}
+            <label for="marker_length">{{__('text.MarkerLength') }}
                 @error('marker_length') <small class="text-danger">{{$message}}</small>  @enderror
             </label>
             <input id="marker_length" name='marker_length' type="number" class="form-control"
@@ -228,7 +230,7 @@
         </div>
 
         <div class="form-group">
-            <label for="layer_count">{{__('text.Layers')}}
+            <label for="layer_count">{{__('text.TotalLayers')}}
                 @error('layer_count') <small class="text-danger">{{$message}}</small>  @enderror
             </label>
             <input id="layer_count" name='layer_count' type="number" class="form-control"
@@ -237,7 +239,7 @@
         </div>
 
         <div class="form-group">
-            <label for="part_count">{{__('text.Parts')}}
+            <label for="part_count">{{__('text.TotalParts')}}
                 @error('part_count') <small class="text-danger">{{$message}}</small>  @enderror
             </label>
             <input id="part_count" name='part_count' type="number" class="form-control"
@@ -245,7 +247,7 @@
 
         </div>
         <div class="form-group">
-            <label for="size_ratio">{{__('text.Size') .' '. __('text.Ratio')}}
+            <label for="size_ratio">{{__('text.SizeRatio')}}
                 @error('size_ratio') <small class="text-danger">{{$message}}</small>  @enderror
             </label>
             <input id="size_ratio" name='size_ratio' type="number" class="form-control"
@@ -254,18 +256,9 @@
         </div>
 
         <div class="form-group">
-            <label for="cut_count">{{__('text.Cut') .' '. __('text.Count')}}
-                @error('cut_count') <small class="text-danger">{{$message}}</small>  @enderror
-            </label>
-            <input id="cut_count" name='cut_count' type="number" class="form-control"
-                   placeholder="Enter Cut Count" value="{{old('cut_count') ?? $cut->cut_count}}">
-
-        </div>
-
-        <div class="form-group">
 
 
-            <label for="work_hours">{{__('text.Work') .' '. __('text.Time')}}
+            <label for="work_hours">{{__('WorkTime')}}
                 @error('work_hours') <small class="text-danger">{{$message}}</small>  @enderror
             </label>
             <div class="mt-2">
@@ -297,7 +290,7 @@
     <div class="row-three d-flex align-items-start flex-column flex-wrap">
 
 
-        <h6 class="px-2 mt-2">{{__('text.Spread') .' '. __('text.Details')}}</h6>
+        <h6 class="px-2 mt-2">{{__('text.SpreaderDetail')}}</h6>
 
 
         <div class="form-group">
@@ -321,7 +314,7 @@
         </div>
 
         <div class="form-group">
-            <label for="spread_start">{{__('text.Spread') .' '. __('text.Start')}}
+            <label for="spread_start">{{__('text.SpreadStart(date/time)')}}
                 @error('spread_start') <small class="text-danger">{{$message}}</small>  @enderror
             </label>
             <input id="spread_start" name='spread_start' type="datetime-local"
@@ -330,7 +323,7 @@
         </div>
 
         <div class="form-group">
-            <label for="spread_end">{{__('text.Spread') .' '. __('text.End')}}
+            <label for="spread_end">{{__('text.SpreadEnd(date/time)')}}
                 @error('spread_end') <small class="text-danger">{{$message}}</small>  @enderror
             </label>
             <input id="spread_end" name='spread_end' type="datetime-local"
@@ -338,7 +331,7 @@
 
         </div>
 
-        <h6 class="px-2 mt-2" >{{__('text.Cut') .' '. __('text.Details')}}</h6>
+        <h6 class="px-2 mt-2" >{{__('text.CutterDetail')}}</h6>
 
         <div class="form-group">
             <label>{{__('text.Cutter')}}
@@ -361,7 +354,7 @@
         </div>
 
         <div class="form-group">
-            <label for="cut_start">{{__('text.Cut').' '. __('text.Start')}}
+            <label for="cut_start">{{__('text.CutStart(date/time)')}}
                 @error('cut_start') <small class="text-danger">{{$message}}</small>  @enderror
             </label>
             <input id="cut_start" name='cut_start' type="datetime-local"
@@ -370,7 +363,7 @@
         </div>
 
         <div class="form-group">
-            <label for="cut_end">{{__('text.Cut').' '. __('text.End')}}
+            <label for="cut_end">{{__('text.CutEnd(date/time)')}}
                 @error('cut_end') <small class="text-danger">{{$message}}</small>  @enderror
             </label>
             <input id="cut_end" name='cut_end' type="datetime-local"

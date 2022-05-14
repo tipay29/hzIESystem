@@ -19,12 +19,12 @@
                             @can('viewUtil', App\Models\Cut::class)
                             <a href="{{route('cuts.util')}}"
                                class="btn btn-outline-success">
-                                {{__('CuttingReport1')}} </a>
+                                {{__('text.CuttingReport'). '1'}} </a>
                             @endcan
                             @can('viewTotalUtil',App\Models\Cut::class)
                                     <a href="{{route('cuts.total-util')}}"
                                        class="btn btn-outline-success">
-                                        {{__('CuttingReport2')}} </a>
+                                        {{__('text.CuttingReport'). '2'}} </a>
                             @endcan
 
                         </div>
@@ -44,13 +44,12 @@
                                 <thead>
                                     <tr>
                                         <th width="5%" scope="col">{{__('text.Cut').' '.__('text.ID')}}</th>
-                                        <th width="5%" scope="col">{{__('text.Cut')}}#</th>
                                         <th width="10%" scope="col">{{__('text.Style')}}</th>
                                         <th width="15%" scope="col">{{__('text.PurchaseOrder')}}</th>
                                         <th width="5%" scope="col">{{__('text.Building')}}</th>
                                         <th width="5%" scope="col">{{__('text.Table')}}#</th>
-                                        <th width="18%" scope="col">{{__('SpreadStart(date/time)')}}</th>
-                                        <th width="18%" scope="col">{{__('CutStart(date/time)')}}</th>
+                                        <th width="18%" scope="col">{{__('text.SpreadStart(date/time)')}}</th>
+                                        <th width="18%" scope="col">{{__('text.CutStart(date/time)')}}</th>
                                         <th width="15%" scope="col">{{__('text.User')}}</th>
                                         @can('create', App\Models\Cut::class)
                                         <th width="4%" scope="col">{{__('text.Option')}}</th>
@@ -70,9 +69,6 @@
                                             @cannot('view',$cut)
                                                     {{$cut->id}}
                                             @endcannot
-                                        </td>
-                                        <td  scope="row">
-                                            {{$cut->cut_count}}
                                         </td>
                                         <td  scope="row">
                                             @foreach($cut->styles as $style)

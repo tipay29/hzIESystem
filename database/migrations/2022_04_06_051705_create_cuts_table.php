@@ -18,7 +18,6 @@ return new class extends Migration
             $table->unsignedInteger('building_id');
             $table->integer('table_num');
             $table->integer('work_hours');
-            $table->integer('cut_count');
             $table->double('marker_length');
             $table->integer('layer_count');
             $table->integer('part_count');

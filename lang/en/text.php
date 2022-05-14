@@ -3,7 +3,7 @@
 return [
 
 
-
+    'CuttingReport' => 'Cutting Report',
     'Bag' => 'Bag',
     'Bags' => 'Bags',
     'Jacket' => 'Jacket',
@@ -70,7 +70,6 @@ return [
     'FabricCode' => 'Fabric Code',
     'FabricCodes' => 'Fabric Codes',
     'AddCuttingReport' => 'Add Cutting Report',
-    'ColorName' => 'Color Name',
     'FabricType' => 'Fabric Type',
     'TableNumber' => 'Table Number',
     'MarkerLength' => 'Marker Length',
@@ -86,8 +85,6 @@ return [
     'CutEnd(date/time)' => 'Cut End(date/time)',
     'SizeRatio' => 'Size Ratio',
     'WorkTime' => 'Work Time',
-    'CuttingReport1' => 'Cutting Report 1',
-    'CuttingReport2' => 'Cutting Report 2',
     'ID' => 'ID',
     'AddEmployee' => 'Add Employee',
     'Job' => 'Job',
