@@ -35,4 +35,9 @@ Route::group(['as' => 'api.'],function() {
     Route::post('cuts/utilizations', 'CutApiController@util')->name('cuts.util');
     Route::post('cuts/total-utilizations', 'CutApiController@totalutil')->name('cuts.totalutil');
     Route::resource('cuts', 'CutApiController');
+
+    Route::group(['namespace' => 'SheetDB'],function(){
+        Route::post('cut-sheetdbs', 'CutSheetDBApiController@store')->name('cut-sheetdbs.store');
+    });
+
 });

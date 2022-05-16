@@ -819,7 +819,7 @@ if(l.pathname === '/cuts/total-utilization'){
     cut_total_util_table = $('.cut-total-util-table');
     cut_total_util_start = $('#cut-total-util-start-date');
     cut_total_util_end = $('#cut-total-util-end-date');
-
+    cut_push_sheetdb = $('#cut-push-sheetdb');
     cut_total_util_start.change(function(){
         cut_total_util_end.val('');
         getTotalCutUtilDate(cut_total_util_start, cut_total_util_end);
@@ -829,6 +829,43 @@ if(l.pathname === '/cuts/total-utilization'){
 
         getTotalCutUtilDate(cut_total_util_start, cut_total_util_end);
     });
+
+    cut_push_sheetdb.click(function(e){
+        e.preventDefault();
+
+        if (confirm('Do you want to push to CutEff Sheet? Before push make sure check date if exist, Thank you!')) {
+            pushCutEffSheet(cut_total_util_start, cut_total_util_end);
+
+        }
+
+    });
+
+}
+
+function pushCutEffSheet(start,end){
+
+
+    if(end.val() && start.val()) {
+
+        let cut_dates = {
+            spread_start: start.val() + ' 00:00:01',
+            spread_end: end.val() + ' 23:59:59',
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: '/api/cut-sheetdbs',
+            data: cut_dates,
+            success: function (cuts) {
+                console.log(cuts);
+                alert('Successfully Push to CutEff Sheet!!!');
+
+            },
+            error: function(x,h,r){
+                console.log(x);
+            },
+        });
+    }
 
 }
 
@@ -1125,7 +1162,7 @@ function getTotalCutUtilDate(start,end){
                            let table_target = building['target_table'];
                            let table_util = 0;
                            $.each(date,function(i_t,table){//table
-                               yard_total = yard_total + table.actual_yard;
+
                                 yard_total = yard_total + table.actual_yard;
                                 work_hour = work_hour + table.work_hour;
                                 work_hour_divider = work_hour_divider + 1;

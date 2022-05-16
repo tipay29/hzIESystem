@@ -32,6 +32,10 @@ Route::group(['namespace' => 'Web'],function(){
     Route::get('fabric-codes','FabricCodeController@index')->name('fabric-codes.index');
     Route::get('fabric-types','FabricTypeController@index')->name('fabric-types.index');
     Route::get('placements','PlacementController@index')->name('placements.index');
+
+
+
+
 });
 
 

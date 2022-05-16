@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "94c8d29a8b898014ffd03b688276d8b2",
+    "content-hash": "5e046b1a9b168cb1b37ff65d0bece251",
     "packages": [
         {
             "name": "brick/math",
@@ -2786,6 +2786,46 @@
                 }
             ],
             "time": "2022-03-27T21:42:02+00:00"
+        },
+        {
+            "name": "sheetdb/sheetdb-php",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sheetdb/sheetdb-php.git",
+                "reference": "1cc8d76e6377adcce71f8c58f3de1f2e3a146e8d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sheetdb/sheetdb-php/zipball/1cc8d76e6377adcce71f8c58f3de1f2e3a146e8d",
+                "reference": "1cc8d76e6377adcce71f8c58f3de1f2e3a146e8d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SheetDB\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "SheetDB",
+                    "email": "support@sheetdb.io"
+                }
+            ],
+            "description": "PHP Library for accessing google spreadsheet content via SheetDB. https://sheetdb.io",
+            "support": {
+                "issues": "https://github.com/sheetdb/sheetdb-php/issues",
+                "source": "https://github.com/sheetdb/sheetdb-php/tree/1.0.3"
+            },
+            "time": "2020-04-11T14:38:40+00:00"
         },
         {
             "name": "symfony/console",
@@ -7802,5 +7842,5 @@
         "php": "^8.0.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.2.0"
 }

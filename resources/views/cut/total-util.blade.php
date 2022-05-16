@@ -16,7 +16,7 @@
 
                         <div>
 
-                            <a href="#"
+                            <a id="cut-push-sheetdb" href="#"
                                class="btn btn-outline-success">
                                 Push     </a>
 
