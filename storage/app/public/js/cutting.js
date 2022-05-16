@@ -858,8 +858,14 @@ function pushCutEffSheet(start,end){
             data: cut_dates,
             success: function (cuts) {
                 console.log(cuts);
-                alert('Successfully Push to CutEff Sheet!!!');
-
+                if (confirm('Successfully push to CutEff Sheet, Do you want to go Cutting Output Report Chart???')) {
+                // window.location.href =
+                //     'https://datastudio.google.com/reporting/a31d85ae-43b5-49a2-a8fe-e3b54eb4c4ea/page/0MSeC';
+                    window.open(
+                        'https://datastudio.google.com/reporting/a31d85ae-43b5-49a2-a8fe-e3b54eb4c4ea/page/0MSeC',
+                        '_blank' // <- This is what makes it open in a new window.
+                    );
+                }
             },
             error: function(x,h,r){
                 console.log(x);
