@@ -109,7 +109,7 @@
                                 @foreach($cut->employees as $employee)
                                     @if($employee->job->job === 'Spreader')
                                     <p>
-                                        {{$employee->name}} ,
+                                        {{$employee->id . ' ' . $employee->name }} ,
                                     </p>
                                     @endif
                                 @endforeach
@@ -122,7 +122,7 @@
                                 @foreach($cut->employees as $employee)
                                     @if($employee->job->job === 'Cutter')
                                         <p>
-                                            {{$employee->name}} ,
+                                          {{$employee->id . ' ' . $employee->name }} ,
                                         </p>
                                     @endif
                                 @endforeach
