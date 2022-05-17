@@ -1225,7 +1225,7 @@ function getTotalCutUtilDate(start,end){
                             let table_target = building['target_table'];
                             let table_util = 0;
                             $.each(date,function(i_t,table){//table
-                                yard_total = yard_total + table.actual_yard;
+
                                 yard_total = yard_total + table.actual_yard;
                                 work_hour = work_hour + table.work_hour;
                                 work_hour_divider = work_hour_divider + 1;
@@ -1281,7 +1281,7 @@ function getTotalCutUtilDate(start,end){
                             let table_target = building['target_table'];
                             let table_util = 0;
                             $.each(date,function(i_t,table){//table
-                                yard_total = yard_total + table.actual_yard;
+
                                 yard_total = yard_total + table.actual_yard;
                                 work_hour = work_hour + table.work_hour;
                                 work_hour_divider = work_hour_divider + 1;
