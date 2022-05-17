@@ -170,7 +170,7 @@
     cursor: pointer;
 }
 .chosen-container .chosen-results li.disabled-result {
-    display: list-item;
+    display: none;
     color: #ccc;
     cursor: default;
 }
