@@ -27,6 +27,7 @@
                                         {{__('text.CuttingReport'). '2'}} </a>
                             @endcan
 
+
                         </div>
 
                     </div>

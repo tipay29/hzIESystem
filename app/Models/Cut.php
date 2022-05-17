@@ -11,6 +11,7 @@ class Cut extends Model
     protected $table='cuts';
     protected $guarded = [];
 
+
     public function building(){
         return $this->belongsTo(Building::class);
     }

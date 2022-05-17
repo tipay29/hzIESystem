@@ -12,6 +12,8 @@ $('document').ready(function() {
     $.getScript(originUrl + '/storage/js/style/placement.js');
     $.getScript(originUrl + '/storage/js/event/production-event.js');
 
+
+
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
         $('.dropdown-toggle').dropdown()

@@ -57,10 +57,10 @@
                             </div>
                             <div>
                                 <strong>
-                                    Layer Count
+                                    {{__('text.TotalLayers')}}
                                 </strong>
                                 <p>
-                                    {{__('text.TotalLayers')}}
+                                    {{$cut->layer_count}}
                                 </p>
                             </div>
                             <div>

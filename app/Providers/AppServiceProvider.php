@@ -15,7 +15,7 @@ use App\Http\View\Composers\StylePOComposer;
 use App\Http\View\Composers\StyleComposer;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-
+use Illuminate\Pagination\Paginator;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -35,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
+        Paginator::useBootstrap();
         View::composer('auth.register',EmployeeRegisterComposer::class);
         View::composer(['cut.create','cut.edit'],EmployeeComposer::class);
         View::composer('employee.form',JobComposer::class);
