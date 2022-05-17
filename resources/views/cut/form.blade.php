@@ -19,7 +19,7 @@
             </label>
 
             <select id="cut_switch_input_style_one"
-                    class="form-control" name="style" >
+                    class="chosen-select form-control" name="style" >
 
 
             </select>
