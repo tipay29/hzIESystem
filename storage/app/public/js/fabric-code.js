@@ -2,7 +2,7 @@
 
 let l = window.location;
 
-if(l.pathname === '/fabric-codes') {
+if(l.pathname === '/color-codes') {
 
     //save fabric code
 
@@ -22,7 +22,7 @@ if(l.pathname === '/fabric-codes') {
                 url: '/api/fabric-codes',
                 data: code,
                 success: function (fabric_code) {
-                    alert('Fabric Code Saved');
+                    alert('Color Code Saved');
                     location.reload();
                 },
                 error: function(XHR, textStatus, errorThrown)
@@ -39,17 +39,17 @@ if(l.pathname === '/fabric-codes') {
 
             let fabric_code_id = this.value;
 
-            if (confirm('Delete Fabric Color ' + fabric_code_id + ' ???')) {
+            if (confirm('Delete Color Color ' + fabric_code_id + ' ???')) {
 
                 $.ajax({
                     type: 'DELETE',
                     url: '/api/fabric-codes/' + fabric_code_id,
                     success: function () {
-                        alert('Fabric Code Deleted');
+                        alert('Color Code Deleted');
                         location.reload();
                     },
                     error: function () {
-                        alert('error deleting fabric code')
+                        alert('error deleting color code')
                     }
 
                 });
@@ -84,7 +84,7 @@ if(l.pathname === '/fabric-codes') {
                     $('#fabric_code_edit').val(fabric_code.fabric_code);
                 },
                 error: function () {
-                    alert('error loading Fabric Code info');
+                    alert('error loading Color Code info');
                 }
             });
 
@@ -101,7 +101,7 @@ if(l.pathname === '/fabric-codes') {
                     url: '/api/fabric-codes/' + fabric_code_id,
                     data: fabric_code,
                     success: function (fabric_code) {
-                        alert('Fabric Code Updated');
+                        alert('Color Code Updated');
                         location.reload();
                     },
                     error: function(XHR, textStatus, errorThrown)

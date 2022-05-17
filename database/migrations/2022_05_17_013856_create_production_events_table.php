@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('special_days', function (Blueprint $table) {
+        Schema::create('production_events', function (Blueprint $table) {
             $table->id();
             $table->date('special_date');
             $table->string('event')->nullable();
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('special_days');
+        Schema::dropIfExists('production_events');
     }
 };

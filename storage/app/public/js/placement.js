@@ -2,7 +2,7 @@
 
 let l = window.location;
 
-if(l.pathname === '/placements') {
+if(l.pathname === '/fabric-codes') {
 
     //save fabric code
 
@@ -22,7 +22,7 @@ if(l.pathname === '/placements') {
             url: '/api/placements',
             data: place,
             success: function (placement) {
-                alert('Placement Saved');
+                alert('Fabric Code Saved');
                 location.reload();
             },
             error: function(XHR, textStatus, errorThrown)
@@ -39,17 +39,17 @@ if(l.pathname === '/placements') {
 
         let placement_id = this.value;
 
-        if (confirm('Delete Placement ' + placement_id + ' ???')) {
+        if (confirm('Delete Fabric Code ' + placement_id + ' ???')) {
 
             $.ajax({
                 type: 'DELETE',
                 url: '/api/placements/' + placement_id,
                 success: function () {
-                    alert('Placement Deleted');
+                    alert('Fabric Code Deleted');
                     location.reload();
                 },
                 error: function () {
-                    alert('error deleting placement')
+                    alert('error deleting fabric code')
                 }
 
             });
@@ -84,7 +84,7 @@ if(l.pathname === '/placements') {
                 $('#placement_edit').val(placement.placement);
             },
             error: function () {
-                alert('error loading Placement info');
+                alert('error loading Fabric Code info');
             }
         });
 
@@ -101,7 +101,7 @@ if(l.pathname === '/placements') {
                 url: '/api/placements/' + placement_id,
                 data: placement,
                 success: function (placement) {
-                    alert('Placement Updated');
+                    alert('Fabric Code Updated');
                     location.reload();
                 },
                 error: function(XHR, textStatus, errorThrown)

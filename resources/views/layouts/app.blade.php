@@ -54,7 +54,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
+                        <li class="nav-item mx-1">
 
                             <div class="btn-group dropdown">
                                 <a class="nav-link btn btn-light" href="{{route('styles.index')}}"> {{ __('text.Styles') }} </a>
@@ -67,23 +67,34 @@
                                             {{ __('text.PurchaseOrders') }}
                                         </a></li>
                                     <li><a class="dropdown-item" href="{{route('fabric-colors.index')}}">{{ __('text.FabricColors') }}</a></li>
-                                    <li><a class="dropdown-item" href="{{route('fabric-codes.index')}}">{{ __('text.ColorCodes') }}</a></li>
-                                    <li><a class="dropdown-item" href="{{route('placements.index')}}">{{ __('text.FabricCodes') }}</a></li>
+                                    <li><a class="dropdown-item" href="{{route('color-codes.index')}}">{{ __('text.ColorCodes') }}</a></li>
+                                    <li><a class="dropdown-item" href="{{route('fabric-codes.index')}}">{{ __('text.FabricCodes') }}</a></li>
                                     <li><a class="dropdown-item" href="{{route('fabric-types.index')}}">{{ __('text.FabricTypes') }}</a></li>
 
                                 </ul>
                             </div>
 
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">{{ __('text.Bags') }}</a>
+                        <li class="nav-item mx-1">
+                            <div class="dropdown" style="padding: 0;">
+                                <button class="nav-link btn btn-light dropdown-toggle " type="button"
+                                      data-bs-toggle="dropdown">
+                                    Products
+                                </button>
+                                <ul class="dropdown-menu" >
+                                    <li >
+                                        <a class="dropdown-item" href="#">{{ __('text.Bags') }}</a>
+                                    </li>
+                                    <li >
+                                        <a class="dropdown-item" href="#">{{ __('text.Jackets') }}</a>
+                                    </li>
+                                    <li >
+                                        <a class="dropdown-item" href="#">{{ __('text.Pants') }}</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">{{ __('text.Jackets') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">{{ __('text.Pants') }}</a>
-                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="#">{{ __('text.Sewing') }}</a>
                         </li>
@@ -93,6 +104,22 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('employees.index')}}">{{ __('text.Employees') }}</a>
                         </li>
+                        <li class="nav-item mx-1">
+
+                            <div class="btn-group dropdown">
+                                <a class="nav-link btn btn-light" href="#"> Events </a>
+                                <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
+                                        data-bs-toggle="dropdown">
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">
+                                            Production
+                                        </a></li>
+                                </ul>
+                            </div>
+
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -101,7 +128,7 @@
 
                         <li class="nav-item">
                             <div class="dropdown">
-                                <button type="button" class="btn btn-secondary"
+                                <button type="button" class="btn btn-light"
                                         data-bs-toggle="dropdown">
                                     Lang
                                 </button>

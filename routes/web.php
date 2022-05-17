@@ -29,9 +29,9 @@ Route::group(['namespace' => 'Web'],function(){
 
     Route::get('purchase-orders','PurchaseOrderController@index')->name('purchase-orders.index');
     Route::get('fabric-colors','FabricColorController@index')->name('fabric-colors.index');
-    Route::get('fabric-codes','FabricCodeController@index')->name('fabric-codes.index');
+    Route::get('color-codes','FabricCodeController@index')->name('color-codes.index');
     Route::get('fabric-types','FabricTypeController@index')->name('fabric-types.index');
-    Route::get('placements','PlacementController@index')->name('placements.index');
+    Route::get('fabric-codes','PlacementController@index')->name('fabric-codes.index');
 
 
 

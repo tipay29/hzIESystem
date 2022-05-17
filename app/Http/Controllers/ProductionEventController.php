@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SpecialDay;
+use App\Models\ProductionEvent;
 use Illuminate\Http\Request;
 
-class SpecialDayController extends Controller
+class ProductionEventController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class SpecialDayController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\SpecialDay  $specialDay
+     * @param  \App\Models\ProductionEvent  $productionEvent
      * @return \Illuminate\Http\Response
      */
-    public function show(SpecialDay $specialDay)
+    public function show(ProductionEvent $productionEvent)
     {
         //
     }
@@ -52,10 +52,10 @@ class SpecialDayController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\SpecialDay  $specialDay
+     * @param  \App\Models\ProductionEvent  $productionEvent
      * @return \Illuminate\Http\Response
      */
-    public function edit(SpecialDay $specialDay)
+    public function edit(ProductionEvent $productionEvent)
     {
         //
     }
@@ -64,10 +64,10 @@ class SpecialDayController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\SpecialDay  $specialDay
+     * @param  \App\Models\ProductionEvent  $productionEvent
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SpecialDay $specialDay)
+    public function update(Request $request, ProductionEvent $productionEvent)
     {
         //
     }
@@ -75,10 +75,10 @@ class SpecialDayController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\SpecialDay  $specialDay
+     * @param  \App\Models\ProductionEvent  $productionEvent
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SpecialDay $specialDay)
+    public function destroy(ProductionEvent $productionEvent)
     {
         //
     }
