@@ -21,7 +21,7 @@ class CutController extends Controller
 
     public function index()
     {
-        $cuts = Cut::with([
+        $cuts = Cut::orderBy('id', 'DESC')->with([
             'styles','purchase_orders','fabric_codes',
             'fabric_colors','fabric_types','placements',
             'employees',
