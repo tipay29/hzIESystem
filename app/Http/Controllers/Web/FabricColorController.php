@@ -9,11 +9,7 @@ use Illuminate\Http\Request;
 class FabricColorController extends Controller
 {
 
-    public function __construct()
-    {
-       
 
-    }
 
     public function index()
     {

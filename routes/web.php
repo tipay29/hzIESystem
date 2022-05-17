@@ -33,8 +33,7 @@ Route::group(['namespace' => 'Web'],function(){
     Route::get('fabric-types','FabricTypeController@index')->name('fabric-types.index');
     Route::get('fabric-codes','PlacementController@index')->name('fabric-codes.index');
 
-
-
+    Route::get('production-events','ProductionEventController@index')->name('production-events.index');
 
 });
 

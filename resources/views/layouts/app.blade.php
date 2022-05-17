@@ -113,7 +113,7 @@
                                     <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">
+                                    <li><a class="dropdown-item" href="{{route('production-events.index')}}">
                                             Production
                                         </a></li>
                                 </ul>

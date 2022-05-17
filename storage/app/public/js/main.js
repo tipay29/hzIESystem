@@ -4,12 +4,13 @@ $('document').ready(function() {
 
     $.getScript(originUrl + '/storage/js/cutting.js');
     $.getScript(originUrl + '/storage/js/employee.js');
-    $.getScript(originUrl + '/storage/js/style.js');
-    $.getScript(originUrl + '/storage/js/purchase-order.js');
-    $.getScript(originUrl + '/storage/js/fabric-color.js');
-    $.getScript(originUrl + '/storage/js/fabric-code.js');
-    $.getScript(originUrl + '/storage/js/fabric-type.js');
-    $.getScript(originUrl + '/storage/js/placement.js');
+    $.getScript(originUrl + '/storage/js/style/style.js');
+    $.getScript(originUrl + '/storage/js/style/purchase-order.js');
+    $.getScript(originUrl + '/storage/js/style/fabric-color.js');
+    $.getScript(originUrl + '/storage/js/style/fabric-code.js');
+    $.getScript(originUrl + '/storage/js/style/fabric-type.js');
+    $.getScript(originUrl + '/storage/js/style/placement.js');
+    $.getScript(originUrl + '/storage/js/event/production-event.js');
 
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
