@@ -11,6 +11,8 @@ class ProductionEventController extends Controller
 
     public function index()
     {
+        $this->authorize('viewAny',ProductionEvent::class);
+
         $production_events = ProductionEvent::paginate(10);
         if (request()->ajax()) {
             return view('production-event.index',compact('production_events'));
