@@ -104,6 +104,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('employees.index')}}">{{ __('text.Employees') }}</a>
                         </li>
+                        @can('viewAny',App\Models\ProductionEvent::class)
                         <li class="nav-item mx-1">
 
                             <div class="btn-group dropdown">
@@ -120,6 +121,7 @@
                             </div>
 
                         </li>
+                        @endcan
                     </ul>
 
                     <!-- Right Side Of Navbar -->
