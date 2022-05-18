@@ -3,6 +3,7 @@ let l = window.location;
 let lsplit = l.pathname.split('/');
 
     let cut_switch_input_style_one = $("#cut_switch_input_style_one");
+    let cut_switch_input_style_one_chosen = $("#cut_switch_input_style_one_chosen");
     let cut_switch_input_po_one_sel = $("#cut_switch_input_po_one");
     let cut_switch_input_po_one = $("#cut_switch_input_po_one_chosen");
     let cut_switch_input_fcode_one_sel = $("#cut_switch_input_fcode_one");
@@ -109,14 +110,15 @@ if(lsplit.includes('cuts')){
 }
 
 cut_switch_add_style_one.click(function(){
-    cut_switch_input_style_one.toggle();
+
+    cut_switch_input_style_one_chosen.toggle();
     cut_switch_add_style_one.toggle();
     cut_switch_add_style_two.toggle();
     cut_switch_input_style_two.toggle();
     cut_btn_style_two.toggle();
 });
 cut_switch_add_style_two.click(function(){
-    cut_switch_input_style_one.toggle();
+    cut_switch_input_style_one_chosen.toggle();
     cut_switch_add_style_one.toggle();
     cut_switch_add_style_two.toggle();
     cut_switch_input_style_two.toggle();
