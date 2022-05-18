@@ -32,7 +32,7 @@
                                 @csrf
 
                                   <div class="d-flex justify-content-center">
-                                    <button type="submit" class="btn btn-primary mt-5">{{__('text.Save') .' ' . __('text.Cut') }}</button>
+                                    <button id="cut-btn-add" type="submit" class="btn btn-primary mt-5">{{__('text.Save') .' ' . __('text.Cut') }}</button>
 
                                   </div>
 

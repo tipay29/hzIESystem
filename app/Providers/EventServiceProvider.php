@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Events\GetCutEffEvent;
 use App\Events\GetTotalCutUtilEvent;
+use App\Events\InsertCutTableEvent;
 use App\Events\PushCutEffSheetEvent;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -29,6 +30,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         PushCutEffSheetEvent::class => [
             \App\Listeners\PushCutEffSheetListener::class,
+        ],
+        InsertCutTableEvent::class => [
+          \App\Listeners\InsertCutTableListener::class,
         ],
     ];
 

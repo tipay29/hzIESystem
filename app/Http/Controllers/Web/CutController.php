@@ -51,7 +51,7 @@ class CutController extends Controller
         $this->authorize('create',Cut::class);
 
         $this->requestValidate();
-//        dd(request()->spread_start);
+
 
         $cut = Cut::create([
             'building_id' => request()->building_id,

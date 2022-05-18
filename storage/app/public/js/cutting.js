@@ -42,6 +42,13 @@ let lsplit = l.pathname.split('/');
 if(lsplit.includes('cuts')){
 
     if(l.pathname === '/cuts/create') {
+
+        let cut_btn_add =$('#cut-btn-add');
+        cut_btn_add.show();
+        cut_btn_add.click(function(){
+            $('#cut-btn-add').toggle();
+        });
+
         if(cut_switch_input_style_one.val() !== null){
             //update cut
         }

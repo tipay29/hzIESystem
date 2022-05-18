@@ -104,7 +104,7 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <button style="border: none;background-color: white;color:darkred;"
-                                                            onclick="return confirm('Delete CutID {{$style->id}}  ?')" >
+                                                            onclick="return confirm('Delete CutID {{$cut->id}}  ?')" >
                                                         <i class="fa fa-trash" aria-hidden="true"></i></button>
                                                 </form>
 
