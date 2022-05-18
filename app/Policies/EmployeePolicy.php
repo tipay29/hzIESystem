@@ -19,7 +19,7 @@ class EmployeePolicy
     public function viewAny(User $user)
     {
 
-        return in_array($user->employee->job->id,[1]);
+        return in_array($user->employee->job->id,[1,6]);
     }
 
     /**
@@ -31,7 +31,7 @@ class EmployeePolicy
      */
     public function view(User $user, Employee $employee)
     {
-        return in_array($user->employee->job->id,[1]);
+        return in_array($user->employee->job->id,[1,6]);
     }
 
     /**
