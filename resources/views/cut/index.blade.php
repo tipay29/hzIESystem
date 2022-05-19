@@ -92,10 +92,12 @@
                                            value="{{request('fi_date_two')}}" name="fi_date_two">
                                 </div>
                                 <div class="col-md-2">
-                                    <button id="fi_btn_clear" style="height: 100%;" class="btn form-control btn-primary">Clear</button>
+                                    <button id="fi_btn_clear" style="height: 100%;" class="btn form-control btn-primary">
+                                        {{__('text.Clear')}}</button>
                                 </div>
                                 <div class="col-md-2">
-                                    <button id="fi_btn_apply" style="height: 100%;" class="btn form-control btn-primary">Apply</button>
+                                    <button id="fi_btn_apply" style="height: 100%;" class="btn form-control btn-primary">
+                                        {{__('text.Search')}}</button>
                                 </div>
                             </div>
 

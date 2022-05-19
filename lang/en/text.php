@@ -93,4 +93,6 @@ return [
     'Delete' => 'Delete',
     'Update' => 'Update',
     'Save' => 'Save',
+    'Search' => 'Search',
+    'Clear' => 'Clear',
 ];
