@@ -77,39 +77,30 @@ if(lsplit.includes('cuts')){
     }
 
     if(l.pathname === '/cuts'){
-        $('window').change(function () {
-            if (window.location.hash) {
-                var page = window.location.hash.replace('#', '');
-                if (page == Number.NaN || page <= 0) {
-                    return false;
-                } else {
-                    getData(page);
-                }
+
+        fi_date_one = $('#fi_date_one');
+        fi_date_two = $('#fi_date_two');
+        fi_btn_clear = $('#fi_btn_clear');
+
+        fi_date_one.change(function(){
+            fi_date_two.val('');
+
+        });
+
+        fi_date_two.change(function(){
+
+            if(fi_date_two.val() < fi_date_one.val()){
+                fi_date_two.val('');
+                fi_date_one.val('');
             }
+
         });
 
-        $('.pagination a').onclick(function (event) {
-            event.preventDefault();
-            $('li').removeClass('active');
-            $(this).parent('li').addClass('active');
-            var url = $(this).attr('href');
-            var page = $(this).attr('href').split('page=')[1];
-            getData(page);
+        fi_btn_clear.click(function(e){
+            e.preventDefault();
+            window.location.href = '/cuts';
         });
 
-        function getData(page) {
-            // body...
-            $.ajax({
-                url: '?page=' + page,
-                type: 'get',
-                datatype: 'html',
-            }).done(function (data) {
-                $('#cut-container').empty().html(data);
-                location.hash = page;
-            }).fail(function (jqXHR, ajaxOptions, thrownError) {
-                alert('No response from server');
-            });
-        }
     }
 
 

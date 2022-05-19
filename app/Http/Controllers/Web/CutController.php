@@ -8,6 +8,8 @@ use App\Models\Cut;
 use App\Models\Style;
 use Illuminate\Http\Request;
 use DateTime;
+use Illuminate\Pipeline\Pipeline;
+
 class CutController extends Controller
 {
 
@@ -21,15 +23,30 @@ class CutController extends Controller
 
     public function index()
     {
-        $cuts = Cut::orderBy('id', 'DESC')->with([
+
+        $cuts = app(Pipeline::class)
+        ->send(
+            Cut::query()
+        )
+        ->through([
+            \App\QueryFilters\Cut\Style::class,
+            \App\QueryFilters\Cut\PurchaseOrder::class,
+            \App\QueryFilters\Cut\FabricColor::class,
+            \App\QueryFilters\Cut\ColorCode::class,
+            \App\QueryFilters\Cut\FabricType::class,
+            \App\QueryFilters\Cut\FabricCode::class,
+            \App\QueryFilters\Cut\Building::class,
+            \App\QueryFilters\Cut\Table::class,
+            \App\QueryFilters\Cut\Date::class,
+        ])
+        ->thenReturn()
+        ->orderBy('id', 'DESC')
+        ->with([
             'styles','purchase_orders','fabric_codes',
             'fabric_colors','fabric_types','placements',
             'employees',
-        ])->paginate(20);
-
-        if (request()->ajax()) {
-            return view('cut.index',compact('cuts'));
-        }
+        ])
+        ->paginate(10);
 
         return view('cut.index',compact('cuts'));
     }

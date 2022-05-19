@@ -34,8 +34,74 @@
 
                     <div class="card-body cut-container">
 
+                        <form action="{{route('cuts.index')}}" method="get">
+                        <div class="container-fluid p-0">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <small for="fi_style">{{__('text.Style')}}</small>
+                                    <input id="fi_style" type="text" class="form-control"
+                                           value="{{request('fi_style')}}" name="fi_style">
+                                </div>
+                                <div class="col-md-2">
+                                    <small for="fi_purchase_order">{{__('text.PurchaseOrder')}}</small>
+                                    <input id="fi_purchase_order" type="text" class="form-control"
+                                           value="{{request('fi_purchase_order')}}" name="fi_purchase_order">
+                                </div>
+                                <div class="col-md-2">
+                                    <small for="fi_fabric_color">{{__('text.FabricColor')}}</small>
+                                    <input id="fi_fabric_color" type="text" class="form-control"
+                                           value="{{request('fi_fabric_color')}}" name="fi_fabric_color">
+                                </div>
+                                <div class="col-md-2">
+                                    <small for="fi_color_code">{{__('text.ColorCode')}}</small>
+                                    <input id="fi_color_code" type="text" class="form-control"
+                                           value="{{request('fi_color_code')}}" name="fi_color_code">
+                                </div>
+                                <div class="col-md-2">
+                                    <small for="fi_fabric_type">{{__('text.FabricType')}}</small>
+                                    <input id="fi_fabric_type" type="text" class="form-control"
+                                           value="{{request('fi_fabric_type')}}" name="fi_fabric_type">
+                                </div>
+                                <div class="col-md-2">
+                                    <small for="fi_fabric_code">{{__('text.FabricCode')}}</small>
+                                    <input id="fi_fabric_code" type="text" class="form-control"
+                                           value="{{request('fi_fabric_code')}}"  name="fi_fabric_code">
+                                </div>
 
 
+                            </div>
+                            <div class="row mt-1">
+                                <div class="col-md-2">
+                                    <small for="fi_building">{{__('text.Building')}}</small>
+                                    <input maxlength="1" id="fi_building" type="text" class="form-control"
+                                           value="{{request('fi_building')}}" name="fi_building">
+                                </div>
+                                <div class="col-md-2">
+                                    <small for="fi_table">{{__('text.Table')}}</small>
+                                    <input maxlength="2" id="fi_table" type="text" class="form-control"
+                                           value="{{request('fi_table')}}" name="fi_table">
+                                </div>
+                                <div class="col-md-2">
+                                    <small for="fi_date_one">{{__('text.Date')}}1</small>
+                                    <input id="fi_date_one" type="date" class="form-control"
+                                           value="{{request('fi_date_one')}}" name="fi_date_one">
+                                </div>
+                                <div class="col-md-2">
+                                    <small for="fi_date_two">{{__('text.Date')}}2</small>
+                                    <input id="fi_date_two" type="date" class="form-control"
+                                           value="{{request('fi_date_two')}}" name="fi_date_two">
+                                </div>
+                                <div class="col-md-2">
+                                    <button id="fi_btn_clear" style="height: 100%;" class="btn form-control btn-primary">Clear</button>
+                                </div>
+                                <div class="col-md-2">
+                                    <button id="fi_btn_apply" style="height: 100%;" class="btn form-control btn-primary">Apply</button>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        </form>
 
 
 
@@ -122,7 +188,7 @@
 
                         <div class="row">
                             <div class="col-12 d-flex justify-content-center ">
-                                {{$cuts->render("pagination::bootstrap-4")}}
+                                {{$cuts->appends(request()->input())->links()}}
                             </div>
                         </div>
 
