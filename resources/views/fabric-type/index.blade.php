@@ -58,7 +58,7 @@
 
                             <div class="row">
                                 <div class="col-12 d-flex justify-content-center ">
-                                    {{$fabric_types->render("pagination::bootstrap-4")}}
+                                    {{$fabric_types->onEachSide(0)->links()}}
                                 </div>
                             </div>
 

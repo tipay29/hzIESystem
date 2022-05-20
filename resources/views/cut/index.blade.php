@@ -190,7 +190,7 @@
 
                         <div class="row">
                             <div class="col-12 d-flex justify-content-center ">
-                                {{$cuts->appends(request()->input())->links()}}
+                                {{$cuts->withQueryString()->onEachSide(0)->links()}}
                             </div>
                         </div>
 

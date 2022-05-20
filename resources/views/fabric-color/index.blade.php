@@ -59,7 +59,7 @@
 
                             <div class="row">
                                 <div class="col-12 d-flex justify-content-center ">
-                                    {{$fabric_colors->render("pagination::bootstrap-4")}}
+                                    {{$fabric_colors->onEachSide(0)->links()}}
                                 </div>
                             </div>
 

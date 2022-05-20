@@ -123,7 +123,7 @@
 
                         <div class="row">
                             <div class="col-12 d-flex justify-content-center ">
-                                {{$styles->render("pagination::bootstrap-4")}}
+                                {{$styles->onEachSide(0)->links()}}
                             </div>
                         </div>
 

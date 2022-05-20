@@ -59,7 +59,7 @@
 
                             <div class="row">
                                 <div class="col-12 d-flex justify-content-center ">
-                                    {{$purchase_orders->render("pagination::bootstrap-4")}}
+                                    {{$purchase_orders->onEachSide(0)->links()}}
                                 </div>
                             </div>
 

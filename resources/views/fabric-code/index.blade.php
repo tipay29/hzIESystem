@@ -59,7 +59,7 @@
 
                             <div class="row">
                                 <div class="col-12 d-flex justify-content-center ">
-                                    {{$fabric_codes->render("pagination::bootstrap-4")}}
+                                    {{$fabric_codes->onEachSide(0)->links()}}
                                 </div>
                             </div>
 

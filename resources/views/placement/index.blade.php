@@ -58,7 +58,7 @@
 
                             <div class="row">
                                 <div class="col-12 d-flex justify-content-center ">
-                                    {{$placements->render("pagination::bootstrap-4")}}
+                                    {{$placements->onEachSide(0)->links()}}
                                 </div>
                             </div>
 
