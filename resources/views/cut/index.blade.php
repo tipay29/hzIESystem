@@ -109,7 +109,7 @@
 
 
                         <div class="table-responsive">
-                            <table class="table ">
+                            <table class="table table ">
                                 <thead>
                                     <tr>
                                         <th width="5%" scope="col">{{__('text.Cut').' '.__('text.ID')}}</th>
