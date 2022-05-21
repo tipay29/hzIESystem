@@ -59,7 +59,7 @@
 
                             <div class="row">
                                 <div class="col-12 d-flex justify-content-center ">
-                                    {{$purchase_orders->onEachSide(0)->links()}}
+                                    {{$purchase_orders->onEachSide(1)->links()}}
                                 </div>
                             </div>
 

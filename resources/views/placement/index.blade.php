@@ -58,7 +58,7 @@
 
                             <div class="row">
                                 <div class="col-12 d-flex justify-content-center ">
-                                    {{$placements->onEachSide(0)->links()}}
+                                    {{$placements->onEachSide(1)->links()}}
                                 </div>
                             </div>
 

@@ -123,7 +123,7 @@
 
                         <div class="row">
                             <div class="col-12 d-flex justify-content-center ">
-                                {{$styles->onEachSide(0)->links()}}
+                                {{$styles->onEachSide(2)->links()}}
                             </div>
                         </div>
 

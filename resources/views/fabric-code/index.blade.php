@@ -59,7 +59,7 @@
 
                             <div class="row">
                                 <div class="col-12 d-flex justify-content-center ">
-                                    {{$fabric_codes->onEachSide(0)->links()}}
+                                    {{$fabric_codes->onEachSide(1)->links()}}
                                 </div>
                             </div>
 
