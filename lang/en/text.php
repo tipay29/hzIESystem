@@ -95,4 +95,6 @@ return [
     'Save' => 'Save',
     'Search' => 'Search',
     'Clear' => 'Clear',
+    'Production' => 'Production',
+    'Productions' => 'Productions'
 ];

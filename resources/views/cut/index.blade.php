@@ -178,6 +178,10 @@
 
                                             </td>
                                         @endcan
+
+
+
+
                                     </tr>
                                 @endforeach
                                 </tbody>

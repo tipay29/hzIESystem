@@ -95,5 +95,6 @@ return [
     'Save' => 'រក្សាទុក',
     'Search' => 'ស្វែងរក',
     'Clear' => 'បមផ្លឺ',
-
+    'Production' => 'ផលិតផល',
+    'Productions' => 'ផលិតផល',
 ];

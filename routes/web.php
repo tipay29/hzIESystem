@@ -33,6 +33,8 @@ Route::group(['namespace' => 'Web'],function(){
     Route::get('fabric-types','FabricTypeController@index')->name('fabric-types.index');
     Route::get('fabric-codes','PlacementController@index')->name('fabric-codes.index');
 
+
+
     Route::get('production-events','ProductionEventController@index')->name('production-events.index');
 
 });
@@ -51,5 +53,7 @@ Route::get('locale/{locale}', function ($locale){
     Session::put('locale',$locale);
     return redirect()->back();
 });
+
+
 
 

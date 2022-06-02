@@ -24,9 +24,11 @@
     <!-- Styles -->
      <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('storage/css/chosen.css') }}" rel="stylesheet">{{--for chosen--}}
+    <link href="{{ asset('storage/css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('storage/css/one.css') }}" rel="stylesheet">
     <link href="{{ asset('storage/css/cut.css') }}" rel="stylesheet">
     <link href="{{ asset('storage/css/order.css') }}" rel="stylesheet">
+    <link href="{{ asset('storage/css/production.css') }}" rel="stylesheet">
     <style>
 
         .navbar-brand img{
@@ -95,9 +97,23 @@
                             </div>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">{{ __('text.Sewing') }}</a>
+                        <li class="nav-item mx-1">
+                            <div class="dropdown" style="padding: 0;">
+                                <button class="nav-link btn btn-light dropdown-toggle " type="button"
+                                        data-bs-toggle="dropdown">
+                                    {{ __('text.Production') }}
+                                </button>
+                                <ul class="dropdown-menu" >
+                                    <li >
+                                        <a class="dropdown-item" href="#">{{ __('text.Sewing') }}</a>
+                                    </li>
+                                    <li >
+                                        <a class="dropdown-item" href="#">{{ __('text.Machines') }}</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('cuts.index')}}">{{ __('text.Cutting') }}</a>
                         </li>
@@ -196,4 +212,3 @@
 
 
 </html>
-

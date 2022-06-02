@@ -301,13 +301,13 @@
             <select id="spreader_id" data-placeholder="Choose spreader"
                     multiple class="chosen-select form-control" name="spreader_id[]">
                 @foreach($employees as $employee)
-                    @if($employee->job_id == 5)
+
                         <option value="{{$employee->id}}"
                             {{(collect(old('spreader_id'))->contains($employee->id)) ? 'selected' :
                             (($cut->employees)->contains($employee->id) ? 'selected' : '')
                             }}
                         >{{$employee->id}} {{$employee->name}}</option>
-                    @endif
+                  
                 @endforeach
             </select>
 
@@ -341,13 +341,13 @@
             <select id="cutter_id" data-placeholder="Choose cutter"
                     multiple class="chosen-select form-control" name="cutter_id[]">
                 @foreach($employees as $employee)
-                    @if($employee->job_id == 4)
+
                         <option value="{{$employee->id}}"
                             {{(collect(old('cutter_id'))->contains($employee->id)) ? 'selected' :
                             (($cut->employees)->contains($employee->id) ? 'selected' : '')
                             }}
                         >{{$employee->id}} {{$employee->name}}</option>
-                    @endif
+
                 @endforeach
             </select>
 
