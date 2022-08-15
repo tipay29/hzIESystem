@@ -164,6 +164,8 @@
 
                         </div>
 
+                        
+                        
                         <div id="cut-show-div-three">
 
                             <div>
@@ -228,8 +230,6 @@
                                 </p>
                             </div>
 
-
-
                             <div>
                                 <strong>
                                     {{__('text.User')}}
@@ -255,3 +255,4 @@
         </div>
     </div>
 @endsection
+

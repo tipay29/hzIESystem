@@ -4,7 +4,9 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10">
+
                 <div class="card">
+                    
                     <div class="card-header d-flex justify-content-between">
 
                         <h5 class="mt-2">{{__('text.Cut').' '.__('text.List')}}</h5>
@@ -27,7 +29,7 @@
                                         {{__('text.CuttingReport'). '2'}} </a>
                             @endcan
 
-
+ 
                         </div>
 
                     </div>
@@ -128,6 +130,7 @@
                                         <th width="18%" scope="col">{{__('text.SpreadStart(date/time)')}}</th>
                                         <th width="18%" scope="col">{{__('text.CutStart(date/time)')}}</th>
                                         <th width="15%" scope="col">{{__('text.User')}}</th>
+                                        <th width="15%" scope="col">Work Hour</th>
                                         @can('create', App\Models\Cut::class)
                                         <th width="4%" scope="col">{{__('text.Option')}}</th>
                                         @endcan
@@ -170,6 +173,8 @@
                                         <td  scope="row">
                                             {{$cut->user->name}}
                                         </td>
+                                        <td  scope="row">
+                                            {{$cut->work_hours}}</td>
                                         @can('update',$cut)
                                             <td  scope="row">
 
@@ -212,3 +217,4 @@
         </div>
     </div>
 @endsection
+
