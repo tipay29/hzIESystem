@@ -12,11 +12,11 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js" integrity="sha512-oQq8uth41D+gIH/NJvSJvVB85MFk1eWpMK6glnkg6I7EdMqC1XVkW7RxLheXwmFdG03qScCM7gKS/Cx3FYt7Tg==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{asset('storage/js/jquery2.js')}}"></script>  {{--for chosen--}}
     <script src="{{asset('storage/js/chosen-jquery.js')}}"></script>{{--for chosen--}}
     <script src="{{ asset('storage/js/main.js') }}" defer></script>
-
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -29,6 +29,8 @@
     <link href="{{ asset('storage/css/cut.css') }}" rel="stylesheet">
     <link href="{{ asset('storage/css/order.css') }}" rel="stylesheet">
     <link href="{{ asset('storage/css/production.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css" integrity="sha512-jU/7UFiaW5UBGODEopEqnbIAHOI8fO6T99m7Tsmqs2gkdujByJfkCbbfPSN4Wlqlb9TGnsuC0YgUgWkRBK7B9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
 
         .navbar-brand img{
@@ -138,6 +140,28 @@
 
                         </li>
                         @endcan
+                        <li class="nav-item mx-1">
+                            <div class="dropdown" style="padding: 0;">
+                                <button class="nav-link btn btn-light dropdown-toggle " type="button"
+                                        data-bs-toggle="dropdown">
+                                    Trace
+                                </button>
+                                <ul class="dropdown-menu" >
+                                    <li >
+                                        <a class="dropdown-item" href="{{route('po-traces.index')}}">View Orders</a>
+                                    </li>
+                                    <li >
+                                        <a class="dropdown-item" href="{{route('po-traces.create')}}">Update New Order</a>
+                                    </li>
+                                    <li >
+                                        <a class="dropdown-item" href="{{route('po-traces.create')}}">Update Order CFA</a>
+                                    </li>
+                                    <li >
+                                        <a class="dropdown-item" href="{{route('po-traces.create')}}">Update Order Shipping</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -208,7 +232,12 @@
     </div>
 
 
+
+
 </body>
 
 
 </html>
+
+
+

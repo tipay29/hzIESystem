@@ -1,4 +1,10 @@
-
+Dropzone.options.imageUpload = {
+    init: function () {
+        this.on("complete", function (file) {
+            alert('aw');
+        });
+    }
+}
 let l = window.location;
 
 if(l.pathname === '/production-events') {

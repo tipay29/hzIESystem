@@ -12,6 +12,19 @@ $('document').ready(function() {
     $.getScript(originUrl + '/storage/js/style/placement.js');
     $.getScript(originUrl + '/storage/js/event/production-event.js');
 
+    Dropzone.options.traceOne = {
+        init: function () {
+            this.on("complete", function (file) {
+                alert('wa')
+            });
+        }
+    }
+
+
+    $('#pot_btn_clear').click(function(e){
+        e.preventDefault();
+        window.location.href = '/po-traces';
+    });
 
 
     $(function () {
