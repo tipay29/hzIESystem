@@ -11,6 +11,48 @@ $('window').change(function () {
     }
 });
 
+///sizee
+
+let btn_save_size = $('#btn_save_size');
+let size = $('#size');
+let weight = $('#weight');
+let carton_id = $('#carton_id');
+let mcq = $('#mcq');
+let s_style = $('#style');
+
+btn_save_size.click(function(e){
+
+    e.preventDefault();
+
+    let _token = $('input[name=token]').val();
+
+    let style = {
+        carton_id: carton_id.val(),
+        mcq: mcq.val(),
+        size: size.val(),
+        weight: weight.val(),
+        _token: _token,
+    }
+
+    $.ajax({
+        type: 'POST',
+        url: '/api/styles/' + s_style.val() +'/sizes/attach',
+        data: style,
+        success: function (style) {
+            alert('Size Added');
+            location.reload();
+        },
+        error: function () {
+            alert('error adding Size')
+        }
+
+    });
+
+});
+
+//size
+
+
 $('.pagination a').onclick(function (event) {
     event.preventDefault();
     $('li').removeClass('active');
@@ -33,4 +75,6 @@ function getData(page) {
         alert('No response from server');
     });
 }
+
+
 

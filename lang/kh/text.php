@@ -57,7 +57,8 @@ return [
     'Email' => 'អ៊ីម៉ែល',
     'Password' => 'លេខកូដសម្ងាត់',
     'Confirm' => 'បញ្ជាក់',
-
+    'Machine' => 'ម៉ាស៊ីន',
+    'Machines' => 'ម៉ាស៊ីន',
     'Style' => 'ស្ទាយ',
     'Styles' => 'ស្ទាយ',
     'PurchaseOrder' => 'លេខកម្មង់',

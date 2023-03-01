@@ -12,19 +12,40 @@ $('document').ready(function() {
     $.getScript(originUrl + '/storage/js/style/placement.js');
     $.getScript(originUrl + '/storage/js/event/production-event.js');
 
-    Dropzone.options.traceOne = {
+
+    // $.getScript(originUrl + '/storage/js/packinglist.js');     attach to app layout
+
+
+
+    Dropzone.options.uploadOne = {
         init: function () {
             this.on("complete", function (file) {
-                alert('wa')
+                alert('Goodluck!!! :)))')
             });
         }
     }
 
 
-    $('#pot_btn_clear').click(function(e){
+
+
+
+    let lineo = $('#output_line');
+
+    $('#output_next').click(function(e){
         e.preventDefault();
-        window.location.href = '/po-traces';
+
+        let plineo = 0;
+
+        if(lineo.val() !== ""){
+            plineo = parseInt(lineo.val());
+        }
+
+        let lineinc = plineo + 1;
+
+        lineo.val(lineinc);
+
     });
+
 
 
     $(function () {

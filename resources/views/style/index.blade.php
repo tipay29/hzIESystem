@@ -29,12 +29,12 @@
                             <table class="table" >
                                 <thead>
                                 <tr>
-                                    <th width="5%" scope="col">{{ __('text.Styles') }} </th>
+                                    <th width="10%" scope="col">{{ __('text.Styles') }} </th>
                                     <th width="18%" scope="col">{{ __('text.PurchaseOrders') }} </th>
-                                    <th width="18%" scope="col">{{ __('text.ColorCodes') }} </th>
+                                    <th width="15%" scope="col">{{ __('text.ColorCodes') }} </th>
                                     <th width="18%" scope="col">{{ __('text.FabricColors') }} </th>
                                     <th width="18%" scope="col">{{ __('text.FabricTypes') }}</th>
-                                    <th width="18%" scope="col">{{ __('text.FabricCodes') }}</th>
+                                    <th width="16%" scope="col">{{ __('text.FabricCodes') }}</th>
                                     @can('create',App\Models\Style::class)
                                     <th width="5%" scope="col">{{ __('text.Option') }}</th>
                                     @endcan
@@ -45,7 +45,13 @@
 
 
                                         <tr>
-                                            <td>{{$style->style_code}}</td>
+                                            <td>
+                                                <a href="{{route('styles.show', $style->id)}}">
+                                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                                    {{$style->style_code}} </a>
+
+                                            </td>
+
                                             <td>
                                                 @if(count($style->purchase_orders) === 1)
                                                     {{$style->purchase_orders[0]->purchase_order}}

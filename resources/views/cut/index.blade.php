@@ -6,7 +6,7 @@
             <div class="col-md-10">
 
                 <div class="card">
-                    
+
                     <div class="card-header d-flex justify-content-between">
 
                         <h5 class="mt-2">{{__('text.Cut').' '.__('text.List')}}</h5>
@@ -29,7 +29,7 @@
                                         {{__('text.CuttingReport'). '2'}} </a>
                             @endcan
 
- 
+
                         </div>
 
                     </div>
@@ -171,6 +171,7 @@
                                         <td  scope="row">
                                             {{$cut->cut_start}}</td>
                                         <td  scope="row">
+
                                             {{$cut->user->name}}
                                         </td>
                                         <td  scope="row">
@@ -199,9 +200,7 @@
                                 @endforeach
                                 </tbody>
 
-
                             </table>
-
 
                         </div>
 

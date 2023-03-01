@@ -57,7 +57,8 @@ return [
     'Email' => 'Email',
     'Password' => 'Password',
     'Confirm' => 'Confirm',
-
+    'Machine' => 'Machine',
+    'Machines' => 'Machines',
     'Style' => 'Style',
     'Styles' => 'Styles',
     'PurchaseOrder' => 'Purchase Order',

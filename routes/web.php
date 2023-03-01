@@ -13,6 +13,7 @@ Route::group(['namespace' => 'Web'],function(){
     Route::get('cuts/utilization', 'CutController@util')->name('cuts.util');
     Route::resource('cuts','CutController');
 
+
     Route::resource('styles','StyleController');
 
     Route::get('purchase-orders','PurchaseOrderController@index')->name('purchase-orders.index');
@@ -23,8 +24,19 @@ Route::group(['namespace' => 'Web'],function(){
 
     Route::get('production-events','ProductionEventController@index')->name('production-events.index');
 
+    Route::resource('outputs','OutputController');
 
-    Route::resource('po-traces','POTraceController');
+    Route::get('packing-lists/batch/{batch}/view-all','PackingListController@viewa')->name('packing-lists.viewa');
+    Route::get('packing-lists/batch/{batch}/number/{number}','PackingListController@number')->name('packing-lists.number');
+    Route::get('packing-lists/batch/{batch}','PackingListController@batch')->name('packing-lists.batch');
+    Route::get('packing-lists/export','PackingListController@export')->name('packing-lists.export');
+    Route::post('packing-lists/import','PackingListController@import')->name('packing-lists.import');
+    Route::post('packing-lists/mark','PackingListController@mark')->name('packing-lists.mark');
+
+    Route::resource('packing-lists','PackingListController');
+    Route::resource('cartons','CartonController');
+
+
 });
 
 
@@ -42,5 +54,11 @@ Route::get('locale/{locale}', function ($locale){
     return redirect()->back();
 });
 
+route::post('/upload-excel',function(){
+
+    $file = request()->file('file')->store('public/files/exam2');
+
+    return 0;
+})->name('upload.excel');
 
 

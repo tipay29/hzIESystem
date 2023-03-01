@@ -5,6 +5,8 @@ namespace App\Providers;
 use App\Events\GetCutEffEvent;
 use App\Events\GetTotalCutUtilEvent;
 use App\Events\InsertCutTableEvent;
+use App\Events\PackingList\GetPackingListDataAllEvent;
+use App\Events\PackingList\GetPackingListDataOneEvent;
 use App\Events\PushCutEffSheetEvent;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -33,6 +35,12 @@ class EventServiceProvider extends ServiceProvider
         ],
         InsertCutTableEvent::class => [
           \App\Listeners\InsertCutTableListener::class,
+        ],
+        GetPackingListDataOneEvent::class => [
+            \App\Listeners\PackingList\SeparateBalanceQuantityListener::class,
+        ],
+        GetPackingListDataAllEvent::class => [
+            \App\Listeners\PackingList\SeparateBalanceQuantityAllListener::class,
         ],
     ];
 

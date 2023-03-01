@@ -35,4 +35,13 @@ class Style extends Model
     public function cuts(){
         return $this->morphToMany(Cut::class,'cuttable')->withTimestamps();
     }
+
+//    public function cartons(){
+//        return $this->morphToMany(Carton::class,'cartonable')->withTimestamps()->withPivot('bags_per_carton');
+//    }
+
+    public function sizes(){
+        return $this->morphToMany(Size::class,'sizeable')->withTimestamps()->withPivot('mcq','weight','carton_id');
+    }
+
 }

@@ -1,0 +1,10 @@
+.div_btn_brand:hover
+{
+        opacity: 75%;
+}
+
+.div_btn_brand
+{
+    border:1px solid black;
+    background-color: gainsboro;
+}

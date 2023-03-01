@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Destination;
 use App\Models\Employee;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -31,7 +32,10 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             StyleSeeder::class,
             CutSeeder::class,
-
+            BrandSeeder::class,
+            CartonSeeder::class,
+            SizeSeeder::class,
+            DestinationSeeder::class,
         ]);
 
     }

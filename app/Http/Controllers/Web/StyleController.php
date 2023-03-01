@@ -16,6 +16,11 @@ class StyleController extends Controller
 
     }
 
+    public function attach(Style $style){
+
+        dd(request()->all());
+    }
+
     public function index()
     {
 
@@ -65,7 +70,9 @@ class StyleController extends Controller
 
     public function show(Style $style)
     {
-        //
+//        dd($style->sizes[0]->pivot->mcq);
+
+        return view('style.show',compact('style'));
     }
 
 

@@ -38,6 +38,10 @@ class User extends Authenticatable
         return $this->belongsTo(Employee::class);
     }
 
+    public function packinglist(){
+
+        return $this->hasOne(PackingList::class);
+    }
 
     public function cuts(){
 

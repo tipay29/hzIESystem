@@ -1,0 +1,396 @@
+<?php
+
+namespace App\Listeners\PackingList;
+
+use App\Events\PackingList\GetPackingListDataAllEvent;
+use App\Events\PackingList\GetPackingListDataOneEvent;
+use App\Models\Carton;
+use App\Models\PackingList;
+use App\Models\Size;
+use App\Models\Style;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
+
+class SeparateBalanceQuantityAllListener
+{
+    protected $balance_qty;
+    protected $carton_number;
+    protected $total_qty_ship;
+    protected $total_ctn;
+    protected $total_nw;
+    protected $total_gw;
+    protected $total_cbm;
+    public function __construct()
+    {
+        $this->balance_qty = 0;
+        $this->carton_number = 0;
+        $this->total_qty_ship = 0;
+        $this->total_ctn = 0;
+        $this->total_nw = 0;
+        $this->total_gw = 0;
+        $this->total_cbm = 0;
+    }
+
+    public function handle(GetPackingListDataAllEvent $event)
+    {
+
+        //PACKINGLIST
+        $packinglistsBatchRaw = PackingList::with('user')->where(
+            [
+                ['pl_batch', $event->batch],
+            ]
+        )
+//            ->orderBy('pl_sku','ASC')
+            ->get();
+
+        $number_batch_max = $packinglistsBatchRaw->max('pl_number_batch');
+
+        $packinglists = collect();
+        $packinglistArray = array();
+
+        //get carton all
+        $cartons = Carton::all();
+
+        for($x=0;$x < $number_batch_max;$x++){
+
+            $number_number_collection = $packinglistsBatchRaw->where('pl_number_batch',$x+1)->values();
+
+            $number_number_count = count($number_number_collection);
+//            dump($number_number_collection);
+            $y_Ctrl = -1;
+
+            for($y=0 ; $y < $number_number_count; $y++){
+                $y_Ctrl++;
+                $packinglistArray[$x][$y_Ctrl]['pl_po_cut'] = $number_number_collection[$y]->pl_po_cut;
+                $packinglistArray[$x][$y_Ctrl]['pl_master_po'] = $number_number_collection[$y]->pl_master_po;
+                $packinglistArray[$x][$y_Ctrl]['pl_factory_po'] = $number_number_collection[$y]->pl_factory_po;
+                $packinglistArray[$x][$y_Ctrl]['pl_sku'] = $number_number_collection[$y]->pl_sku;
+                $packinglistArray[$x][$y_Ctrl]['pl_material'] = $number_number_collection[$y]->pl_material;
+                $packinglistArray[$x][$y_Ctrl]['pl_description'] = $number_number_collection[$y]->pl_description;
+                $packinglistArray[$x][$y_Ctrl]['pl_color'] = $number_number_collection[$y]->pl_color;
+                $packinglistArray[$x][$y_Ctrl]['pl_style_size'] = $number_number_collection[$y]->pl_style_size;
+                $packinglistArray[$x][$y_Ctrl]['pl_country'] = $number_number_collection[$y]->pl_country;
+                $packinglistArray[$x][$y_Ctrl]['pl_destination'] = $number_number_collection[$y]->pl_destination;
+                $packinglistArray[$x][$y_Ctrl]['pl_crd'] = $number_number_collection[$y]->pl_crd;
+                $packinglistArray[$x][$y_Ctrl]['pl_pre_pack'] = $number_number_collection[$y]->pl_pre_pack;
+                $packinglistArray[$x][$y_Ctrl]['pl_type'] = $number_number_collection[$y]->pl_type;
+                $packinglistArray[$x][$y_Ctrl]['pl_brand'] = $number_number_collection[$y]->pl_brand;
+                $packinglistArray[$x][$y_Ctrl]['pl_remarks'] = $number_number_collection[$y]->pl_remarks;
+                $packinglistArray[$x][$y_Ctrl]['pl_special_packs'] = $number_number_collection[$y]->pl_special_packs;
+                $packinglistArray[$x][$y_Ctrl]['pl_status'] = $number_number_collection[$y]->pl_status;
+                $packinglistArray[$x][$y_Ctrl]['pl_shipment_mode'] = $number_number_collection[$y]->pl_shipment_mode;
+                $packinglistArray[$x][$y_Ctrl]['pl_season'] = $number_number_collection[$y]->pl_season;
+                $packinglistArray[$x][$y_Ctrl]['pl_batch'] = $number_number_collection[$y]->pl_batch;
+                $packinglistArray[$x][$y_Ctrl]['pl_number_batch'] = $number_number_collection[$y]->pl_number_batch;
+                $packinglistArray[$x][$y_Ctrl]['user_id'] = $number_number_collection[$y]->user_id;
+                $packinglistArray[$x][$y_Ctrl]['pl_nw_one'] = $number_number_collection[$y]->pl_nw_one;
+                $packinglistArray[$x][$y_Ctrl]['pl_nw_two'] = $number_number_collection[$y]->pl_nw_two;
+                $packinglistArray[$x][$y_Ctrl]['pl_gw_one'] = $number_number_collection[$y]->pl_gw_one;
+                $packinglistArray[$x][$y_Ctrl]['pl_gw_two'] = $number_number_collection[$y]->pl_gw_two;
+
+                $iqty = $number_number_collection[$y]->pl_order_quantity;
+                $packinglistArray[$x][$y_Ctrl]['pl_order_quantity'] = $iqty;
+
+                $prepack = $packinglistArray[$x][$y_Ctrl]['pl_pre_pack'];
+
+                $style_code = ltrim(substr($number_number_collection[$y]->pl_sku,-5),0);
+
+                if($this->balance_qty == 0){
+                    $this->total_qty_ship = $this->total_qty_ship + $iqty;
+                }
+
+
+
+
+                //GET SIZE OF THAT ROW
+                $style = Style::with('sizes')->where([
+                    ['style_code',$style_code],
+                ])->first();
+
+                if($style == null){
+                    $style = Style::create([
+                        'style_code' => $style_code,
+                    ])->load('sizes');
+                }
+
+                $packinglistArray[$x][$y_Ctrl]['pl_style_id'] = $style->id;
+
+                //GET SIZE ID OF ROW OF THAT PO STYLE
+                $size_id = Size::where('size',$packinglistArray[$x][$y_Ctrl]['pl_style_size'])->first()->id;
+
+                $packinglistArray[$x][$y_Ctrl]['pl_style_size_id'] = $size_id;
+
+                // to get only that size 4 MEAN OS SIZE ONLY BAG
+                $sizes = $style->sizes()->where('size_id',$size_id)->get();
+
+                $sizesCount = count($sizes)-1;
+
+                //get MCQ LIST
+                $mcqlist = array();
+                $cartonidlist = array();
+
+                for($i = 0; $i <= $sizesCount; $i++){
+                    array_push($mcqlist, $sizes[$i]->pivot->mcq);
+                    array_push($cartonidlist,$sizes[$i]->pivot->carton_id);
+                }
+
+                $mcqlist = collect($mcqlist)->sort()->values()->toArray();
+                $cartonidlist = collect($cartonidlist)->sort()->values()->toArray();
+
+
+                //check if mcq have if not we put blank in the else
+                if(count($mcqlist) !== 0) {
+
+
+                    for ($z = 0; $z <= $sizesCount; $z++) {
+
+                        //STyle WEight with size
+                        $style_weight = $sizes[$z]->pivot->weight;
+
+                        if ($this->balance_qty !== 0) {
+                            $iqty = $this->balance_qty;
+                            $this->balance_qty = 0;
+                        }
+
+                        //get proper MCQ
+                        if ($iqty <= $mcqlist[$z] || $z == $sizesCount) {
+
+                            //get MCQ with PREPACK
+                            if ($prepack !== null && $prepack !== 0) {
+                                $mcqlist[$z] = (int)floor(($mcqlist[$z] / $prepack)) * $prepack;
+                            }
+
+                            //1st batch
+                            if ($iqty > $mcqlist[$z]) {
+
+
+                                $packinglistArray[$x][$y_Ctrl]['pl_style_size_id'] = $size_id;
+                                //QTY/SHIP
+                                $packinglistArray[$x][$y_Ctrl]['pl_order_quantity_cut'] = ((int)floor($iqty / $mcqlist[$z])) * $mcqlist[$z];
+                                //QTY / CTN
+                                $packinglistArray[$x][$y_Ctrl]['pl_one_ctn_item_count'] = $mcqlist[$z];
+                                //NO OF CTN#
+                                $packinglistArray[$x][$y_Ctrl]['pl_number_of_carton'] = ((int)floor($iqty / $mcqlist[$z]));
+                                //CTN#
+                                $packinglistArray[$x][$y_Ctrl]['carton_number_display'] = ($this->carton_number + 1) . "-" . ($this->carton_number + $packinglistArray[$x][$y_Ctrl]['pl_number_of_carton']);
+
+                                $this->carton_number = $this->carton_number + $packinglistArray[$x][$y_Ctrl]['pl_number_of_carton'];
+
+                                //NET WEIGHT 1 CARTON
+//                                $packinglistArray[$x][$y_Ctrl]['net_weight_one_ctn'] = $mcqlist[$z] * $style_weight;
+                                //NET WEIGHT 1 CARTON
+                                if($packinglistArray[$x][$y_Ctrl]['pl_nw_one'] == 0 || $packinglistArray[$x][$y_Ctrl]['pl_nw_one'] == null){
+                                    $packinglistArray[$x][$y_Ctrl]['net_weight_one_ctn'] = $mcqlist[$z] * $style_weight;
+                                }else{
+                                    $packinglistArray[$x][$y_Ctrl]['net_weight_one_ctn'] = $packinglistArray[$x][$y_Ctrl]['pl_nw_one'];
+                                }
+
+                                //TOTAL NETWEIGHT ALL CARTON
+                                $packinglistArray[$x][$y_Ctrl]['net_weight_total'] = $packinglistArray[$x][$y_Ctrl]['net_weight_one_ctn'] * $packinglistArray[$x][$y_Ctrl]['pl_number_of_carton'];
+                                //Total netweight
+                                $this->total_nw = $this->total_nw + $packinglistArray[$x][$y_Ctrl]['net_weight_total'];
+
+                                //Carton WEight
+                                $packinglistArray[$x][$y_Ctrl]['carton_weight'] = $cartons->where('id', $cartonidlist[$z])->first()->ctn_weight;
+
+                                //Carton Measurement
+                                $packinglistArray[$x][$y_Ctrl]['carton_size'] = $cartons->where('id', $cartonidlist[$z])->first()->ctn_size;
+
+                                //GROSS WEIGHT 1 CARTON
+
+                                if($packinglistArray[$x][$y_Ctrl]['pl_gw_one'] == 0 || $packinglistArray[$x][$y_Ctrl]['pl_gw_one'] == null){
+                                    $packinglistArray[$x][$y_Ctrl]['gross_weight_one_ctn'] =
+                                        $packinglistArray[$x][$y_Ctrl]['net_weight_one_ctn'] + $packinglistArray[$x][$y_Ctrl]['carton_weight'];
+                                }else{
+                                    $packinglistArray[$x][$y_Ctrl]['gross_weight_one_ctn'] = $packinglistArray[$x][$y_Ctrl]['pl_gw_one'];
+                                }
+
+
+                                //TOTAL GROSS WEIGHT ALL CARTON
+                                $packinglistArray[$x][$y_Ctrl]['gross_weight_total'] = $packinglistArray[$x][$y_Ctrl]['gross_weight_one_ctn'] * $packinglistArray[$x][$y_Ctrl]['pl_number_of_carton'];
+                                //total gross weight
+                                $this->total_gw = $this->total_gw + $packinglistArray[$x][$y_Ctrl]['gross_weight_total'];
+
+
+                                //GET CBM
+                                $carton_size_value_exp = explode('*', $packinglistArray[$x][$y_Ctrl]['carton_size']);
+                                $carton_size_value = 1;
+                                foreach ($carton_size_value_exp as $key => $value) {
+                                    $carton_size_value *= $value;
+                                }
+                                $cbm = $carton_size_value * $packinglistArray[$x][$y_Ctrl]['pl_number_of_carton'] / 1000000;
+
+                                $packinglistArray[$x][$y_Ctrl]['cbm'] = round($cbm, 2);
+
+                                //total cbm
+                                $this->total_cbm = $this->total_cbm + $packinglistArray[$x][$y_Ctrl]['cbm'];
+
+//                            $packinglists->add($packinglistArray[$x]);
+
+                                $packinglistArray[$x][$y_Ctrl]['row_cut'] = 1;
+
+//                                $packinglists->add();
+
+                                $this->balance_qty = $iqty - $packinglistArray[$x][$y_Ctrl]['pl_order_quantity_cut'];
+
+                                if ($this->balance_qty !== 0) {
+                                    $y--;
+                                }
+
+                            } else {
+
+
+                                $packinglistArray[$x][$y_Ctrl]['pl_style_size_id'] = $size_id + 0.1;
+                                //QTY/SHIP
+                                $packinglistArray[$x][$y_Ctrl]['pl_order_quantity_cut'] = $iqty;
+                                //QTY / CTN
+                                $packinglistArray[$x][$y_Ctrl]['pl_one_ctn_item_count'] = $iqty;
+                                //NO OF CTN#
+                                $packinglistArray[$x][$y_Ctrl]['pl_number_of_carton'] = 1;
+                                //CTN#
+                                $packinglistArray[$x][$y_Ctrl]['carton_number_display'] = ($this->carton_number + 1) . "-" . ($this->carton_number + $packinglistArray[$x][$y_Ctrl]['pl_number_of_carton']);
+
+                                $this->carton_number = $this->carton_number + $packinglistArray[$x][$y_Ctrl]['pl_number_of_carton'];
+
+                                //NET WEIGHT 1 CARTON
+//                                $packinglistArray[$x][$y_Ctrl]['net_weight_one_ctn'] = $iqty * $style_weight;
+
+                                if($packinglistArray[$x][$y_Ctrl]['pl_nw_two'] == 0 || $packinglistArray[$x][$y_Ctrl]['pl_nw_two'] == null){
+                                    $packinglistArray[$x][$y_Ctrl]['net_weight_one_ctn'] = $mcqlist[$z] * $style_weight;
+                                }else{
+                                    $packinglistArray[$x][$y_Ctrl]['net_weight_one_ctn'] = $packinglistArray[$x][$y_Ctrl]['pl_nw_two'];
+                                }
+
+
+                                //TOTAL NETWEIGHT ALL CARTON
+                                $packinglistArray[$x][$y_Ctrl]['net_weight_total'] = $packinglistArray[$x][$y_Ctrl]['net_weight_one_ctn'] * $packinglistArray[$x][$y_Ctrl]['pl_number_of_carton'];
+                                //Total netweight
+                                $this->total_nw = $this->total_nw + $packinglistArray[$x][$y_Ctrl]['net_weight_total'];
+
+                                //Carton WEight
+                                $packinglistArray[$x][$y_Ctrl]['carton_weight'] = $cartons->where('id', $cartonidlist[$z])->first()->ctn_weight;
+
+                                //Carton Measurement
+                                $packinglistArray[$x][$y_Ctrl]['carton_size'] = $cartons->where('id', $cartonidlist[$z])->first()->ctn_size;
+
+                                //GROSS WEIGHT 1 CARTON
+                                if($packinglistArray[$x][$y_Ctrl]['pl_gw_two'] == 0 || $packinglistArray[$x][$y_Ctrl]['pl_gw_two'] == null){
+                                    $packinglistArray[$x][$y_Ctrl]['gross_weight_one_ctn'] =
+                                        $packinglistArray[$x][$y_Ctrl]['net_weight_one_ctn'] + $packinglistArray[$x][$y_Ctrl]['carton_weight'];
+                                }else{
+                                    $packinglistArray[$x][$y_Ctrl]['gross_weight_one_ctn'] = $packinglistArray[$x][$y_Ctrl]['pl_gw_two'];
+                                }
+                                //TOTAL GROSS WEIGHT ALL CARTON
+                                $packinglistArray[$x][$y_Ctrl]['gross_weight_total'] = $packinglistArray[$x][$y_Ctrl]['gross_weight_one_ctn'] * $packinglistArray[$x][$y_Ctrl]['pl_number_of_carton'];
+                                //total gross weight
+                                $this->total_gw = $this->total_gw + $packinglistArray[$x][$y_Ctrl]['gross_weight_total'];
+
+
+                                //GET CBM
+                                $carton_size_value_exp = explode('*', $packinglistArray[$x][$y_Ctrl]['carton_size']);
+                                $carton_size_value = 1;
+                                foreach ($carton_size_value_exp as $key => $value) {
+                                    $carton_size_value *= $value;
+                                }
+                                $cbm = $carton_size_value * $packinglistArray[$x][$y_Ctrl]['pl_number_of_carton'] / 1000000;
+
+                                $packinglistArray[$x][$y_Ctrl]['cbm'] = round($cbm, 2);
+
+                                //total cbm
+                                $this->total_cbm = $this->total_cbm + $packinglistArray[$x][$y_Ctrl]['cbm'];
+
+                                $packinglistArray[$x][$y_Ctrl]['row_cut'] = 2;
+
+
+
+                            }
+
+                            $z = $sizesCount + 1;
+                        }
+
+
+                    }
+
+                }else{
+                    //QTY/SHIP
+                    $packinglistArray[$x][$y_Ctrl]['pl_order_quantity_cut'] = $iqty;
+                    //QTY / CTN
+                    $packinglistArray[$x][$y_Ctrl]['pl_one_ctn_item_count'] = '';
+                    //NO OF CTN#
+                    $packinglistArray[$x][$y_Ctrl]['pl_number_of_carton'] = '';
+                    //CTN#
+                    $packinglistArray[$x][$y_Ctrl]['carton_number_display'] = '';
+
+                    $this->carton_number = $this->carton_number + 0;
+
+                    //NET WEIGHT 1 CARTON
+                    $packinglistArray[$x][$y_Ctrl]['net_weight_one_ctn'] = '';
+                    //TOTAL NETWEIGHT ALL CARTON
+                    $packinglistArray[$x][$y_Ctrl]['net_weight_total'] = '';
+                    //Total netweight
+                    $this->total_nw = $this->total_nw + 0;
+
+
+                    //Carton WEight
+                    $packinglistArray[$x][$y_Ctrl]['carton_weight'] = '';
+
+                    //Carton Measurement
+                    $packinglistArray[$x][$y_Ctrl]['carton_size'] = '';
+
+                    //GROSS WEIGHT 1 CARTON
+                    $packinglistArray[$x][$y_Ctrl]['gross_weight_one_ctn'] = '';
+
+                    //TOTAL GROSS WEIGHT ALL CARTON
+                    $packinglistArray[$x][$y_Ctrl]['gross_weight_total'] = '';
+                    //total gross weight
+                    $this->total_gw = $this->total_gw +0;
+
+
+                    //GET CBM
+
+                    $cbm = 0;
+                    $packinglistArray[$x][$y_Ctrl]['cbm'] = round($cbm, 2);
+
+                    //total cbm
+                    $this->total_cbm = $this->total_cbm + $packinglistArray[$x][$y_Ctrl]['cbm'];
+
+                    $packinglistArray[$x][$y_Ctrl]['row_cut'] = 1;
+
+                }
+
+
+            }
+
+
+            $packinglistArray[$x] = collect(collect($packinglistArray[$x])->sortBy('pl_style_size_id')->values())->toArray();
+
+            $pl_last_num = count($packinglistArray[$x]);
+
+            $packinglistArray[$x][$pl_last_num]['total_qty_ship'] = $this->total_qty_ship;
+            $packinglistArray[$x][$pl_last_num]['total_carton'] = $this->carton_number;
+            $packinglistArray[$x][$pl_last_num]['total_gw'] = $this->total_gw;
+            $packinglistArray[$x][$pl_last_num]['total_nw'] = $this->total_nw;
+            $packinglistArray[$x][$pl_last_num]['total_cbm'] = $this->total_cbm;
+
+            $this->total_qty_ship = 0;
+            $this->carton_number = 0;
+            $this->total_gw = 0;
+            $this->total_nw = 0;
+            $this->total_cbm = 0;
+
+
+//            $packinglists_batch->add($packinglistsBatchRaw->where('pl_number_batch',$x+1)->sort()->values()->toArray());
+
+        }
+//        $pl_last_num = count($packinglists) + 1;
+//        dd($pl_last_num);
+
+//        dd($packinglists);
+//        dd($packinglistArray);
+//        $packinglists = collect(collect($packinglistArray[0])->sortBy('pl_style_size_id')->values()->toArray());
+
+//        dd($packinglists);
+        return $packinglistArray;
+    }
+}
+

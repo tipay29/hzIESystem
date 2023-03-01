@@ -26,6 +26,9 @@ Route::group(['as' => 'api.'],function() {
     Route::resource('fabric-types', 'FabricTypeApiController');
     Route::resource('placements', 'PlacementApiController');
     Route::resource('purchase-orders', 'PurchaseOrderApiController');
+
+    Route::post('styles/{style}/sizes/attach/many','StyleApiController@attachm')->name('styles.attachm');
+    Route::post('styles/{style}/sizes/attach','StyleApiController@attach')->name('styles.attach');
     Route::resource('styles', 'StyleApiController');
 
     Route::resource('production-events', 'ProductionEventApiController');
@@ -38,5 +41,18 @@ Route::group(['as' => 'api.'],function() {
     Route::group(['namespace' => 'SheetDB'],function(){
         Route::post('cut-sheetdbs', 'CutSheetDBApiController@store')->name('cut-sheetdbs.store');
     });
+
+
+    Route::get('cartons/brands', 'CartonApiController@showBrand')->name('cartons.showbrand');
+
+    Route::post('packing-lists/update/destinations','PackinglistApiController@destinations')->name('packing-lists.destinations');
+    Route::post('packing-lists/update/specials','PackinglistApiController@specials')->name('packing-lists.specials');
+    Route::post('packing-lists/update/remarks','PackinglistApiController@remarks')->name('packing-lists.remarks');
+    Route::get('packing-lists','PackinglistApiController@index')->name('packing-lists.index');
+    Route::post('packing-lists/{packinglist}/update-gw','PackinglistApiController@updategw')->name('packing-lists.updategw');
+    Route::post('packing-lists/{packinglist}/update-nw','PackinglistApiController@updatenw')->name('packing-lists.updatenw');
+    Route::post('packing-lists/{packinglist}/update-qty','PackinglistApiController@updateqty')->name('packing-lists.updateqty');
+    Route::delete('packing-lists/{packinglist}','PackinglistApiController@destroy')->name('packing-lists.destroy');
+    Route::post('packing-lists','PackinglistApiController@store')->name('packing-lists.store');
 
 });

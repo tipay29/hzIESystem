@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('styles', function (Blueprint $table) {
             $table->id();
             $table->string('style_code');
+            $table->float('style_weight')->default(1);
             $table->timestamps();
         });
     }

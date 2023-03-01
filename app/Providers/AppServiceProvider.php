@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Http\View\Composers\BrandComposer;
 use App\Http\View\Composers\BuildingComposer;
+use App\Http\View\Composers\CartonComposer;
 use App\Http\View\Composers\EmployeeComposer;
 use App\Http\View\Composers\EmployeeRegisterComposer;
 use App\Http\View\Composers\FabricCodeComposer;
@@ -47,5 +49,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer('style.form',PurchaseOrderComposer::class);
         View::composer('style.form',StylePOComposer::class);
         View::composer(['cut.edit','cut.create'],StyleComposer::class);
+        View::composer('carton.form',BrandComposer::class);
+        View::composer(['style.show','packing-list.addmcq'],CartonComposer::class);
     }
 }

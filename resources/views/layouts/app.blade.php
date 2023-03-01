@@ -17,7 +17,7 @@
     <script src="{{asset('storage/js/jquery2.js')}}"></script>  {{--for chosen--}}
     <script src="{{asset('storage/js/chosen-jquery.js')}}"></script>{{--for chosen--}}
     <script src="{{ asset('storage/js/main.js') }}" defer></script>
-
+    <script src="{{ asset('storage/js/packinglist.js') }}" defer></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -29,7 +29,10 @@
     <link href="{{ asset('storage/css/cut.css') }}" rel="stylesheet">
     <link href="{{ asset('storage/css/order.css') }}" rel="stylesheet">
     <link href="{{ asset('storage/css/production.css') }}" rel="stylesheet">
+    <link href="{{ asset('storage/css/packing-list.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css" integrity="sha512-jU/7UFiaW5UBGODEopEqnbIAHOI8fO6T99m7Tsmqs2gkdujByJfkCbbfPSN4Wlqlb9TGnsuC0YgUgWkRBK7B9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    @yield('style')
 
     <style>
 
@@ -107,10 +110,24 @@
                                 </button>
                                 <ul class="dropdown-menu" >
                                     <li >
-                                        <a class="dropdown-item" href="#">{{ __('text.Sewing') }}</a>
+                                        <a class="dropdown-item" href="{{route('outputs.index')}}">Output</a>
                                     </li>
                                     <li >
                                         <a class="dropdown-item" href="#">{{ __('text.Machines') }}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="nav-item mx-1">
+                            <div class="dropdown" style="padding: 0;">
+                                <button class="nav-link btn btn-light dropdown-toggle " type="button"
+                                        data-bs-toggle="dropdown">
+                                     Planning
+                                </button>
+                                <ul class="dropdown-menu" >
+                                    <li >
+                                        <a class="dropdown-item" href="{{route('packing-lists.index')}}">Packing List</a>
                                     </li>
                                 </ul>
                             </div>
@@ -140,28 +157,7 @@
 
                         </li>
                         @endcan
-                        <li class="nav-item mx-1">
-                            <div class="dropdown" style="padding: 0;">
-                                <button class="nav-link btn btn-light dropdown-toggle " type="button"
-                                        data-bs-toggle="dropdown">
-                                    Trace
-                                </button>
-                                <ul class="dropdown-menu" >
-                                    <li >
-                                        <a class="dropdown-item" href="{{route('po-traces.index')}}">View Orders</a>
-                                    </li>
-                                    <li >
-                                        <a class="dropdown-item" href="{{route('po-traces.create')}}">Update New Order</a>
-                                    </li>
-                                    <li >
-                                        <a class="dropdown-item" href="{{route('po-traces.create')}}">Update Order CFA</a>
-                                    </li>
-                                    <li >
-                                        <a class="dropdown-item" href="{{route('po-traces.create')}}">Update Order Shipping</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -226,15 +222,23 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4 cstyle ">
             @yield('content')
         </main>
+
+
     </div>
 
 
 
 
 </body>
+
+
+
+
+
+
 
 
 </html>

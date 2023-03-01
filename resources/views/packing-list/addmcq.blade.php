@@ -1,0 +1,578 @@
+
+<!-- Modal -->
+<div class="modal fade" id="addMcqModal" tabindex="-1" aria-labelledby="addMcqLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="addMcqLabel">Add MCQ <span id="add_mcq_title"></span></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input id="pl_mcq_style_input" type="hidden" class="form-control"
+                       placeholder="Enter Style">
+                <input id="pl_mcq_style_id_input" type="hidden" class="form-control">
+
+                <div class="row">
+                   <div class="col-md-2">
+                       <label for="">Size</label>
+                       <div class="input-group">
+                           <input id="pl_mcq_size_input" type="text" class="form-control" >
+                           <div class="input-group-append">
+                               <button id="ata_size_btn" class="btn btn-primary" type="button"
+                                       style="padding-left: 1px;padding-right: 1px;" >
+                                   <i class="fa fa-sort-amount-asc" aria-hidden="true"></i></button>
+                           </div>
+                       </div>
+
+                   </div>
+                   <div class="col-md-1">
+                       <label for="">NetWeight</label>
+                       <div class="input-group">
+                           <input id="pl_mcq_weight_input"  type="text" class="form-control" >
+                           <div class="input-group-append">
+                               <button id="ata_nw_btn" class="btn btn-primary" type="button"
+                               style="padding-left: 1px;padding-right: 1px;">
+                                   <i class="fa fa-sort-amount-asc" aria-hidden="true"></i>
+                               </button>
+                           </div>
+                       </div>
+
+                   </div>
+                   <div class="col-md-2">
+                       <label for="">Carton</label>
+
+                       <div class="input-group">
+                           <select id="pl_mcq_carton_first_input" class="form-control">
+                               <option disabled selected>Select Carton</option>
+                           </select>
+                           <div class="input-group-append">
+                               <button id="ata_carton_btn" class="btn btn-primary" type="button"
+                                       style="padding-left: 1px;padding-right: 1px;">
+                                   <i class="fa fa-sort-amount-asc" aria-hidden="true"></i>
+                               </button>
+                           </div>
+                       </div>
+
+                   </div>
+                   <div class="col-md-1">
+                       <label for="">MCQ</label>
+                       <div class="input-group">
+                           <input id="pl_mcq_qty_first_input" type="text" class="form-control" >
+                           <div class="input-group-append">
+                               <button id="ata_mcq_btn" class="btn btn-primary" type="button"
+                                       style="padding-left: 1px;padding-right: 1px;"
+                               >
+                                   <i class="fa fa-sort-amount-asc" aria-hidden="true"></i>
+                               </button>
+                           </div>
+                       </div>
+                   </div>
+
+                    <div class="col-md-2">
+                        <label for="">Carton</label>
+                        <div class="input-group">
+                            <select id="pl_mcq_carton_second_input" class="form-control">
+                                <option disabled selected>Select Carton</option>
+
+                            </select>
+                            <div class="input-group-append">
+                                <button id="ata_carton_second_btn" class="btn btn-primary" type="button"
+                                        style="padding-left: 1px;padding-right: 1px;"
+                                >
+                                    <i class="fa fa-sort-amount-asc" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-1">
+                        <label for="">MCQ</label>
+                        <div class="input-group">
+                            <input id="pl_mcq_qty_second_input" type="text" class="form-control" >
+                            <div class="input-group-append">
+                                <button id="ata_mcq_second_btn" class="btn btn-primary" type="button"
+                                        style="padding-left: 1px;padding-right: 1px;"
+                                >
+                                    <i class="fa fa-sort-amount-asc" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-2">
+                        <label for="">Carton</label>
+                        <div class="input-group">
+                            <select id="pl_mcq_carton_three_input" class="form-control">
+                                <option disabled selected>Select Carton</option>
+
+                            </select>
+                            <div class="input-group-append">
+                                <button id="ata_carton_third_btn" class="btn btn-primary" type="button"
+                                        style="padding-left: 1px;padding-right: 1px;"
+                                >
+                                    <i class="fa fa-sort-amount-asc" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-1">
+                        <label for="">MCQ</label>
+                        <div class="input-group">
+                            <input id="pl_mcq_qty_three_input" type="text" class="form-control" >
+                            <div class="input-group-append">
+                                <button id="ata_mcq_third_btn" class="btn btn-primary" type="button"
+                                        style="padding-left: 1px;padding-right: 1px;"
+                                >
+                                    <i class="fa fa-sort-amount-asc" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+               </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+
+                        <input id="pl_mcq_size_input_two" type="text" class="form-control" >
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_weight_input_two"  type="text" class="form-control" >
+                    </div>
+                    <div class="col-md-2">
+
+                        <select id="pl_mcq_carton_first_input_two" class="form-control">
+                            <option disabled selected>Select Carton</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_qty_first_input_two" type="text" class="form-control" >
+                    </div>
+
+                    <div class="col-md-2">
+
+                        <select id="pl_mcq_carton_second_input_two" class="form-control">
+                            <option disabled selected>Select Carton</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_qty_second_input_two" type="text" class="form-control" >
+                    </div>
+
+                    <div class="col-md-2">
+
+                        <select id="pl_mcq_carton_three_input_two" class="form-control">
+                            <option disabled selected>Select Carton</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_qty_three_input_two" type="text" class="form-control" >
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+
+                        <input id="pl_mcq_size_input_three" type="text" class="form-control" >
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_weight_input_three"  type="text" class="form-control" >
+                    </div>
+                    <div class="col-md-2">
+
+                        <select id="pl_mcq_carton_first_input_three" class="form-control">
+                            <option disabled selected>Select Carton</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_qty_first_input_three" type="text" class="form-control" >
+                    </div>
+
+                    <div class="col-md-2">
+
+                        <select id="pl_mcq_carton_second_input_three" class="form-control">
+                            <option disabled selected>Select Carton</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_qty_second_input_three" type="text" class="form-control" >
+                    </div>
+
+                    <div class="col-md-2">
+
+                        <select id="pl_mcq_carton_three_input_three" class="form-control">
+                            <option disabled selected>Select Carton</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_qty_three_input_three" type="text" class="form-control" >
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+
+                        <input id="pl_mcq_size_input_four" type="text" class="form-control" >
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_weight_input_four"  type="text" class="form-control" >
+                    </div>
+                    <div class="col-md-2">
+
+                        <select id="pl_mcq_carton_first_input_four" class="form-control">
+                            <option disabled selected>Select Carton</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_qty_first_input_four" type="text" class="form-control" >
+                    </div>
+
+                    <div class="col-md-2">
+
+                        <select id="pl_mcq_carton_second_input_four" class="form-control">
+                            <option disabled selected>Select Carton</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_qty_second_input_four" type="text" class="form-control" >
+                    </div>
+
+                    <div class="col-md-2">
+
+                        <select id="pl_mcq_carton_three_input_four" class="form-control">
+                            <option disabled selected>Select Carton</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_qty_three_input_four" type="text" class="form-control" >
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+
+                        <input id="pl_mcq_size_input_five" type="text" class="form-control" >
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_weight_input_five"  type="text" class="form-control" >
+                    </div>
+                    <div class="col-md-2">
+
+                        <select id="pl_mcq_carton_first_input_five" class="form-control">
+                            <option disabled selected>Select Carton</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_qty_first_input_five" type="text" class="form-control" >
+                    </div>
+
+                    <div class="col-md-2">
+
+                        <select id="pl_mcq_carton_second_input_five" class="form-control">
+                            <option disabled selected>Select Carton</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_qty_second_input_five" type="text" class="form-control" >
+                    </div>
+
+                    <div class="col-md-2">
+
+                        <select id="pl_mcq_carton_three_input_five" class="form-control">
+                            <option disabled selected>Select Carton</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_qty_three_input_five" type="text" class="form-control" >
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+
+                        <input id="pl_mcq_size_input_six" type="text" class="form-control" >
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_weight_input_six"  type="text" class="form-control" >
+                    </div>
+                    <div class="col-md-2">
+
+                        <select id="pl_mcq_carton_first_input_six" class="form-control">
+                            <option disabled selected>Select Carton</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_qty_first_input_six" type="text" class="form-control" >
+                    </div>
+
+                    <div class="col-md-2">
+
+                        <select id="pl_mcq_carton_second_input_six" class="form-control">
+                            <option disabled selected>Select Carton</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_qty_second_input_six" type="text" class="form-control" >
+                    </div>
+
+                    <div class="col-md-2">
+
+                        <select id="pl_mcq_carton_three_input_six" class="form-control">
+                            <option disabled selected>Select Carton</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_qty_three_input_six" type="text" class="form-control" >
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+
+                        <input id="pl_mcq_size_input_seven" type="text" class="form-control" >
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_weight_input_seven"  type="text" class="form-control" >
+                    </div>
+                    <div class="col-md-2">
+
+                        <select id="pl_mcq_carton_first_input_seven" class="form-control">
+                            <option disabled selected>Select Carton</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_qty_first_input_seven" type="text" class="form-control" >
+                    </div>
+
+                    <div class="col-md-2">
+
+                        <select id="pl_mcq_carton_second_input_seven" class="form-control">
+                            <option disabled selected>Select Carton</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_qty_second_input_seven" type="text" class="form-control" >
+                    </div>
+
+                    <div class="col-md-2">
+
+                        <select id="pl_mcq_carton_three_input_seven" class="form-control">
+                            <option disabled selected>Select Carton</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_qty_three_input_seven" type="text" class="form-control" >
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+
+                        <input id="pl_mcq_size_input_eight" type="text" class="form-control" >
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_weight_input_eight"  type="text" class="form-control" >
+                    </div>
+                    <div class="col-md-2">
+
+                        <select id="pl_mcq_carton_first_input_eight" class="form-control">
+                            <option disabled selected>Select Carton</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_qty_first_input_eight" type="text" class="form-control" >
+                    </div>
+
+                    <div class="col-md-2">
+
+                        <select id="pl_mcq_carton_second_input_eight" class="form-control">
+                            <option disabled selected>Select Carton</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_qty_second_input_eight" type="text" class="form-control" >
+                    </div>
+
+                    <div class="col-md-2">
+
+                        <select id="pl_mcq_carton_three_input_eight" class="form-control">
+                            <option disabled selected>Select Carton</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_qty_three_input_eight" type="text" class="form-control" >
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+
+                        <input id="pl_mcq_size_input_nine" type="text" class="form-control" >
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_weight_input_nine"  type="text" class="form-control" >
+                    </div>
+                    <div class="col-md-2">
+
+                        <select id="pl_mcq_carton_first_input_nine" class="form-control">
+                            <option disabled selected>Select Carton</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_qty_first_input_nine" type="text" class="form-control" >
+                    </div>
+
+                    <div class="col-md-2">
+
+                        <select id="pl_mcq_carton_second_input_nine" class="form-control">
+                            <option disabled selected>Select Carton</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_qty_second_input_nine" type="text" class="form-control" >
+                    </div>
+
+                    <div class="col-md-2">
+
+                        <select id="pl_mcq_carton_three_input_nine" class="form-control">
+                            <option disabled selected>Select Carton</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_qty_three_input_nine" type="text" class="form-control" >
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+
+                        <input id="pl_mcq_size_input_ten" type="text" class="form-control" >
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_weight_input_ten"  type="text" class="form-control" >
+                    </div>
+                    <div class="col-md-2">
+
+                        <select id="pl_mcq_carton_first_input_ten" class="form-control">
+                            <option disabled selected>Select Carton</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_qty_first_input_ten" type="text" class="form-control" >
+                    </div>
+
+                    <div class="col-md-2">
+
+                        <select id="pl_mcq_carton_second_input_ten" class="form-control">
+                            <option disabled selected>Select Carton</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+
+                        <input id="pl_mcq_qty_second_input_ten" type="text" class="form-control" >
+                    </div>
+
+                    <div class="col-md-2">
+
+                        <select id="pl_mcq_carton_three_input_ten" class="form-control">
+                            <option disabled selected>Select Carton</option>
+
+                        </select>
+
+                    </div>
+                    <div class="col-md-1">
+                        <input id="pl_mcq_qty_three_input_ten" type="text" class="form-control">
+                    </div>
+
+                </div>
+
+                <button class="form-control btn btn-primary mt-3" id="pl_mcq_add_btn">Add</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
