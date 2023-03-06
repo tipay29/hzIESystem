@@ -223,7 +223,7 @@ class PackingListController extends Controller
         $brandntype = request()->brandntype;
 //        $type = explode('-',$brandntype)[1];
 
-        $file = request()->file('file')->store('public/Import');
+        $file = request()->file('file');
 
         $import = new PackingListsImport($brandntype);
         $import->onlySheets('Worksheet');
