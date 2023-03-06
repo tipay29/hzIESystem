@@ -16,6 +16,8 @@ class FirstPlImport implements ToModel, WithHeadingRow
     protected $user;
     protected $brand;
     protected $type;
+    protected $uniq;
+
     public function __construct($batch_number,$brandntype)
     {
 
@@ -24,6 +26,7 @@ class FirstPlImport implements ToModel, WithHeadingRow
         $this->user = auth()->user()->id;
         $this->brand = $this->getPlBrand($brandntype);
         $this->type = $this->getPlType($brandntype);
+        $this->uniq = 0;
     }
 
     public function model(array $row)
@@ -31,7 +34,8 @@ class FirstPlImport implements ToModel, WithHeadingRow
         $crd = $this->convertDate($row['crd_at_origin']);
         $country = $row['dc_code'] . ' ' . $row['dest'];
         $destination = $this->getDestination($country);
-
+        $number_batch = $this->getPlNumberBatch($crd,$country,(int)$row['prepack'],$row['po'],$this->type);
+        $this->uniq++;
         return new PackingList([
             'pl_po_cut' => $row['po'],
             'pl_master_po' => $row['master_po'],
@@ -51,7 +55,8 @@ class FirstPlImport implements ToModel, WithHeadingRow
             'pl_season' => $row['season'],
             'pl_order_quantity' => $row['quantity'],
             'pl_batch' => $this->batch,
-            'pl_number_batch' => $this->getPlNumberBatch($crd,$country,(int)$row['prepack'],$row['po'],$this->type),
+            'pl_number_batch' => $number_batch,
+            'pl_uniq_number_batch' => $this->uniq,
             'user_id' => $this->user,
         ]);
     }
@@ -81,6 +86,7 @@ class FirstPlImport implements ToModel, WithHeadingRow
         if($type == "EQUIPMENT"){
            $pl_number_batch = PackingList::where([
                 ['pl_batch', $this->batch],
+
                 ['pl_crd', $crd],
                 ['pl_country',$country],
                ['pl_pre_pack',$prepack]
@@ -88,6 +94,7 @@ class FirstPlImport implements ToModel, WithHeadingRow
         }elseif($type == "APPAREL"){
             $pl_number_batch = PackingList::where([
                 ['pl_batch', $this->batch],
+
                 ['pl_po_cut', $pocut],
                 ['pl_pre_pack',$prepack]
             ])->first();
@@ -100,6 +107,8 @@ class FirstPlImport implements ToModel, WithHeadingRow
         return $pl_number_batch->pl_number_batch;
 
     }
+
+
 
     protected function getDestination($country){
 

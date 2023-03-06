@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 use App\Http\View\Composers\BrandComposer;
 use App\Http\View\Composers\BuildingComposer;
 use App\Http\View\Composers\CartonComposer;
@@ -37,6 +39,21 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Collection::macro('paginate', function($perPage, $total = null, $page = null, $pageName = 'page') {
+            $page = $page ?: LengthAwarePaginator::resolveCurrentPage($pageName);
+
+            return new LengthAwarePaginator(
+                $this->forPage($page, $perPage),
+                $total ?: $this->count(),
+                $perPage,
+                $page,
+                [
+                    'path' => LengthAwarePaginator::resolveCurrentPath(),
+                    'pageName' => $pageName,
+                ]
+            );
+        });
+
         Paginator::useBootstrap();
         View::composer('auth.register',EmployeeRegisterComposer::class);
         View::composer(['cut.create','cut.edit'],EmployeeComposer::class);
@@ -51,5 +68,8 @@ class AppServiceProvider extends ServiceProvider
         View::composer(['cut.edit','cut.create'],StyleComposer::class);
         View::composer('carton.form',BrandComposer::class);
         View::composer(['style.show','packing-list.addmcq'],CartonComposer::class);
+
+
+
     }
 }

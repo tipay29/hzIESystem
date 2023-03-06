@@ -566,9 +566,70 @@
 
                 </div>
 
-                <button class="form-control btn btn-primary mt-3" id="pl_mcq_add_btn">Add</button>
+                <button class="form-control btn btn-primary mt-3" id="pl_mcq_add_btn">Submit</button>
 
             </div>
+
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="addMcqLabel">Edit PO</h1>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <label for="pl_update_qty_input" class="col-form-label">PL Key </label>
+                        <div class="input-group">
+                            <input id="pl_update_id_input" type="number" class="form-control"
+                                   placeholder="Display PL Key here" disabled>
+                            <div class="input-group-append">
+                                <button id="pl_delete_btn" class="btn btn-danger" type="button"
+                                >Delete</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="pl_update_qty_input" class="col-form-label text-md-end">Total Quantity </label>
+                        <div class="input-group">
+                            <input id="pl_update_qty_input" type="number" class="form-control"
+                                   placeholder="Enter Quantity">
+                            <div class="input-group-append">
+                                <button id="pl_update_qty_btn" class="btn btn-success" type="button"
+                                >Update</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="pl_update_nw_input" class=" col-form-label text-md-end">Net Weight </label>
+                        <div class="input-group">
+                            <input id="pl_update_nw_input" type="number" class="form-control"
+                                   placeholder="Enter Net Weight">
+                            <input type="hidden" id="pl_update_rowcut_input">
+                            <div class="input-group-append">
+                                <button id="pl_update_nw_btn" class="btn btn-success" type="button"
+                                >Update</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="pl_update_gw_input" class="col-form-label text-md-end">Gross Weight </label>
+                        <div class="input-group">
+                            <input id="pl_update_gw_input" type="number" class="form-control"
+                                   placeholder="Enter Gross Weight">
+                            <div class="input-group-append">
+                                <button id="pl_update_gw_btn" class="btn btn-success" type="button"
+                                >Update</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
         </div>
 
     </div>

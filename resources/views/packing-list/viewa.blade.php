@@ -45,57 +45,7 @@
 
                             <div class="card mb-3 pl_section-to-print">
 
-                                <div class="card-header ">
-                                    <div class="row">
-                                        <div class="col-md-4">
-
-                                            <img src="{{ asset('storage/images/horizonlogo.png') }}" width="85" height="40" alt="Horizon Outdoor">
-                                            <small> <b> Horizon Outdoor Cambodia Co. LTD </b> </small> <br>
-                                            <p class="m-0" style="font-size: .8rem; ">
-                                                National Highway 5, 43km Phum Phsar Trach, Khum Longvek,</p>
-                                            <p class="m-0" style="font-size: .8rem; ">
-                                                Srok Kampong Tralach, Kampong Chhnang Province, Cambodia</p>
-
-                                        </div>
-
-                                        <div class="col-md-4" >
-
-                                            <h4 class="text-center">PACKING LIST</h4>
-                                            <input type="text" class="form-control"
-                                                   style="text-align: center;
-                                                   border: 0; background-color:	 #f1f1f1;
-                                                   font-weight: 500;font-size: 1.2rem;
-                                                   padding:0px;line-height: 10px;
-                                                    " value="{{$packinglists[$x][0]['pl_season']}}">
-                                            <input type="text" class="form-control"
-                                                   style="text-align: center;
-                                                   border: 0; background-color:	 #f1f1f1;
-                                                   font-weight: 500;font-size: 1.2rem;
-                                                   padding:0px;line-height: 10px;
-                                                    " value="{{$packinglists[$x][0]['pl_shipment_mode']}}">
-                                            <input type="text" class="form-control"
-                                                   style="text-align: center;
-                                                   border: 0; background-color:	 #f1f1f1;
-                                                   font-weight: 500;font-size: 1.2rem;
-                                                   padding:0px;line-height: 10px;
-                                                    " value="{{$packinglists[$x][0]['pl_factory_po']}}">
-                                        </div>
-
-                                        <div class="col-md-4" style="" >
-
-                                            <p class="text-end m-0" style="font-size: 1rem;">
-                                                Status: {{$packinglists[$x][0]['pl_crd']}}
-                                            </p>
-                                            <p class="text-end m-0" style="font-size: 1rem;">
-                                                To: {{$packinglists[$x][0]['pl_country']}}
-                                            </p>
-                                            <p class="text-end m-0" style="font-size: 1rem;">
-                                                Origin: Cambodia
-                                            </p>
-
-                                        </div>
-                                    </div>
-                                </div>
+                                @include('packing-list.viewaheader')
 
                                 <div class="card-body">
 
@@ -115,15 +65,15 @@
                                                 <th width="4%" scope="col">CtnNum</th>
                                                 <th width="5%" scope="col">CtnTotal</th>
                                                 <th width="3%" scope="col">NW</th>
-                                                <th width="3%" scope="col">NWA</th>
+                                                <th width="3%" scope="col">TNW</th>
                                                 <th width="3%" scope="col">GW</th>
-                                                <th width="3%" scope="col">GWA</th>
+                                                <th width="3%" scope="col">TGW</th>
                                                 <th width="13%" scope="col">Carton Measurement</th>
                                                 <th width="4%" scope="col">CBM</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-
+                                            {{$number_ctn = 0}}
                                                     @for($y = 0; $y < count($packinglists[$x]);$y++)
 
                                                         @if($y == count($packinglists[$x])-1)
@@ -158,7 +108,8 @@
                                                                 <td scope="col">{{$packinglists[$x][$y]['pl_style_size']}} </td>
                                                                 <td scope="col">{{$packinglists[$x][$y]['pl_order_quantity_cut']}}</td>
                                                                 <td scope="col">{{$packinglists[$x][$y]['pl_one_ctn_item_count']}}</td>
-                                                                <td scope="col">{{$packinglists[$x][$y]['carton_number_display']}}</td>
+                                                                <td scope="col">{{$number_ctn+1 . "-" . ($number_ctn+ intval($packinglists[$x][$y]['pl_number_of_carton']))}}</td>
+                                                                {{$number_ctn = $number_ctn + intval($packinglists[$x][$y]['pl_number_of_carton'])}}
                                                                 <td scope="col">{{$packinglists[$x][$y]['pl_number_of_carton']}}</td>
                                                                 <td scope="col">{{$packinglists[$x][$y]['net_weight_one_ctn']}}</td>
                                                                 <td scope="col">{{$packinglists[$x][$y]['net_weight_total']}}</td>
@@ -179,23 +130,9 @@
 
                                     </div>
 
+                                    @include('packing-list.viewasummary')
 
-                                    <div class="row">
-
-
-                                        <div style="min-height: 50px;" class="col-md-8">
-
-                                            <img src="{{ asset('storage/images/shipmark/' . $packinglists[$x][0]['pl_brand'] .
-                                    '/' . $packinglists[$x][0]['pl_type'] . '/' .$packinglists[$x][0]['pl_country'] . '.png') }}" alt="">
-
-                                        </div>
-                                        <div style="min-height: 50px;" class="col-md-4">
-
-                                            <h5>Remarks:</h5>
-
-                                        </div>
-
-                                    </div>
+                                    @include('packing-list.viewashipmark')
 
                                 </div>
 

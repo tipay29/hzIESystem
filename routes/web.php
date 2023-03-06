@@ -26,6 +26,8 @@ Route::group(['namespace' => 'Web'],function(){
 
     Route::resource('outputs','OutputController');
 
+    Route::delete('packing-lists/destroy-batch/{batch}/destroy-number/{number}','PackingListController@destroyNumber')->name('packing-lists.destroy-number');
+    Route::delete('packing-lists/destroy-batch/{batch}','PackingListController@destroyBatch')->name('packing-lists.destroy-batch');
     Route::get('packing-lists/batch/{batch}/view-all','PackingListController@viewa')->name('packing-lists.viewa');
     Route::get('packing-lists/batch/{batch}/number/{number}','PackingListController@number')->name('packing-lists.number');
     Route::get('packing-lists/batch/{batch}','PackingListController@batch')->name('packing-lists.batch');

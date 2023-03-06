@@ -150,6 +150,40 @@ class PackinglistApiController extends Controller
 
     }
 
+    public function prepacks(){
+
+        $packinglists = PackingList::where(
+            [
+                ['pl_batch',  request()->batch],
+                ['pl_number_batch',  request()->number_batch],
+            ]
+        )->get();
+
+        $packinglists->each(function ($item){
+            $item->update(['pl_pre_pack'=> request()->prepacks]);
+        });
+
+        return response()->json(['success' => $packinglists],201);
+
+    }
+
+    public function status(){
+
+        $packinglists = PackingList::where(
+            [
+                ['pl_batch',  request()->batch],
+                ['pl_number_batch',  request()->number_batch],
+            ]
+        )->get();
+
+        $packinglists->each(function ($item){
+            $item->update(['pl_status'=> request()->status]);
+        });
+
+        return response()->json(['success' => $packinglists],201);
+
+    }
+
     public function specials(){
 
         $packinglists = PackingList::where(

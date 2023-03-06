@@ -161,6 +161,13 @@ let pl_mcq_carton_three_input_ten = $('#pl_mcq_carton_three_input_ten');
 
 let pl_mcq_add_btn = $('#pl_mcq_add_btn');
 
+let pls_btn_clear = $('#pls_btn_clear');
+
+pls_btn_clear.click(function(e){
+   e.preventDefault();
+    window.location.href = '/packing-lists';
+});
+
 row_selected.click(function (e) {
     e.preventDefault();
 
@@ -179,7 +186,7 @@ row_selected.click(function (e) {
     let pl_size = $(this).find('input:eq(6)').val();
     let pl_style_id = $(this).find('input:eq(7)').val();
     pl_mcq_style_input.val(pl_style_code);
-    alert(size_one.val());
+
     pl_mcq_size_input.val(size_one.val());
     pl_mcq_size_input_two.val(size_two.val());
     pl_mcq_size_input_three.val(size_three.val());
@@ -199,7 +206,7 @@ row_selected.click(function (e) {
     // window.scrollTo(0, document.body.scrollHeight);
 });
 let _token = $('input[name=token]').val();
-pl_mcq_add_btn.click(function(e){
+pl_mcq_add_btn.dblclick(function(e){
     e.preventDefault();
 
     let styles = {
@@ -222,6 +229,7 @@ pl_mcq_add_btn.click(function(e){
         mcq_second_two: pl_mcq_qty_second_input_two.val(),
         carton_id_third_two: pl_mcq_carton_three_input_two.val(),
         mcq_third_two: pl_mcq_qty_three_input_two.val(),
+
 
         size_three: pl_mcq_size_input_three.val(),
         weight_three: pl_mcq_weight_input_three.val(),
@@ -469,6 +477,50 @@ pl_special_pack.change(function (e) {
     });
 });
 
+let pl_pre_pack = $('#pl_pre_pack');
+
+pl_pre_pack.change(function (e) {
+    e.preventDefault();
+    let specials = {
+        prepacks: pl_pre_pack.val(),
+        batch: pl_add_po_batch.val(),
+        number_batch: pl_add_po_number_batch.val(),
+    }
+    $.ajax({
+        type:'POST',
+        url: '/api/packing-lists/update/prepacks',
+        data: specials,
+        success: function (specials) {
+            console.log(specials);
+        },
+        error: function (x,h,r) {
+            alert(x.responseText);
+        }
+    });
+});
+let pl_status = $('#pl_status');
+
+pl_status.change(function (e) {
+    e.preventDefault();
+    let status = {
+        status: pl_status.val(),
+        batch: pl_add_po_batch.val(),
+        number_batch: pl_add_po_number_batch.val(),
+    }
+    $.ajax({
+        type:'POST',
+        url: '/api/packing-lists/update/status',
+        data: status,
+        success: function (status) {
+            console.log(status);
+        },
+        error: function (x,h,r) {
+            alert(x.responseText);
+        }
+    });
+});
+
+
 let pl_destination_input = $('#pl_destination_input');
 
 pl_destination_input.change(function(e){
@@ -524,7 +576,7 @@ pl_add_po_btn.click(function(e){
         url: '/api/packing-lists',
         data: packinglist,
         success: function (packinglist) {
-            alert(packinglist);
+            alert('PO Succesfully Added');
             window.location.reload();
         },
         error: function (x,h,r) {
@@ -540,12 +592,18 @@ pl_add_po_btn.click(function(e){
 
 //CHOOSE BRAND
 let btn_pl_print_all = $('#pl_print_all');
-
+let pl_print_batch = $('#pl_print_batch');
 btn_pl_print_all.click(function(e){
     e.preventDefault();
 
     window.print();
 
+});
+
+pl_print_batch.click(function(e){
+    e.preventDefault();
+
+    window.print();
 });
 
 let pl_create_drop_zone = $('#pl_create_drop_zone');
@@ -800,6 +858,7 @@ let ata_mcq_third_btn = $('#ata_mcq_third_btn');
 
 ata_size_btn.click(function(e){
     e.preventDefault();
+
     pl_mcq_size_input_two.val(pl_mcq_size_input.val());
     pl_mcq_size_input_three.val(pl_mcq_size_input.val());
     pl_mcq_size_input_four.val(pl_mcq_size_input.val());
@@ -812,15 +871,34 @@ ata_size_btn.click(function(e){
 });
 ata_nw_btn.click(function(e){
     e.preventDefault();
+
+    if(pl_mcq_size_input_two.val() !== ""){
     pl_mcq_weight_input_two.val(pl_mcq_weight_input.val());
-    pl_mcq_weight_input_three.val(pl_mcq_weight_input.val());
-    pl_mcq_weight_input_four.val(pl_mcq_weight_input.val());
-    pl_mcq_weight_input_five.val(pl_mcq_weight_input.val());
-    pl_mcq_weight_input_six.val(pl_mcq_weight_input.val());
-    pl_mcq_weight_input_seven.val(pl_mcq_weight_input.val());
-    pl_mcq_weight_input_eight.val(pl_mcq_weight_input.val());
-    pl_mcq_weight_input_nine.val(pl_mcq_weight_input.val());
-    pl_mcq_weight_input_ten.val(pl_mcq_weight_input.val());
+    }
+    if(pl_mcq_size_input_three.val() !== "") {
+        pl_mcq_weight_input_three.val(pl_mcq_weight_input.val());
+    }
+    if(pl_mcq_size_input_four.val() !== "") {
+        pl_mcq_weight_input_four.val(pl_mcq_weight_input.val());
+    }
+    if(pl_mcq_size_input_five.val() !== "") {
+        pl_mcq_weight_input_five.val(pl_mcq_weight_input.val());
+    }
+    if(pl_mcq_size_input_six.val() !== "") {
+        pl_mcq_weight_input_six.val(pl_mcq_weight_input.val());
+    }
+    if(pl_mcq_size_input_seven.val() !== "") {
+        pl_mcq_weight_input_seven.val(pl_mcq_weight_input.val());
+    }
+    if(pl_mcq_size_input_eight.val() !== "") {
+        pl_mcq_weight_input_eight.val(pl_mcq_weight_input.val());
+    }
+    if(pl_mcq_size_input_nine.val() !== "") {
+        pl_mcq_weight_input_nine.val(pl_mcq_weight_input.val());
+    }
+    if(pl_mcq_size_input_ten.val() !== "") {
+        pl_mcq_weight_input_ten.val(pl_mcq_weight_input.val());
+    }
 });
 ata_carton_btn.click(function(e){
     e.preventDefault();
@@ -828,15 +906,25 @@ ata_carton_btn.click(function(e){
 });
 ata_mcq_btn.click(function(e){
     e.preventDefault();
-    pl_mcq_qty_first_input_two.val(pl_mcq_qty_first_input.val());
-    pl_mcq_qty_first_input_three.val(pl_mcq_qty_first_input.val());
-    pl_mcq_qty_first_input_four.val(pl_mcq_qty_first_input.val());
-    pl_mcq_qty_first_input_five.val(pl_mcq_qty_first_input.val());
-    pl_mcq_qty_first_input_six.val(pl_mcq_qty_first_input.val());
-    pl_mcq_qty_first_input_seven.val(pl_mcq_qty_first_input.val());
-    pl_mcq_qty_first_input_eight.val(pl_mcq_qty_first_input.val());
-    pl_mcq_qty_first_input_nine.val(pl_mcq_qty_first_input.val());
-    pl_mcq_qty_first_input_ten.val(pl_mcq_qty_first_input.val());
+    if(pl_mcq_size_input_two.val() !== "") {
+    pl_mcq_qty_first_input_two.val(pl_mcq_qty_first_input.val());}
+    if(pl_mcq_size_input_three.val() !== "") {
+    pl_mcq_qty_first_input_three.val(pl_mcq_qty_first_input.val());}
+    if(pl_mcq_size_input_four.val() !== "") {
+    pl_mcq_qty_first_input_four.val(pl_mcq_qty_first_input.val());}
+    if(pl_mcq_size_input_five.val() !== "") {
+    pl_mcq_qty_first_input_five.val(pl_mcq_qty_first_input.val());}
+    if(pl_mcq_size_input_six.val() !== "") {
+    pl_mcq_qty_first_input_six.val(pl_mcq_qty_first_input.val());}
+    if(pl_mcq_size_input_seven.val() !== "") {
+    pl_mcq_qty_first_input_seven.val(pl_mcq_qty_first_input.val());}
+    if(pl_mcq_size_input_eight.val() !== "") {
+    pl_mcq_qty_first_input_eight.val(pl_mcq_qty_first_input.val());}
+    if(pl_mcq_size_input_nine.val() !== "") {
+    pl_mcq_qty_first_input_nine.val(pl_mcq_qty_first_input.val());}
+    if(pl_mcq_size_input_ten.val() !== "") {
+        pl_mcq_qty_first_input_ten.val(pl_mcq_qty_first_input.val());
+    }
 });
 ata_carton_second_btn.click(function(e){
     e.preventDefault();
@@ -844,15 +932,24 @@ ata_carton_second_btn.click(function(e){
 });
 ata_mcq_second_btn.click(function(e){
     e.preventDefault();
-    pl_mcq_qty_second_input_two.val(pl_mcq_qty_second_input.val());
-    pl_mcq_qty_second_input_three.val(pl_mcq_qty_second_input.val());
-    pl_mcq_qty_second_input_four.val(pl_mcq_qty_second_input.val());
-    pl_mcq_qty_second_input_five.val(pl_mcq_qty_second_input.val());
-    pl_mcq_qty_second_input_six.val(pl_mcq_qty_second_input.val());
-    pl_mcq_qty_second_input_seven.val(pl_mcq_qty_second_input.val());
-    pl_mcq_qty_second_input_eight.val(pl_mcq_qty_second_input.val());
-    pl_mcq_qty_second_input_nine.val(pl_mcq_qty_second_input.val());
-    pl_mcq_qty_second_input_ten.val(pl_mcq_qty_second_input.val());
+    if(pl_mcq_size_input_two.val() !== "") {
+    pl_mcq_qty_second_input_two.val(pl_mcq_qty_second_input.val());}
+    if(pl_mcq_size_input_three.val() !== "") {
+    pl_mcq_qty_second_input_three.val(pl_mcq_qty_second_input.val());}
+    if(pl_mcq_size_input_four.val() !== "") {
+    pl_mcq_qty_second_input_four.val(pl_mcq_qty_second_input.val());}
+    if(pl_mcq_size_input_five.val() !== "") {
+    pl_mcq_qty_second_input_five.val(pl_mcq_qty_second_input.val());}
+    if(pl_mcq_size_input_six.val() !== "") {
+    pl_mcq_qty_second_input_six.val(pl_mcq_qty_second_input.val());}
+    if(pl_mcq_size_input_seven.val() !== "") {
+    pl_mcq_qty_second_input_seven.val(pl_mcq_qty_second_input.val());}
+    if(pl_mcq_size_input_eight.val() !== "") {
+    pl_mcq_qty_second_input_eight.val(pl_mcq_qty_second_input.val());}
+    if(pl_mcq_size_input_nine.val() !== "") {
+    pl_mcq_qty_second_input_nine.val(pl_mcq_qty_second_input.val());}
+    if(pl_mcq_size_input_ten.val() !== "") {
+    pl_mcq_qty_second_input_ten.val(pl_mcq_qty_second_input.val());}
 });
 ata_carton_third_btn.click(function(e){
     e.preventDefault();
@@ -860,13 +957,22 @@ ata_carton_third_btn.click(function(e){
 });
 ata_mcq_third_btn.click(function(e){
     e.preventDefault();
-    pl_mcq_qty_three_input_two.val(pl_mcq_qty_three_input.val());
-    pl_mcq_qty_three_input_three.val(pl_mcq_qty_three_input.val());
-    pl_mcq_qty_three_input_four.val(pl_mcq_qty_three_input.val());
-    pl_mcq_qty_three_input_five.val(pl_mcq_qty_three_input.val());
-    pl_mcq_qty_three_input_six.val(pl_mcq_qty_three_input.val());
-    pl_mcq_qty_three_input_seven.val(pl_mcq_qty_three_input.val());
+    if(pl_mcq_size_input_two.val() !== "") {
+    pl_mcq_qty_three_input_two.val(pl_mcq_qty_three_input.val());}
+    if(pl_mcq_size_input_three.val() !== "") {
+    pl_mcq_qty_three_input_three.val(pl_mcq_qty_three_input.val());}
+    if(pl_mcq_size_input_four.val() !== "") {
+    pl_mcq_qty_three_input_four.val(pl_mcq_qty_three_input.val());}
+    if(pl_mcq_size_input_five.val() !== "") {
+    pl_mcq_qty_three_input_five.val(pl_mcq_qty_three_input.val());}
+    if(pl_mcq_size_input_six.val() !== "") {
+    pl_mcq_qty_three_input_six.val(pl_mcq_qty_three_input.val());}
+    if(pl_mcq_size_input_seven.val() !== "") {
+    pl_mcq_qty_three_input_seven.val(pl_mcq_qty_three_input.val());}
+    if(pl_mcq_size_input_eight.val() !== "") {
     pl_mcq_qty_three_input_eight.val(pl_mcq_qty_three_input.val());
-    pl_mcq_qty_three_input_nine.val(pl_mcq_qty_three_input.val());
-    pl_mcq_qty_three_input_ten.val(pl_mcq_qty_three_input.val());
+        if(pl_mcq_size_input_nine.val() !== "") {}
+    pl_mcq_qty_three_input_nine.val(pl_mcq_qty_three_input.val());}
+    if(pl_mcq_size_input_ten.val() !== "") {
+    pl_mcq_qty_three_input_ten.val(pl_mcq_qty_three_input.val());}
 });

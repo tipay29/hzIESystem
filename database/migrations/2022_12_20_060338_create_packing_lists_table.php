@@ -41,6 +41,7 @@ return new class extends Migration
             $table->string('pl_season')->nullable();
             $table->integer('pl_batch')->nullable();
             $table->integer('pl_number_batch')->nullable();
+            $table->integer('pl_uniq_number_batch')->nullable();
             $table->unsignedInteger('user_id')->nullable();
             $table->timestamps();
         });

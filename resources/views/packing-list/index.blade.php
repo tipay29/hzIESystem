@@ -28,6 +28,76 @@
 
                     <div class="card-body">
 
+                        <form action="{{route('packing-lists.index')}}" method="get">
+                            <div class="container-fluid p-0">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <small for="pls_po">PO</small>
+                                        <input id="pls_po" type="text" class="form-control"
+                                               value="{{request('pls_po')}}" name="pls_po">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <small for="pls_master_po">Master PO</small>
+                                        <input id="pls_master_po" type="text" class="form-control"
+                                               value="{{request('pls_master_po')}}" name="pls_master_po">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <small for="pls_factory_po">Factory PO</small>
+                                        <input id="pls_factory_po" type="text" class="form-control"
+                                               value="{{request('pls_factory_po')}}" name="pls_factory_po">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <small for="pls_material">Material</small>
+                                        <input id="pls_material" type="text" class="form-control"
+                                               value="{{request('pls_material')}}" name="pls_material">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <small for="pls_color">Color</small>
+                                        <input id="pls_color" type="text" class="form-control"
+                                               value="{{request('pls_color')}}" name="pls_color">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <small for="pls_status">Status</small>
+                                        <input id="pls_status" type="text" class="form-control"
+                                               value="{{request('pls_status')}}"  name="pls_status">
+                                    </div>
+
+
+                                </div>
+                                <div class="row mt-1">
+                                    <div class="col-md-2">
+                                        <small for="pls_user">Created By</small>
+                                        <input maxlength="1" id="pls_user" type="text" class="form-control"
+                                               value="{{request('pls_user')}}" name="pls_user">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <small for="pls_customer_name">Customer Name</small>
+                                        <input maxlength="2" id="pls_customer_name" type="text" class="form-control"
+                                               value="{{request('pls_customer_name')}}" name="pls_customer_name">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <small for="pls_crd">CRD</small>
+                                        <input id="pls_crd" type="date" class="form-control"
+                                               value="{{request('pls_crd')}}" name="pls_crd">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <small for="pls_date_created">Date Created</small>
+                                        <input id="pls_datecreated" type="date" class="form-control"
+                                               value="{{request('pls_date_created')}}" name="pls_date_created">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button id="pls_btn_clear" style="height: 100%;" class="btn form-control btn-primary">
+                                            {{__('text.Clear')}}</button>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button id="pls_btn_apply" style="height: 100%;" class="btn form-control btn-primary">
+                                            {{__('text.Search')}}</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+
                         <div class="table-responsive">
                             <table class="table" >
                                 <thead>
@@ -40,6 +110,7 @@
                                         <th width="10%" scope="col">Type</th>
                                         <th width="20%" scope="col">Created Date </th>
                                         <th width="20%" scope="col">Create By </th>
+                                        <th width="5%" scope="col">Del</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -59,7 +130,17 @@
                                             <td  scope="col">{{$packinglist->pl_type}}</td>
                                             <td scope="col">{{$packinglist->created_at}} </td>
                                             <td scope="col">{{$packinglist->user->name}} </td>
-
+                                            <td>
+                                                @if(auth()->user()->id == $packinglist->user_id)
+                                                <form style="display:inline;" action="{{route('packing-lists.destroy-batch', $packinglist->pl_batch)}}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button style="border: none;background-color: white;color:darkred;"
+                                                            onclick="return confirm('Delete Packing List Batch {{$packinglist->pl_batch}}  ?')" >
+                                                        <i class="fa fa-trash" aria-hidden="true"></i></button>
+                                                </form>
+                                                @endif
+                                            </td>
                                         </tr>
 
                                     @empty
@@ -74,6 +155,12 @@
 {{--                                    {{$packinglists->render("pagination::bootstrap-4")}}--}}
 {{--                                </div>--}}
 {{--                            </div>--}}
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-center ">
+                                {{$packinglists->withQueryString()->onEachSide(2)->links()}}
+                            </div>
                         </div>
 
 

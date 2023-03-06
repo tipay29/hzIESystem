@@ -9,6 +9,7 @@ use App\Models\Size;
 use App\Models\Style;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use function Spatie\Ignition\Config\toArray;
 
 class SeparateBalanceQuantityListener
 {
@@ -20,7 +21,9 @@ class SeparateBalanceQuantityListener
     protected $total_gw;
     protected $total_cbm;
     protected $total_ctn_ctn;
+    protected  $total_ctn_mcq;
     protected $sizes;
+
     public function __construct()
     {
         $this->balance_qty = 0;
@@ -31,6 +34,7 @@ class SeparateBalanceQuantityListener
         $this->total_gw = 0;
         $this->total_cbm = 0;
         $this->total_ctn_ctn = array();
+        $this->total_ctn_mcq = array();
         $this->sizes = array();
     }
 
@@ -145,31 +149,29 @@ class SeparateBalanceQuantityListener
             $sizesCount = count($sizes)-1;
 
             //check if have size or not
-//            dd($sizesCount);
+//                dd($sizesCount);
 
             //get MCQ LIST
-            $mcqlist = array();
-            $cartonidlist = array();
+            $mcqlistnew = array();
+
 
             for($y = 0; $y <= $sizesCount; $y++){
-                array_push($mcqlist, $sizes[$y]->pivot->mcq);
-                array_push($cartonidlist,$sizes[$y]->pivot->carton_id);
+                $mcqlistnew[$sizes[$y]->pivot->carton_id] = $sizes[$y]->pivot->mcq;
 
             }
 
 
+            $cartonidlist = collect(array_flip(collect($mcqlistnew)->sort()->toArray()))->values()->toArray();
 
-            $mcqlist = collect($mcqlist)->sort()->values()->toArray();
-            $cartonidlist = collect($cartonidlist)->sort()->values()->toArray();
-
-
-
+            $mcqlist = collect($mcqlistnew)->sort()->values()->toArray();
+//            dd($mcqlist);
 //            dump($mcqlist);
 //            dd($mcqlist);
 //
 //            dump($packinglistsRaw[$x]->pl_order_quantity);
 
             //get the suited carton for the quantity
+
 
             //check if mcq have if not we put blank in the else
             if(count($mcqlist) !== 0) {
@@ -191,6 +193,7 @@ class SeparateBalanceQuantityListener
                         if ($prepack !== null && $prepack !== 0) {
                             $mcqlist[$z] = (int)floor(($mcqlist[$z] / $prepack)) * $prepack;
                         }
+
 
 
 
@@ -224,6 +227,8 @@ class SeparateBalanceQuantityListener
                             //Total netweight
                             $this->total_nw = $this->total_nw + $packinglistArray[$x]['net_weight_total'];
 
+
+
                             //Carton WEight
                             $packinglistArray[$x]['carton_weight'] = $cartons->where('id', $cartonidlist[$z])->first()->ctn_weight;
 
@@ -235,14 +240,17 @@ class SeparateBalanceQuantityListener
                                 $this->total_ctn_ctn[$packinglistArray[$x]['carton_size']] =
                                 $this->total_ctn_ctn[$packinglistArray[$x]['carton_size']] +
                                 $packinglistArray[$x]['pl_number_of_carton'];
+
+
                             }
                             else
                             {
                                 $this->total_ctn_ctn[$packinglistArray[$x]['carton_size']] =
-                                    $packinglistArray[$x]['pl_number_of_carton'];
+                                $packinglistArray[$x]['pl_number_of_carton'];
                             }
 
-
+                            $this->total_ctn_mcq[$packinglistArray[$x]['carton_size']] =
+                                $mcqlist[$z];
 
 
                             //GROSS WEIGHT 1 CARTON
@@ -285,8 +293,10 @@ class SeparateBalanceQuantityListener
                         } else {
 
                             //aadd to sort nice
-                            $packinglistArray[$x]['pl_style_size_id'] = $size_id + 0.1;
 
+                            if($packinglistArray[$x]['pl_style_size'] !== 'OS'){
+                                $packinglistArray[$x]['pl_style_size_id'] = $size_id + 0.1;
+                            }
                             //QTY/SHIP
                             $packinglistArray[$x]['pl_order_quantity_cut'] = $iqty;
                             //QTY / CTN
@@ -300,7 +310,7 @@ class SeparateBalanceQuantityListener
 
                             //NET WEIGHT 1 CARTON
                             if($packinglistsRaw[$x]->pl_nw_two == 0 || $packinglistsRaw[$x]->pl_nw_two == null){
-                                $packinglistArray[$x]['net_weight_one_ctn'] = $mcqlist[$z] * $style_weight;
+                                $packinglistArray[$x]['net_weight_one_ctn'] = $packinglistArray[$x]['pl_order_quantity_cut'] * $style_weight;
                             }else{
                                 $packinglistArray[$x]['net_weight_one_ctn'] = $packinglistsRaw[$x]->pl_nw_two;
                             }
@@ -327,7 +337,8 @@ class SeparateBalanceQuantityListener
                                 $this->total_ctn_ctn[$packinglistArray[$x]['carton_size']] =
                                     $packinglistArray[$x]['pl_number_of_carton'];
                             }
-
+                            $this->total_ctn_mcq[$packinglistArray[$x]['carton_size']] =
+                                $mcqlist[$z];
 
                             //GROSS WEIGHT 1 CARTON
                             if($packinglistsRaw[$x]->pl_gw_two == 0 || $packinglistsRaw[$x]->pl_gw_two == null){
@@ -427,13 +438,14 @@ class SeparateBalanceQuantityListener
         $packinglistArray[$pl_last_num]['total_nw'] = $this->total_nw;
         $packinglistArray[$pl_last_num]['total_cbm'] = $this->total_cbm;
         $packinglistArray[$pl_last_num]['total_ctn_ctn'] = $this->total_ctn_ctn;
+        $packinglistArray[$pl_last_num]['total_ctn_mcq'] = $this->total_ctn_mcq;
         $packinglistArray[$pl_last_num]['pl_ctn_list'] = array_values(array_flip($this->sizes));
 
 
         $packinglists->add($packinglistArray[$pl_last_num]);
         //dd(array_flip($this->sizes));
-        //dd($this->total_ctn_ctn);
-        //dd($packinglistArray);
+
+//        dd($packinglists);
 
         return $packinglists;
 
