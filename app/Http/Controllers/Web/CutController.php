@@ -47,7 +47,7 @@ class CutController extends Controller
             'employees',
         ])
         ->paginate(10);
-
+        // dd($cuts);
         return view('cut.index',compact('cuts'));
     }
 
