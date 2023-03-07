@@ -9,7 +9,7 @@
 
                     <div class="card-header d-flex justify-content-between">
 
-                        <h5 class="mt-2">Packing List</h5>
+                        <h5 class="mt-2">Packing Lists</h5>
 
                         <div>
 
@@ -21,7 +21,9 @@
                             <a href="{{route('cartons.index')}}"
                             class="btn btn-outline-secondary"
                             >View Carton</a>
-
+                            <a href="{{url()->previous()}}"
+                               class="btn btn-outline-secondary">
+                                Back</a>
                         </div>
 
                     </div>

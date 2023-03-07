@@ -17,13 +17,13 @@
         <div class="col-md-4" >
             {{--                                {{dd($packinglists[0])}}--}}
             <h4 class="text-center">PACKING LIST</h4>
-            <input type="text" class="form-control"
+            <input id="pl_factory_po_input" type="text" class="form-control"
                    style="text-align: center;
                                                    border: 0; background-color:	 #f1f1f1;
                                                    font-weight: 500;font-size: 1.2rem;
                                                    padding:0px;line-height: 10px;
                                                     " value="{{$packinglists[0]['pl_factory_po']}}">
-            <input type="text" class="form-control"
+            <input id="pl_shipment_input" type="text" class="form-control"
                    style="text-align: center;
                                                    border: 0; background-color:	 #f1f1f1;
                                                    font-weight: 500;font-size: 1.2rem;
@@ -123,11 +123,14 @@
             <div class="row">
                 <h6 for="" class="col-md-6 text-md-end"> Status:</h6>
 
-                <select id="pl_status" class="col-md-6 text-start" style="font-size: 1rem;
-                                        background-color:	 #f1f1f1;
+                <select id="pl_status" class="col-md-6 text-start" style="
+                {{$packinglists[0]['pl_status']=="Drafted" ? 'background-color:yellow;' : ''}}
+                {{$packinglists[0]['pl_status']=="Canceled" ? 'background-color:red;' : ''}}
+                {{$packinglists[0]['pl_status']=="Final" ? 'background-color:green;color:white;' : ''}}
+                                        font-size: 1rem;
                                         border:none;">
                     <option value="Drafted"
-                        {{ $packinglists[0]['pl_status']=="Draft" ? 'selected' : ''  }}
+                        {{ $packinglists[0]['pl_status']=="Drafted" ? 'selected' : ''  }}
                     >Drafted</option>
                     <option value="Canceled"
                         {{ $packinglists[0]['pl_status']=="Canceled" ? 'selected' : ''  }}
@@ -139,6 +142,15 @@
                 </select>
 
             </div>
+            <div class="row">
+                <h6  class="col-md-6 text-md-end"> MD:</h6>
+
+                <p class="col-md-6 text-start m-0" style="font-size: 1rem;">
+                    {{\App\Models\User::where('id',$packinglists[0]['user_id'])->first()->name}}
+                </p>
+
+            </div>
+
             <div class="row">
                 <h6 for="" class="col-md-6 text-md-end"> CRD:</h6>
 
@@ -167,6 +179,7 @@
                                                     " value="{{$packinglists[0]['pl_destination']}}">
 
             </div>
+
             <div class="row">
                 <h6  class="col-md-6 text-md-end"> Print Date:</h6>
 
@@ -176,19 +189,15 @@
 
             </div>
 
-            <div class="row">
-                <h6  class="col-md-6 text-md-end"> </h6>
 
-                <button style="display: none;" id="addMcqModalBtn" type="button" class="btn btn-outline-info col-md-6" data-bs-toggle="modal" data-bs-target="#addMcqModal">
+
+            <button style="display: none;" id="addMcqModalBtn" type="button" class="btn btn-outline-info col-md-6" data-bs-toggle="modal"
+                        data-bs-target="#addMcqModal">
                     Add MCQ
-                </button>
+            </button>
 
-                <button id="addMcqModalBtn" type="button" class="btn btn-outline-info col-md-6" data-bs-toggle="modal"
-                        data-bs-target="#addPOModal">
-                    Add PO
-                </button>
 
-            </div>
+
 
 
 

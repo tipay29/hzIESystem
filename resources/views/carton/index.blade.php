@@ -9,7 +9,7 @@
 
                     <div class="card-header d-flex justify-content-between">
 
-                        <h5 class="mt-2">Carton List</h5>
+                        <h5 class="mt-2">Carton Lists</h5>
 
                         <div>
 
@@ -19,7 +19,9 @@
                             <a href="{{route('cartons.create')}}"
                                class="btn btn-outline-success"
                             >Add Carton</a>
-
+                            <a href="{{url()->previous()}}"
+                               class="btn btn-outline-secondary">
+                                Back</a>
                         </div>
 
                     </div>
@@ -72,7 +74,11 @@
                             </table>
 
                         </div>
-
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-center ">
+                                {{$cartons->withQueryString()->onEachSide(2)->links()}}
+                            </div>
+                        </div>
 
                     </div>
                 </div>

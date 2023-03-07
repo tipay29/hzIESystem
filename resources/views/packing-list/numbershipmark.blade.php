@@ -1,11 +1,13 @@
 <div class="row">
 
     {{--                                {{dd($packinglists[0])}}--}}
-    <div style="min-height: 50px;" class="col-md-8">
+    <div style="min-height: 50px;" class="col-md-6">
 
-        <img width="500" height="300" src="{{ asset('storage/images/shipmark/' . $packinglists[0]['pl_brand'] .
-                                    '/' . $packinglists[0]['pl_type']  . '/' .$packinglists[0]['pl_country'] . '.png') }}" alt="">
+        <img src="{{ asset('storage/images/shipmark/' . $packinglists[0]['pl_brand'] .
+                                    '/' . $packinglists[0]['pl_type']  . '/' .$packinglists[0]['pl_country'] . '.png') }}"
+        class="img-fluid">
 
+        <div class="print-hide">
         <form action="{{route('packing-lists.mark')}}"
               method="post" enctype="multipart/form-data">
             @csrf
@@ -18,14 +20,14 @@
             <input type="submit" name="submit">
 
         </form>
-
+        </div>
     </div>
 
-    <div style="min-height: 50px;" class="col-md-4">
+    <div style="min-height: 50px;" class="col-md-6">
 
         <h5>Remarks:</h5>
 
-        <textarea  cols="60" rows="10" id="pl_rm_input">
+        <textarea rows="10" id="pl_rm_input" style="min-width: 100%">
                                         {{$packinglists[0]['pl_remarks']}}
                                     </textarea>
 

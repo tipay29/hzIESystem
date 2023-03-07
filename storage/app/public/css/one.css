@@ -89,7 +89,7 @@
     .pl_section-to-print, .pl_section-to-print *{
         visibility: visible;
         zoom: 90%;
-
+        margin: 0;
     }
 
     .pagebreak {

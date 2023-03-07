@@ -6,10 +6,33 @@
             <div class="col-md-12">
 
 
+                <div class="card mb-3 print-hide">
+
+                    <div class="card-header d-flex justify-content-between">
+
+                        <h5 class="mt-2">Packing List View</h5>
+
+                        <div>
+                            <button id="addPOModalBtn" type="button" class="btn btn-outline-info" data-bs-toggle="modal"
+                                    data-bs-target="#addPOModal">
+                                Add PO
+                            </button>
+                            <a href="#" id="pl_print_all"
+                               class="btn btn-outline-primary">
+                                Print</a>
+
+                            <a href="{{route('packing-lists.batch', $packinglists[0]['pl_batch'])}}"
+                               class="btn btn-outline-secondary">
+                                Back</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
 
 
-
-                <div class="card mb-3">
+                <div class="card mb-3 pl_section-to-print">
 
                     @include('packing-list.numberheader')
 
@@ -40,7 +63,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{$number_ctn = 0}}
+                                    <div style="display: none;"> {{$number_ctn = 0}}</div>
                                     @foreach($packinglists as $key => $packinglist)
                                         @if($key == count($packinglists)-1)
                                               <tr >
@@ -85,7 +108,9 @@
                                                 <td scope="col">{{$packinglist['pl_order_quantity_cut']}}</td>
                                                 <td scope="col">{{$packinglist['pl_one_ctn_item_count']}}</td>
                                                 <td scope="col">{{$number_ctn+1 . "-" . ($number_ctn+ intval($packinglist['pl_number_of_carton']))}}</td>
+                                                <div style="display: none;">
                                                 {{$number_ctn = $number_ctn + intval($packinglist['pl_number_of_carton'])}}
+                                                </div>
                                                 <td scope="col">{{$packinglist['pl_number_of_carton']}}</td>
                                                 <td scope="col">{{number_format((float)$packinglist['net_weight_one_ctn'], 2, '.', '')}}</td>
                                                 <td scope="col">{{number_format((float)$packinglist['net_weight_total'], 2, '.', '')}}</td>

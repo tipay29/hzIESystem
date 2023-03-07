@@ -84,11 +84,14 @@
             <div class="row">
                 <h6 for="" class="col-md-6 text-md-end"> Status:</h6>
 
-                <select id="pl_status" class="col-md-6 text-start" style="font-size: 1rem;
-                                        background-color:	 #f1f1f1;
+                <select id="pl_status" class="col-md-6 text-start" style="
+                    {{$packinglists[$x][0]['pl_status']=="Drafted" ? 'background-color:yellow;' : ''}}
+                    {{$packinglists[$x][0]['pl_status']=="Canceled" ? 'background-color:red;' : ''}}
+                    {{$packinglists[$x][0]['pl_status']=="Final" ? 'background-color:green;color:white;' : ''}}
+                                        font-size: 1rem;
                                         border:none;">
                     <option value="Drafted"
-                        {{ $packinglists[$x][0]['pl_status']=="Draft" ? 'selected' : ''  }}
+                        {{ $packinglists[$x][0]['pl_status']=="Drafted" ? 'selected' : ''  }}
                     >Drafted</option>
                     <option value="Canceled"
                         {{ $packinglists[$x][0]['pl_status']=="Canceled" ? 'selected' : ''  }}
@@ -98,6 +101,15 @@
                     >Final</option>
 
                 </select>
+
+            </div>
+
+            <div class="row">
+                <h6  class="col-md-6 text-md-end"> MD:</h6>
+
+                <p class="col-md-6 text-start m-0" style="font-size: 1rem;">
+                    {{\App\Models\User::where('id',$packinglists[$x][0]['user_id'])->first()->name}}
+                </p>
 
             </div>
 

@@ -180,7 +180,41 @@ class PackinglistApiController extends Controller
             $item->update(['pl_status'=> request()->status]);
         });
 
-        return response()->json(['success' => $packinglists],201);
+        return response()->json( $packinglists,201);
+
+    }
+
+    public function factorypos(){
+
+        $packinglists = PackingList::where(
+            [
+                ['pl_batch',  request()->batch],
+                ['pl_number_batch',  request()->number_batch],
+            ]
+        )->get();
+
+        $packinglists->each(function ($item){
+            $item->update(['pl_factory_po'=> request()->factory_po]);
+        });
+
+        return response()->json( $packinglists,201);
+
+    }
+
+    public function shipments(){
+
+        $packinglists = PackingList::where(
+            [
+                ['pl_batch',  request()->batch],
+                ['pl_number_batch',  request()->number_batch],
+            ]
+        )->get();
+
+        $packinglists->each(function ($item){
+            $item->update(['pl_shipment_mode'=> request()->shipment_mode]);
+        });
+
+        return response()->json( $packinglists,201);
 
     }
 

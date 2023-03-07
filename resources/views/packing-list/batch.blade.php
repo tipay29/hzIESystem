@@ -20,6 +20,9 @@
                                 <a href="{{route('packing-lists.viewa',$packinglists[0]->pl_batch)}}"
                                    class="btn btn-outline-success section-to-no-print">
                                     View All</a>
+                                <a href="{{route('packing-lists.index')}}"
+                                   class="btn btn-outline-secondary">
+                                    Back</a>
 
                             </div>
 
@@ -55,7 +58,15 @@
                                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                                     {{$packinglist->pl_number_batch}} </a>
                                             </td>
-                                            <td scope="col">{{$packinglist->pl_status}} </td>
+                                            <td scope="col" >
+                                            @if($packinglist->pl_status === "Drafted")
+                                                <p style="background-color: yellow;">{{$packinglist->pl_status}}</p>
+                                            @elseif($packinglist->pl_status === "Canceled")
+                                                <p style="background-color: red;">{{$packinglist->pl_status}}</p>
+                                            @elseif($packinglist->pl_status === "Final")
+                                                <p class="bg-success text-white">{{$packinglist->pl_status}}</p>
+                                            @endif
+                                            </td>
                                             <td  scope="col">{{$packinglist->pl_po_cut}} </td>
                                             <td  scope="col">{{$packinglist->pl_master_po}} </td>
                                             <td  scope="col">{{$packinglist->pl_factory_po}} </td>

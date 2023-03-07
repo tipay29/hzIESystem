@@ -14,9 +14,19 @@
             </tr>
             </thead>
             <tbody>
-            @for($y = 0; $y < count($packinglists[$x])-1;$y++)
-
-                    @if($packinglists[$x][$y]['row_cut'] == 1)
+            @for($y = 0; $y < count($packinglists[$x]);$y++)
+                    @if($y == count($packinglists[$x])-1)
+                    <tr>
+                        <td scope="col"></td>
+                        <td  scope="col"></td>
+                        <td scope="col"></td>
+                        <td scope="col"> <b> {{$packinglists[$x][$y]['total_qty_ship']}} </b></td>
+                        <td scope="col"> <b> {{$packinglists[$x][$y]['total_carton']}} </b> </td>
+                        <td scope="col"> <b> {{number_format((float)$packinglists[$x][$y]['total_nw'], 2, '.', '')}} </b></td>
+                        <td scope="col"> <b> {{number_format((float)$packinglists[$x][$y]['total_gw'], 2, '.', '')}} </b> </td>
+                        <td scope="col"> <b> {{$packinglists[$x][$y]['total_cbm']}} </b> </td>
+                    </tr>
+                    @elseif($packinglists[$x][$y]['row_cut'] == 1)
                         <tr>
 
                             <td scope="col">{{$packinglists[$x][$y]['pl_style_size']}}</td>

@@ -15,9 +15,21 @@
             </tr>
             </thead>
             <tbody>
-            @for($x = 0; $x < count($packinglists)-1;$x++)
 
-                    @if($packinglists[$x]['row_cut'] == 1)
+
+            @for($x = 0; $x < count($packinglists);$x++)
+                    @if($x == count($packinglists)-1)
+                        <tr>
+                            <td scope="col"></td>
+                            <td  scope="col"></td>
+                            <td scope="col"></td>
+                            <td scope="col"> <b> {{$packinglists[$x]['total_qty_ship']}} </b></td>
+                            <td scope="col"> <b> {{$packinglists[$x]['total_carton']}} </b> </td>
+                            <td scope="col"> <b> {{number_format((float)$packinglists[$x]['total_nw'], 2, '.', '')}} </b></td>
+                            <td scope="col"> <b> {{number_format((float)$packinglists[$x]['total_gw'], 2, '.', '')}} </b> </td>
+                            <td scope="col"> <b> {{$packinglists[$x]['total_cbm']}} </b> </td>
+                        </tr>
+                    @elseif($packinglists[$x]['row_cut'] == 1)
                         <tr>
 
                             <td scope="col">{{$packinglists[$x]['pl_style_size']}}</td>
@@ -28,9 +40,7 @@
 
                             @if(!isset($packinglists[$x+1]['row_cut']) || $packinglists[$x+1]['row_cut'] == 1))
                                 <td scope="col">{{$packinglists[$x]['pl_number_of_carton']}}</td>
-
                                 <td scope="col">{{$packinglists[$x]['net_weight_total']}}</td>
-
                                 <td scope="col">{{$packinglists[$x]['gross_weight_total']}}</td>
                                 <td scope="col">{{$packinglists[$x]['cbm']}}</td>
                             @else

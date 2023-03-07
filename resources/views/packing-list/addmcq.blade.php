@@ -39,8 +39,11 @@
                        </div>
 
                    </div>
-                   <div class="col-md-2">
-                       <label for="">Carton</label>
+
+                   <div class="col-md-2" style="background-color: #C0F5FB;">
+                       <label for="" class="d-flex justify-content-between"><span>Carton</span>
+                           <span style="font-weight: bold;">
+                               1ST SET</span></label>
 
                        <div class="input-group">
                            <select id="pl_mcq_carton_first_input" class="form-control">
@@ -55,7 +58,7 @@
                        </div>
 
                    </div>
-                   <div class="col-md-1">
+                   <div class="col-md-1" style="background-color: #C0F5FB;">
                        <label for="">MCQ</label>
                        <div class="input-group">
                            <input id="pl_mcq_qty_first_input" type="text" class="form-control" >
@@ -69,8 +72,10 @@
                        </div>
                    </div>
 
-                    <div class="col-md-2">
-                        <label for="">Carton</label>
+                    <div class="col-md-2" style="background-color: #D0FBC0;">
+                        <label for="" class="d-flex justify-content-between"><span>Carton</span>
+                            <span style="font-weight: bold;">
+                               2ND SET</span></label>
                         <div class="input-group">
                             <select id="pl_mcq_carton_second_input" class="form-control">
                                 <option disabled selected>Select Carton</option>
@@ -86,7 +91,7 @@
                         </div>
 
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1" style="background-color: #D0FBC0;">
                         <label for="">MCQ</label>
                         <div class="input-group">
                             <input id="pl_mcq_qty_second_input" type="text" class="form-control" >
@@ -101,8 +106,10 @@
 
                     </div>
 
-                    <div class="col-md-2">
-                        <label for="">Carton</label>
+                    <div class="col-md-2" style="background-color: #F7FBC0;">
+                        <label for="" class="d-flex justify-content-between"><span>Carton</span>
+                            <span style="font-weight: bold;">
+                               3RD SET</span></label>
                         <div class="input-group">
                             <select id="pl_mcq_carton_three_input" class="form-control">
                                 <option disabled selected>Select Carton</option>
@@ -118,7 +125,7 @@
                         </div>
 
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1" style="background-color: #F7FBC0;">
                         <label for="">MCQ</label>
                         <div class="input-group">
                             <input id="pl_mcq_qty_three_input" type="text" class="form-control" >
@@ -144,38 +151,38 @@
 
                         <input id="pl_mcq_weight_input_two"  type="text" class="form-control" >
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2" style="background-color: #C0F5FB;">
 
-                        <select id="pl_mcq_carton_first_input_two" class="form-control">
+                        <select id="pl_mcq_carton_first_input_two" class="form-control" >
                             <option disabled selected>Select Carton</option>
 
                         </select>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1" style="background-color: #C0F5FB;">
 
                         <input id="pl_mcq_qty_first_input_two" type="text" class="form-control" >
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-2" style="background-color: #D0FBC0;">
 
                         <select id="pl_mcq_carton_second_input_two" class="form-control">
                             <option disabled selected>Select Carton</option>
 
                         </select>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1" style="background-color: #D0FBC0;">
 
                         <input id="pl_mcq_qty_second_input_two" type="text" class="form-control" >
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-2" style="background-color: #F7FBC0;">
 
                         <select id="pl_mcq_carton_three_input_two" class="form-control">
                             <option disabled selected>Select Carton</option>
 
                         </select>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1" style="background-color: #F7FBC0;">
 
                         <input id="pl_mcq_qty_three_input_two" type="text" class="form-control" >
                     </div>
@@ -192,38 +199,38 @@
 
                         <input id="pl_mcq_weight_input_three"  type="text" class="form-control" >
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2" style="background-color: #C0F5FB;">
 
                         <select id="pl_mcq_carton_first_input_three" class="form-control">
                             <option disabled selected>Select Carton</option>
 
                         </select>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1" style="background-color: #C0F5FB;">
 
                         <input id="pl_mcq_qty_first_input_three" type="text" class="form-control" >
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-2" style="background-color: #D0FBC0;">
 
                         <select id="pl_mcq_carton_second_input_three" class="form-control">
                             <option disabled selected>Select Carton</option>
 
                         </select>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1" style="background-color: #D0FBC0;">
 
                         <input id="pl_mcq_qty_second_input_three" type="text" class="form-control" >
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-2" style="background-color: #F7FBC0;">
 
                         <select id="pl_mcq_carton_three_input_three" class="form-control">
                             <option disabled selected>Select Carton</option>
 
                         </select>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1" style="background-color: #F7FBC0;">
 
                         <input id="pl_mcq_qty_three_input_three" type="text" class="form-control" >
                     </div>
@@ -240,38 +247,39 @@
 
                         <input id="pl_mcq_weight_input_four"  type="text" class="form-control" >
                     </div>
-                    <div class="col-md-2">
+
+                    <div class="col-md-2" style="background-color: #C0F5FB;">
 
                         <select id="pl_mcq_carton_first_input_four" class="form-control">
                             <option disabled selected>Select Carton</option>
 
                         </select>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1" style="background-color: #C0F5FB;">
 
                         <input id="pl_mcq_qty_first_input_four" type="text" class="form-control" >
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-2" style="background-color: #D0FBC0;">
 
                         <select id="pl_mcq_carton_second_input_four" class="form-control">
                             <option disabled selected>Select Carton</option>
 
                         </select>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1" style="background-color: #D0FBC0;">
 
                         <input id="pl_mcq_qty_second_input_four" type="text" class="form-control" >
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-2" style="background-color: #F7FBC0;">
 
                         <select id="pl_mcq_carton_three_input_four" class="form-control">
                             <option disabled selected>Select Carton</option>
 
                         </select>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1" style="background-color: #F7FBC0;">
 
                         <input id="pl_mcq_qty_three_input_four" type="text" class="form-control" >
                     </div>
@@ -288,38 +296,38 @@
 
                         <input id="pl_mcq_weight_input_five"  type="text" class="form-control" >
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2" style="background-color: #C0F5FB;">
 
                         <select id="pl_mcq_carton_first_input_five" class="form-control">
                             <option disabled selected>Select Carton</option>
 
                         </select>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1" style="background-color: #C0F5FB;">
 
                         <input id="pl_mcq_qty_first_input_five" type="text" class="form-control" >
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-2" style="background-color: #D0FBC0;">
 
                         <select id="pl_mcq_carton_second_input_five" class="form-control">
                             <option disabled selected>Select Carton</option>
 
                         </select>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1" style="background-color: #D0FBC0;">
 
                         <input id="pl_mcq_qty_second_input_five" type="text" class="form-control" >
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-2" style="background-color: #F7FBC0;">
 
                         <select id="pl_mcq_carton_three_input_five" class="form-control">
                             <option disabled selected>Select Carton</option>
 
                         </select>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1" style="background-color: #F7FBC0;">
 
                         <input id="pl_mcq_qty_three_input_five" type="text" class="form-control" >
                     </div>
@@ -336,38 +344,38 @@
 
                         <input id="pl_mcq_weight_input_six"  type="text" class="form-control" >
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2" style="background-color: #C0F5FB;">
 
                         <select id="pl_mcq_carton_first_input_six" class="form-control">
                             <option disabled selected>Select Carton</option>
 
                         </select>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1" style="background-color: #C0F5FB;">
 
                         <input id="pl_mcq_qty_first_input_six" type="text" class="form-control" >
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-2" style="background-color: #D0FBC0;">
 
                         <select id="pl_mcq_carton_second_input_six" class="form-control">
                             <option disabled selected>Select Carton</option>
 
                         </select>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1" style="background-color: #D0FBC0;">
 
                         <input id="pl_mcq_qty_second_input_six" type="text" class="form-control" >
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-2" style="background-color: #F7FBC0;">
 
                         <select id="pl_mcq_carton_three_input_six" class="form-control">
                             <option disabled selected>Select Carton</option>
 
                         </select>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1" style="background-color: #F7FBC0;">
 
                         <input id="pl_mcq_qty_three_input_six" type="text" class="form-control" >
                     </div>
@@ -384,38 +392,38 @@
 
                         <input id="pl_mcq_weight_input_seven"  type="text" class="form-control" >
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2" style="background-color: #C0F5FB;">
 
                         <select id="pl_mcq_carton_first_input_seven" class="form-control">
                             <option disabled selected>Select Carton</option>
 
                         </select>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1" style="background-color: #C0F5FB;">
 
                         <input id="pl_mcq_qty_first_input_seven" type="text" class="form-control" >
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-2" style="background-color: #D0FBC0;">
 
                         <select id="pl_mcq_carton_second_input_seven" class="form-control">
                             <option disabled selected>Select Carton</option>
 
                         </select>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1" style="background-color: #D0FBC0;">
 
                         <input id="pl_mcq_qty_second_input_seven" type="text" class="form-control" >
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-2" style="background-color: #F7FBC0;">
 
                         <select id="pl_mcq_carton_three_input_seven" class="form-control">
                             <option disabled selected>Select Carton</option>
 
                         </select>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1" style="background-color: #F7FBC0;">
 
                         <input id="pl_mcq_qty_three_input_seven" type="text" class="form-control" >
                     </div>
@@ -432,38 +440,38 @@
 
                         <input id="pl_mcq_weight_input_eight"  type="text" class="form-control" >
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2" style="background-color: #C0F5FB;">
 
                         <select id="pl_mcq_carton_first_input_eight" class="form-control">
                             <option disabled selected>Select Carton</option>
 
                         </select>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1" style="background-color: #C0F5FB;">
 
                         <input id="pl_mcq_qty_first_input_eight" type="text" class="form-control" >
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-2" style="background-color: #D0FBC0;">
 
                         <select id="pl_mcq_carton_second_input_eight" class="form-control">
                             <option disabled selected>Select Carton</option>
 
                         </select>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1" style="background-color: #D0FBC0;">
 
                         <input id="pl_mcq_qty_second_input_eight" type="text" class="form-control" >
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-2" style="background-color: #F7FBC0;">
 
                         <select id="pl_mcq_carton_three_input_eight" class="form-control">
                             <option disabled selected>Select Carton</option>
 
                         </select>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1" style="background-color: #F7FBC0;">
 
                         <input id="pl_mcq_qty_three_input_eight" type="text" class="form-control" >
                     </div>
@@ -480,38 +488,38 @@
 
                         <input id="pl_mcq_weight_input_nine"  type="text" class="form-control" >
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2" style="background-color: #C0F5FB;">
 
                         <select id="pl_mcq_carton_first_input_nine" class="form-control">
                             <option disabled selected>Select Carton</option>
 
                         </select>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1" style="background-color: #C0F5FB;">
 
                         <input id="pl_mcq_qty_first_input_nine" type="text" class="form-control" >
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-2" style="background-color: #D0FBC0;">
 
                         <select id="pl_mcq_carton_second_input_nine" class="form-control">
                             <option disabled selected>Select Carton</option>
 
                         </select>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1" style="background-color: #D0FBC0;">
 
                         <input id="pl_mcq_qty_second_input_nine" type="text" class="form-control" >
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-2" style="background-color: #F7FBC0;">
 
                         <select id="pl_mcq_carton_three_input_nine" class="form-control">
                             <option disabled selected>Select Carton</option>
 
                         </select>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1" style="background-color: #F7FBC0;">
 
                         <input id="pl_mcq_qty_three_input_nine" type="text" class="form-control" >
                     </div>
@@ -528,31 +536,31 @@
 
                         <input id="pl_mcq_weight_input_ten"  type="text" class="form-control" >
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2" style="background-color: #C0F5FB;">
 
                         <select id="pl_mcq_carton_first_input_ten" class="form-control">
                             <option disabled selected>Select Carton</option>
 
                         </select>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1" style="background-color: #C0F5FB;">
 
                         <input id="pl_mcq_qty_first_input_ten" type="text" class="form-control" >
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-2" style="background-color: #D0FBC0;">
 
                         <select id="pl_mcq_carton_second_input_ten" class="form-control">
                             <option disabled selected>Select Carton</option>
 
                         </select>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1" style="background-color: #D0FBC0;">
 
                         <input id="pl_mcq_qty_second_input_ten" type="text" class="form-control" >
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-2" style="background-color: #F7FBC0;">
 
                         <select id="pl_mcq_carton_three_input_ten" class="form-control">
                             <option disabled selected>Select Carton</option>
@@ -560,7 +568,7 @@
                         </select>
 
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-1" style="background-color: #F7FBC0;">
                         <input id="pl_mcq_qty_three_input_ten" type="text" class="form-control">
                     </div>
 

@@ -3,7 +3,7 @@
 Dropzone.options.packinglistOne = {
     init: function () {
         this.on("complete", function (file) {
-            alert('nice!!! :)))')
+            alert('This Packing List is pending for approval.')
         });
     }
 }
@@ -320,8 +320,8 @@ pl_mcq_add_btn.dblclick(function(e){
         url: '/api/styles/' + pl_mcq_style_id_input.val() + '/sizes/attach/many',
         data: styles,
         success: function (styles) {
-           alert('nice');
-            // window.location.reload();
+           alert('Successfully Added!!!');
+           window.location.reload();
         },
         error: function (x,h,r) {
             alert(x.responseText);
@@ -341,7 +341,7 @@ pl_update_qty_btn.click(function(e){
         url: '/api/packing-lists/' + parseInt(pl_update_id_input.val()) + '/update-qty',
         data: packinglist,
         success: function (packinglist) {
-            console.log(packinglist);
+            alert('Updated Successfully!!!');
             window.location.reload();
         },
         error: function (x,h,r) {
@@ -363,7 +363,7 @@ pl_update_nw_btn.click(function (e) {
         url: '/api/packing-lists/' + parseInt(pl_update_id_input.val()) + '/update-nw',
         data: packinglist,
         success: function (packinglist) {
-            alert(packinglist);
+            alert('Updated Successfully!!!');
             window.location.reload();
         },
         error: function (x,h,r) {
@@ -384,7 +384,7 @@ pl_update_gw_btn.click(function(e){
         url: '/api/packing-lists/' + parseInt(pl_update_id_input.val()) + '/update-gw',
         data: packinglist,
         success: function (packinglist) {
-            alert(packinglist);
+            alert('Updated Succesfully!!!');
             window.location.reload();
         },
         error: function (x,h,r) {
@@ -402,7 +402,7 @@ pl_delete_btn.click(function(e){
         type:'DELETE',
         url: '/api/packing-lists/' + parseInt(pl_update_id_input.val()),
         success: function (packinglist) {
-            alert(packinglist);
+            alert('Deleted Succesfully!')
             window.location.reload();
         },
         error: function (x,h,r) {
@@ -500,6 +500,17 @@ pl_pre_pack.change(function (e) {
 });
 let pl_status = $('#pl_status');
 
+if(pl_status.val() === "Drafted"){
+    pl_status.css("background-color", "yellow");
+    pl_status.css("color", "black");
+}else if(pl_status.val() === "Canceled"){
+    pl_status.css("background-color", "red");
+    pl_status.css("color", "black");
+}else if(pl_status.val() === "Final"){
+    pl_status.css("background-color", "green");
+    pl_status.css("color", "white");
+}
+
 pl_status.change(function (e) {
     e.preventDefault();
     let status = {
@@ -512,7 +523,16 @@ pl_status.change(function (e) {
         url: '/api/packing-lists/update/status',
         data: status,
         success: function (status) {
-            console.log(status);
+            if(status[0]['pl_status'] === "Drafted"){
+                pl_status.css("background-color", "yellow");
+                pl_status.css("color", "black");
+            }else if(status[0]['pl_status'] === "Canceled"){
+                pl_status.css("background-color", "red");
+                pl_status.css("color", "black");
+            }else if(status[0]['pl_status'] === "Final"){
+                pl_status.css("background-color", "green");
+                pl_status.css("color", "white");
+            }
         },
         error: function (x,h,r) {
             alert(x.responseText);
@@ -520,6 +540,50 @@ pl_status.change(function (e) {
     });
 });
 
+
+let pl_factory_po_input = $('#pl_factory_po_input');
+
+pl_factory_po_input.change(function(e){
+    e.preventDefault();
+    let factorypos = {
+        factory_po: pl_factory_po_input.val(),
+        batch: pl_add_po_batch.val(),
+        number_batch: pl_add_po_number_batch.val(),
+    }
+    $.ajax({
+        type:'POST',
+        url: '/api/packing-lists/update/factorypos',
+        data: factorypos,
+        success: function (factorypos) {
+            console.log(factorypos);
+        },
+        error: function (x,h,r) {
+            alert(x.responseText);
+        }
+    });
+});
+
+let pl_shipment_input = $('#pl_shipment_input');
+
+pl_shipment_input.change(function(e){
+    e.preventDefault();
+    let shipments = {
+        shipment_mode: pl_shipment_input.val(),
+        batch: pl_add_po_batch.val(),
+        number_batch: pl_add_po_number_batch.val(),
+    }
+    $.ajax({
+        type:'POST',
+        url: '/api/packing-lists/update/shipments',
+        data: shipments,
+        success: function (shipments) {
+            console.log(shipments);
+        },
+        error: function (x,h,r) {
+            alert(x.responseText);
+        }
+    });
+});
 
 let pl_destination_input = $('#pl_destination_input');
 
@@ -576,7 +640,7 @@ pl_add_po_btn.click(function(e){
         url: '/api/packing-lists',
         data: packinglist,
         success: function (packinglist) {
-            alert('PO Succesfully Added');
+            alert('Added Succesfully!!!');
             window.location.reload();
         },
         error: function (x,h,r) {

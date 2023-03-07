@@ -28,7 +28,7 @@
                                class="btn btn-outline-primary">
                                 Print</a>
 
-                            <a href="{{url()->previous()}}"
+                            <a href="{{route('packing-lists.batch', $packinglists[0][0]['pl_batch'])}}"
                                class="btn btn-outline-secondary">
                                 Back</a>
 
@@ -73,7 +73,11 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            {{$number_ctn = 0}}
+
+                                            <div style="display: none;">
+                                                {{$number_ctn = 0}}
+                                            </div>
+
                                                     @for($y = 0; $y < count($packinglists[$x]);$y++)
 
                                                         @if($y == count($packinglists[$x])-1)
@@ -109,7 +113,9 @@
                                                                 <td scope="col">{{$packinglists[$x][$y]['pl_order_quantity_cut']}}</td>
                                                                 <td scope="col">{{$packinglists[$x][$y]['pl_one_ctn_item_count']}}</td>
                                                                 <td scope="col">{{$number_ctn+1 . "-" . ($number_ctn+ intval($packinglists[$x][$y]['pl_number_of_carton']))}}</td>
-                                                                {{$number_ctn = $number_ctn + intval($packinglists[$x][$y]['pl_number_of_carton'])}}
+                                                                <div style="display: none;">
+                                                                    {{$number_ctn = $number_ctn + intval($packinglists[$x][$y]['pl_number_of_carton'])}}
+                                                                </div>
                                                                 <td scope="col">{{$packinglists[$x][$y]['pl_number_of_carton']}}</td>
                                                                 <td scope="col">{{$packinglists[$x][$y]['net_weight_one_ctn']}}</td>
                                                                 <td scope="col">{{$packinglists[$x][$y]['net_weight_total']}}</td>

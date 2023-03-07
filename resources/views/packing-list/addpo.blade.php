@@ -63,7 +63,7 @@
                                 <label for="" class="col-md-4 col-form-label text-md-end"> Prepack </label>
                                 <div class="col-md-6 ">
                                     <input type="number" class="form-control"
-                                           id="pl_add_po_prepack"  placeholder="Enter Prepack">
+                                           id="pl_add_po_prepack"  placeholder="Enter Prepack" value="0">
                                 </div>
                             </div>
                         </div>
