@@ -34,7 +34,7 @@ class FirstPlImport implements ToModel, WithHeadingRow
         $crd = $this->convertDate($row['crd_at_origin']);
         $country = $row['dc_code'] . ' ' . $row['dest'];
         $destination = $this->getDestination($country);
-        $number_batch = $this->getPlNumberBatch($crd,$country,(int)$row['prepack'],$row['po'],$this->type);
+        $number_batch = $this->getPlNumberBatch($crd,$country,(int)$row['prepack'],$row['po'],$this->type,$row['shipment_mode']);
         $this->uniq++;
         return new PackingList([
             'pl_po_cut' => $row['po'],
@@ -81,22 +81,23 @@ class FirstPlImport implements ToModel, WithHeadingRow
         return explode('-',$brandntype)[0];
     }
 
-    protected function getPlNumberBatch($crd,$country,$prepack,$pocut,$type){
+    protected function getPlNumberBatch($crd,$country,$prepack,$pocut,$type,$shipment_mode){
 //            dd($type);
         if($type == "EQUIPMENT"){
            $pl_number_batch = PackingList::where([
                 ['pl_batch', $this->batch],
-
                 ['pl_crd', $crd],
                 ['pl_country',$country],
-               ['pl_pre_pack',$prepack]
+               ['pl_pre_pack',$prepack],
+               ['pl_shipment_mode',$shipment_mode],
             ])->first();
         }elseif($type == "APPAREL"){
             $pl_number_batch = PackingList::where([
                 ['pl_batch', $this->batch],
 
                 ['pl_po_cut', $pocut],
-                ['pl_pre_pack',$prepack]
+                ['pl_pre_pack',$prepack],
+                ['pl_shipment_mode',$shipment_mode],
             ])->first();
         }
 
