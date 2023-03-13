@@ -13,10 +13,12 @@
 
                             <div>
 
+                                <a href="{{route('packing-lists.exportbatches',$packinglists[0]->pl_batch)}}"
+                                   class="btn btn-outline-success section-to-no-print">
+                                    Export</a>
                                 <a id="pl_print_batch"
                                    class="btn btn-outline-success section-to-no-print">
                                     Print</a>
-
                                 <a href="{{route('packing-lists.viewa',$packinglists[0]->pl_batch)}}"
                                    class="btn btn-outline-success section-to-no-print">
                                     View All</a>
@@ -93,6 +95,21 @@
                                     @empty
                                         <h6 class="bg-danger"> No Packing List Record</h6>
                                     @endforelse
+
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><b>  {{$pl_total_qty}} </b></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
 
 
                                     </tbody>

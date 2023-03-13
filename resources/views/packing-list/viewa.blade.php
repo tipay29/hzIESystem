@@ -50,28 +50,31 @@
                                 <div class="card-body">
 
                                     <div class="table-responsive">
-                                        <table class="table" >
+                                        <table class="table pl_table_number" >
                                             <thead>
                                             <tr>
                                                 <th width="7%" scope="col">PO</th>
                                                 <th width="7%" scope="col">Master PO</th>
                                                 <th width="6%" scope="col">Style</th>
-                                                <th width="9%" scope="col">Material</th>
-                                                <th width="18%" scope="col">Description</th>
+                                                <th width="7%" scope="col">Material</th>
+                                                <th width="21%" scope="col">Description</th>
                                                 <th width="8%" scope="col">Color</th>
+                                                @if($packinglists[0][0]['pl_type']  == 'APPAREL')
                                                 <th width="2%" scope="col">Size</th>
+                                                @endif
                                                 <th width="3%" scope="col">TtlQty</th>
                                                 <th width="3%" scope="col">Qty/Ctn</th>
-                                                <th width="4%" scope="col">CtnNum</th>
+                                                <th width="8%" scope="col">CtnNum</th>
                                                 <th width="5%" scope="col">CtnTotal</th>
                                                 <th width="3%" scope="col">NW</th>
                                                 <th width="3%" scope="col">TNW</th>
                                                 <th width="3%" scope="col">GW</th>
                                                 <th width="3%" scope="col">TGW</th>
-                                                <th width="13%" scope="col">Carton Measurement</th>
+                                                <th width="10%" scope="col">Ctn Measurement</th>
                                                 <th width="4%" scope="col">CBM</th>
                                             </tr>
                                             </thead>
+
                                             <tbody>
 
                                             <div style="display: none;">
@@ -88,7 +91,9 @@
                                                                 <td scope="col"></td>
                                                                 <td scope="col"></td>
                                                                 <td scope="col"></td>
+                                                                @if($packinglists[0][0]['pl_type']  == 'APPAREL')
                                                                 <td scope="col"></td>
+                                                                @endif
                                                                 <td scope="col"> <b> {{$packinglists[$x][$y]['total_qty_ship']}}  </b></td>
                                                                 <td scope="col"></td>
                                                                 <td scope="col"></td>
@@ -109,7 +114,9 @@
                                                                 <td scope="col">{{$packinglists[$x][$y]['pl_material']}}</td>
                                                                 <td scope="col">{{$packinglists[$x][$y]['pl_description']}}</td>
                                                                 <td scope="col">{{$packinglists[$x][$y]['pl_color']}} </td>
+                                                                @if($packinglists[0][0]['pl_type']  == 'APPAREL')
                                                                 <td scope="col">{{$packinglists[$x][$y]['pl_style_size']}} </td>
+                                                                @endif
                                                                 <td scope="col">{{$packinglists[$x][$y]['pl_order_quantity_cut']}}</td>
                                                                 <td scope="col">{{$packinglists[$x][$y]['pl_one_ctn_item_count']}}</td>
                                                                 <td scope="col">{{$number_ctn+1 . "-" . ($number_ctn+ intval($packinglists[$x][$y]['pl_number_of_carton']))}}</td>

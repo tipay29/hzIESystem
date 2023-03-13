@@ -33,7 +33,7 @@
 
 
             <div class="table-responsive">
-                <table class="table">
+                <table class="table pl_table_number">
                     <thead>
                     <tr>
                         <th>MCQ</th>

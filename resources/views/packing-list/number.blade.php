@@ -39,26 +39,28 @@
                     <div class="card-body">
 
                         <div class="table-responsive">
-                                <table class="table" >
+                                <table class="table pl_table_number" >
                                 <thead>
                                     <tr>
-                                        <th width="2%" scope="col">key</th>
                                         <th width="7%" scope="col">PO</th>
                                         <th width="7%" scope="col">Master PO</th>
                                         <th width="6%" scope="col">Style</th>
-                                        <th width="9%" scope="col">Material</th>
-                                        <th width="16%" scope="col">Description</th>
+                                        <th width="7%" scope="col">Material</th>
+                                        <th width="21%" scope="col">Description</th>
                                         <th width="8%" scope="col">Color</th>
+
+                                        @if($packinglists[0]['pl_type']  == 'APPAREL')
                                         <th width="2%" scope="col">Size</th>
+                                        @endif
                                         <th width="3%" scope="col">TtlQty</th>
                                         <th width="3%" scope="col">Qty/Ctn</th>
-                                        <th width="4%" scope="col">CtnNum</th>
+                                        <th width="8%" scope="col">CtnNum</th>
                                         <th width="5%" scope="col">CtnTtl</th>
                                         <th width="3%" scope="col">NW</th>
                                         <th width="3%" scope="col">TNW</th>
                                         <th width="3%" scope="col">GW</th>
                                         <th width="3%" scope="col">TGW</th>
-                                        <th width="13%" scope="col">Carton Measurement</th>
+                                        <th width="10%" scope="col">Ctn Measurement</th>
                                         <th width="3%" scope="col">CBM</th>
                                     </tr>
                                 </thead>
@@ -73,8 +75,9 @@
                                                 <td scope="col"></td>
                                                 <td scope="col"></td>
                                                 <td scope="col"></td>
+                                                  @if($packinglists[0]['pl_type']  == 'APPAREL')
                                                 <td scope="col"></td>
-                                                <td scope="col"></td>
+                                                  @endif
                                                 <td scope="col"> <b> {{$packinglist['total_qty_ship']}} </b> </td>
                                                 <td scope="col"></td>
                                                 <td scope="col"></td>
@@ -94,17 +97,21 @@
                                                 <input type="hidden" value="{{$packinglist['net_weight_one_ctn']}}">
                                                 <input type="hidden" value="{{$packinglist['gross_weight_one_ctn']}}">
                                                 <input type="hidden" value="{{ltrim(substr($packinglist['pl_sku'],-5),0)}}">
+
                                                 <input type="hidden" value="{{$packinglist['pl_style_size']}}">
+
                                                 <input type="hidden" value="{{$packinglist['pl_style_id']}}">
 
-                                                <td scope="col">{{$packinglist['id']}}</td>
+
                                                 <td scope="col">{{$packinglist['pl_po_cut']}}</td>
                                                 <td scope="col">{{$packinglist['pl_master_po']}}</td>
                                                 <td scope="col">{{$packinglist['pl_sku']}}</td>
                                                 <td scope="col">{{$packinglist['pl_material']}}</td>
                                                 <td scope="col">{{$packinglist['pl_description']}}</td>
                                                 <td scope="col">{{$packinglist['pl_color']}} </td>
+                                                @if($packinglist['pl_type']  == 'APPAREL')
                                                 <td scope="col">{{$packinglist['pl_style_size']}} </td>
+                                                @endif
                                                 <td scope="col">{{$packinglist['pl_order_quantity_cut']}}</td>
                                                 <td scope="col">{{$packinglist['pl_one_ctn_item_count']}}</td>
                                                 <td scope="col">{{$number_ctn+1 . "-" . ($number_ctn+ intval($packinglist['pl_number_of_carton']))}}</td>

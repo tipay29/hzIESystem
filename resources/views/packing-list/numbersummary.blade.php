@@ -1,6 +1,6 @@
 @if($packinglists[0]['pl_type'] == "APPAREL")
     <div class="table-responsive">
-        <table class="table" >
+        <table class="table pl_table_number" >
             <thead>
             <tr>
                 <th width="10%">Size Summary:</th>

@@ -30,7 +30,7 @@
                                                     " value="{{$packinglists[$x][0]['pl_shipment_mode']}}">
 
             <div class="table-responsive">
-                <table class="table">
+                <table class="table pl_table_number">
                     <thead>
                         <tr>
                             <th>MCQ</th>

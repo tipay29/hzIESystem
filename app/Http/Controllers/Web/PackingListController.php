@@ -4,18 +4,13 @@ namespace App\Http\Controllers\Web;
 
 use App\Events\PackingList\GetPackingListDataAllEvent;
 use App\Events\PackingList\GetPackingListDataOneEvent;
+use App\Exports\PackingListBatchExport;
 use App\Exports\UsersExport;
 use App\Http\Controllers\Controller;
 use App\Imports\PackingListsImport;
-use App\Imports\UsersImport;
 use App\Models\PackingList;
-use Illuminate\Http\Request;
 use Illuminate\Pipeline\Pipeline;
 use Maatwebsite\Excel\Facades\Excel;
-use function PHPUnit\Framework\isEmpty;
-use function Symfony\Component\Finder\reverseSorting;
-use function Symfony\Component\Routing\Loader\Configurator\collection;
-use function Symfony\Component\String\reverse;
 
 class PackingListController extends Controller
 {
@@ -50,7 +45,6 @@ class PackingListController extends Controller
                 'user',
             ])
             ->get();
-
 
         $packinglists = collect($packinglists->where('pl_uniq_number_batch',1))->paginate(10);
 
@@ -100,10 +94,10 @@ class PackingListController extends Controller
 //        dd($packinglists);
 //        dd($packinglists->sum('pl_order_quantity'));
         $packinglists->sortBy('pl_country');
-
+        $pl_total_qty = $packinglistsqty->sum();
 //        dd($packinglists);
 
-        return view('packing-list.batch', compact('packinglists','packinglistsqty'));
+        return view('packing-list.batch', compact('packinglists','packinglistsqty','pl_total_qty'));
 
     }
 
@@ -134,31 +128,6 @@ class PackingListController extends Controller
         return view('packing-list.create', compact('packinglist'));
 
     }
-
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-
-    public function show()
-    {
-        //
-    }
-
-
-    public function edit($id)
-    {
-        //
-    }
-
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
 
     public function destroyBatch($batch)
     {
@@ -215,6 +184,13 @@ class PackingListController extends Controller
 
     public function export(){
         return Excel::download(new UsersExport,'users.xlsx');
+    }
+
+    public function exportBatches($batch){
+
+        $excel =  Excel::download(new PackingListBatchExport($batch),'pl_batch.xlsx');
+
+        return $excel;
     }
 
     public function import()
