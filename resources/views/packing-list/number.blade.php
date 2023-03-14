@@ -102,16 +102,16 @@
                                                   @if($packinglists[0]['pl_type']  == 'APPAREL')
                                                 <td scope="col"></td>
                                                   @endif
-                                                <td align="right" scope="col"> <b> {{number_format($packinglist['total_qty_ship'])}} </b> </td>
+                                                <td align="right" scope="col"> <b> {{number_format((float)$packinglist['total_qty_ship'])}} </b> </td>
                                                 <td scope="col"></td>
                                                 <td scope="col"></td>
-                                                <td align="right" scope="col"> <b> {{number_format($packinglist['total_carton'])}} </b></td>
+                                                <td align="right" scope="col"> <b> {{number_format((float)$packinglist['total_carton'])}} </b></td>
                                                 <td scope="col"></td>
-                                                <td align="right" scope="col"> <b> {{number_format($packinglist['total_nw'], 2, '.', ',')}} </b></td>
+                                                <td align="right" scope="col"> <b> {{number_format((float)$packinglist['total_nw'], 2, '.', ',')}} </b></td>
                                                 <td scope="col"></td>
-                                                <td align="right" scope="col"> <b> {{number_format($packinglist['total_gw'], 2, '.', ',')}} </b></td>
+                                                <td align="right" scope="col"> <b> {{number_format((float)$packinglist['total_gw'], 2, '.', ',')}} </b></td>
                                                 <td scope="col"></td>
-                                                <td align="right" scope="col"> <b> {{number_format($packinglist['total_cbm'], 2, '.', ',')}} </b> </td>
+                                                <td align="right" scope="col"> <b> {{number_format((float)$packinglist['total_cbm'], 2, '.', ',')}} </b> </td>
                                             </tr>
                                         @else
                                             <tr id="ClickableRow">
@@ -138,17 +138,21 @@
                                                 @endif
                                                 <td align="right" scope="col">{{number_format((float)$packinglist['pl_order_quantity_cut'])}}</td>
                                                 <td align="right" scope="col">{{number_format((float)$packinglist['pl_one_ctn_item_count'])}}</td>
+<<<<<<< HEAD
                                                 <td align="right" scope="col">{{number_format($number_ctn+1) . "-" . number_format(($number_ctn+ intval($packinglist['pl_number_of_carton'])))}}</td>
+=======
+                                                <td align="right" scope="col">{{number_format((float)$number_ctn+1) . "-" . number_format(($number_ctn+ intval($packinglist['pl_number_of_carton'])))}}</td>
+>>>>>>> 8a023a47ece9fcb07789581e699ff85eb343cfbf
                                                 <div style="display: none;">
                                                 {{$number_ctn = $number_ctn + intval($packinglist['pl_number_of_carton'])}}
                                                 </div>
-                                                <td align="right" scope="col">{{number_format($packinglist['pl_number_of_carton'])}}</td>
-                                                <td align="right" scope="col">{{number_format($packinglist['net_weight_one_ctn'], 2, '.', ',')}}</td>
-                                                <td align="right" scope="col">{{number_format($packinglist['net_weight_total'], 2, '.', ',')}}</td>
-                                                <td align="right" scope="col">{{number_format($packinglist['gross_weight_one_ctn'], 2, '.', ',')}}</td>
-                                                <td align="right" scope="col">{{number_format($packinglist['gross_weight_total'], 2, '.', ',')}}</td>
+                                                <td align="right" scope="col">{{number_format((float)$packinglist['pl_number_of_carton'])}}</td>
+                                                <td align="right" scope="col">{{number_format((float)$packinglist['net_weight_one_ctn'], 2, '.', ',')}}</td>
+                                                <td align="right" scope="col">{{number_format((float)$packinglist['net_weight_total'], 2, '.', ',')}}</td>
+                                                <td align="right" scope="col">{{number_format((float)$packinglist['gross_weight_one_ctn'], 2, '.', ',')}}</td>
+                                                <td align="right" scope="col">{{number_format((float)$packinglist['gross_weight_total'], 2, '.', ',')}}</td>
                                                 <td align="right" scope="col">{{$packinglist['carton_size']}}CM</td>
-                                                <td align="right" scope="col">{{number_format($packinglist['cbm'], 2, '.', ',')}}</td>
+                                                <td align="right" scope="col">{{number_format((float)$packinglist['cbm'], 2, '.', ',')}}</td>
                                             </tr>
                                         @endif
                                     @endforeach
