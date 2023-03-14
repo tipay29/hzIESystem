@@ -136,8 +136,8 @@
                                                 @if($packinglist['pl_type']  == 'APPAREL')
                                                 <td scope="col">{{$packinglist['pl_style_size']}} </td>
                                                 @endif
-                                                <td align="right" scope="col">{{number_format($packinglist['pl_order_quantity_cut'])}}</td>
-                                                <td align="right" scope="col">{{number_format($packinglist['pl_one_ctn_item_count'])}}</td>
+                                                <td align="right" scope="col">{{number_format((float)$packinglist['pl_order_quantity_cut'])}}</td>
+                                                <td align="right" scope="col">{{number_format((float)$packinglist['pl_one_ctn_item_count'])}}</td>
                                                 <td align="right" scope="col">{{number_format($number_ctn+1) . "-" . number_format(($number_ctn+ intval($packinglist['pl_number_of_carton'])))}}</td>
                                                 <div style="display: none;">
                                                 {{$number_ctn = $number_ctn + intval($packinglist['pl_number_of_carton'])}}
