@@ -46,7 +46,7 @@
                         <tr>
                             <td>{{$packinglists[$x][count($packinglists[$x])-1]['total_ctn_mcq'][$key]}} </td>
                             <td>{{$key}}CM </td>
-                            <td align="right">{{number_format($ctn)}}</td>
+                            <td align="right">{{number_format((float)$ctn)}}</td>
                         </tr>
                     @endforeach
                     </tbody>

@@ -138,11 +138,11 @@
                                                 @endif
                                                 <td align="right" scope="col">{{number_format((float)$packinglist['pl_order_quantity_cut'])}}</td>
                                                 <td align="right" scope="col">{{number_format((float)$packinglist['pl_one_ctn_item_count'])}}</td>
-<<<<<<< HEAD
+
                                                 <td align="right" scope="col">{{number_format($number_ctn+1) . "-" . number_format(($number_ctn+ intval($packinglist['pl_number_of_carton'])))}}</td>
-=======
+
                                                 <td align="right" scope="col">{{number_format((float)$number_ctn+1) . "-" . number_format(($number_ctn+ intval($packinglist['pl_number_of_carton'])))}}</td>
->>>>>>> 8a023a47ece9fcb07789581e699ff85eb343cfbf
+
                                                 <div style="display: none;">
                                                 {{$number_ctn = $number_ctn + intval($packinglist['pl_number_of_carton'])}}
                                                 </div>
