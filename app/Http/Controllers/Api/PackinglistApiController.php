@@ -235,6 +235,22 @@ class PackinglistApiController extends Controller
 
     }
 
+    public function approves($batch){
+
+        $packinglists = PackingList::where(
+            [
+                ['pl_batch',  $batch],
+            ]
+        )->get();
+
+        $packinglists->each(function ($item){
+            $item->update(['pl_status'=> 'Final']);
+        });
+
+        return response()->json(['success' => $packinglists],201);
+
+    }
+
     protected function dataValidatedQTY(){
         return [
             'id' => 'required',

@@ -36,11 +36,12 @@ return new class extends Migration
             $table->string('pl_type')->nullable();
             $table->text('pl_remarks')->nullable();
             $table->text('pl_special_packs')->nullable();
-            $table->string('pl_status')->default('Drafted');
+            $table->string('pl_status')->default('Draft');
             $table->string('pl_shipment_mode')->nullable();
             $table->string('pl_season')->nullable();
             $table->integer('pl_batch')->nullable();
             $table->integer('pl_number_batch')->nullable();
+            $table->integer('pl_uniq_number_batch_number')->nullable();
             $table->integer('pl_uniq_number_batch')->nullable();
             $table->unsignedInteger('user_id')->nullable();
             $table->timestamps();

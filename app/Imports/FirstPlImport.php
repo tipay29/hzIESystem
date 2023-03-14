@@ -17,6 +17,7 @@ class FirstPlImport implements ToModel, WithHeadingRow
     protected $brand;
     protected $type;
     protected $uniq;
+    protected $uniqnumber;
 
     public function __construct($batch_number,$brandntype)
     {
@@ -27,6 +28,7 @@ class FirstPlImport implements ToModel, WithHeadingRow
         $this->brand = $this->getPlBrand($brandntype);
         $this->type = $this->getPlType($brandntype);
         $this->uniq = 0;
+        $this->uniqnumber = 1;
     }
 
     public function model(array $row)
@@ -56,6 +58,7 @@ class FirstPlImport implements ToModel, WithHeadingRow
             'pl_order_quantity' => $row['quantity'],
             'pl_batch' => $this->batch,
             'pl_number_batch' => $number_batch,
+            'pl_uniq_number_batch_number' => $this->uniqnumber,
             'pl_uniq_number_batch' => $this->uniq,
             'user_id' => $this->user,
         ]);
@@ -102,8 +105,13 @@ class FirstPlImport implements ToModel, WithHeadingRow
         }
 
         if($pl_number_batch == null){
+
+            $this->uniqnumber =1;
+
             return $this->number_batch++;
         }
+
+        $this->uniqnumber = $pl_number_batch->pl_uniq_number_batch_number + 1;
 
         return $pl_number_batch->pl_number_batch;
 

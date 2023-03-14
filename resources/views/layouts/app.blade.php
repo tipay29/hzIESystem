@@ -13,6 +13,7 @@
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js" integrity="sha512-oQq8uth41D+gIH/NJvSJvVB85MFk1eWpMK6glnkg6I7EdMqC1XVkW7RxLheXwmFdG03qScCM7gKS/Cx3FYt7Tg==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.8.0/html2pdf.bundle.min.js" integrity="sha512-w3u9q/DeneCSwUDjhiMNibTRh/1i/gScBVp2imNVAMCt6cUHIw6xzhzcPFIaL3Q1EbI2l+nu17q2aLJJLo4ZYg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{asset('storage/js/jquery2.js')}}"></script>  {{--for chosen--}}
     <script src="{{asset('storage/js/chosen-jquery.js')}}"></script>{{--for chosen--}}
@@ -127,7 +128,7 @@
                                 </button>
                                 <ul class="dropdown-menu" >
                                     <li >
-                                        <a class="dropdown-item" href="{{route('packing-lists.index')}}">Packing Lists</a>
+                                        <a class="dropdown-item" href="{{route('packing-lists.create')}}">Packing Lists</a>
                                     </li>
                                     <li >
                                         <a class="dropdown-item" href="{{route('cartons.index')}}">Cartons</a>

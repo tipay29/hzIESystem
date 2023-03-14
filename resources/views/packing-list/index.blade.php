@@ -53,17 +53,17 @@
                                         <input id="pls_material" type="text" class="form-control"
                                                value="{{request('pls_material')}}" name="pls_material">
                                     </div>
-                                    <div class="col-md-2">
-                                        <small for="pls_color">Color</small>
-                                        <input id="pls_color" type="text" class="form-control"
-                                               value="{{request('pls_color')}}" name="pls_color">
-                                    </div>
+
                                     <div class="col-md-2">
                                         <small for="pls_status">Status</small>
                                         <input id="pls_status" type="text" class="form-control"
                                                value="{{request('pls_status')}}"  name="pls_status">
                                     </div>
-
+                                    <div class="col-md-2">
+                                        <small for="pls_customer_name">Customer Name</small>
+                                        <input maxlength="2" id="pls_customer_name" type="text" class="form-control"
+                                               value="{{request('pls_customer_name')}}" name="pls_customer_name">
+                                    </div>
 
                                 </div>
                                 <div class="row mt-1">
@@ -72,16 +72,19 @@
                                         <input maxlength="1" id="pls_user" type="text" class="form-control"
                                                value="{{request('pls_user')}}" name="pls_user">
                                     </div>
+
                                     <div class="col-md-2">
-                                        <small for="pls_customer_name">Customer Name</small>
-                                        <input maxlength="2" id="pls_customer_name" type="text" class="form-control"
-                                               value="{{request('pls_customer_name')}}" name="pls_customer_name">
+                                        <small for="pls_crd_one">CRD1</small>
+                                        <input id="pls_crd_one" type="date" class="form-control"
+                                               value="{{request('pls_crd_one')}}" name="pls_crd_one">
                                     </div>
+
                                     <div class="col-md-2">
-                                        <small for="pls_crd">CRD</small>
-                                        <input id="pls_crd" type="date" class="form-control"
-                                               value="{{request('pls_crd')}}" name="pls_crd">
+                                        <small for="pls_crd_two">CRD2</small>
+                                        <input id="pls_crd_two" type="date" class="form-control"
+                                               value="{{request('pls_crd_two')}}" name="pls_crd_two">
                                     </div>
+
                                     <div class="col-md-2">
                                         <small for="pls_date_created">Date Created</small>
                                         <input id="pls_datecreated" type="date" class="form-control"

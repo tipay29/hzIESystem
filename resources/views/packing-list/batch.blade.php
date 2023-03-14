@@ -13,6 +13,10 @@
 
                             <div>
 
+                                <a href="{{route('packing-lists.index')}}"
+                                   class="btn btn-outline-success section-to-no-print">
+                                    Lists</a>
+
                                 <a href="{{route('packing-lists.exportbatches',$packinglists[0]->pl_batch)}}"
                                    class="btn btn-outline-success section-to-no-print">
                                     Export</a>
@@ -32,24 +36,31 @@
 
                         <div class="card-body">
 
+                            @include('packing-list.batchfilter')
+
                             <div class="table-responsive">
                                 <table class="table" >
                                     <thead>
+
+
                                         <tr>
                                             <th width="5%" scope="col">Number</th>
                                             <th width="5%" scope="col">Status</th>
                                             <th width="10%" scope="col">PO</th>
-                                            <th width="10%" scope="col">Master PO</th>
-                                            <th width="10%" scope="col">Factory PO</th>
+                                            <th width="9%" scope="col">Master PO</th>
+                                            <th width="8%" scope="col">Factory PO</th>
+                                            <th width="8%" scope="col">Material</th>
                                             <th width="5%" scope="col">Quantity</th>
-                                            <th width="19%" scope="col">Country</th>
-                                            <th width="10%" scope="col">CRD</th>
-                                            <th width="10%" scope="col">Ship Month</th>
+                                            <th width="18%" scope="col">Country</th>
+                                            <th width="4%" scope="col">Year</th>
+                                            <th width="4%" scope="col">Month</th>
+                                            <th width="8%" scope="col">CRD</th>
                                             <th width="5%" scope="col">PrePack</th>
                                             <th width="12%" scope="col">User</th>
                                             <th width="3%" scope="col">Del</th>
                                         </tr>
                                     </thead>
+
                                     <tbody>
 
                                     @forelse($packinglists as $key => $packinglist)
@@ -61,7 +72,7 @@
                                                     {{$packinglist->pl_number_batch}} </a>
                                             </td>
                                             <td scope="col" >
-                                            @if($packinglist->pl_status === "Drafted")
+                                            @if($packinglist->pl_status === "Draft")
                                                 <p style="background-color: yellow;">{{$packinglist->pl_status}}</p>
                                             @elseif($packinglist->pl_status === "Canceled")
                                                 <p style="background-color: red;">{{$packinglist->pl_status}}</p>
@@ -72,10 +83,12 @@
                                             <td  scope="col">{{$packinglist->pl_po_cut}} </td>
                                             <td  scope="col">{{$packinglist->pl_master_po}} </td>
                                             <td  scope="col">{{$packinglist->pl_factory_po}} </td>
+                                            <td  scope="col">{{$packinglist->pl_material}} </td>
                                             <td  scope="col">{{$packinglistsqty[$key]}} </td>
                                             <td  scope="col">{{$packinglist->pl_country}} </td>
-                                            <td  scope="col">{{$packinglist->pl_crd}} </td>
+                                            <td  scope="col">{{date('Y',strtotime($packinglist->pl_crd))}} </td>
                                             <td  scope="col">{{date('M',strtotime($packinglist->pl_crd))}} </td>
+                                            <td  scope="col">{{$packinglist->pl_crd}} </td>
                                             <td scope="col">{{$packinglist->pl_pre_pack}} </td>
                                             <td  scope="col">{{$packinglist->user->name}} </td>
                                             <td scope="col">
@@ -102,6 +115,7 @@
                                             <td></td>
                                             <td></td>
                                             <td></td>
+                                            <td></td>
                                             <td><b>  {{$pl_total_qty}} </b></td>
                                             <td></td>
                                             <td></td>
@@ -123,6 +137,8 @@
                         </div>
 
                     </div>
+
+
 
 
             </div>

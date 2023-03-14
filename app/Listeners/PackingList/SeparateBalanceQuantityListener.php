@@ -439,7 +439,11 @@ class SeparateBalanceQuantityListener
         $packinglistArray[$pl_last_num]['total_cbm'] = $this->total_cbm;
         $packinglistArray[$pl_last_num]['total_ctn_ctn'] = $this->total_ctn_ctn;
         $packinglistArray[$pl_last_num]['total_ctn_mcq'] = $this->total_ctn_mcq;
-        $packinglistArray[$pl_last_num]['pl_ctn_list'] = array_values(array_flip($this->sizes));
+
+//        dd(collecT($this->sizes)->sort());
+
+        $packinglistArray[$pl_last_num]['pl_ctn_list'] = array_values(array_flip(collect($this->sizes)->sort()->toArray()));
+
 
 
         $packinglists->add($packinglistArray[$pl_last_num]);

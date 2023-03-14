@@ -28,16 +28,15 @@ class PackingListController extends Controller
                 PackingList::query()
             )
             ->through([
-                \App\QueryFilters\Packing\PO::class,
-                \App\QueryFilters\Packing\MasterPO::class,
-                \App\QueryFilters\Packing\FactoryPO::class,
-                \App\QueryFilters\Packing\Material::class,
-                \App\QueryFilters\Packing\Color::class,
-                \App\QueryFilters\Packing\Status::class,
-                \App\QueryFilters\Packing\User::class,
-                \App\QueryFilters\Packing\CustomerName::class,
-                \App\QueryFilters\Packing\CRD::class,
-                \App\QueryFilters\Packing\CreateDate::class,
+                \App\QueryFilters\Packing\Index\PO::class,
+                \App\QueryFilters\Packing\Index\MasterPO::class,
+                \App\QueryFilters\Packing\Index\FactoryPO::class,
+                \App\QueryFilters\Packing\Index\Material::class,
+                \App\QueryFilters\Packing\Index\Status::class,
+                \App\QueryFilters\Packing\Index\User::class,
+                \App\QueryFilters\Packing\Index\CustomerName::class,
+                \App\QueryFilters\Packing\Index\CRD::class,
+                \App\QueryFilters\Packing\Index\CreateDate::class,
             ])
             ->thenReturn()
             ->orderBy('id', 'DESC')
@@ -63,21 +62,36 @@ class PackingListController extends Controller
 
     public function batch($batch){
 
-        $pl_number_batch = PackingList::where('pl_batch',$batch)->max('pl_number_batch');
-
-
-        $packinglists = collect();
         $packinglistsdummy = collect();
         $packinglistsqty = collect();
-        for($x = 1; $x <= $pl_number_batch; $x++ ){
 
-            $packinglists->add(PackingList::with('user')->where(
-                [
-                    ['pl_batch', $batch],
-                    ['pl_number_batch', $x],
-                ]
-                )
-                ->first());
+        $packinglistsNew = app(Pipeline::class)
+            ->send(
+                PackingList::query()
+            )
+            ->through([
+                \App\QueryFilters\Packing\Batch\PO::class,
+                \App\QueryFilters\Packing\Batch\MasterPO::class,
+                \App\QueryFilters\Packing\Batch\FactoryPO::class,
+                \App\QueryFilters\Packing\Batch\Material::class,
+                \App\QueryFilters\Packing\Batch\Status::class,
+                \App\QueryFilters\Packing\Batch\User::class,
+                \App\QueryFilters\Packing\Batch\CustomerName::class,
+                \App\QueryFilters\Packing\Batch\CRD::class,
+                \App\QueryFilters\Packing\Batch\CreateDate::class,
+                \App\QueryFilters\Packing\Batch\SortPO::class,
+                \App\QueryFilters\Packing\Batch\SortMasterPO::class,
+                \App\QueryFilters\Packing\Batch\SortFactoryPO::class,
+                \App\QueryFilters\Packing\Batch\SortMaterial::class,
+                \App\QueryFilters\Packing\Batch\SortCustomerName::class,
+                \App\QueryFilters\Packing\Batch\SortCRD::class,
+            ])
+            ->thenReturn()
+            ->where([['pl_batch',$batch],
+                ['pl_uniq_number_batch_number',1]])
+            ->get();
+
+        for($x=1; $x <= count($packinglistsNew);$x++){
             $packinglistsdummy->add(PackingList::with('user')->where(
                 [
                     ['pl_batch', $batch],
@@ -87,15 +101,16 @@ class PackingListController extends Controller
                 ->get());
 
             $packinglistsqty->add($packinglistsdummy[$x-1]->sum('pl_order_quantity'));
+        }
+        $pl_total_qty = $packinglistsqty->sum();
 
+        $packinglists = $packinglistsNew;
+
+        if(count($packinglists) ==0){
+            return redirect(route('packing-lists.batch', $batch))->with('message', 'Invalid Search!!!');
         }
 
-//
-//        dd($packinglists);
-//        dd($packinglists->sum('pl_order_quantity'));
-        $packinglists->sortBy('pl_country');
-        $pl_total_qty = $packinglistsqty->sum();
-//        dd($packinglists);
+//        $packinglists = $packinglists->sortBy('pl_po_cut');
 
         return view('packing-list.batch', compact('packinglists','packinglistsqty','pl_total_qty'));
 
@@ -105,7 +120,6 @@ class PackingListController extends Controller
 
         $packinglists = event(new GetPackingListDataOneEvent($batch,$number))[0];
 
-//        dd($packinglists);
 
         return view('packing-list.number', compact('packinglists'));
 
@@ -203,9 +217,10 @@ class PackingListController extends Controller
 
         $import = new PackingListsImport($brandntype);
         $import->onlySheets('Worksheet');
+
         Excel::import($import, $file);
 
-        return redirect('/')->with('success', 'All good!');
+        return PackingList::max('pl_batch');
 
     }
 

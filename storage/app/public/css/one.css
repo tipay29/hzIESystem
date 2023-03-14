@@ -26,6 +26,10 @@
 @media print
 {
 
+    @page{
+        margin: 0;
+    }
+
     body * {
         visibility: hidden;
     }
@@ -48,6 +52,15 @@
     .section-to-no-print {
         visibility: hidden !important;
     }
+
+    .section-to-no-print, .section-to-no-print * {
+        visibility: hidden !important;
+    }
+
+    .section-pl-to-no-print, .section-pl-to-no-print * {
+        display: none!important;
+    }
+
 
     .cut-section-h1-to-print{
         position: absolute;
@@ -88,8 +101,9 @@
 
     .pl_section-to-print, .pl_section-to-print *{
         visibility: visible;
-        zoom: 90%;
         margin: 0;
+        zoom: 90%;
+
     }
 
     .pagebreak {

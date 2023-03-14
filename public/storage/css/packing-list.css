@@ -12,14 +12,16 @@
 .pl_table_number thead tr{
     height: 10px;
     padding: 0;
-    font-size: 14px;
-    line-height: 14px;
+    font-size: 16px;
+    line-height: 16px;
 }
 
 .pl_table_number tbody tr{
     height: 10px;
     padding: 0;
-    font-size: 12px;
-    line-height: 12px;
+    font-size: 14px;
+    line-height: 14px;
 
 }
+
+

@@ -14,6 +14,10 @@
                         <div>
 
                             <a href="{{route('packing-lists.index')}}"
+                               class="btn btn-outline-success section-to-no-print">
+                                Lists</a>
+
+                            <a href="{{url()->previous()}}"
                                class="btn btn-outline-secondary">
                                 Back</a>
 

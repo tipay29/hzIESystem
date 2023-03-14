@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\QueryFilters\Packing;
+namespace App\QueryFilters\Packing\Batch;
 
 use Closure;
 

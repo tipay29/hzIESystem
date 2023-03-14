@@ -2,8 +2,33 @@
 
 Dropzone.options.packinglistOne = {
     init: function () {
-        this.on("complete", function (file) {
-            alert('This Packing List is pending for approval.')
+        this.on('success', function() {
+            var args = Array.prototype.slice.call(arguments);
+
+            // Look at the output in you browser console, if there is something interesting
+            if (confirm("This Packing List is pending as draft, do you want to approve???")) {
+
+                $.ajax({
+                    type:'POST',
+                    url: '/api/packing-lists/approve/' + args[1],
+                    success: function (datas) {
+                        console.log(datas);
+                    },
+                    error: function (x,h,r) {
+                        alert(x.responseText);
+                    }
+                });
+
+            }
+
+            setTimeout(Reload,3000);
+
+            function Reload(){
+                window.location.href = '/packing-lists/batch/' + args[1]
+            }
+
+            // console.log(args[1]);
+            // alert(args[1]);
         });
     }
 }
@@ -162,11 +187,18 @@ let pl_mcq_carton_three_input_ten = $('#pl_mcq_carton_three_input_ten');
 let pl_mcq_add_btn = $('#pl_mcq_add_btn');
 
 let pls_btn_clear = $('#pls_btn_clear');
-
+let pls_batch_btn_clear = $('#pls_batch_btn_clear');
 pls_btn_clear.click(function(e){
    e.preventDefault();
     window.location.href = '/packing-lists';
 });
+
+pls_batch_btn_clear.click(function(e){
+    e.preventDefault();
+    window.history.replaceState(null, null, window.location.pathname);
+    location.reload();
+});
+
 
 row_selected.click(function (e) {
     e.preventDefault();
@@ -500,10 +532,10 @@ pl_pre_pack.change(function (e) {
 });
 let pl_status = $('#pl_status');
 
-if(pl_status.val() === "Drafted"){
+if(pl_status.val() === "Draft"){
     pl_status.css("background-color", "yellow");
     pl_status.css("color", "black");
-}else if(pl_status.val() === "Canceled"){
+}else if(pl_status.val() === "Cancelled"){
     pl_status.css("background-color", "red");
     pl_status.css("color", "black");
 }else if(pl_status.val() === "Final"){
@@ -523,10 +555,10 @@ pl_status.change(function (e) {
         url: '/api/packing-lists/update/status',
         data: status,
         success: function (status) {
-            if(status[0]['pl_status'] === "Drafted"){
+            if(status[0]['pl_status'] === "Draft"){
                 pl_status.css("background-color", "yellow");
                 pl_status.css("color", "black");
-            }else if(status[0]['pl_status'] === "Canceled"){
+            }else if(status[0]['pl_status'] === "Cancelled"){
                 pl_status.css("background-color", "red");
                 pl_status.css("color", "black");
             }else if(status[0]['pl_status'] === "Final"){
@@ -669,6 +701,7 @@ pl_print_batch.click(function(e){
 
     window.print();
 });
+
 
 let pl_create_drop_zone = $('#pl_create_drop_zone');
 let div_btn_brand_dickies_app = $('#div_btn_brand_dickies_app');
