@@ -45,6 +45,12 @@ Route::group(['as' => 'api.'],function() {
 
     Route::get('cartons/brands', 'CartonApiController@showBrand')->name('cartons.showbrand');
 
+    Route::post('packing-lists/batch/{batch}/number/{number}/color','PackinglistApiController@getColor')->name('packing-lists.getColor');
+    Route::post('packing-lists/batch/{batch}/number/{number}/description','PackinglistApiController@getDescription')->name('packing-lists.getDescription');
+    Route::post('packing-lists/batch/{batch}/number/{number}/material','PackinglistApiController@getMaterial')->name('packing-lists.getMaterial');
+    Route::post('packing-lists/batch/{batch}/number/{number}/masterpo','PackinglistApiController@getMasterPO')->name('packing-lists.getMasterPO');
+    Route::post('packing-lists/batch/{batch}/number/{number}/po','PackinglistApiController@getPO')->name('packing-lists.getPO');
+    Route::post('packing-lists/approve/{approve}','PackinglistApiController@approves')->name('packing-lists.approves');
     Route::post('packing-lists/approve/{approve}','PackinglistApiController@approves')->name('packing-lists.approves');
     Route::post('packing-lists/update/shipments','PackinglistApiController@shipments')->name('packing-lists.shipments');
     Route::post('packing-lists/update/factorypos','PackinglistApiController@factorypos')->name('packing-lists.factorypos');

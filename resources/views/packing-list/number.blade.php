@@ -38,30 +38,56 @@
                     @include('packing-list.numberheader')
 
                     <div class="card-body">
+                        <form action="{{route('packing-lists.number', [$packinglists[0]['pl_batch']
+                                                                        ,$packinglists[0]['pl_number_batch']])}}"
+                              method="get">
+                            <div class="row mb-1 section-pl-to-no-print">
+                                <div class="col-md-2">
+                                    <select name="pln_po_cut[]" id="pln_po_cut" multiple class="chosen-select form-control"
+                                            data-placeholder="Select PO">
 
-{{--                        <div class="row">--}}
-{{--                            <div class="col-md-2">--}}
-{{--                                <select name="" id="">--}}
-{{--                                    @foreach()--}}
-{{--                                </select>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-md-2">--}}
-{{--                                <input type="text" class="form-control">--}}
-{{--                            </div>--}}
-{{--                            <div class="col-md-2">--}}
-{{--                                <input type="text" class="form-control">--}}
-{{--                            </div>--}}
-{{--                            <div class="col-md-2">--}}
-{{--                                <input type="text" class="form-control">--}}
-{{--                            </div>--}}
-{{--                            <div class="col-md-2">--}}
-{{--                                <input type="text" class="form-control">--}}
-{{--                            </div>--}}
-{{--                            <div class="col-md-2">--}}
-{{--                                <input type="text" class="form-control">--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <select name="pln_master_po[]" id="pln_master_po" multiple class="chosen-select form-control"
+                                            data-placeholder="Select Master PO">
 
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <select name="pln_material[]" id="pln_material" multiple class="chosen-select form-control"
+                                            data-placeholder="Select Material">
+
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <select name="pln_description[]" id="pln_description" multiple class="chosen-select form-control"
+                                            data-placeholder="Select Description">
+
+                                    </select>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <select name="pln_color[]" id="pln_color" multiple class="chosen-select form-control"
+                                            data-placeholder="Select Color">
+
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <select name="pln_carton[]" id="pln_carton" multiple class="chosen-select form-control"
+                                            data-placeholder="Select Carton">
+
+                                    </select>
+                                </div>
+                                <input id="pln_value_ctn" type="hidden" value="{{$cartons}}">
+
+                            </div>
+
+                                    <button id="pln_filter" style="height: 100%;display: none;" class="btn form-control btn-primary">
+                                        Filter</button>
+
+
+                        </form>
                         <div class="table-responsive">
                                 <table id="table" class="table pl_table_number" >
                                 <thead>
@@ -138,8 +164,6 @@
                                                 @endif
                                                 <td align="right" scope="col">{{number_format((float)$packinglist['pl_order_quantity_cut'])}}</td>
                                                 <td align="right" scope="col">{{number_format((float)$packinglist['pl_one_ctn_item_count'])}}</td>
-
-                                                <td align="right" scope="col">{{number_format($number_ctn+1) . "-" . number_format(($number_ctn+ intval($packinglist['pl_number_of_carton'])))}}</td>
 
                                                 <td align="right" scope="col">{{number_format((float)$number_ctn+1) . "-" . number_format(($number_ctn+ intval($packinglist['pl_number_of_carton'])))}}</td>
 

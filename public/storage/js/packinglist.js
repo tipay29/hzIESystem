@@ -43,8 +43,17 @@ Dropzone.options.instandMcq = {
 
 let l = window.location;
 let lsplit = l.pathname.split('/');
+if(lsplit.includes('packing-lists')) {
+    if (lsplit.includes('batch') && lsplit.includes('number')) {
 
-
+        getPO(lsplit[3],lsplit[5]);
+        getMasterPO(lsplit[3],lsplit[5]);
+        getMaterial(lsplit[3],lsplit[5]);
+        getDescription(lsplit[3],lsplit[5]);
+        getColor(lsplit[3],lsplit[5]);
+        getCarton();
+    }
+}
 let ctn_brand = $('#ctn_brand');
 let ctn_type = $('#ctn_type');
 
@@ -1073,3 +1082,267 @@ ata_mcq_third_btn.click(function(e){
     if(pl_mcq_size_input_ten.val() !== "") {
     pl_mcq_qty_three_input_ten.val(pl_mcq_qty_three_input.val());}
 });
+
+//filter
+let pln_filter = $('#pln_filter');
+let pln_po_cut = $('#pln_po_cut');
+let pln_master_po = $('#pln_master_po');
+let pln_material = $('#pln_material');
+let pln_description = $('#pln_description');
+let pln_color = $('#pln_color');
+let pln_carton = $('#pln_carton');
+pln_po_cut.change(function(){
+    sessionStorage.setItem('po_cut',pln_po_cut.val());
+    pln_filter.click();
+});
+
+pln_master_po.change(function(){
+    sessionStorage.setItem('master_po',pln_master_po.val());
+    pln_filter.click();
+});
+
+pln_material.change(function(){
+    sessionStorage.setItem('material',pln_material.val());
+    pln_filter.click();
+});
+
+pln_description.change(function(){
+    sessionStorage.setItem('description',pln_description.val());
+    pln_filter.click();
+});
+
+pln_color.change(function(){
+    sessionStorage.setItem('color',pln_color.val());
+    pln_filter.click();
+});
+
+pln_carton.change(function(){
+    sessionStorage.setItem('carton',pln_carton.val());
+    pln_filter.click();
+});
+
+function getPO(batch,number){
+    $.ajax({
+        type: 'POST',
+        url: '/api/packing-lists/batch/' + batch+ '/number/' + number+ '/po',
+        success: function (pckls) {
+       console.log(pckls);
+            pln_po_cut.empty();
+            $.each(pckls, function(i,pckl){
+
+                let newOption = '<option value="'+pckl.pl_po_cut+'"  '
+                    +
+                    getPOSelected(pckl.pl_po_cut)
+
+                    +' >'+pckl.pl_po_cut+'</option>';
+
+                pln_po_cut.append(newOption);
+
+            });
+            pln_po_cut.trigger("chosen:updated");
+
+
+        },
+        error: function(x,h,r){
+            console.log(x);
+        },
+    });
+}
+
+function getPOSelected(po_cut){
+    if(sessionStorage.getItem('po_cut')){
+        let s_po_cut = sessionStorage.getItem('po_cut').split(',');
+
+        if(s_po_cut.includes(po_cut)){
+            return 'selected';
+        }
+    }
+}
+
+function getMasterPO(batch,number){
+    $.ajax({
+        type: 'POST',
+        url: '/api/packing-lists/batch/' + batch+ '/number/' + number+ '/masterpo',
+        success: function (pckls) {
+            console.log(pckls);
+
+            pln_master_po.empty();
+            $.each(pckls, function(i,pckl){
+
+                let newOption = '<option value="'+pckl.pl_master_po+'"  '
+                    +
+                    getMasterPOSelected(pckl.pl_master_po)
+
+                    +' >'+pckl.pl_master_po+'</option>';
+
+                pln_master_po.append(newOption);
+
+            });
+            pln_master_po.trigger("chosen:updated");
+
+
+        },
+        error: function(x,h,r){
+            console.log(x);
+        },
+    });
+}
+
+function getMasterPOSelected(master_po){
+    if(sessionStorage.getItem('master_po')){
+        let s_master_po = sessionStorage.getItem('master_po').split(',');
+
+        if(s_master_po.includes(master_po)){
+            return 'selected';
+        }
+    }
+}
+
+function getMaterial(batch,number){
+    $.ajax({
+        type: 'POST',
+        url: '/api/packing-lists/batch/' + batch+ '/number/' + number+ '/material',
+        success: function (pckls) {
+            console.log(pckls);
+
+            pln_material.empty();
+            $.each(pckls, function(i,pckl){
+
+                let newOption = '<option value="'+pckl.pl_material+'"  '
+                    +
+                    getMaterialSelected(pckl.pl_material)
+
+                    +' >'+pckl.pl_material+'</option>';
+
+                pln_material.append(newOption);
+
+            });
+            pln_material.trigger("chosen:updated");
+
+
+        },
+        error: function(x,h,r){
+            console.log(x);
+        },
+    });
+}
+
+function getMaterialSelected(material){
+    if(sessionStorage.getItem('material')){
+        let s_material = sessionStorage.getItem('material').split(',');
+
+        if(s_material.includes(material)){
+            return 'selected';
+        }
+    }
+}
+
+function getDescription(batch,number){
+    $.ajax({
+        type: 'POST',
+        url: '/api/packing-lists/batch/' + batch+ '/number/' + number+ '/description',
+        success: function (pckls) {
+            console.log(pckls);
+
+            pln_description.empty();
+            $.each(pckls, function(i,pckl){
+
+                let newOption = '<option value="'+pckl.pl_description+'"  '
+                    +
+                    getDescriptionSelected(pckl.pl_description)
+
+                    +' >'+pckl.pl_description+'</option>';
+
+                pln_description.append(newOption);
+
+            });
+            pln_description.trigger("chosen:updated");
+
+
+        },
+        error: function(x,h,r){
+            console.log(x);
+        },
+    });
+}
+
+function getDescriptionSelected(description){
+    if(sessionStorage.getItem('description')){
+        let s_description = sessionStorage.getItem('description').split(',');
+
+        if(s_description.includes(description)){
+            return 'selected';
+        }
+    }
+}
+
+function getColor(batch,number){
+    $.ajax({
+        type: 'POST',
+        url: '/api/packing-lists/batch/' + batch+ '/number/' + number+ '/color',
+        success: function (pckls) {
+            console.log(pckls);
+
+            pln_color.empty();
+            $.each(pckls, function(i,pckl){
+
+                let newOption = '<option value="'+pckl.pl_color+'"  '
+                    +
+                    getColorSelected(pckl.pl_color)
+
+                    +' >'+pckl.pl_color+'</option>';
+
+                pln_color.append(newOption);
+
+            });
+            pln_color.trigger("chosen:updated");
+
+
+        },
+        error: function(x,h,r){
+            console.log(x);
+        },
+    });
+}
+
+function getColorSelected(color){
+    if(sessionStorage.getItem('color')){
+        let s_color = sessionStorage.getItem('color').split(',');
+
+        if(s_color.includes(color)){
+            return 'selected';
+        }
+    }
+}
+function getCarton(){
+    let pln_ctn = $('#pln_carton');
+    let pln_value_ctn = $('#pln_value_ctn').val();
+    pln_value_ctn = pln_value_ctn.replace('[','').replace(']','');
+    pln_value_ctn = pln_value_ctn.split(',');
+    console.log(pln_value_ctn);
+
+    pln_ctn.empty();
+    for(let i = 0;i < pln_value_ctn.length;i++){
+
+
+        let newOption = '<option value="'+pln_value_ctn[i].replace('"','').replace('"','')+'"  '
+            +
+            getCartonSelected(pln_value_ctn[i].replace('"','').replace('"',''))
+
+            +' >'+pln_value_ctn[i].replace('"','').replace('"','')+'</option>';
+
+        pln_ctn.append(newOption);
+
+    }
+    pln_ctn.trigger("chosen:updated");
+}
+
+function getCartonSelected(carton){
+    if(sessionStorage.getItem('carton')){
+        let s_carton = sessionStorage.getItem('carton').split(',');
+
+        if(s_carton.includes(carton)){
+            return 'selected';
+        }
+    }
+}

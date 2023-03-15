@@ -251,6 +251,55 @@ class PackinglistApiController extends Controller
 
     }
 
+    public function getPO($batch,$number){
+        return PackingList::where([
+            ['pl_batch',$batch],
+            ['pl_number_batch',$number]
+        ])
+            ->select('pl_po_cut')
+            ->distinct()
+            ->get();
+    }
+
+    public function getMasterPO($batch,$number){
+        return PackingList::where([
+            ['pl_batch',$batch],
+            ['pl_number_batch',$number]
+        ])
+            ->select('pl_master_po')
+            ->distinct()
+            ->get();
+    }
+
+    public function getMaterial($batch,$number){
+        return PackingList::where([
+            ['pl_batch',$batch],
+            ['pl_number_batch',$number]
+        ])
+            ->select('pl_material')
+            ->distinct()
+            ->get();
+    }
+
+    public function getDescription($batch,$number){
+        return PackingList::where([
+            ['pl_batch',$batch],
+            ['pl_number_batch',$number]
+        ])
+            ->select('pl_description')
+            ->distinct()
+            ->get();
+    }
+    public function getColor($batch,$number){
+        return PackingList::where([
+            ['pl_batch',$batch],
+            ['pl_number_batch',$number]
+        ])
+            ->select('pl_color')
+            ->distinct()
+            ->get();
+    }
+
     protected function dataValidatedQTY(){
         return [
             'id' => 'required',
