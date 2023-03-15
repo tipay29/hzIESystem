@@ -38,7 +38,7 @@
 
                             <td align="right" scope="col">{{number_format((float)$packinglists[$x]['pl_order_quantity'])}}</td>
 
-                            @if(!isset($packinglists[$x+1]['row_cut']) || $packinglists[$x+1]['row_cut'] == 1))
+                            @if(!isset($packinglists[$x+1]['row_cut']) || $packinglists[$x+1]['row_cut'] == 1)
                                 <td align="right" scope="col">{{number_format((float)$packinglists[$x]['pl_number_of_carton'])}}</td>
                                 <td align="right" scope="col">{{number_format((float)$packinglists[$x]['net_weight_total'], 2, '.', ',')}}</td>
                                 <td align="right" scope="col">{{number_format((float)$packinglists[$x]['gross_weight_total'], 2, '.', ',')}}</td>
