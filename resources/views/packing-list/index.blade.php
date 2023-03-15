@@ -12,11 +12,11 @@
                         <h5 class="mt-2">Packing Lists</h5>
 
                         <div>
-
+                            @can('create', App\Models\PackingList::class)
                             <a href="{{route('packing-lists.create')}}"
                                class="btn btn-outline-success">
                                 Create PL</a>
-
+                            @endcan
 
                             <a href="{{route('cartons.index')}}"
                             class="btn btn-outline-secondary"
@@ -115,7 +115,9 @@
                                         <th width="10%" scope="col">Type</th>
                                         <th width="20%" scope="col">Created Date </th>
                                         <th width="20%" scope="col">Create By </th>
+                                        @can('create', App\Models\PackingList::class)
                                         <th width="5%" scope="col">Del</th>
+                                            @endcan
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -135,17 +137,19 @@
                                             <td  scope="col">{{$packinglist->pl_type}}</td>
                                             <td scope="col">{{$packinglist->created_at}} </td>
                                             <td scope="col">{{$packinglist->user->name}} </td>
-                                            <td>
-                                                @if(auth()->user()->id == $packinglist->user_id)
-                                                <form style="display:inline;" action="{{route('packing-lists.destroy-batch', $packinglist->pl_batch)}}" method="post">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button style="border: none;background-color: white;color:darkred;"
-                                                            onclick="return confirm('Delete Packing List Batch {{$packinglist->pl_batch}}  ?')" >
-                                                        <i class="fa fa-trash" aria-hidden="true"></i></button>
-                                                </form>
-                                                @endif
-                                            </td>
+                                            @can('create', App\Models\PackingList::class)
+                                                <td>
+                                                    @if(auth()->user()->id == $packinglist->user_id)
+                                                    <form style="display:inline;" action="{{route('packing-lists.destroy-batch', $packinglist->pl_batch)}}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button style="border: none;background-color: white;color:darkred;"
+                                                                onclick="return confirm('Delete Packing List Batch {{$packinglist->pl_batch}}  ?')" >
+                                                            <i class="fa fa-trash" aria-hidden="true"></i></button>
+                                                    </form>
+                                                    @endif
+                                                </td>
+                                            @endcan
                                         </tr>
 
                                     @empty

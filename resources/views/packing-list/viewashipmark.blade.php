@@ -12,7 +12,11 @@
 
         <h5>Remarks:</h5>
 
-        <textarea  rows="10" id="pl_rm_input" style="min-width: 100%">
+        <textarea  rows="10" id="pl_rm_input" style="min-width: 100%"
+        @cannot('create', App\Models\PackingList::class)
+            {{'disabled'}}
+            @endcannot
+        >
                                         {{$packinglists[$x][0]['pl_remarks']}}
                                     </textarea>
 

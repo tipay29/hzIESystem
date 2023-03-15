@@ -34,6 +34,12 @@ class JobSeeder extends Seeder
             [
                 'job' => 'Cutting Officer'
             ] ,
+            [
+                'job' => 'Merchandiser'
+            ] ,
+            [
+                'job' => 'Production Officer'
+            ] ,
         ];
 
         foreach($jobs as $job){

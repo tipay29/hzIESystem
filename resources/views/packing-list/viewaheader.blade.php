@@ -24,13 +24,20 @@
                                                    border: 0; background-color:	 #f1f1f1;
                                                    font-weight: 500;font-size: 1.2rem;
                                                    padding:0px;line-height: 10px;
-                                                    " value="{{$packinglists[$x][0]['pl_factory_po']}}">
+                                                    " value="{{$packinglists[$x][0]['pl_factory_po']}}"
+            @cannot('create', App\Models\PackingList::class)
+                {{'disabled'}}
+                @endcannot>
             <input type="text" class="form-control"
                    style="text-align: center;
                                                    border: 0; background-color:	 #f1f1f1;
                                                    font-weight: 500;font-size: 1.2rem;
                                                    padding:0px;line-height: 10px;
-                                                    " value="{{$packinglists[$x][0]['pl_shipment_mode']}}">
+                                                    " value="{{$packinglists[$x][0]['pl_shipment_mode']}}"
+
+            @cannot('create', App\Models\PackingList::class)
+                {{'disabled'}}
+                @endcannot>
 
             <div class="table-responsive">
                 <table class="table pl_table_number">
@@ -65,7 +72,9 @@
                                                    padding:0px;line-height: 10px;
                                                     "
                         id="pl_special_pack" type="text" class="form-control" value="{{$packinglists[$x][0]['pl_special_packs']}}"
-                    >
+                    @cannot('create', App\Models\PackingList::class)
+                        {{'disabled'}}
+                        @endcannot>
                 </div>
                 <div class="col-md-2"></div>
             </div>
@@ -80,7 +89,9 @@
                                                    padding:0px;line-height: 10px;
                                                     "
                         id="pl_pre_pack" type="number" step="1" class="form-control" value="{{$packinglists[$x][0]['pl_pre_pack']}}"
-                    >
+                    @cannot('create', App\Models\PackingList::class)
+                        {{'disabled'}}
+                        @endcannot>
                 </div>
                 <div class="col-md-2"></div>
             </div>
@@ -99,7 +110,10 @@
                     {{$packinglists[$x][0]['pl_status']=="Canceled" ? 'background-color:red;' : ''}}
                     {{$packinglists[$x][0]['pl_status']=="Final" ? 'background-color:green;color:white;' : ''}}
                                         font-size: 1rem;
-                                        border:none;">
+                                        border:none;"
+                @cannot('create', App\Models\PackingList::class)
+                    {{'disabled'}}
+                    @endcannot>
                     <option value="Draft"
                         {{ $packinglists[$x][0]['pl_status']=="Draft" ? 'selected' : ''  }}
                     >Draft</option>
@@ -148,7 +162,10 @@
                                                    border: 0; background-color:	 #f1f1f1;
                                                    font-weight: 500;font-size: 1.2rem;
                                                    padding:0px;line-height: 10px;padding-left: 0.7em;
-                                                    " value="{{$packinglists[$x][0]['pl_destination']}}">
+                                                    " value="{{$packinglists[$x][0]['pl_destination']}}"
+                @cannot('create', App\Models\PackingList::class)
+                    {{'disabled'}}
+                    @endcannot>
 
             </div>
             <div class="row">

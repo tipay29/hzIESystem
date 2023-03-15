@@ -13,10 +13,12 @@
                         <h5 class="mt-2">Packing List View</h5>
 
                         <div>
+                            @can('create', App\Models\PackingList::class)
                             <button id="addPOModalBtn" type="button" class="btn btn-outline-info" data-bs-toggle="modal"
                                     data-bs-target="#addPOModal">
                                 Add PO
                             </button>
+                            @endcan
                             <a href="#" id="pl_print"
                                class="btn btn-outline-primary">
                                 Print</a>

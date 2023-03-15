@@ -130,9 +130,11 @@
                                     <li >
                                         <a class="dropdown-item" href="{{route('packing-lists.index')}}">Packing Lists</a>
                                     </li>
+                                    @can('create', App\Models\PackingList::class)
                                     <li >
                                         <a class="dropdown-item" href="{{route('packing-lists.create')}}">Packing Lists Create</a>
                                     </li>
+                                    @endcan
                                     <li >
                                         <a class="dropdown-item" href="{{route('cartons.index')}}">Cartons</a>
                                     </li>

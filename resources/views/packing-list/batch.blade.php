@@ -57,7 +57,9 @@
                                             <th width="8%" scope="col">CRD</th>
                                             <th width="5%" scope="col">PrePack</th>
                                             <th width="12%" scope="col">User</th>
+                                            @can('create', App\Models\PackingList::class)
                                             <th width="3%" scope="col">Del</th>
+                                                @endcan
                                         </tr>
                                     </thead>
 
@@ -91,6 +93,9 @@
                                             <td  scope="col">{{$packinglist->pl_crd}} </td>
                                             <td scope="col">{{$packinglist->pl_pre_pack}} </td>
                                             <td  scope="col">{{$packinglist->user->name}} </td>
+                                            @can('create', App\Models\PackingList::class)
+
+
                                             <td scope="col">
                                                 @if(auth()->user()->id == $packinglist->user_id)
                                                     <form style="display:inline;" action="{{route('packing-lists.destroy-number', [$packinglist->pl_batch
@@ -104,6 +109,8 @@
                                                 @endif
 
                                             </td>
+
+                                            @endcan
                                         </tr>
                                     @empty
                                         <h6 class="bg-danger"> No Packing List Record</h6>

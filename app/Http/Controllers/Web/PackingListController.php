@@ -45,6 +45,8 @@ class PackingListController extends Controller
             ])
             ->get();
 
+        $this->authorize('viewAny',PackingList::class);
+
         $packinglists = collect($packinglists->where('pl_uniq_number_batch',1))->paginate(10);
 
         return view('packing-list.index', compact('packinglists'));
@@ -61,6 +63,10 @@ class PackingListController extends Controller
     }
 
     public function batch($batch){
+
+
+
+        $this->authorize('viewAny',PackingList::class);
 
         $packinglistsdummy = collect();
         $packinglistsqty = collect();
@@ -91,6 +97,7 @@ class PackingListController extends Controller
                 ['pl_uniq_number_batch_number',1]])
             ->get();
 
+
         for($x=1; $x <= count($packinglistsNew);$x++){
             $packinglistsdummy->add(PackingList::with('user')->where(
                 [
@@ -119,6 +126,8 @@ class PackingListController extends Controller
     public function number($batch,$number){
 
         $packinglists = event(new GetPackingListDataOneEvent($batch,$number))[0];
+
+        $this->authorize('viewAny',PackingList::class);
 
         $last_pl = $packinglists[count($packinglists)-1];
 
@@ -255,6 +264,8 @@ class PackingListController extends Controller
     public function create()
     {
 
+        $this->authorize('create',PackingList::class);
+
         $packinglist = new PackingList();
 
         return view('packing-list.create', compact('packinglist'));
@@ -263,8 +274,13 @@ class PackingListController extends Controller
 
     public function destroyBatch($batch)
     {
+
+
         $batches = PackingList::where('pl_batch',$batch)->pluck('id');
+
+        $this->authorize('delete',$batches);
         PackingList::destroy($batches);
+
         return redirect()->back();
     }
 
@@ -273,6 +289,9 @@ class PackingListController extends Controller
 
         $numbers = PackingList::where([['pl_batch',$batch],
                                 ['pl_number_batch',$number]])->pluck('id');
+
+        $this->authorize('delete',$numbers);
+
         $countPlNumbers = PackingList::where([['pl_batch',$batch]])->max('pl_number_batch');
         $countPlUniqNumbers = PackingList::where([['pl_batch',$batch]])->max('pl_uniq_number_batch');
         PackingList::destroy($numbers);
@@ -327,6 +346,8 @@ class PackingListController extends Controller
 
     public function import()
     {
+
+        $this->authorize('create',PackingList::class);
 
         $brandntype = request()->brandntype;
 //        $type = explode('-',$brandntype)[1];
