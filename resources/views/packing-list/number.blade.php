@@ -38,6 +38,11 @@
                     @include('packing-list.numberheader')
 
                     <div class="card-body">
+                        @if(session()->has('message'))
+                            <div class="alert alert-danger">
+                                {{ session()->get('message') }}
+                            </div>
+                        @endif
                         <form action="{{route('packing-lists.number', [$packinglists[0]['pl_batch']
                                                                         ,$packinglists[0]['pl_number_batch']])}}"
                               method="get">
@@ -82,9 +87,17 @@
                                 <input id="pln_value_ctn" type="hidden" value="{{$cartons}}">
 
                             </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <button id="pln_clear" style="height: 100%;" class="btn form-control btn-primary">
+                        Clear</button>
+                </div>
+                <div class="col-md-6">
+                    <button id="pln_filter" style="height: 100%;" class="btn form-control btn-primary">
+                        Filter</button>
+                </div>
+            </div>
 
-                                    <button id="pln_filter" style="height: 100%;display: none;" class="btn form-control btn-primary">
-                                        Filter</button>
 
 
                         </form>

@@ -197,6 +197,7 @@ let pl_mcq_add_btn = $('#pl_mcq_add_btn');
 
 let pls_btn_clear = $('#pls_btn_clear');
 let pls_batch_btn_clear = $('#pls_batch_btn_clear');
+let pln_clear = $('#pln_clear');
 pls_btn_clear.click(function(e){
    e.preventDefault();
     window.location.href = '/packing-lists';
@@ -208,6 +209,12 @@ pls_batch_btn_clear.click(function(e){
     location.reload();
 });
 
+pln_clear.click(function(e){
+    e.preventDefault();
+    sessionStorage.clear();
+    window.history.replaceState(null, null, window.location.pathname);
+    location.reload();
+});
 
 row_selected.click(function (e) {
     e.preventDefault();

@@ -232,6 +232,10 @@ class PackingListController extends Controller
             $packinglists->add($last_pl);
         }
 
+        if(count($packinglists) == 1){
+            return redirect()->back()->with('message', 'Invalid Filter!!!');
+        }
+
 //        dd($packinglists);
 
 
