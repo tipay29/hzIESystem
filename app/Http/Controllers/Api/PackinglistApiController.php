@@ -251,6 +251,23 @@ class PackinglistApiController extends Controller
 
     }
 
+    public function approveNumber(){
+
+        $packinglists = PackingList::where(
+            [
+                ['pl_batch',  request('batch')],
+                ['pl_number_batch',request('number')]
+            ]
+        )->get();
+
+        $packinglists->each(function ($item){
+            $item->update(['pl_status'=> 'Final']);
+        });
+
+        return response()->json(['success' => $packinglists],201);
+
+    }
+
     public function getPO($batch,$number){
         return PackingList::where([
             ['pl_batch',$batch],

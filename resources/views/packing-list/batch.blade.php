@@ -84,7 +84,7 @@
                                             <td  scope="col">{{$packinglist->pl_master_po}} </td>
                                             <td  scope="col">{{$packinglist->pl_factory_po}} </td>
                                             <td  scope="col">{{$packinglist->pl_material}} </td>
-                                            <td  scope="col">{{$packinglistsqty[$key]}} </td>
+                                            <td  scope="col">{{number_format((float)$packinglistsqty[$key])}} </td>
                                             <td  scope="col">{{$packinglist->pl_country}} </td>
                                             <td  scope="col">{{date('Y',strtotime($packinglist->pl_crd))}} </td>
                                             <td  scope="col">{{date('M',strtotime($packinglist->pl_crd))}} </td>
@@ -116,7 +116,7 @@
                                             <td></td>
                                             <td></td>
                                             <td></td>
-                                            <td><b>  {{$pl_total_qty}} </b></td>
+                                            <td><b>  {{number_format((float)$pl_total_qty)}} </b></td>
                                             <td></td>
                                             <td></td>
                                             <td></td>

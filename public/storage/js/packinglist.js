@@ -6,22 +6,22 @@ Dropzone.options.packinglistOne = {
             var args = Array.prototype.slice.call(arguments);
 
             // Look at the output in you browser console, if there is something interesting
-            if (confirm("This Packing List is pending as draft, do you want to approve???")) {
-
-                $.ajax({
-                    type:'POST',
-                    url: '/api/packing-lists/approve/' + args[1],
-                    success: function (datas) {
-                        console.log(datas);
-                    },
-                    error: function (x,h,r) {
-                        alert(x.responseText);
-                    }
-                });
-
-            }
-
-            setTimeout(Reload,3000);
+            // if (confirm("This Packing List is pending as draft, do you want to approve???")) {
+            //
+            //     $.ajax({
+            //         type:'POST',
+            //         url: '/api/packing-lists/approve/' + args[1],
+            //         success: function (datas) {
+            //             console.log(datas);
+            //         },
+            //         error: function (x,h,r) {
+            //             alert(x.responseText);
+            //         }
+            //     });
+            //
+            // }
+            alert('Packing Lists Succesfully Uploaded!!!');
+            setTimeout(Reload,1000);
 
             function Reload(){
                 window.location.href = '/packing-lists/batch/' + args[1]
@@ -43,6 +43,8 @@ Dropzone.options.instandMcq = {
 
 let l = window.location;
 let lsplit = l.pathname.split('/');
+let pl_status = $('#pl_status');
+
 if(lsplit.includes('packing-lists')) {
     if (lsplit.includes('batch') && lsplit.includes('number')) {
 
@@ -546,7 +548,7 @@ pl_pre_pack.change(function (e) {
         }
     });
 });
-let pl_status = $('#pl_status');
+
 
 if(pl_status.val() === "Draft"){
     pl_status.css("background-color", "yellow");
@@ -705,10 +707,76 @@ pl_add_po_btn.click(function(e){
 //CHOOSE BRAND
 let btn_pl_print_all = $('#pl_print_all');
 let pl_print_batch = $('#pl_print_batch');
+let pl_print = $('#pl_print');
 btn_pl_print_all.click(function(e){
     e.preventDefault();
+    console.log(lsplit);
+    if (lsplit.includes('batch') && lsplit.includes('view-all')) {
+        let batch = lsplit[3];
 
-    window.print();
+        if (confirm("Some Packing List are not final, do you want to approve???")) {
+
+            $.ajax({
+                type:'POST',
+                url: '/api/packing-lists/approve/' + batch,
+                success: function (datas) {
+                    console.log(datas);
+                },
+                error: function (x,h,r) {
+                    alert(x.responseText);
+                }
+            });
+
+        }
+        setTimeout(Reload,3000);
+
+        function Reload(){
+            location.reload();
+        }
+        window.print();
+    }
+
+
+
+});
+
+pl_print.click(function(e){
+    e.preventDefault();
+    if (lsplit.includes('batch') && lsplit.includes('number')) {
+
+        let batch = lsplit[3];
+        let number = lsplit[5];
+
+
+        if(pl_status.val() !== "Final"){
+            if (confirm("This Packing List is not final, do you want to approve???")) {
+
+                let packinglist = {
+                    batch: batch,
+                    number: number,
+                }
+
+                $.ajax({
+                    type:'POST',
+                    url: '/api/packing-lists/number/approve',
+                    data: $packinglist,
+                    success: function (datas) {
+                        console.log(datas);
+                    },
+                    error: function (x,h,r) {
+                        alert(x.responseText);
+                    }
+                });
+
+            }
+        }
+        setTimeout(Reload,1000);
+
+        function Reload(){
+            location.reload();
+        }
+        window.print();
+    }
 
 });
 

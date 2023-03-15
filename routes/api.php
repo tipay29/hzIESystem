@@ -50,7 +50,7 @@ Route::group(['as' => 'api.'],function() {
     Route::post('packing-lists/batch/{batch}/number/{number}/material','PackinglistApiController@getMaterial')->name('packing-lists.getMaterial');
     Route::post('packing-lists/batch/{batch}/number/{number}/masterpo','PackinglistApiController@getMasterPO')->name('packing-lists.getMasterPO');
     Route::post('packing-lists/batch/{batch}/number/{number}/po','PackinglistApiController@getPO')->name('packing-lists.getPO');
-    Route::post('packing-lists/approve/{approve}','PackinglistApiController@approves')->name('packing-lists.approves');
+    Route::post('packing-lists/number/approve','PackinglistApiController@approveNumber')->name('packing-lists.approveNumber');
     Route::post('packing-lists/approve/{approve}','PackinglistApiController@approves')->name('packing-lists.approves');
     Route::post('packing-lists/update/shipments','PackinglistApiController@shipments')->name('packing-lists.shipments');
     Route::post('packing-lists/update/factorypos','PackinglistApiController@factorypos')->name('packing-lists.factorypos');

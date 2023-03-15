@@ -17,7 +17,7 @@
                                     data-bs-target="#addPOModal">
                                 Add PO
                             </button>
-                            <a href="#" id="pl_print_all"
+                            <a href="#" id="pl_print"
                                class="btn btn-outline-primary">
                                 Print</a>
 
@@ -87,7 +87,7 @@
                                 <input id="pln_value_ctn" type="hidden" value="{{$cartons}}">
 
                             </div>
-            <div class="row">
+            <div class="row section-pl-to-no-print">
                 <div class="col-md-6">
                     <button id="pln_clear" style="height: 100%;" class="btn form-control btn-primary">
                         Clear</button>
