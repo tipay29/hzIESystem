@@ -7,6 +7,15 @@
 
          <h1 class="mb-5">Welcome to Horizon IE System</h1>
 
+             <a href="{{ asset('storage/files/ExcelExam1.xlsx') }}" download
+            style="background-color: green;color:white;padding:5px;text-decoration: none;margin:5px;
+                    border: 2px solid darkgrey;"
+
+            >Download ExcelExam1 </a>
+
+        
+
+
             <a href="{{ asset('storage/files/ExcelExam2.xlsx') }}" download
             style="background-color: green;color:white;padding:5px;text-decoration: none;margin:5px;
                     border: 2px solid darkgrey;"
