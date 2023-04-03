@@ -57,8 +57,8 @@
                                                 <th width="7%" scope="col">Master PO</th>
                                                 <th width="6%" scope="col">Style</th>
                                                 <th width="7%" scope="col">Material</th>
-                                                <th width="21%" scope="col">Description</th>
-                                                <th width="8%" scope="col">Color</th>
+                                                <th width="17%" scope="col">Description</th>
+                                                <th width="12%" scope="col">Color</th>
                                                 @if($packinglists[0][0]['pl_type']  == 'APPAREL')
                                                 <th width="2%" scope="col">Size</th>
                                                 @endif

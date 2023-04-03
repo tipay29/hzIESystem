@@ -46,14 +46,16 @@
                                         <tr>
                                             <th width="5%" scope="col">Number</th>
                                             <th width="5%" scope="col">Status</th>
-                                            <th width="10%" scope="col">PO</th>
+
+                                            <th width="4%" scope="col">Buy Year</th>
+                                            <th width="4%" scope="col">Buy Month</th>
                                             <th width="9%" scope="col">Master PO</th>
+                                            <th width="10%" scope="col">PO</th>
+
                                             <th width="8%" scope="col">Factory PO</th>
                                             <th width="8%" scope="col">Material</th>
                                             <th width="5%" scope="col">Quantity</th>
                                             <th width="18%" scope="col">Country</th>
-                                            <th width="4%" scope="col">Year</th>
-                                            <th width="4%" scope="col">Month</th>
                                             <th width="8%" scope="col">CRD</th>
                                             <th width="5%" scope="col">PrePack</th>
                                             <th width="12%" scope="col">User</th>
@@ -82,14 +84,16 @@
                                                 <p class="bg-success text-white">{{$packinglist->pl_status}}</p>
                                             @endif
                                             </td>
-                                            <td  scope="col">{{$packinglist->pl_po_cut}} </td>
+
+                                            <td  scope="col">{{date('Y',strtotime($packinglist->pl_buy_year))}} </td>
+                                            <td  scope="col">{{date('M',strtotime($packinglist->pl_buy_month))}} </td>
                                             <td  scope="col">{{$packinglist->pl_master_po}} </td>
+                                            <td  scope="col">{{$packinglist->pl_po_cut}} </td>
+
                                             <td  scope="col">{{$packinglist->pl_factory_po}} </td>
                                             <td  scope="col">{{$packinglist->pl_material}} </td>
                                             <td  scope="col">{{number_format((float)$packinglistsqty[$key])}} </td>
                                             <td  scope="col">{{$packinglist->pl_country}} </td>
-                                            <td  scope="col">{{date('Y',strtotime($packinglist->pl_crd))}} </td>
-                                            <td  scope="col">{{date('M',strtotime($packinglist->pl_crd))}} </td>
                                             <td  scope="col">{{$packinglist->pl_crd}} </td>
                                             <td scope="col">{{$packinglist->pl_pre_pack}} </td>
                                             <td  scope="col">{{$packinglist->user->name}} </td>
@@ -123,9 +127,10 @@
                                             <td></td>
                                             <td></td>
                                             <td></td>
+
+                                            <td></td>
+                                            <td></td>
                                             <td><b>  {{number_format((float)$pl_total_qty)}} </b></td>
-                                            <td></td>
-                                            <td></td>
                                             <td></td>
                                             <td></td>
                                             <td></td>

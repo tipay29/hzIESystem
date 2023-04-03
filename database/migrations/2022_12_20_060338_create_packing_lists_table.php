@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('pl_color')->nullable();
             $table->string('pl_style_size')->nullable();
             $table->string('pl_country')->nullable();
+            $table->string('pl_country_two')->nullable();
             $table->string('pl_destination')->nullable();
             $table->date('pl_crd')->nullable();
             $table->BigInteger('pl_order_quantity')->nullable();
@@ -40,6 +41,8 @@ return new class extends Migration
             $table->string('pl_shipment_mode')->nullable();
             $table->string('pl_season')->nullable();
             $table->integer('pl_batch')->nullable();
+            $table->string('pl_buy_month')->nullable();
+            $table->integer('pl_buy_year')->nullable();
             $table->integer('pl_number_batch')->nullable();
             $table->integer('pl_uniq_number_batch_number')->nullable();
             $table->integer('pl_uniq_number_batch')->nullable();
@@ -48,11 +51,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('packing_lists');

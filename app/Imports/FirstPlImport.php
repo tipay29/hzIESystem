@@ -33,35 +33,48 @@ class FirstPlImport implements ToModel, WithHeadingRow
 
     public function model(array $row)
     {
+
+
         $crd = $this->convertDate($row['crd_at_origin']);
-        $country = $row['dc_code'] . ' ' . $row['dest'];
+        $country = $row['dc_code'] . ' ' . $row['plant_name'];
         $destination = $this->getDestination($country);
-        $number_batch = $this->getPlNumberBatch($crd,$country,(int)$row['prepack'],$row['po'],$this->type,$row['shipment_mode']);
-        $this->uniq++;
-        return new PackingList([
-            'pl_po_cut' => $row['po'],
-            'pl_master_po' => $row['master_po'],
-            'pl_factory_po' => $row['factory_po'],
-            'pl_sku' => $row['style'],
-            'pl_material' => $row['material'],
-            'pl_description' => $row['material_description'],
-            'pl_color' => $row['color_description'],
-            'pl_style_size' => $row['style_size'],
-            'pl_country' => $country,
-            'pl_destination' => $destination,
-            'pl_crd' => $crd,
-            'pl_pre_pack' => (int)$row['prepack'],
-            'pl_type' => $this->type,
-            'pl_brand' => $this->brand,
-            'pl_shipment_mode' => $row['shipment_mode'],
-            'pl_season' => $row['season'],
-            'pl_order_quantity' => $row['quantity'],
-            'pl_batch' => $this->batch,
-            'pl_number_batch' => $number_batch,
-            'pl_uniq_number_batch_number' => $this->uniqnumber,
-            'pl_uniq_number_batch' => $this->uniq,
-            'user_id' => $this->user,
-        ]);
+
+        if(
+            $this->checkUpdateSize($crd,$country,(int)$row['prepack'],$row['po']
+                ,$this->type,$row['shipment_mode'],$row['style_size'],$row['quantity'])
+            ===
+            0) {
+
+
+            $number_batch = $this->getPlNumberBatch($crd, $country, (int)$row['prepack'], $row['po'], $this->type, $row['shipment_mode']);
+            $this->uniq++;
+            return new PackingList([
+                'pl_po_cut' => $row['po'],
+                'pl_master_po' => $row['master_po'],
+                'pl_factory_po' => $row['factory_po'],
+                'pl_sku' => $row['style'],
+                'pl_material' => $row['material'],
+                'pl_description' => $row['material_description'],
+                'pl_color' => $row['color_description'],
+                'pl_style_size' => $row['style_size'],
+                'pl_country' => $country,
+                'pl_destination' => $destination,
+                'pl_crd' => $crd,
+                'pl_pre_pack' => (int)$row['prepack'],
+                'pl_type' => $this->type,
+                'pl_brand' => $this->brand,
+                'pl_shipment_mode' => $row['shipment_mode'],
+                'pl_buy_month' => $row['buy_month'],
+                'pl_buy_year' => $row['buy_year'],
+                'pl_order_quantity' => $row['quantity'],
+                'pl_batch' => $this->batch,
+                'pl_number_batch' => $number_batch,
+                'pl_uniq_number_batch_number' => $this->uniqnumber,
+                'pl_uniq_number_batch' => $this->uniq,
+                'user_id' => $this->user,
+            ]);
+        }
+        return null;
     }
 
     public function headingRow(): int
@@ -128,6 +141,31 @@ class FirstPlImport implements ToModel, WithHeadingRow
         }
 
         return $destination->destination;
+    }
+
+    protected function checkUpdateSize($crd,$country,$prepack,$pocut,$type,$shipment_mode,$size,$quantity){
+        if($type == "APPAREL"){
+            $pl_number_batch = PackingList::where([
+                ['pl_batch', $this->batch],
+                ['pl_style_size',$size],
+                ['pl_po_cut', $pocut],
+                ['pl_pre_pack',$prepack],
+                ['pl_shipment_mode',$shipment_mode],
+            ])->first();
+
+
+            if($pl_number_batch == null){
+                return 0;
+            }
+
+            $pl_quantity_new = $pl_number_batch->pl_order_quantity + $quantity;
+
+            $pl_number_batch->update(array('pl_order_quantity' => $pl_quantity_new));
+
+            return 1;
+        }
+
+        return 0;
     }
 
 }

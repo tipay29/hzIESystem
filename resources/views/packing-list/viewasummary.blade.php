@@ -58,6 +58,27 @@
                                                                         +
                                                                 $packinglists[$y+1]['cbm'], 2, '.', ',')}}</td>
                             @endif
+                            <div style="display: none;">  {{$ya=1}}</div>
+                            @if($packinglists[$x][$y]['pl_type'] == 'APPAREL')
+                                @if($y == count($packinglists[$x])-2)
+
+                                    <div style="display: none;">  {{$ya=0}}</div>
+                                @endif
+                                @if($packinglists[$x][$y]['pl_style_size'] === $packinglists[$x][$y+$ya]['pl_style_size'])
+                                    <div style="display: none;">  {{$y++}}</div>
+                                @endif
+
+                            @elseif($packinglists[$x][$y]['pl_type'] == 'EQUIPMENT')
+
+                                @if($y == count($packinglists[$x])-2)
+
+                                    <div style="display: none;">  {{$ya=0}}</div>
+                                @endif
+                                @if($packinglists[$x][$y]['pl_color'] === $packinglists[$x][$y+$ya]['pl_color'])
+                                    <div style="display: none;">  {{$y++}}</div>
+                                @endif
+                            @endif
+
 
                         </tr>
                     @endif

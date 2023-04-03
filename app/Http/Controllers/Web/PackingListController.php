@@ -8,6 +8,7 @@ use App\Exports\PackingListBatchExport;
 use App\Exports\UsersExport;
 use App\Http\Controllers\Controller;
 use App\Imports\PackingListsImport;
+use App\Models\Destination;
 use App\Models\PackingList;
 use Illuminate\Pipeline\Pipeline;
 use Maatwebsite\Excel\Facades\Excel;
@@ -47,8 +48,12 @@ class PackingListController extends Controller
 
         $this->authorize('viewAny',PackingList::class);
 
-        $packinglists = collect($packinglists->where('pl_uniq_number_batch',1))->paginate(10);
 
+        if(request()->all()){
+            $packinglists = collect($packinglists->unique('pl_batch'))->paginate(10);
+        }else{
+            $packinglists = collect($packinglists->where('pl_uniq_number_batch',1))->paginate(10);
+        }
         return view('packing-list.index', compact('packinglists'));
     }
 
@@ -96,6 +101,7 @@ class PackingListController extends Controller
             ->where([['pl_batch',$batch],
                 ['pl_uniq_number_batch_number',1]])
             ->get();
+
 
 
         for($x=1; $x <= count($packinglistsNew);$x++){
@@ -247,8 +253,15 @@ class PackingListController extends Controller
 
 //        dd($packinglists);
 
+        $customers = Destination::where([
+            ['customer_name', $packinglists[0]['pl_country']],
+            ['brand', $packinglists[0]['pl_brand']],
+            ['type', $packinglists[0]['pl_type']],
+        ])->get();
 
-        return view('packing-list.number', compact('packinglists','cartons'));
+//        dd($packinglists);
+
+        return view('packing-list.number', compact('packinglists','cartons','customers'));
 
     }
 
@@ -256,7 +269,7 @@ class PackingListController extends Controller
 
         $packinglists = event(new GetPackingListDataAllEvent($batch))[0];
 
-//        dd($packinglists);
+//        dd($packinglists[0][0]);
 
         return view('packing-list.viewa',compact('packinglists'));
     }

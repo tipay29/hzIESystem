@@ -47,8 +47,13 @@ class BrandSeeder extends Seeder
                 'brand_type' => 'APPAREL,EQUIPMENT',
             ] ,
             [
-                'brand_name' => 'NAPA',
+                'brand_name' => 'NAPAPIJRI',
                 'brand_code' => 'NP',
+                'brand_type' => 'APPAREL',
+            ] ,
+            [
+                'brand_name' => 'ADVANTUS',
+                'brand_code' => 'AD',
                 'brand_type' => 'APPAREL',
             ] ,
         ];

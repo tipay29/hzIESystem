@@ -1,18 +1,4 @@
-<div class="row mb-3">
-    <label class="col-md-4 col-form-label text-md-end">Brand
 
-    </label>
-    <div class="col-md-7">
-        <select id="type" class="form-control" name="type" >
-            <option disabled selected>Select Type</option>
-                <option value="{{$brand->id}}"
-                    {{$brand->id == old('brand_id') ? 'selected' : ($brand->id == $carton->brand_id ? 'selected' : '')}}>
-                    {{$brand->brand_name}}</option>
-
-        </select>
-        @error('ctn_brand') <small class="text-danger">{{$message}} </small> @enderror
-    </div>
-</div>
 
 <div class="row mb-3">
     <label class="col-md-4 col-form-label text-md-end">Brand

@@ -74,6 +74,7 @@ class SeparateBalanceQuantityAllListener
                 $packinglistArray[$x][$y_Ctrl]['pl_color'] = $number_number_collection[$y]->pl_color;
                 $packinglistArray[$x][$y_Ctrl]['pl_style_size'] = $number_number_collection[$y]->pl_style_size;
                 $packinglistArray[$x][$y_Ctrl]['pl_country'] = $number_number_collection[$y]->pl_country;
+                $packinglistArray[$x][$y_Ctrl]['pl_country_two'] = $number_number_collection[$y]->pl_country_two;
                 $packinglistArray[$x][$y_Ctrl]['pl_destination'] = $number_number_collection[$y]->pl_destination;
                 $packinglistArray[$x][$y_Ctrl]['pl_crd'] = $number_number_collection[$y]->pl_crd;
                 $packinglistArray[$x][$y_Ctrl]['pl_pre_pack'] = $number_number_collection[$y]->pl_pre_pack;
@@ -119,8 +120,21 @@ class SeparateBalanceQuantityAllListener
 
                 $packinglistArray[$x][$y_Ctrl]['pl_style_id'] = $style->id;
 
+//                dd(trim($packinglistArray[$x][$y_Ctrl]['pl_style_size']));
+//                dump($packinglistArray[$x][$y_Ctrl]['pl_style_size']);
                 //GET SIZE ID OF ROW OF THAT PO STYLE
+                try {
+//                dump($packinglistArray[$x][$y_Ctrl]['pl_style_size']);
                 $size_id = Size::where('size',$packinglistArray[$x][$y_Ctrl]['pl_style_size'])->first()->id;
+//$size_id = 1;
+                } catch (\Exception $e) {
+
+                   dd($e->getMessage());
+                }
+
+
+
+
 
                 $packinglistArray[$x][$y_Ctrl]['pl_style_size_id'] = $size_id;
 
@@ -167,7 +181,7 @@ class SeparateBalanceQuantityAllListener
                             }
 
                             //1st batch
-                            if ($iqty > $mcqlist[$z]) {
+                            if ($iqty >= $mcqlist[$z]) {
 
 
                                 $packinglistArray[$x][$y_Ctrl]['pl_style_size_id'] = $size_id;
@@ -431,7 +445,6 @@ class SeparateBalanceQuantityAllListener
 //        dd($packinglists);
 //        dd($packinglistArray);
 //        $packinglists = collect(collect($packinglistArray[0])->sortBy('pl_style_size_id')->values()->toArray());
-
         return $packinglistArray;
     }
 }

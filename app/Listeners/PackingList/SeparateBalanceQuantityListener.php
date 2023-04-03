@@ -81,6 +81,7 @@ class SeparateBalanceQuantityListener
             $packinglistArray[$x]['pl_color'] = $packinglistsRaw[$x]->pl_color;
             $packinglistArray[$x]['pl_style_size'] = $packinglistsRaw[$x]->pl_style_size;
             $packinglistArray[$x]['pl_country'] = $packinglistsRaw[$x]->pl_country;
+            $packinglistArray[$x]['pl_country_two'] = $packinglistsRaw[$x]->pl_country_two;
             $packinglistArray[$x]['pl_destination'] = $packinglistsRaw[$x]->pl_destination;
             $packinglistArray[$x]['pl_crd'] = $packinglistsRaw[$x]->pl_crd;
             $packinglistArray[$x]['pl_pre_pack'] = $packinglistsRaw[$x]->pl_pre_pack;
@@ -136,7 +137,14 @@ class SeparateBalanceQuantityListener
             //3 ARRAY OF MCQ PER CARTON
 
             //GET SIZE ID OF ROW OF THAT PO STYLE
+//        dump($packinglistArray[$x]['pl_style_size']);
+        try{
             $size_id = Size::where('size',$packinglistArray[$x]['pl_style_size'])->first()->id;
+
+            } catch (\Exception $e) {
+
+        dd($e->getMessage());
+            }
 
             $packinglistArray[$x]['pl_style_size_id'] = $size_id;
             $this->sizes[$packinglistArray[$x]['pl_style_size']] = $size_id;
@@ -198,7 +206,7 @@ class SeparateBalanceQuantityListener
 
 
                         //1st batch
-                        if ($iqty > $mcqlist[$z]) {
+                        if ($iqty >= $mcqlist[$z]) {
 
                             //for sort by size
                             $packinglistArray[$x]['pl_style_size_id'] = $size_id;
@@ -290,7 +298,7 @@ class SeparateBalanceQuantityListener
                                 $x--;
                             }
 
-                        } else {
+                        } elseif($iqty < $mcqlist[$z]) {
 
                             //aadd to sort nice
 
@@ -440,10 +448,32 @@ class SeparateBalanceQuantityListener
         $packinglistArray[$pl_last_num]['total_ctn_ctn'] = $this->total_ctn_ctn;
         $packinglistArray[$pl_last_num]['total_ctn_mcq'] = $this->total_ctn_mcq;
 
-//        dd(collecT($this->sizes)->sort());
+
+//        dd($packinglistsRaw[0]->pl_type);
+
+
+        if($packinglistsRaw[0]->pl_type == "APPAREL"){
+
+        $sizevalues = array_values(array_flip(collecT($this->sizes)->sort()->toArray()));
+        $newsizeValues = array();
+            foreach($sizevalues as $key => $sizevalue){
+
+                for($x=0; $x < count($packinglistsRaw);$x++){
+                    if($packinglistsRaw[$x]->pl_style_size == $sizevalue){
+                        $newsizeValues[$key] = $packinglistsRaw[$x]->pl_order_quantity;
+                    }
+                }
+
+            }
+        }else{
+            $newsizeValues = array();
+        }
+
+
+//        dd($packinglistsRaw);
 
         $packinglistArray[$pl_last_num]['pl_ctn_list'] = array_values(array_flip(collect($this->sizes)->sort()->toArray()));
-
+        $packinglistArray[$pl_last_num]['pl_size_value_list'] = $newsizeValues;
 
 
         $packinglists->add($packinglistArray[$pl_last_num]);

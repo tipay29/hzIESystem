@@ -16,7 +16,10 @@ return new class extends Migration
         Schema::create('destinations', function (Blueprint $table) {
             $table->id();
             $table->string('customer_name')->nullable();
+            $table->string('customer_name_two')->nullable();
             $table->string('destination')->nullable();
+            $table->string('brand')->nullable();
+            $table->string('type')->nullable();
             $table->timestamps();
         });
     }

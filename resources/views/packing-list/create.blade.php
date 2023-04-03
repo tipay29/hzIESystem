@@ -30,32 +30,47 @@
 
 
                         <div class="row pl_create_select_brand">
-                            <div id="div_btn_brand_dickies_eq"  style="min-height: 50px;" class="col-md-6 div_btn_brand">
-                                <h6 class="text-center mt-2">DICKIES-EQUIPMENT</h6>
-                            </div>
                             <div id="div_btn_brand_dickies_app"  style="min-height: 50px;" class="col-md-6 div_btn_brand">
                                 <h6 class="text-center mt-2">DICKIES-APPAREL</h6>
                             </div>
-                            <div id="div_btn_brand_vans_eq" style="min-height: 50px;" class="col-md-6 div_btn_brand">
-                                <h6 class="text-center mt-2">VANS-EQUIPMENT</h6>
+                            <div id="div_btn_brand_dickies_eq"  style="min-height: 50px;" class="col-md-6 div_btn_brand">
+                                <h6 class="text-center mt-2">DICKIES-EQUIPMENT</h6>
+                            </div>
+                            <div id="div_btn_brand_napapijri_app" style="min-height: 50px;" class="col-md-6 div_btn_brand">
+                                <h6 class="text-center mt-2">NAPAPIJRI-APPAREL</h6>
+                            </div>
+                            <div id="div_btn_brand_eastpak_eq" style="min-height: 50px;" class="col-md-6 div_btn_brand">
+                                <h6 class="text-center mt-2">EASTPAK-EQUIPMENT</h6>
+                            </div>
+
+
+                            <div id="div_btn_brand_tnf_app" style="min-height: 50px;" class="col-md-6 div_btn_brand">
+                                <h6 class="text-center mt-2">TNF-APPAREL</h6>
+                            </div>
+
+                            <div id="div_btn_brand_tnf_eq" style="min-height: 50px;" class="col-md-6 div_btn_brand">
+                                <h6 class="text-center mt-2">TNF-EQUIPMENT</h6>
                             </div>
 
                             <div id="div_btn_brand_vans_app" style="min-height: 50px;" class="col-md-6 div_btn_brand">
                                 <h6 class="text-center mt-2">VANS-APPAREL</h6>
                             </div>
-                            <div id="div_btn_brand_tnf_eq" style="min-height: 50px;" class="col-md-6 div_btn_brand">
-                                <h6 class="text-center mt-2">TNF-EQUIPMENT</h6>
+
+
+                            <div id="div_btn_brand_vans_eq" style="min-height: 50px;" class="col-md-6 div_btn_brand">
+                                <h6 class="text-center mt-2">VANS-EQUIPMENT</h6>
                             </div>
-                            <div id="div_btn_brand_tnf_app" style="min-height: 50px;" class="col-md-6 div_btn_brand">
-                                <h6 class="text-center mt-2">TNF-APPAREL</h6>
+                            <div class="col-md-6">
+
                             </div>
 
-                            <div id="div_btn_brand_eastpak_eq" style="min-height: 50px;" class="col-md-6 div_btn_brand">
-                                <h6 class="text-center mt-2">EASTPAK-EQUIPMENT</h6>
+                            <div id="div_btn_brand_adv_eq" style="min-height: 50px;" class="col-md-6 div_btn_brand">
+                                <h6 class="text-center mt-2">ADVANTUS-EQUIPMENT</h6>
                             </div>
-                            <div id="div_btn_brand_napapijri_app" style="min-height: 50px;" class="col-md-6 div_btn_brand">
-                                <h6 class="text-center mt-2">NAPAPIJRI-APPAREL</h6>
+                            <div id="" style="min-height: 50px;" class="col-md-6 ">
+
                             </div>
+
                             <div id="div_btn_brand_jansport_eq" style="min-height: 50px;" class="col-md-6 div_btn_brand">
                                 <h6 class="text-center mt-2">JANSPORT-EQUIPMENT</h6>
                             </div>

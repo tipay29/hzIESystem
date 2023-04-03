@@ -124,7 +124,7 @@
                             <div class="dropdown" style="padding: 0;">
                                 <button class="nav-link btn btn-light dropdown-toggle " type="button"
                                         data-bs-toggle="dropdown">
-                                     Planning
+                                     Merchandiser
                                 </button>
                                 <ul class="dropdown-menu" >
                                     <li >

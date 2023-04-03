@@ -235,6 +235,30 @@ class PackinglistApiController extends Controller
 
     }
 
+    public function customers(){
+
+        $packinglists = PackingList::where(
+            [
+                ['pl_batch',  request()->batch],
+                ['pl_number_batch',  request()->number_batch],
+            ]
+        )->get();
+
+        $packinglists->each(function ($item){
+
+            $custdest = explode("-",request()->customer);
+
+            $item->update([
+                'pl_country' => $custdest[0],
+                'pl_country_two' => $custdest[1],
+                'pl_destination' => $custdest[2],
+                ]);
+        });
+
+        return response()->json(['success' => $packinglists],201);
+
+    }
+
     public function approves($batch){
 
         $packinglists = PackingList::where(

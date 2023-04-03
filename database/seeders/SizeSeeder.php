@@ -19,13 +19,25 @@ class SizeSeeder extends Seeder
                 'size' => 'XXXXXS'
             ] ,
             [
+                'size' => '5XS'
+            ] ,
+            [
                 'size' => 'XXXXS'
+            ] ,
+            [
+                'size' => '4XS'
             ] ,
             [
                 'size' => 'XXXS'
             ] ,
             [
+                'size' => '3XS'
+            ] ,
+            [
                 'size' => 'XXS'
+            ] ,
+            [
+                'size' => '2XS'
             ] ,
             [
                 'size' => 'XS'
@@ -46,13 +58,25 @@ class SizeSeeder extends Seeder
                 'size' => 'XXL'
             ] ,
             [
+                'size' => '2XL'
+            ] ,
+            [
                 'size' => 'XXXL'
+            ] ,
+            [
+                'size' => '3XL'
             ] ,
             [
                 'size' => 'XXXXL'
             ] ,
             [
+                'size' => '4XL'
+            ] ,
+            [
                 'size' => 'XXXXXL'
+            ] ,
+            [
+                'size' => '5XL'
             ] ,
             [
                 'size' => 'XXS/XS'

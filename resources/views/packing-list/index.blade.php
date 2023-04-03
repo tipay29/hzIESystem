@@ -108,8 +108,9 @@
                                 <thead>
                                     <tr>
                                         <th width="5%" scope="col">Batch </th>
-                                        <th width="15%" scope="col">PO </th>
+
                                         <th width="10%" scope="col">Master PO</th>
+                                        <th width="15%" scope="col">PO </th>
                                         <th width="10%" scope="col">Factory PO</th>
                                         <th width="10%" scope="col">Brand</th>
                                         <th width="10%" scope="col">Type</th>
@@ -130,8 +131,9 @@
                                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                                     {{$packinglist->pl_batch}} </a>
                                             </td>
-                                            <td scope="col">{{$packinglist->pl_po_cut}} </td>
                                             <td  scope="col">{{$packinglist->pl_master_po}} </td>
+                                            <td scope="col">{{$packinglist->pl_po_cut}} </td>
+
                                             <td scope="col">{{$packinglist->pl_factory_po}}</td>
                                             <td scope="col">{{$packinglist->pl_brand}}</td>
                                             <td  scope="col">{{$packinglist->pl_type}}</td>

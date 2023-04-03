@@ -106,13 +106,14 @@
                         <div class="table-responsive">
                                 <table id="table" class="table pl_table_number" >
                                 <thead>
+
                                     <tr>
                                         <th width="7%" scope="col">PO</th>
                                         <th width="7%" scope="col">Master PO</th>
                                         <th width="6%" scope="col">Style</th>
                                         <th width="7%" scope="col">Material</th>
-                                        <th width="21%" scope="col">Description</th>
-                                        <th width="8%" scope="col">Color</th>
+                                        <th width="17%" scope="col">Description</th>
+                                        <th width="12%" scope="col">Color</th>
 
                                         @if($packinglists[0]['pl_type']  == 'APPAREL')
                                         <th width="2%" scope="col">Size</th>
@@ -128,12 +129,15 @@
                                         <th class="text-end" width="10%" scope="col">Ctn Measurement</th>
                                         <th class="text-end" width="3%" scope="col">CBM</th>
                                     </tr>
+
                                 </thead>
                                 <tbody>
                                     <div style="display: none;"> {{$number_ctn = 0}}</div>
                                     @foreach($packinglists as $key => $packinglist)
                                         @if($key == count($packinglists)-1)
+
                                               <tr >
+
                                                 <td scope="col"></td>
                                                 <td scope="col"></td>
                                                 <td scope="col"></td>
@@ -154,7 +158,9 @@
                                                 <td scope="col"></td>
                                                 <td align="right" scope="col"> <b> {{number_format((float)$packinglist['total_cbm'], 2, '.', ',')}} </b> </td>
                                             </tr>
+
                                         @else
+
                                             <tr id="ClickableRow">
                                                 <input type="hidden" value="{{$packinglist['id']}}">
                                                 <input type="hidden" value="{{$packinglist['row_cut']}}">
@@ -193,6 +199,7 @@
                                                 <td align="right" scope="col">{{$packinglist['carton_size']}}CM</td>
                                                 <td align="right" scope="col">{{number_format((float)$packinglist['cbm'], 2, '.', ',')}}</td>
                                             </tr>
+
                                         @endif
                                     @endforeach
 

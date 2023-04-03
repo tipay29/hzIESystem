@@ -4,7 +4,10 @@
     <div style="min-height: 50px;" class="col-md-6">
 
         <img src="{{ asset('storage/images/shipmark/' . $packinglists[$x][0]['pl_brand'] .
-                                    '/' . $packinglists[$x][0]['pl_type'] . '/' .$packinglists[$x][0]['pl_country'] . '.png') }}"
+                                    '/' . $packinglists[$x][0]['pl_type'] . '/' .
+                                    trim($packinglists[$x][0]['pl_country'] . " " .
+                                      $packinglists[$x][0]['pl_country_two']) .
+                                      '.png') }}"
              class="img-fluid">
 
     </div>

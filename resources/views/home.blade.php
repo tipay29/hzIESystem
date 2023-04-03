@@ -13,7 +13,7 @@
 
             >Download ExcelExam1 </a>
 
-        
+
 
 
             <a href="{{ asset('storage/files/ExcelExam2.xlsx') }}" download
@@ -46,6 +46,11 @@
                 <h4 class="text-center"> when you are done</h4>
 
             </form>
+
+
+            
+
+
 
 {{--            <img src="{{ asset('storage/images/pl.png') }}" alt="">--}}
 {{--            <div></div>--}}

@@ -102,7 +102,7 @@
     .pl_section-to-print, .pl_section-to-print *{
         visibility: visible;
         margin: 0;
-        zoom: 90%;
+        zoom: 93%;
 
     }
 
@@ -116,4 +116,4 @@
 }
 
 
-
+input:placeholder-shown

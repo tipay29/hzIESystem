@@ -61,7 +61,9 @@
 
             <div class="row ">
                 <div class="col-md-2"></div>
-                <label for="pl_mcq_weight_input" class="col-md-4 text-md-end m-0" style="border: 1px solid black;">Special Pack</label>
+                <label for="pl_mcq_weight_input" class="col-md-4 text-md-end m-0"
+                       style="border: 1px solid black;"
+                    >Special Pack</label>
                 <div class="col-md-4 m-0 p-0">
                     <input
                         style="text-align: center;
@@ -100,33 +102,63 @@
 
             @if(isset($packinglists[count($packinglists)-1]['pl_ctn_list'][0]))
                 <input type="hidden" id="size_one" value="{{$packinglists[count($packinglists)-1]['pl_ctn_list'][0]}}">
+                @if(isset($packinglists[count($packinglists)-1]['pl_size_value_list'][0]))
+                <input type="hidden" id="size_value_one" value="{{$packinglists[count($packinglists)-1]['pl_size_value_list'][0]}}">
+                @endif
             @endif
             @if(isset($packinglists[count($packinglists)-1]['pl_ctn_list'][1]))
                 <input type="hidden" id="size_two" value="{{$packinglists[count($packinglists)-1]['pl_ctn_list'][1]}}">
+                @if(isset($packinglists[count($packinglists)-1]['pl_size_value_list'][1]))
+                <input type="hidden" id="size_value_two" value="{{$packinglists[count($packinglists)-1]['pl_size_value_list'][1]}}">
+                @endif
             @endif
             @if(isset($packinglists[count($packinglists)-1]['pl_ctn_list'][2]))
                 <input type="hidden" id="size_three" value="{{$packinglists[count($packinglists)-1]['pl_ctn_list'][2]}}">
+                @if(isset($packinglists[count($packinglists)-1]['pl_size_value_list'][2]))
+                <input type="hidden" id="size_value_three" value="{{$packinglists[count($packinglists)-1]['pl_size_value_list'][2]}}">
+                    @endif
             @endif
             @if(isset($packinglists[count($packinglists)-1]['pl_ctn_list'][3]))
                 <input type="hidden" id="size_four" value="{{$packinglists[count($packinglists)-1]['pl_ctn_list'][3]}}">
+                @if(isset($packinglists[count($packinglists)-1]['pl_size_value_list'][3]))
+                <input type="hidden" id="size_value_four" value="{{$packinglists[count($packinglists)-1]['pl_size_value_list'][3]}}">
+                    @endif
             @endif
             @if(isset($packinglists[count($packinglists)-1]['pl_ctn_list'][4]))
                 <input type="hidden" id="size_five" value="{{$packinglists[count($packinglists)-1]['pl_ctn_list'][4]}}">
+                @if(isset($packinglists[count($packinglists)-1]['pl_size_value_list'][4]))
+                <input type="hidden" id="size_value_five" value="{{$packinglists[count($packinglists)-1]['pl_size_value_list'][4]}}">
+                    @endif
             @endif
             @if(isset($packinglists[count($packinglists)-1]['pl_ctn_list'][5]))
                 <input type="hidden" id="size_six" value="{{$packinglists[count($packinglists)-1]['pl_ctn_list'][5]}}">
+                @if(isset($packinglists[count($packinglists)-1]['pl_size_value_list'][5]))
+                <input type="hidden" id="size_value_six" value="{{$packinglists[count($packinglists)-1]['pl_size_value_list'][5]}}">
+                @endif
             @endif
             @if(isset($packinglists[count($packinglists)-1]['pl_ctn_list'][6]))
                 <input type="hidden" id="size_seven" value="{{$packinglists[count($packinglists)-1]['pl_ctn_list'][6]}}">
+                @if(isset($packinglists[count($packinglists)-1]['pl_size_value_list'][6]))
+                <input type="hidden" id="size_value_seven" value="{{$packinglists[count($packinglists)-1]['pl_size_value_list'][6]}}">
+                    @endif
             @endif
             @if(isset($packinglists[count($packinglists)-1]['pl_ctn_list'][7]))
                 <input type="hidden" id="size_eight" value="{{$packinglists[count($packinglists)-1]['pl_ctn_list'][7]}}">
+                @if(isset($packinglists[count($packinglists)-1]['pl_size_value_list'][7]))
+                <input type="hidden" id="size_value_eight" value="{{$packinglists[count($packinglists)-1]['pl_size_value_list'][7]}}">
+                    @endif
             @endif
             @if(isset($packinglists[count($packinglists)-1]['pl_ctn_list'][8]))
                 <input type="hidden" id="size_nine" value="{{$packinglists[count($packinglists)-1]['pl_ctn_list'][8]}}">
+                @if(isset($packinglists[count($packinglists)-1]['pl_size_value_list'][8]))
+                <input type="hidden" id="size_value_nine" value="{{$packinglists[count($packinglists)-1]['pl_size_value_list'][8]}}">
+                    @endif
             @endif
             @if(isset($packinglists[count($packinglists)-1]['pl_ctn_list'][9]))
                 <input type="hidden" id="size_ten" value="{{$packinglists[count($packinglists)-1]['pl_ctn_list'][9]}}">
+                @if(isset($packinglists[count($packinglists)-1]['pl_size_value_list'][9]))
+                <input type="hidden" id="size_value_ten" value="{{$packinglists[count($packinglists)-1]['pl_size_value_list'][9]}}">
+                    @endif
             @endif
 
         </div>
@@ -181,14 +213,14 @@
                 <h6  class="col-md-6 text-md-end"> Customer Name:</h6>
 
                 <p class="col-md-6 text-start m-0" style="font-size: 1rem;">
-                    {{$packinglists[0]['pl_country']}}
+                    {{$packinglists[0]['pl_country'] . " " .$packinglists[0]['pl_country_two']}}
                 </p>
 
             </div>
             <div class="row">
                 <h6  class="col-md-6 text-md-end"> Destination Country:</h6>
 
-                <input id="pl_destination_input" class="col-md-6 text-start"
+                <input disabled id="pl_destination_input" class="col-md-6 text-start"
                        type="text"
                        style="text-align: center;
                                                    border: 0; background-color:	 #f1f1f1;

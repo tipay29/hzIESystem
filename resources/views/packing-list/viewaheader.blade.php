@@ -149,7 +149,7 @@
                 <h6  class="col-md-6 text-md-end"> Customer Name:</h6>
 
                 <p class="col-md-6 text-start m-0" style="font-size: 1rem;">
-                    {{$packinglists[$x][0]['pl_country']}}
+                    {{$packinglists[$x][0]['pl_country'] . " " . $packinglists[$x][0]['pl_country_two']}}
                 </p>
 
             </div>

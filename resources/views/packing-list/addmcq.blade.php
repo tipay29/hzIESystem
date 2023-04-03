@@ -15,14 +15,25 @@
 
                 <div class="row">
                    <div class="col-md-2">
-                       <label for="">Size</label>
+                       <label for="">Size &emsp;&emsp;&nbsp; Qty </label>
                        <div class="input-group">
-                           <input id="pl_mcq_size_input" type="text" class="form-control" >
+
+
+
+                           <input
+                               id="pl_mcq_size_input" type="text" class="form-control" >
                            <div class="input-group-append">
                                <button id="ata_size_btn" class="btn btn-primary" type="button"
                                        style="padding-left: 1px;padding-right: 1px;" >
                                    <i class="fa fa-sort-amount-asc" aria-hidden="true"></i></button>
                            </div>
+                           <label for="pl_mcq_size_input"  id="pl_mcq_size_lbl_one"
+                                  style="position:absolute;
+                                top: 8px;
+                                left: 80px;
+                            "
+                           ></label>
+
                        </div>
 
                    </div>
@@ -36,6 +47,7 @@
                                    <i class="fa fa-sort-amount-asc" aria-hidden="true"></i>
                                </button>
                            </div>
+
                        </div>
 
                    </div>
@@ -144,8 +156,15 @@
 
                 <div class="row">
                     <div class="col-md-2">
-
-                        <input id="pl_mcq_size_input_two" type="text" class="form-control" >
+                        <div class="input-group">
+                            <input id="pl_mcq_size_input_two" type="text" class="form-control" >
+                            <label for="pl_mcq_size_input_two" id="pl_mcq_size_lbl_two"
+                                   style="position:absolute;
+                                    top: 8px;
+                                    left: 80px;
+                                "
+                            ></label>
+                        </div>
                     </div>
                     <div class="col-md-1">
 
@@ -192,8 +211,15 @@
 
                 <div class="row">
                     <div class="col-md-2">
-
-                        <input id="pl_mcq_size_input_three" type="text" class="form-control" >
+                        <div class="input-group">
+                            <input id="pl_mcq_size_input_three" type="text" class="form-control" >
+                            <label for="pl_mcq_size_input_three" id="pl_mcq_size_lbl_three"
+                                   style="position:absolute;
+                                        top: 8px;
+                                        left: 80px;
+                                    "
+                            ></label>
+                        </div>
                     </div>
                     <div class="col-md-1">
 
@@ -240,8 +266,15 @@
 
                 <div class="row">
                     <div class="col-md-2">
-
-                        <input id="pl_mcq_size_input_four" type="text" class="form-control" >
+                        <div class="input-group">
+                            <input id="pl_mcq_size_input_four" type="text" class="form-control" >
+                            <label for="pl_mcq_size_input_four" id="pl_mcq_size_lbl_four"
+                                   style="position:absolute;
+                                            top: 8px;
+                                            left: 80px;
+                                        "
+                            ></label>
+                        </div>
                     </div>
                     <div class="col-md-1">
 
@@ -289,8 +322,15 @@
 
                 <div class="row">
                     <div class="col-md-2">
-
-                        <input id="pl_mcq_size_input_five" type="text" class="form-control" >
+                        <div class="input-group">
+                            <input id="pl_mcq_size_input_five" type="text" class="form-control" >
+                            <label for="pl_mcq_size_input_five" id="pl_mcq_size_lbl_five"
+                                   style="position:absolute;
+                                                top: 8px;
+                                                left: 80px;
+                                            "
+                            ></label>
+                        </div>
                     </div>
                     <div class="col-md-1">
 
@@ -337,8 +377,15 @@
 
                 <div class="row">
                     <div class="col-md-2">
-
-                        <input id="pl_mcq_size_input_six" type="text" class="form-control" >
+                        <div class="input-group">
+                            <input id="pl_mcq_size_input_six" type="text" class="form-control" >
+                            <label for="pl_mcq_size_input_six" id="pl_mcq_size_lbl_six"
+                                   style="position:absolute;
+                                                    top: 8px;
+                                                    left: 80px;
+                                                "
+                            ></label>
+                        </div>
                     </div>
                     <div class="col-md-1">
 
@@ -385,8 +432,15 @@
 
                 <div class="row">
                     <div class="col-md-2">
-
-                        <input id="pl_mcq_size_input_seven" type="text" class="form-control" >
+                        <div class="input-group">
+                            <input id="pl_mcq_size_input_seven" type="text" class="form-control" >
+                            <label for="pl_mcq_size_input_seven" id="pl_mcq_size_lbl_seven"
+                                   style="position:absolute;
+                                                        top: 8px;
+                                                        left: 80px;
+                                                    "
+                            ></label>
+                        </div>
                     </div>
                     <div class="col-md-1">
 
@@ -433,8 +487,15 @@
 
                 <div class="row">
                     <div class="col-md-2">
-
-                        <input id="pl_mcq_size_input_eight" type="text" class="form-control" >
+                        <div class="input-group">
+                            <input id="pl_mcq_size_input_eight" type="text" class="form-control" >
+                            <label for="pl_mcq_size_input_eight" id="pl_mcq_size_lbl_eight"
+                                   style="position:absolute;
+                                                            top: 8px;
+                                                            left: 80px;
+                                                        "
+                            ></label>
+                        </div>
                     </div>
                     <div class="col-md-1">
 
@@ -481,8 +542,15 @@
 
                 <div class="row">
                     <div class="col-md-2">
-
-                        <input id="pl_mcq_size_input_nine" type="text" class="form-control" >
+                        <div class="input-group">
+                            <input id="pl_mcq_size_input_nine" type="text" class="form-control" >
+                            <label for="pl_mcq_size_input_nine" id="pl_mcq_size_lbl_nine"
+                                   style="position:absolute;
+                                                                top: 8px;
+                                                                left: 80px;
+                                                            "
+                            ></label>
+                        </div>
                     </div>
                     <div class="col-md-1">
 
@@ -529,8 +597,15 @@
 
                 <div class="row">
                     <div class="col-md-2">
-
-                        <input id="pl_mcq_size_input_ten" type="text" class="form-control" >
+                        <div class="input-group">
+                            <input id="pl_mcq_size_input_ten" type="text" class="form-control" >
+                            <label for="pl_mcq_size_input_ten" id="pl_mcq_size_lbl_ten"
+                                   style="position:absolute;
+                                                                    top: 8px;
+                                                                    left: 80px;
+                                                                "
+                            ></label>
+                        </div>
                     </div>
                     <div class="col-md-1">
 
