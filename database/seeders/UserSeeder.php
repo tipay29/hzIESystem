@@ -111,7 +111,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Christian',
-                'email' => 'christian@gmail.com',
+                'email' => 'christian_pp@horizon-outdoor.com',
                 'email_verified_at' => now(),
                 'employee_id' => 5,
                 'password' => Hash::make('christian1234'), // password
@@ -119,7 +119,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Floy Sibayan',
-                'email' => 'floysibayan@gmail.com',
+                'email' => 'floyd_sibayan@horizon-outdoor.com',
                 'email_verified_at' => now(),
                 'employee_id' => 6,
                 'password' => Hash::make('floy1234'), // password
@@ -127,24 +127,182 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Raksa Kong',
-                'email' => 'raksakong@gmail.com',
+                'email' => 'raksa_kong@horizon-outdoor.com',
                 'email_verified_at' => now(),
                 'employee_id' => 7,
                 'password' => Hash::make('raksa1234'), // password
                 'remember_token' => Str::random(10),
             ],
-            
-            
+            [
+                'name' => 'Lucina Chan',
+                'email' => 'lucinachan@horizon-outdoor.com',
+                'email_verified_at' => now(),
+                'employee_id' => 8,
+                'password' => Hash::make('lucina1234'), // password
+                'remember_token' => Str::random(10),
+            ],
+            [
+                'name' => 'Jevon Ey',
+                'email' => 'jevon_ey@horizon-outdoor.com',
+                'email_verified_at' => now(),
+                'employee_id' => 9,
+                'password' => Hash::make('jevon1234'), // password
+                'remember_token' => Str::random(10),
+            ],
+            [
+                'name' => 'Daniel Go',
+                'email' => 'daniel_go@horizon-outdoor.com',
+                'email_verified_at' => now(),
+                'employee_id' => 10,
+                'password' => Hash::make('daniel1234'), // password
+                'remember_token' => Str::random(10),
+            ],
+            [
+                'name' => 'Harris Guo',
+                'email' => 'harris_guo@horizon-outdoor.com',
+                'email_verified_at' => now(),
+                'employee_id' => 11,
+                'password' => Hash::make('daniel1234'), // password
+                'remember_token' => Str::random(10),
+            ],
+            [
+                'name' => 'Bert Zheng',
+                'email' => 'bert_zheng@horizon-outdoor.com',
+                'email_verified_at' => now(),
+                'employee_id' => 12,
+                'password' => Hash::make('bert1234'), // password
+                'remember_token' => Str::random(10),
+            ],
+            [
+                'name' => 'Franklin Fu',
+                'email' => 'franklin_fu@horizon-outdoor.com',
+                'email_verified_at' => now(),
+                'employee_id' => 13,
+                'password' => Hash::make('franklin1234'), // password
+                'remember_token' => Str::random(10),
+            ],
+            [
+                'name' => 'Vinus Gelio',
+                'email' => 'vinus_gelio@horizon-outdoor.com',
+                'email_verified_at' => now(),
+                'employee_id' => 14,
+                'password' => Hash::make('vinus1234'), // password
+                'remember_token' => Str::random(10),
+            ],
+            [
+                'name' => 'Julius Randle',
+                'email' => 'julius_randle@horizon-outdoor.com',
+                'email_verified_at' => now(),
+                'employee_id' => 15,
+                'password' => Hash::make('julius1234'), // password
+                'remember_token' => Str::random(10),
+            ],
+            [
+                'name' => 'Jayson Manio',
+                'email' => 'jayson_manio@horizon-outdoor.com',
+                'email_verified_at' => now(),
+                'employee_id' => 16,
+                'password' => Hash::make('jayson1234'), // password
+                'remember_token' => Str::random(10),
+            ],
+            [
+                'name' => 'Quenie Capule',
+                'email' => 'quenie_capule@horizon-outdoor.com',
+                'email_verified_at' => now(),
+                'employee_id' => 17,
+                'password' => Hash::make('quenie1234'), // password
+                'remember_token' => Str::random(10),
+            ],
+            [
+                'name' => 'Jhon De Leon',
+                'email' => 'jhon_deleon@horizon-outdoor.com',
+                'email_verified_at' => now(),
+                'employee_id' => 18,
+                'password' => Hash::make('jhon1234'), // password
+                'remember_token' => Str::random(10),
+            ],
+            [
+                'name' => 'Hua Lan',
+                'email' => 'hualan@horizon-outdoor.com',
+                'email_verified_at' => now(),
+                'employee_id' => 19,
+                'password' => Hash::make('hualan1234'), // password
+                'remember_token' => Str::random(10),
+            ],
+            [
+                'name' => 'Planning PP',
+                'email' => 'planning_pp@horizon-outdoor.com',
+                'email_verified_at' => now(),
+                'employee_id' => 20,
+                'password' => Hash::make('planning1234'), // password
+                'remember_token' => Str::random(10),
+            ],
+            [
+                'name' => 'Packing PP',
+                'email' => 'packing_pp@horizon-outdoor.com',
+                'email_verified_at' => now(),
+                'employee_id' => 21,
+                'password' => Hash::make('packing1234'), // password
+                'remember_token' => Str::random(10),
+            ],
+            [
+                'name' => 'Quality PP',
+                'email' => 'quality_pp@horizon-outdoor.com',
+                'email_verified_at' => now(),
+                'employee_id' => 22,
+                'password' => Hash::make('quality1234'), // password
+                'remember_token' => Str::random(10),
+            ],
+            [
+                'name' => 'William Zhang',
+                'email' => 'wiliam_zhang@horizon-outdoor.com',
+                'email_verified_at' => now(),
+                'employee_id' => 23,
+                'password' => Hash::make('william1234'), // password
+                'remember_token' => Str::random(10),
+            ],
+            [
+                'name' => 'Shipping PP',
+                'email' => 'shipping_pp@horizon-outdoor.com',
+                'email_verified_at' => now(),
+                'employee_id' => 24,
+                'password' => Hash::make('shipping1234'), // password
+                'remember_token' => Str::random(10),
+            ],
+            [
+                'name' => 'Kun Larkhena',
+                'email' => 'kun_larkhena@horizon-outdoor.com',
+                'email_verified_at' => now(),
+                'employee_id' => 25,
+                'password' => Hash::make('larkhena1234'), // password
+                'remember_token' => Str::random(10),
+            ],
+            [
+                'name' => 'Eng Dara',
+                'email' => 'eng_dara@horizon-outdoor.com',
+                'email_verified_at' => now(),
+                'employee_id' => 26,
+                'password' => Hash::make('eng1234'), // password
+                'remember_token' => Str::random(10),
+            ],
+            [
+                'name' => 'Kin Daly',
+                'email' => 'kin_daly@horizon-outdoor.com',
+                'email_verified_at' => now(),
+                'employee_id' => 27,
+                'password' => Hash::make('kin1234'), // password
+                'remember_token' => Str::random(10),
+            ],
 
-            
+
         ];
 
         foreach($users as $user){
             User::create($user);
         }
 
-        
-        
+
+
 
     }
 }
