@@ -106,28 +106,6 @@ let row_selected = $('tr#ClickableRow');
 let pl_mcq_style_id_input = $('#pl_mcq_style_id_input');
 let pl_mcq_style_input = $('#pl_mcq_style_input');
 
-let pl_mcq_size_lbl_one = $('#pl_mcq_size_lbl_one');
-let pl_mcq_size_lbl_two = $('#pl_mcq_size_lbl_two');
-let pl_mcq_size_lbl_three = $('#pl_mcq_size_lbl_three');
-let pl_mcq_size_lbl_four = $('#pl_mcq_size_lbl_four');
-let pl_mcq_size_lbl_five = $('#pl_mcq_size_lbl_five');
-let pl_mcq_size_lbl_six = $('#pl_mcq_size_lbl_six');
-let pl_mcq_size_lbl_seven = $('#pl_mcq_size_lbl_seven');
-let pl_mcq_size_lbl_eight = $('#pl_mcq_size_lbl_eight');
-let pl_mcq_size_lbl_nine = $('#pl_mcq_size_lbl_nine');
-let pl_mcq_size_lbl_ten = $('#pl_mcq_size_lbl_ten');
-
-pl_mcq_size_lbl_one.html($('#size_value_one').val());
-pl_mcq_size_lbl_two.html($('#size_value_two').val());
-pl_mcq_size_lbl_three.html($('#size_value_three').val());
-pl_mcq_size_lbl_four.html($('#size_value_four').val());
-pl_mcq_size_lbl_five.html($('#size_value_five').val());
-pl_mcq_size_lbl_six.html($('#size_value_six').val());
-pl_mcq_size_lbl_seven.html($('#size_value_seven').val());
-pl_mcq_size_lbl_eight.html($('#size_value_eight').val());
-pl_mcq_size_lbl_nine.html($('#size_value_nine').val());
-pl_mcq_size_lbl_ten.html($('#size_value_ten').val());
-
 let pl_mcq_size_input = $('#pl_mcq_size_input');
 let pl_mcq_size_input_two = $('#pl_mcq_size_input_two');
 let pl_mcq_size_input_three = $('#pl_mcq_size_input_three');
@@ -243,20 +221,11 @@ pln_clear.click(function(e){
 row_selected.click(function (e) {
     e.preventDefault();
 
-
-
     let pl_key = $(this).find('input:eq(0)').val();
     let pl_row_cut = $(this).find('input:eq(1)').val();
     let pl_total_qty = $(this).find('input:eq(2)').val();
     let pl_nw = $(this).find('input:eq(3)').val();
     let pl_gw = $(this).find('input:eq(4)').val();
-    let pl_mcq_size_lbl_one = $('#pl_mcq_size_lbl_one');
-    let size_value_one = $('#size_value_one');
-
-    if(size_value_one.val() === undefined){
-        pl_mcq_size_lbl_one.html(pl_total_qty);
-    }
-
     pl_update_qty_input.val(pl_total_qty);
     pl_update_id_input.val(pl_key);
     pl_update_nw_input.val(pl_nw);
@@ -409,117 +378,6 @@ pl_mcq_add_btn.dblclick(function(e){
         }
     });
 
-});
-
-
-pl_mcq_qty_first_input.change(function(e){
-    let total_pcs = pl_mcq_size_lbl_one.html();
-    let cntl_num = pl_mcq_qty_first_input.val();
-    let bal = 0;
-    bal = total_pcs%cntl_num;
-    pl_mcq_qty_second_input.attr("placeholder", bal);
-    if(pl_mcq_qty_first_input.val() === ""){
-        pl_mcq_qty_second_input.removeAttr("placeholder");
-    }
-});
-
-pl_mcq_qty_first_input_two.change(function(e){
-    let total_pcs = pl_mcq_size_lbl_two.html();
-    let cntl_num = pl_mcq_qty_first_input_two.val();
-    let bal = 0;
-    bal = total_pcs%cntl_num;
-    pl_mcq_qty_second_input_two.attr("placeholder", bal);
-    if(pl_mcq_qty_first_input_two.val() === ""){
-        pl_mcq_qty_second_input_two.removeAttr("placeholder");
-    }
-});
-
-pl_mcq_qty_first_input_three.change(function(e){
-    let total_pcs = pl_mcq_size_lbl_three.html();
-    let cntl_num = pl_mcq_qty_first_input_three.val();
-    let bal = 0;
-    bal = total_pcs%cntl_num;
-    pl_mcq_qty_second_input_three.attr("placeholder", bal);
-    if(pl_mcq_qty_first_input_three.val() === ""){
-        pl_mcq_qty_second_input_three.removeAttr("placeholder");
-    }
-});
-
-pl_mcq_qty_first_input_four.change(function(e){
-    let total_pcs = pl_mcq_size_lbl_four.html();
-    let cntl_num = pl_mcq_qty_first_input_four.val();
-    let bal = 0;
-    bal = total_pcs%cntl_num;
-    pl_mcq_qty_second_input_four.attr("placeholder", bal);
-    if(pl_mcq_qty_first_input_four.val() === ""){
-        pl_mcq_qty_second_input_four.removeAttr("placeholder");
-    }
-});
-
-pl_mcq_qty_first_input_five.change(function(e){
-    let total_pcs = pl_mcq_size_lbl_five.html();
-    let cntl_num = pl_mcq_qty_first_input_five.val();
-    let bal = 0;
-    bal = total_pcs%cntl_num;
-    pl_mcq_qty_second_input_five.attr("placeholder", bal);
-    if(pl_mcq_qty_first_input_five.val() === ""){
-        pl_mcq_qty_second_input_five.removeAttr("placeholder");
-    }
-});
-
-pl_mcq_qty_first_input_six.change(function(e){
-    let total_pcs = pl_mcq_size_lbl_six.html();
-    let cntl_num = pl_mcq_qty_first_input_six.val();
-    let bal = 0;
-    bal = total_pcs%cntl_num;
-    pl_mcq_qty_second_input_six.attr("placeholder", bal);
-    if(pl_mcq_qty_first_input_six.val() === ""){
-        pl_mcq_qty_second_input_six.removeAttr("placeholder");
-    }
-});
-
-pl_mcq_qty_first_input_seven.change(function(e){
-    let total_pcs = pl_mcq_size_lbl_seven.html();
-    let cntl_num = pl_mcq_qty_first_input_seven.val();
-    let bal = 0;
-    bal = total_pcs%cntl_num;
-    pl_mcq_qty_second_input_seven.attr("placeholder", bal);
-    if(pl_mcq_qty_first_input_seven.val() === ""){
-        pl_mcq_qty_second_input_seven.removeAttr("placeholder");
-    }
-});
-
-pl_mcq_qty_first_input_eight.change(function(e){
-    let total_pcs = pl_mcq_size_lbl_eight.html();
-    let cntl_num = pl_mcq_qty_first_input_eight.val();
-    let bal = 0;
-    bal = total_pcs%cntl_num;
-    pl_mcq_qty_second_input_eight.attr("placeholder", bal);
-    if(pl_mcq_qty_first_input_eight.val() === ""){
-        pl_mcq_qty_second_input_eight.removeAttr("placeholder");
-    }
-});
-
-pl_mcq_qty_first_input_nine.change(function(e){
-    let total_pcs = pl_mcq_size_lbl_nine.html();
-    let cntl_num = pl_mcq_qty_first_input_nine.val();
-    let bal = 0;
-    bal = total_pcs%cntl_num;
-    pl_mcq_qty_second_input_nine.attr("placeholder", bal);
-    if(pl_mcq_qty_first_input_nine.val() === ""){
-        pl_mcq_qty_second_input_nine.removeAttr("placeholder");
-    }
-});
-
-pl_mcq_qty_first_input_ten.change(function(e){
-    let total_pcs = pl_mcq_size_lbl_ten.html();
-    let cntl_num = pl_mcq_qty_first_input_ten.val();
-    let bal = 0;
-    bal = total_pcs%cntl_num;
-    pl_mcq_qty_second_input_ten.attr("placeholder", bal);
-    if(pl_mcq_qty_first_input_ten.val() === ""){
-        pl_mcq_qty_second_input_ten.removeAttr("placeholder");
-    }
 });
 
 pl_update_qty_btn.click(function(e){
@@ -755,33 +613,6 @@ pl_factory_po_input.change(function(e){
     });
 });
 
-let pl_select_customer = $('#pl_select_customer');
-
-pl_select_customer.change(function(e){
-    e.preventDefault();
-
-    let customers = {
-        customer: pl_select_customer.val(),
-        batch: pl_add_po_batch.val(),
-        number_batch: pl_add_po_number_batch.val(),
-    }
-    $.ajax({
-        type:'POST',
-        url: '/api/packing-lists/update/customers',
-        data: customers,
-        success: function (customers) {
-            console.log(customers);
-            location.reload();
-        },
-        error: function (x,h,r) {
-            alert(x.responseText);
-        }
-    });
-
-
-});
-
-
 let pl_shipment_input = $('#pl_shipment_input');
 
 pl_shipment_input.change(function(e){
@@ -924,16 +755,13 @@ pl_print.click(function(e){
                     batch: batch,
                     number: number,
                 }
-                // alert('wa');
 
                 $.ajax({
                     type:'POST',
                     url: '/api/packing-lists/number/approve',
-                    data: packinglist,
+                    data: $packinglist,
                     success: function (datas) {
                         console.log(datas);
-                        pl_status.css("background-color", "green");
-                        pl_status.css("color", "white");
                     },
                     error: function (x,h,r) {
                         alert(x.responseText);
@@ -974,20 +802,10 @@ let pl_create_select_brand = $('.pl_create_select_brand');
 let pl_create_brand = $('#pl_create_brand');
 let div_btn_brand_choose = $('#div_btn_brand_choose');
 let pl_create_title = $('#pl_create_title');
-let div_btn_brand_adv_eq = $('#div_btn_brand_adv_eq');
 
 pl_create_drop_zone.hide();
 div_btn_brand_choose.hide();
 
-
-div_btn_brand_adv_eq.click(function(e){
-    e.preventDefault();
-    pl_create_select_brand.hide();
-    pl_create_title.html('Create Packing List ADVANTUS-EQUIPMENT');
-    pl_create_brand.val('ADVANTUS-EQUIPMENT');
-    pl_create_drop_zone.show();
-    div_btn_brand_choose.show();
-});
 div_btn_brand_dickies_app.click(function(e){
     e.preventDefault();
     pl_create_select_brand.hide();
@@ -1603,7 +1421,3 @@ function getCartonSelected(carton){
         }
     }
 }
-
-
-
-

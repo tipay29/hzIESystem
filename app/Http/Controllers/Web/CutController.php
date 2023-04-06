@@ -46,9 +46,10 @@ class CutController extends Controller
             'fabric_colors','fabric_types','placements',
             'employees',
         ])
-        
-        ->paginate(10);
-        // dd($cuts);
+        ->take(1000)
+        ->get();
+        $cuts = $cuts->paginate(10);
+    
         return view('cut.index',compact('cuts'));
     }
 

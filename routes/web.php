@@ -1,11 +1,23 @@
 <?php
 
-
+use App\Models\Style;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 
 Route::group(['namespace' => 'Web'],function(){
+
+
+    route::get('/aw',function(){
+       $styles = Style::all();
+       
+       foreach($styles as $style){
+        $style->update(['created_at' => "2023-04-01 17:57:04"]);
+       }
+
+       return 0;
+    });
+
 
     Route::resource('employees','EmployeeController');
 

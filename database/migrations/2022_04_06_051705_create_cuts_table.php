@@ -9,6 +9,7 @@ return new class extends Migration
 
     public function up()
     {
+        // Schema::dropIfExists('users');
         Schema::create('cuts', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('building_id');
