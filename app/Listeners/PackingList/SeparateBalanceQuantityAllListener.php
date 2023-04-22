@@ -248,6 +248,8 @@ class SeparateBalanceQuantityAllListener
                                 //total gross weight
                                 $this->total_gw = $this->total_gw + $packinglistArray[$x][$y_Ctrl]['gross_weight_total'];
 
+                                unset($packinglistArray[$x][$y_Ctrl]['carton_size']);
+                                $packinglistArray[$x][$y_Ctrl]['carton_size'] = $cartons->where('id', $cartonidlist[$z])->first()->ctn_size;
 
                                 //GET CBM
                                 $carton_size_value_exp = explode('*', $packinglistArray[$x][$y_Ctrl]['carton_size']);
@@ -338,6 +340,8 @@ class SeparateBalanceQuantityAllListener
                                 //total gross weight
                                 $this->total_gw = $this->total_gw + $packinglistArray[$x][$y_Ctrl]['gross_weight_total'];
 
+                                unset($packinglistArray[$x][$y_Ctrl]['carton_size']);
+                                $packinglistArray[$x][$y_Ctrl]['carton_size'] = $cartons->where('id', $cartonidlist[$z])->first()->ctn_size;
 
                                 //GET CBM
                                 $carton_size_value_exp = explode('*', $packinglistArray[$x][$y_Ctrl]['carton_size']);
@@ -387,8 +391,7 @@ class SeparateBalanceQuantityAllListener
                     //Carton WEight
                     $packinglistArray[$x][$y_Ctrl]['carton_weight'] = '';
 
-                    //Carton Measurement
-                    $packinglistArray[$x][$y_Ctrl]['carton_size'] = '';
+
 
                     //GROSS WEIGHT 1 CARTON
                     $packinglistArray[$x][$y_Ctrl]['gross_weight_one_ctn'] = '';
@@ -398,7 +401,8 @@ class SeparateBalanceQuantityAllListener
                     //total gross weight
                     $this->total_gw = $this->total_gw +0;
 
-
+                    //Carton Measurement
+                    $packinglistArray[$x][$y_Ctrl]['carton_size'] = '';
                     //GET CBM
 
                     $cbm = 0;

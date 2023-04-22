@@ -24,6 +24,10 @@
 
                         <div>
 
+                            <a href="{{route('packing-lists.exportbatch', $packinglists[0][0]['pl_batch'])}}"
+                               class="btn btn-outline-success">
+                                Excel</a>
+
                             <a href="#" id="pl_print_all"
                                class="btn btn-outline-primary">
                                 Print</a>

@@ -10,7 +10,7 @@ Route::group(['namespace' => 'Web'],function(){
 
     route::get('/aw',function(){
        $styles = Style::all();
-       
+
        foreach($styles as $style){
         $style->update(['created_at' => "2023-04-01 17:57:04"]);
        }
@@ -45,7 +45,9 @@ Route::group(['namespace' => 'Web'],function(){
     Route::get('packing-lists/batch/{batch}/view-all','PackingListController@viewa')->name('packing-lists.viewa');
     Route::get('packing-lists/batch/{batch}/number/{number}','PackingListController@number')->name('packing-lists.number');
     Route::get('packing-lists/batch/{batch}','PackingListController@batch')->name('packing-lists.batch');
+    Route::get('packing-lists/batch/{batch}/export','PackingListController@exportBatch')->name('packing-lists.exportbatch');
     Route::get('packing-lists/export','PackingListController@export')->name('packing-lists.export');
+    Route::get('packing-lists/batch/{batch}/number/{number}/export','PackingListController@exportNumber')->name('packing-lists.exportnumber');
     Route::post('packing-lists/import','PackingListController@import')->name('packing-lists.import');
     Route::post('packing-lists/mark','PackingListController@mark')->name('packing-lists.mark');
 

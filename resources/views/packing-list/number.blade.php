@@ -18,7 +18,11 @@
                                     data-bs-target="#addPOModal">
                                 Add PO
                             </button>
-                            @endcan
+                             @endcan
+                            <a href="{{route('packing-lists.exportnumber', [$packinglists[0]['pl_batch']
+                                                                        ,$packinglists[0]['pl_number_batch']])}}"
+                               class="btn btn-outline-success">
+                                Excel</a>
                             <a href="#" id="pl_print"
                                class="btn btn-outline-primary">
                                 Print</a>
