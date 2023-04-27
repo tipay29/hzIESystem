@@ -1,90 +1,85 @@
-
+<h6>Summary:</h6>
     <div class="table-responsive">
         <table class="table pl_table_number" >
             <thead>
             <tr>
-                <th width="10%">Size Summary:</th>
-                <th width="25%">Description</th>
+
+                <th width="10%">Style</th>
+                <th width="20%">Description</th>
                 <th width="15%">Color</th>
+                @if($packinglists[0][0]['pl_type'] === "APPAREL")
+                <th width="10%">Size</th>
+                @endif
                 <th class="text-end" width="10%">Quantity</th>
                 <th class="text-end" width="8%">Carton</th>
                 <th class="text-end" width="8%">Net Weight</th>
-                <th class="text-end" width="16%">Gross Weight</th>
+                <th class="text-end" width="10%">Gross Weight</th>
                 <th class="text-end" width="10%">CBM</th>
             </tr>
             </thead>
-            <tbody>
-            @for($y = 0; $y < count($packinglists[$x]);$y++)
-                    @if($y == count($packinglists[$x])-1)
+
+            @if($packinglists[0][0]['pl_type'] == "APPAREL")
+                <tbody>
+                @foreach($packinglists[$x][count($packinglists[$x])-1]['summary'] as $key => $summaryrow)
                     <tr>
-                        <td scope="col"></td>
-                        <td  scope="col"></td>
-                        <td scope="col"></td>
-                        <td align="right" scope="col"> <b> {{number_format((float)$packinglists[$x][$y]['total_qty_ship'])}} </b></td>
-                        <td align="right" scope="col"> <b> {{number_format((float)$packinglists[$x][$y]['total_carton'])}} </b> </td>
-                        <td align="right" scope="col"> <b> {{number_format((float)$packinglists[$x][$y]['total_nw'], 2, '.', ',')}} </b></td>
-                        <td align="right" scope="col"> <b> {{number_format((float)$packinglists[$x][$y]['total_gw'], 2, '.', ',')}} </b> </td>
-                        <td align="right" scope="col"> <b> {{number_format((float)$packinglists[$x][$y]['total_cbm'], 2, '.', ',')}} </b> </td>
+                        <td scope="col">{{$summaryrow['pl_material']}}</td>
+                        <td  scope="col">{{$summaryrow['pl_description']}}</td>
+                        <td scope="col">{{$summaryrow['pl_color']}}</td>
+                        <td scope="col">{{$summaryrow['pl_size']}}</td>
+                        <td align="right" scope="col"> {{number_format((float)$summaryrow['pl_quantity'])}}</td>
+                        <td align="right" scope="col"> {{number_format((float)$summaryrow['pl_carton'])}}</td>
+                        <td align="right" scope="col"> {{number_format((float)$summaryrow['pl_nw'], 2, '.', ',')}} </td>
+                        <td align="right" scope="col"> {{number_format((float)$summaryrow['pl_gw'], 2, '.', ',')}}  </td>
+                        <td align="right" scope="col"> {{number_format((float)$summaryrow['pl_cbm'], 2, '.', ',')}} </td>
                     </tr>
-                    @elseif($packinglists[$x][$y]['row_cut'] == 1)
-                        <tr>
-
-                            <td scope="col">{{$packinglists[$x][$y]['pl_style_size']}}</td>
-                            <td  scope="col">{{$packinglists[$x][$y]['pl_description']}}</td>
-                            <td scope="col">{{$packinglists[$x][$y]['pl_color']}}</td>
-
-                            <td align="right" scope="col">{{number_format((float)$packinglists[$x][$y]['pl_order_quantity'])}}</td>
-
-                            @if(!isset($packinglists[$y+1]['row_cut']) || isset($packinglists[$y+1]['row_cut']) == 1 )
-                                <td align="right" scope="col">{{number_format((float)$packinglists[$x][$y]['pl_number_of_carton'])}}</td>
-
-                                <td align="right" scope="col">{{number_format((float)$packinglists[$x][$y]['net_weight_total'], 2, '.', ',')}}</td>
-
-                                <td align="right" scope="col">{{number_format((float)$packinglists[$x][$y]['gross_weight_total'], 2, '.', ',')}}</td>
-                                <td align="right" scope="col">{{number_format((float)$packinglists[$x][$y]['cbm'], 2, '.', ',')}}</td>
-                            @else
-                                <td align="right" scope="col">{{number_format((float)$packinglists[$x][$y]['pl_number_of_carton']
-                                                                        +
-                                                                $packinglists[$y+1]['pl_number_of_carton'])}}</td>
-
-                                <td align="right" scope="col">{{number_format((float)$packinglists[$x][$y]['net_weight_total']
-                                                                        +
-                                                                $packinglists[$y+1]['net_weight_total'], 2, '.', ',')}}</td>
-
-                                <td align="right" scope="col">{{number_format((float)$packinglists[$x][$y]['gross_weight_total']
-                                                                        +
-                                                                $packinglists[$y+1]['gross_weight_total'], 2, '.', ',')}}</td>
-                                <td align="right" scope="col">{{number_format((float)$packinglists[$x][$y]['cbm']
-                                                                        +
-                                                                $packinglists[$y+1]['cbm'], 2, '.', ',')}}</td>
-                            @endif
-                            <div style="display: none;">  {{$ya=1}}</div>
-                            @if($packinglists[$x][$y]['pl_type'] == 'APPAREL')
-                                @if($y == count($packinglists[$x])-2)
-
-                                    <div style="display: none;">  {{$ya=0}}</div>
-                                @endif
-                                @if($packinglists[$x][$y]['pl_style_size'] === $packinglists[$x][$y+$ya]['pl_style_size'])
-                                    <div style="display: none;">  {{$y++}}</div>
-                                @endif
-
-                            @elseif($packinglists[$x][$y]['pl_type'] == 'EQUIPMENT')
-
-                                @if($y == count($packinglists[$x])-2)
-
-                                    <div style="display: none;">  {{$ya=0}}</div>
-                                @endif
-                                @if($packinglists[$x][$y]['pl_color'] === $packinglists[$x][$y+$ya]['pl_color'])
-                                    <div style="display: none;">  {{$y++}}</div>
-                                @endif
-                            @endif
 
 
-                        </tr>
-                    @endif
+                @endforeach
 
-            @endfor
-            </tbody>
+                <tr>
+                    <td scope="col"></td>
+                    <td  scope="col"></td>
+                    <td scope="col"></td>
+                    <td scope="col"></td>
+                    <td align="right" scope="col"> <b> {{number_format((float)$packinglists[$x][count($packinglists[$x])-1]['total_qty_ship'])}} </b></td>
+                    <td align="right" scope="col"> <b> {{number_format((float)$packinglists[$x][count($packinglists[$x])-1]['total_carton'])}} </b> </td>
+                    <td align="right" scope="col"> <b> {{number_format((float)$packinglists[$x][count($packinglists[$x])-1]['total_nw'], 2, '.', ',')}} </b></td>
+                    <td align="right" scope="col"> <b> {{number_format((float)$packinglists[$x][count($packinglists[$x])-1]['total_gw'], 2, '.', ',')}} </b> </td>
+                    <td align="right" scope="col"> <b> {{number_format((float)$packinglists[$x][count($packinglists[$x])-1]['total_cbm'], 2, '.', ',')}} </b> </td>
+                </tr>
+
+                </tbody>
+            @endif
+            @if($packinglists[0][0]['pl_type'] == "EQUIPMENT")
+                <tbody>
+                @foreach($packinglists[$x][count($packinglists[$x])-1]['summary'] as $key => $summaryrow)
+                    <tr>
+                        <td scope="col">{{$summaryrow['pl_material']}}</td>
+                        <td  scope="col">{{$summaryrow['pl_description']}}</td>
+                        <td scope="col">{{$summaryrow['pl_color']}}</td>
+                        <td align="right" scope="col"> {{number_format((float)$summaryrow['pl_quantity'])}}</td>
+                        <td align="right" scope="col"> {{number_format((float)$summaryrow['pl_carton'])}}</td>
+                        <td align="right" scope="col"> {{number_format((float)$summaryrow['pl_nw'], 2, '.', ',')}} </td>
+                        <td align="right" scope="col"> {{number_format((float)$summaryrow['pl_gw'], 2, '.', ',')}}  </td>
+                        <td align="right" scope="col"> {{number_format((float)$summaryrow['pl_cbm'], 2, '.', ',')}} </td>
+                    </tr>
+
+
+                @endforeach
+
+                <tr>
+                    <td scope="col"></td>
+                    <td  scope="col"></td>
+                    <td scope="col"></td>
+                    <td align="right" scope="col"> <b> {{number_format((float)$packinglists[$x][count($packinglists[$x])-1]['total_qty_ship'])}} </b></td>
+                    <td align="right" scope="col"> <b> {{number_format((float)$packinglists[$x][count($packinglists[$x])-1]['total_carton'])}} </b> </td>
+                    <td align="right" scope="col"> <b> {{number_format((float)$packinglists[$x][count($packinglists[$x])-1]['total_nw'], 2, '.', ',')}} </b></td>
+                    <td align="right" scope="col"> <b> {{number_format((float)$packinglists[$x][count($packinglists[$x])-1]['total_gw'], 2, '.', ',')}} </b> </td>
+                    <td align="right" scope="col"> <b> {{number_format((float)$packinglists[$x][count($packinglists[$x])-1]['total_cbm'], 2, '.', ',')}} </b> </td>
+                </tr>
+
+                </tbody>
+            @endif
         </table>
     </div>
 

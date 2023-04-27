@@ -12,7 +12,9 @@ use App\Http\Controllers\Controller;
 use App\Imports\PackingListsImport;
 use App\Models\Destination;
 use App\Models\PackingList;
+use App\Models\Style;
 use Illuminate\Pipeline\Pipeline;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PackingListController extends Controller
@@ -263,15 +265,174 @@ class PackingListController extends Controller
 
 //        dd($packinglists);
 
+//        dd($summary->sum('pl_quantity'));
+
+        $mcqdetails = $this->getMCQDetails($packinglists);
+
+
         return view('packing-list.number', compact('packinglists','cartons','customers'));
 
     }
+
+    protected function getMCQDetails($packinglists){
+        $mcqdetails = collect();
+        $cartons = [];
+        $sizes = $packinglists[count($packinglists)-1]['pl_ctn_list'];
+
+        for($x = 0; $x < count($packinglists);$x++){
+            if($x !== count($packinglists)-1){
+                if(!in_array($packinglists[$x]['carton_size'],$cartons)){
+                    array_push($cartons,$packinglists[$x]['carton_size']);
+                }
+
+
+            }
+        }
+
+        $mcqdetails = collect();
+
+        for($s = 0; $s < count($sizes); $s++){
+
+            $plrow['pl_style_size'] = '';
+            $plrow['pl_style_size_id'] = '';
+            $plrow['carton_size'] = '';
+            $plrow['carton_size_id'] = '';
+            $plrow['mcq'] = '';
+            $plrow['qty'] = 0;
+            for($x = 0; $x < count($packinglists);$x++){
+
+                if($x !== count($packinglists)-1){
+    //                dd($packinglists);
+                    $size_style_carton_id =
+                        $packinglists[$x]['pl_style_size_id'] . $packinglists[$x]['pl_style_id']
+                        . $packinglists[$x]['carton_size_id'];
+
+                    $mcq = DB::table('sizeables')->where('size_style_carton_id',$size_style_carton_id)->first();
+
+                    if($sizes[$s] == $packinglists[$x]['pl_style_size']){
+
+                        $plrow['pl_style_size'] = $packinglists[$x]['pl_style_size'];
+                        $plrow['pl_style_size_id'] = $packinglists[$x]['pl_style_size_id'];
+                        $plrow['carton_size'] = $packinglists[$x]['carton_size'];
+                        $plrow['carton_size_id'] = $packinglists[$x]['carton_size_id'];
+                        if(!isset($mcq->mcq)){
+                            $mcq = '';
+                        }else{
+                            $mcq = $mcq->mcq;
+                        }
+                        $plrow['mcq'] = $mcq;
+                        $plrow['qty'] = $plrow['qty'] + $packinglists[$x]['pl_number_of_carton'];
+
+                    }
+
+
+
+                }
+
+            }
+            $mcqdetails->add($plrow);
+        }
+//        dd($mcqdetails);
+//        dd($sizes);
+
+
+
+//        dd($query->mcq);
+        return $mcqdetails;
+    }
+
+    protected function getAPPSummary($packinglists){
+        $sizes = $packinglists[count($packinglists)-1]['pl_ctn_list'];
+
+        $appsummary = collect();
+        for($m = 0;$m < count($sizes);$m++){
+
+            $plrow['pl_material'] = '';
+            $plrow['pl_description'] = '';
+            $plrow['pl_color'] = '';
+            $plrow['pl_size'] = '';
+            $plrow['pl_quantity'] = 0;
+            $plrow['pl_carton'] = 0;
+            $plrow['pl_nw'] = 0;
+            $plrow['pl_gw'] = 0;
+            $plrow['pl_cbm'] = 0;
+            for($z = 0; $z < count($packinglists);$z++){
+                if($z !== count($packinglists)-1){
+                    if($packinglists[$z]['pl_style_size'] == $sizes[$m]){
+                        $plrow['pl_material'] = $packinglists[$z]['pl_material'];
+                        $plrow['pl_description'] = $packinglists[$z]['pl_description'];
+                        $plrow['pl_color'] = $packinglists[$z]['pl_color'];
+                        $plrow['pl_size'] = $packinglists[$z]['pl_style_size'];
+                        $plrow['pl_quantity'] = $plrow['pl_quantity'] + $packinglists[$z]['pl_order_quantity_cut'];
+                        $plrow['pl_carton'] = $plrow['pl_carton'] + $packinglists[$z]['pl_number_of_carton'];
+                        $plrow['pl_nw'] = $plrow['pl_nw'] + $packinglists[$z]['net_weight_total'];
+                        $plrow['pl_gw'] = $plrow['pl_gw'] + $packinglists[$z]['gross_weight_total'];
+                        $plrow['pl_cbm'] = $plrow['pl_cbm'] + $packinglists[$z]['cbm'];
+//                        dump($materials[$m]);
+                    }
+                }
+
+            }
+            $appsummary->add($plrow);
+
+        }
+//        dd($appsummary);
+
+        return $appsummary;
+
+    }
+
+    protected function getEQSummary($packinglists){
+        $materials = [];
+
+        for($x = 0; $x < count($packinglists);$x++){
+            if($x !== count($packinglists)-1){
+                if(!in_array($packinglists[$x]['pl_material'],$materials)){
+                    array_push($materials,$packinglists[$x]['pl_material']);
+                }
+            }
+        }
+//        dd($packinglists);
+        $eqsummary = collect();
+        for($m = 0;$m < count($materials);$m++){
+
+            $plrow['pl_material'] = '';
+            $plrow['pl_description'] = '';
+            $plrow['pl_color'] = '';
+            $plrow['pl_quantity'] = 0;
+            $plrow['pl_carton'] = 0;
+            $plrow['pl_nw'] = 0;
+            $plrow['pl_gw'] = 0;
+            $plrow['pl_cbm'] = 0;
+
+            for($z = 0; $z < count($packinglists);$z++){
+                if($z !== count($packinglists)-1){
+                    if($packinglists[$z]['pl_material'] == $materials[$m]){
+                        $plrow['pl_material'] = $packinglists[$z]['pl_material'];
+                        $plrow['pl_description'] = $packinglists[$z]['pl_description'];
+                        $plrow['pl_color'] = $packinglists[$z]['pl_color'];
+                        $plrow['pl_quantity'] = $plrow['pl_quantity'] + $packinglists[$z]['pl_order_quantity_cut'];
+                        $plrow['pl_carton'] = $plrow['pl_carton'] + $packinglists[$z]['pl_number_of_carton'];
+                        $plrow['pl_nw'] = $plrow['pl_nw'] + $packinglists[$z]['net_weight_total'];
+                        $plrow['pl_gw'] = $plrow['pl_gw'] + $packinglists[$z]['gross_weight_total'];
+                        $plrow['pl_cbm'] = $plrow['pl_cbm'] + $packinglists[$z]['cbm'];
+//                        dump($materials[$m]);
+                    }
+                }
+
+            }
+            $eqsummary->add($plrow);
+        }
+
+        return $eqsummary;
+    }
+
 
     public function viewa($batch){
 
         $packinglists = event(new GetPackingListDataAllEvent($batch))[0];
 
-//        dd($packinglists[0][0]);
+//        dd($packinglists[0][11]);
 
         return view('packing-list.viewa',compact('packinglists'));
     }

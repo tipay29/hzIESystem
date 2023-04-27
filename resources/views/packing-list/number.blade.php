@@ -124,8 +124,8 @@
                                         @endif
                                         <th class="text-end" width="3%" scope="col">TtlQty</th>
                                         <th class="text-end" width="3%" scope="col">Qty/Ctn</th>
-                                        <th class="text-end" width="8%" scope="col">CtnNum</th>
-                                        <th class="text-end" width="5%" scope="col">CtnTtl</th>
+                                        <th class="text-end" width="8%" scope="col">CtnNo</th>
+                                        <th class="text-end" width="5%" scope="col">CtnQty</th>
                                         <th class="text-end" width="3%" scope="col">NW</th>
                                         <th class="text-end" width="3%" scope="col">TNW</th>
                                         <th class="text-end" width="3%" scope="col">GW</th>
