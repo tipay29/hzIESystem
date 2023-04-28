@@ -9,6 +9,7 @@ use App\Models\Size;
 use App\Models\Style;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\DB;
 use function Spatie\Ignition\Config\toArray;
 
 class SeparateBalanceQuantityListener
@@ -221,6 +222,9 @@ class SeparateBalanceQuantityListener
                             //CTN#
                             $packinglistArray[$x]['carton_number_display'] = ($this->carton_number + 1) . "-" . ($this->carton_number + $packinglistArray[$x]['pl_number_of_carton']);
 
+                            unset($packinglistArray[$x]['pl_number_of_carton']);
+                            $packinglistArray[$x]['pl_number_of_carton'] = ((int)floor($iqty / $mcqlist[$z]));
+
                             $this->carton_number = $this->carton_number + $packinglistArray[$x]['pl_number_of_carton'];
 
                             //NET WEIGHT 1 CARTON
@@ -234,8 +238,6 @@ class SeparateBalanceQuantityListener
                             $packinglistArray[$x]['net_weight_total'] = $packinglistArray[$x]['net_weight_one_ctn'] * $packinglistArray[$x]['pl_number_of_carton'];
                             //Total netweight
                             $this->total_nw = $this->total_nw + $packinglistArray[$x]['net_weight_total'];
-
-
 
                             //Carton WEight
                             $packinglistArray[$x]['carton_weight'] = $cartons->where('id', $cartonidlist[$z])->first()->ctn_weight;
@@ -320,6 +322,9 @@ class SeparateBalanceQuantityListener
                             //CTN#
                             $packinglistArray[$x]['carton_number_display'] = ($this->carton_number + 1) . "-" . ($this->carton_number + $packinglistArray[$x]['pl_number_of_carton']);
 
+                            unset($packinglistArray[$x]['pl_number_of_carton']);
+                            $packinglistArray[$x]['pl_number_of_carton'] = 1;
+
                             $this->carton_number = $this->carton_number + $packinglistArray[$x]['pl_number_of_carton'];
 
                             //NET WEIGHT 1 CARTON
@@ -400,10 +405,11 @@ class SeparateBalanceQuantityListener
                 $packinglistArray[$x]['pl_order_quantity_cut'] = $iqty;
                 //QTY / CTN
                 $packinglistArray[$x]['pl_one_ctn_item_count'] = 0;
-                //NO OF CTN#
-                $packinglistArray[$x]['pl_number_of_carton'] =  0;
+
                 //CTN#
                 $packinglistArray[$x]['carton_number_display'] = "";
+                //NO OF CTN#
+                $packinglistArray[$x]['pl_number_of_carton'] =  0;
 
                 $this->carton_number = $this->carton_number + 0;
 
@@ -490,6 +496,7 @@ class SeparateBalanceQuantityListener
         $packinglists->add($packinglistArray[$pl_last_num]);
         //dd(array_flip($this->sizes));
         $packinglistArray[$pl_last_num]['summary'] = $this->getSummary(array_values($packinglists->toArray()));
+        $packinglistArray[$pl_last_num]['mcqcarton_details'] = $this->getMCQDetails(array_values($packinglists->toArray()));
         $packinglists = $packinglists->slice(0, -1);
 
         $packinglists->add( $packinglistArray[$pl_last_num]);
@@ -497,6 +504,77 @@ class SeparateBalanceQuantityListener
 
         return $packinglists;
 
+    }
+
+    protected function getMCQDetails($packinglists){
+        $mcqdetails = collect();
+        $cartonrow  = array();
+
+        for($x = 0; $x < count($packinglists);$x++){
+
+            if($x !== count($packinglists)-1){
+                $size_style_carton_id =
+                    round($packinglists[$x]['pl_style_size_id']) . $packinglists[$x]['pl_style_id']
+                    . $packinglists[$x]['carton_size_id'];
+
+                $mcq = DB::table('sizeables')->where('size_style_carton_id',$size_style_carton_id)->first();
+
+
+                if($packinglists[0]['pl_type'] === "APPAREL"){
+                    $key = $packinglists[$x]['pl_style_size'] . $packinglists[$x]['carton_size'];
+
+                    if(!$mcqdetails->contains('key',$key)){
+                        $mcqrow['key'] = $key;
+                        $mcqrow['basis'] = $packinglists[$x]['pl_style_size'];
+                        $mcqrow['carton_size'] = $packinglists[$x]['carton_size'];
+                        $mcqrow['carton_size_id'] = $packinglists[$x]['carton_size_id'];
+                        if(!isset($mcq->mcq)){
+//                            dd($size_style_carton_id);
+                            $mcq = '';
+                        }else{
+                            $mcq = $mcq->mcq;
+                        }
+                        $mcqrow['mcq'] = $mcq;
+                        $mcqdetails->add($mcqrow);
+                    }
+                }
+
+                if($packinglists[0]['pl_type'] === "EQUIPMENT"){
+                    $style_code = substr($packinglists[$x]['pl_sku'],-5);
+                    $key = $style_code . $packinglists[$x]['carton_size'];
+
+                    if(!$mcqdetails->contains('key',$key)){
+                        $mcqrow['key'] = $key;
+                        $mcqrow['basis'] = $style_code;
+                        $mcqrow['carton_size'] = $packinglists[$x]['carton_size'];
+                        $mcqrow['carton_size_id'] = $packinglists[$x]['carton_size_id'];
+                        if(!isset($mcq->mcq)){
+                            $mcq = '';
+                        }else{
+                            $mcq = $mcq->mcq;
+                        }
+                        $mcqrow['mcq'] = $mcq;
+                        $mcqdetails->add($mcqrow);
+                    }
+                }
+
+                if (!array_key_exists($packinglists[$x]['carton_size'],$cartonrow))
+                {
+                    $cartonrow[$packinglists[$x]['carton_size']] = $packinglists[$x]['pl_number_of_carton'];
+                }
+                else
+                {
+                    $cartonrow[$packinglists[$x]['carton_size']] = $cartonrow[$packinglists[$x]['carton_size']] + $packinglists[$x]['pl_number_of_carton'];
+                }
+
+            }
+
+        }
+
+        $mcqcartondetail['mcq_details'] = $mcqdetails;
+        $mcqcartondetail['carton_details'] = $cartonrow;
+//        dd($mcqcartondetail);
+        return $mcqcartondetail;
     }
 
     protected function getSummary($packinglists){

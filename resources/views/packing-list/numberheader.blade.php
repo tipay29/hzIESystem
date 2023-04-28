@@ -6,9 +6,9 @@
             <br>
             <b> Horizon Outdoor Cambodia Co. LTD </b> <br>
             <p class="m-0" style="font-size: .8rem; ">
-                Phum Phsar Trach,Khum Longvek,Srok Kampong Tralach,</p>
+                National Highway 5, 43 Kilometers, Phum Phsar Trach, Khum Longvek,</p>
             <p class="m-0" style="font-size: .8rem; ">
-                Kampong Chhnang Province,Cambodia</p>
+                Srok Kampong Trolach,Kampong Chhnang Province, Cambodia</p>
             <p class="m-0" style="font-size: .8rem; ">
                 Tel: 855-78-210 076</p>
             <p class="text-start m-0" style="font-size: .9rem;">
@@ -36,65 +36,13 @@
                                                    padding:0px;line-height: 10px;
                                                     " value="{{$packinglists[0]['pl_shipment_mode']}}">
 
-
-
-            <div class="table-responsive">
-                <table class="table pl_table_number">
-                    <thead>
-                    <tr>
-                        <th>MCQ</th>
-                        <th>Carton</th>
-                        <th class="text-end">Total</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($packinglists[count($packinglists)-1]['total_ctn_ctn'] as $key => $ctn)
-                        <tr>
-                            <td>{{$packinglists[count($packinglists)-1]['total_ctn_mcq'][$key]}} </td>
-                            <td>{{$key}}CM </td>
-                            <td align="right">{{number_format((float)$ctn)}}</td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="row ">
-                <div class="col-md-2"></div>
-                <label for="pl_mcq_weight_input" class="col-md-4 text-md-end m-0"
-                       style="border: 1px solid black;"
-                    >Special Pack</label>
-                <div class="col-md-4 m-0 p-0">
-                    <input
-                        style="text-align: center;
-                                                   border: 1px solid black;border-radius: 0px; background-color:	 #f1f1f1;
-                                                   font-weight: 500;font-size: 1.2rem;
-                                                   padding:0px;line-height: 10px;
-                                                    "
-                        id="pl_special_pack" type="text" class="form-control" value="{{$packinglists[0]['pl_special_packs']}}"
-                        @cannot('create', App\Models\PackingList::class)
-                        {{'disabled'}}
-                        @endcannot>
-                </div>
-                <div class="col-md-2"></div>
-            </div>
-            <div class="row">
-                <div class="col-md-2"></div>
-                <label for="pl_mcq_weight_input" class="col-md-4 text-md-end m-0" style="border: 1px solid black;">Pre Pack</label>
-                <div class="col-md-4 m-0 p-0">
-                    <input
-                        style="text-align: center;
-                                                   border: 1px solid black;border-radius: 0px;background-color:	 #f1f1f1;
-                                                   font-weight: 500;font-size: 1.2rem;
-                                                   padding:0px;line-height: 10px;
-                                                    "
-                        id="pl_pre_pack" type="number" step="1" class="form-control" value="{{$packinglists[0]['pl_pre_pack']}}"
-                    @cannot('create', App\Models\PackingList::class)
-                        {{'disabled'}}
-                        @endcannot>
-                </div>
-                <div class="col-md-2"></div>
-            </div>
+            <textarea rows="2" id="pl_rm_input" style="min-width: 100%"
+               @cannot('create', App\Models\PackingList::class)
+                   {{'disabled'}}
+                   @endcannot
+        >
+                                        {{$packinglists[0]['pl_remarks']}}
+        </textarea>
 
 
             <input id="ctn_brand" type="hidden" value="{{$packinglists[0]['pl_brand']}}">
@@ -202,6 +150,15 @@
             </div>
 
             <div class="row">
+                <h6  class="col-md-6 text-md-end"> Print Date:</h6>
+
+                <p class="col-md-6 text-start m-0" style="font-size: 1rem;">
+                    {{now()->format('Y-m-d H:i')}}
+                </p>
+
+            </div>
+
+            <div class="row">
                 <h6 for="" class="col-md-6 text-md-end"> CRD:</h6>
 
                 <p class="col-md-6 text-start m-0" style="font-size: 1rem;">
@@ -233,14 +190,7 @@
 
             </div>
 
-            <div class="row">
-                <h6  class="col-md-6 text-md-end"> Print Date:</h6>
 
-                <p class="col-md-6 text-start m-0" style="font-size: 1rem;">
-                    {{now()->format('Y-m-d H:i')}}
-                </p>
-
-            </div>
 
 
 

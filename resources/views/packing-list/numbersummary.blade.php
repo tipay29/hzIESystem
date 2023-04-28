@@ -1,5 +1,11 @@
 
-<h6>Summary:</h6>
+<h6>
+    @if($packinglists[0]['pl_type'] == "APPAREL")
+        Size
+    @else
+        Style
+    @endif
+    Summary:</h6>
     <div class="table-responsive">
         <table class="table pl_table_number" >
 
