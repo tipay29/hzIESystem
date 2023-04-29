@@ -73,8 +73,8 @@ class SeparateBalanceQuantityListener
         for($x = 0; $x <= $packinglistsRawCount; $x++ ){
 
             $packinglistArray[$x]['id'] = $packinglistsRaw[$x]->id;
-            $packinglistArray[$x]['pl_po_cut'] = $packinglistsRaw[$x]->pl_po_cut;
             $packinglistArray[$x]['pl_master_po'] = $packinglistsRaw[$x]->pl_master_po;
+            $packinglistArray[$x]['pl_po_cut'] = $packinglistsRaw[$x]->pl_po_cut;
             $packinglistArray[$x]['pl_factory_po'] = $packinglistsRaw[$x]->pl_factory_po;
             $packinglistArray[$x]['pl_sku'] = $packinglistsRaw[$x]->pl_sku;
             $packinglistArray[$x]['pl_material'] = $packinglistsRaw[$x]->pl_material;
@@ -541,7 +541,7 @@ class SeparateBalanceQuantityListener
                 }
 
                 if($packinglists[0]['pl_type'] === "EQUIPMENT"){
-                    $style_code = substr($packinglists[$x]['pl_sku'],-5);
+                    $style_code = $packinglists[$x]['pl_sku'];
                     $key = $style_code . $packinglists[$x]['carton_size'];
 
                     if(!$mcqdetails->contains('key',$key)){

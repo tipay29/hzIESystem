@@ -54,7 +54,7 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
 //        dd($this->packinglists);
         $newpl = $this->getPackingListExcel($this->packinglists);
 //        dd($newpl);
-
+//        dd($newpl);
 //        dd($this->packinglists);
         return $newpl;
     }
@@ -62,10 +62,12 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
     public function registerEvents(): array
     {
         return [
-
             BeforeSheet::class => function(BeforeSheet $event){
 //                dd($this->packinglists);
-
+                $event->sheet
+                    ->getPageSetup()
+                    ->setFitToPage(true)
+                    ->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
                 $this->mcqdetailcount = count($this->packinglists[count($this->packinglists)-1]['total_ctn_ctn']);
                 $this->contentcount = count($this->packinglists);
                 $this->contentsummarycount = count($this->packinglists[count($this->packinglists)-1]['summary']);
@@ -77,7 +79,7 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
             AfterSheet::class => function(AfterSheet $event){
 
                 //LEFT HEADER
-                $event->sheet->setCellValue('A3','HORIZON OUTDOOR CAMBODIA Co. LTD');
+                $event->sheet->setCellValue('A3','HORIZON OUTDOOR CAMBODIA CO., LTD');
                 $event->sheet->setCellValue('A4','National Highway 5, 43 Kilometers, Phum Phsar Trach, Khum Longvek, ');
                 $event->sheet->setCellValue('A5','Srok Kampong Trolach,Kampong Chhnang Province, Cambodia');
                 $event->sheet->setCellValue('A6','Tel: 855-78-210 076');
@@ -149,7 +151,7 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                     ->getStyle('G4:J7')
                     ->applyFromArray($borderall);
 
-                $event->sheet->setCellValue('G4',$this->packinglists[0]['pl_remarks'])
+                $event->sheet->setCellValue('G4','Remarks:' . $this->packinglists[0]['pl_remarks'])
                     ->getStyle('G4')
                     ->getAlignment()
                     ->setHorizontal(Alignment::HORIZONTAL_LEFT)
@@ -231,8 +233,8 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
 
                 //TITLE
 
-                $event->sheet->getColumnDimension('A')->setWidth(16);
-                $event->sheet->getColumnDimension('B')->setWidth(11);
+                $event->sheet->getColumnDimension('A')->setWidth(11);
+                $event->sheet->getColumnDimension('B')->setWidth(16);
                 $event->sheet->getColumnDimension('C')->setWidth(10);
                 $event->sheet->getColumnDimension('D')->setWidth(14);
                 $event->sheet->getColumnDimension('E')->setWidth(25);
@@ -398,15 +400,34 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                 //SHIPMARK
 
                 //PACKING METHOD
-                $event->sheet->setCellValue('A' . ($this->shipmarkcount+12),'Packing Method')
-                    ->getStyle('A' . ($this->shipmarkcount+12))
+                $event->sheet->setCellValue('A' . ($this->shipmarkcount+14),'Packing Method')
+                    ->getStyle('A' . ($this->shipmarkcount+14))
                     ->applyFromArray($style);
-                $event->sheet->mergeCells('A' . ($this->shipmarkcount+13) . ':F' . ($this->shipmarkcount+23))
-                    ->getStyle('A' . ($this->shipmarkcount+13) . ':F' . ($this->shipmarkcount+23))
+                $event->sheet->mergeCells('A' . ($this->shipmarkcount+15) . ':F' . ($this->shipmarkcount+27))
+                    ->getStyle('A' . ($this->shipmarkcount+15) . ':F' . ($this->shipmarkcount+27))
                     ->applyFromArray($borderall);
+                if($this->packinglists[0]['pl_type'] == "APPAREL"){
+                    $data = '***入箱方式:
+1.每一个纸箱用要印有"SECURITY SEAL"字样的6CMW胶带封口;
+2.纸箱上面要放一块三层纸板
+干燥剂在衣服右胸内里及左口袋内里各放一包。
+其中WHITE & MOONLIGHT IVORY&Vaporous Grey 颜色应纸箱
+上下对角各放三包，不放三层纸板。
+3.入箱要平整,规范。样衣请调头交换入箱.
+4.样衣入箱后,如纸箱尺寸有问题,请及时通知生管.
+5.因表布每缸会有色差。每箱入箱时，
+ 有色差的不可同时装在一箱内。
+6.请提供各尺寸的单件重量及各尺寸的装箱净毛重.
+7.纸箱侧需贴NGC,有记号点（贴纸要贴正）
+';
+                }else{
+                        $data = '';
+                }
 
-                $event->sheet->setCellValue('A'. ($this->shipmarkcount+13),$this->packinglists[0]['pl_remarks_two'])
-                    ->getStyle('A'.($this->shipmarkcount+13))
+                $event->sheet->setCellValue('A'. ($this->shipmarkcount+15),
+                    $data
+                    . $this->packinglists[0]['pl_remarks_two'])
+                    ->getStyle('A'.($this->shipmarkcount+15))
                     ->getAlignment()
                     ->setHorizontal(Alignment::HORIZONTAL_LEFT)
                     ->setVertical(Alignment::VERTICAL_TOP)
@@ -469,10 +490,10 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                         ],
                     ],
                 ];
-                $event->sheet->mergeCells('I'. ($this->shipmarkcount+3) . ':L' . ($this->shipmarkcount+3));
+                $event->sheet->mergeCells('I'. ($this->shipmarkcount+3) . ':K' . ($this->shipmarkcount+3));
                 $event->sheet->setCellValue('I'. ($this->shipmarkcount+3),
                     'Pack Details')
-                    ->getStyle('I'. ($this->shipmarkcount+3) . ':L' . ($this->shipmarkcount+3))
+                    ->getStyle('I'. ($this->shipmarkcount+3) . ':K' . ($this->shipmarkcount+3))
                     ->applyFromArray($style)->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
                 $style = [
@@ -502,14 +523,14 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                     ->getStyle('I'. ($this->shipmarkcount+4) . ':J' . ($this->shipmarkcount+4))
                     ->applyFromArray($style)->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-                $event->sheet->mergeCells('K'. ($this->shipmarkcount+4) . ':L' . ($this->shipmarkcount+4));
+                $event->sheet->mergeCells('K'. ($this->shipmarkcount+4) . ':K' . ($this->shipmarkcount+4));
                 $event->sheet->setCellValue('K'. ($this->shipmarkcount+4),
                     $this->packinglists[0]['pl_special_packs'])
-                    ->getStyle('K'. ($this->shipmarkcount+4) . ':L' . ($this->shipmarkcount+4))
+                    ->getStyle('K'. ($this->shipmarkcount+4) . ':K' . ($this->shipmarkcount+4))
                     ->applyFromArray($borders)->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
                 $event->sheet->mergeCells('I'. ($this->shipmarkcount+5) . ':J' . ($this->shipmarkcount+5));
-                $event->sheet->mergeCells('K'. ($this->shipmarkcount+5) . ':L' . ($this->shipmarkcount+5));
+                $event->sheet->mergeCells('K'. ($this->shipmarkcount+5) . ':K' . ($this->shipmarkcount+5));
                 $event->sheet->setCellValue('I'. ($this->shipmarkcount+5),
                     'Pre Pack')
                     ->getStyle('I'. ($this->shipmarkcount+5) . ':J' . ($this->shipmarkcount+5))
@@ -517,7 +538,7 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);;
                 $event->sheet->setCellValue('K'. ($this->shipmarkcount+5),
                     $this->packinglists[0]['pl_pre_pack'])
-                    ->getStyle('K'. ($this->shipmarkcount+5) . ':L' . ($this->shipmarkcount+5))
+                    ->getStyle('K'. ($this->shipmarkcount+5) . ':K' . ($this->shipmarkcount+5))
                     ->applyFromArray($borders)->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 
@@ -535,10 +556,10 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                         ],
                     ],
                 ];
-                $event->sheet->mergeCells('I'. ($this->shipmarkcount+7) . ':L' . ($this->shipmarkcount+7));
+                $event->sheet->mergeCells('I'. ($this->shipmarkcount+7) . ':K' . ($this->shipmarkcount+7));
                 $event->sheet->setCellValue('I'. ($this->shipmarkcount+7),
                     'Carton Details')
-                    ->getStyle('I'. ($this->shipmarkcount+7) . ':L' . ($this->shipmarkcount+7))
+                    ->getStyle('I'. ($this->shipmarkcount+7) . ':K' . ($this->shipmarkcount+7))
                     ->applyFromArray($style)->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
                 $style = [
@@ -559,10 +580,10 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                     ->getStyle('I'. ($this->shipmarkcount+8) . ':J' . ($this->shipmarkcount+8))
                     ->applyFromArray($style)->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-                $event->sheet->mergeCells('K'. ($this->shipmarkcount+8) . ':L' . ($this->shipmarkcount+8));
+                $event->sheet->mergeCells('K'. ($this->shipmarkcount+8) . ':K' . ($this->shipmarkcount+8));
                 $event->sheet->setCellValue('K'. ($this->shipmarkcount+8),
                     'Quantity')
-                    ->getStyle('K'. ($this->shipmarkcount+8) . ':L' . ($this->shipmarkcount+8))
+                    ->getStyle('K'. ($this->shipmarkcount+8) . ':K' . ($this->shipmarkcount+8))
                     ->applyFromArray($style)->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
                 $startCartonDetail = 9;
@@ -575,16 +596,16 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                         $key . 'CM')
                         ->getStyle('I'. ($this->shipmarkcount+$startCartonDetail) . ':J' . ($this->shipmarkcount+$startCartonDetail))
                         ->applyFromArray($borders);
-                    $event->sheet->mergeCells('K'. ($this->shipmarkcount+$startCartonDetail) . ':L' . ($this->shipmarkcount+$startCartonDetail));
+                    $event->sheet->mergeCells('K'. ($this->shipmarkcount+$startCartonDetail) . ':K' . ($this->shipmarkcount+$startCartonDetail));
                     $event->sheet->setCellValue('K'. ($this->shipmarkcount+$startCartonDetail),
                         $carton)
-                        ->getStyle('K'. ($this->shipmarkcount+$startCartonDetail) . ':L' . ($this->shipmarkcount+$startCartonDetail))
+                        ->getStyle('K'. ($this->shipmarkcount+$startCartonDetail) . ':K' . ($this->shipmarkcount+$startCartonDetail))
                         ->applyFromArray($borders);;
                     $ctntotal = $ctntotal + $carton;
                     $startCartonDetail++;
                 }
                 $event->sheet->mergeCells('I'. $ctntotal_start . ':J' . $ctntotal_start);
-                $event->sheet->mergeCells('K'. $ctntotal_start . ':L' . $ctntotal_start);
+                $event->sheet->mergeCells('K'. $ctntotal_start . ':K' . $ctntotal_start);
                 $style = [
                     'font' => [
                         'bold' => true,
@@ -601,7 +622,7 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                     ->getStyle('I'. $ctntotal_start . ':J' . $ctntotal_start)
                      ->applyFromArray($style);
                 $event->sheet->setCellValue('K'. $ctntotal_start,$ctntotal)
-                    ->getStyle('K'. $ctntotal_start . ':L' . $ctntotal_start)
+                    ->getStyle('K'. $ctntotal_start . ':K' . $ctntotal_start)
                     ->applyFromArray($style);
 
                 //CARTONDETAILS
@@ -686,8 +707,8 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
     public function headings(): array
     {
         return [
-            'PO',
             'Master PO',
+            'PO',
             'Style',
             'Material',
             'Description',
@@ -774,7 +795,7 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
          }catch (\Exception $e){
              $drawings->setPath(public_path('storage\images\sm.png'));
          }
-         $drawings->setHeight(220);
+         $drawings->setHeight(250);
          $drawings->setCoordinates('A' . ($this->shipmarkcount+1));
          $drawings->setWorksheet($worksheet);
      }

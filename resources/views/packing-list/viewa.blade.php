@@ -57,8 +57,8 @@
                                         <table class="table pl_table_number" >
                                             <thead>
                                             <tr>
-                                                <th width="7%" scope="col">PO</th>
                                                 <th width="7%" scope="col">Master PO</th>
+                                                <th width="7%" scope="col">PO</th>
                                                 <th width="6%" scope="col">Style</th>
                                                 <th width="7%" scope="col">Material</th>
                                                 <th width="17%" scope="col">Description</th>
@@ -112,8 +112,8 @@
 
                                                         @else
                                                             <tr>
-                                                                <td scope="col">{{$packinglists[$x][$y]['pl_po_cut']}}</td>
                                                                 <td scope="col">{{$packinglists[$x][$y]['pl_master_po']}}</td>
+                                                                <td scope="col">{{$packinglists[$x][$y]['pl_po_cut']}}</td>
                                                                 <td scope="col">{{$packinglists[$x][$y]['pl_sku']}}</td>
                                                                 <td scope="col">{{$packinglists[$x][$y]['pl_material']}}</td>
                                                                 <td scope="col">{{$packinglists[$x][$y]['pl_description']}}</td>

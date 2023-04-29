@@ -112,8 +112,8 @@
                                 <thead>
 
                                     <tr>
-                                        <th width="7%" scope="col">PO</th>
                                         <th width="7%" scope="col">Master PO</th>
+                                        <th width="7%" scope="col">PO</th>
                                         <th width="6%" scope="col">Style</th>
                                         <th width="7%" scope="col">Material</th>
                                         <th width="17%" scope="col">Description</th>
@@ -177,9 +177,9 @@
 
                                                 <input type="hidden" value="{{$packinglist['pl_style_id']}}">
 
-
-                                                <td scope="col">{{$packinglist['pl_po_cut']}}</td>
                                                 <td scope="col">{{$packinglist['pl_master_po']}}</td>
+                                                <td scope="col">{{$packinglist['pl_po_cut']}}</td>
+
                                                 <td scope="col">{{$packinglist['pl_sku']}}</td>
                                                 <td scope="col">{{$packinglist['pl_material']}}</td>
                                                 <td scope="col">{{$packinglist['pl_description']}}</td>

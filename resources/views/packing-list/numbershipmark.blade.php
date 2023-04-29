@@ -44,11 +44,26 @@
             </div>
         @endcan
         <h6>Packing Method</h6>
-        <textarea rows="10" id="pl_rm_input_two" style="min-width: 100%"
+        <textarea rows="12" id="pl_rm_input_two" style="min-width: 100%"
                @cannot('create', App\Models\PackingList::class)
                    {{'disabled'}}
                    @endcannot
         >
+            @if($packinglists[0]['pl_type'] == "APPAREL")
+                ***入箱方式:
+                1.每一个纸箱用要印有"SECURITY SEAL"字样的6CMW胶带封口;
+                2.纸箱上面要放一块三层纸板
+                干燥剂在衣服右胸内里及左口袋内里各放一包。
+                其中WHITE & MOONLIGHT IVORY&Vaporous Grey 颜色应纸箱
+                上下对角各放三包，不放三层纸板。
+                3.入箱要平整,规范。样衣请调头交换入箱.
+                4.样衣入箱后,如纸箱尺寸有问题,请及时通知生管.
+                5.因表布每缸会有色差。每箱入箱时，
+                有色差的不可同时装在一箱内。
+                6.请提供各尺寸的单件重量及各尺寸的装箱净毛重.
+                7.纸箱侧需贴NGC,有记号点（贴纸要贴正）
+            @endif
+
                                         {{$packinglists[0]['pl_remarks_two']}}
         </textarea>
     </div>

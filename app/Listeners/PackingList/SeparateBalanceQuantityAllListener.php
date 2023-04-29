@@ -69,8 +69,8 @@ class SeparateBalanceQuantityAllListener
 
             for($y=0 ; $y < $number_number_count; $y++){
                 $y_Ctrl++;
-                $packinglistArray[$x][$y_Ctrl]['pl_po_cut'] = $number_number_collection[$y]->pl_po_cut;
                 $packinglistArray[$x][$y_Ctrl]['pl_master_po'] = $number_number_collection[$y]->pl_master_po;
+                $packinglistArray[$x][$y_Ctrl]['pl_po_cut'] = $number_number_collection[$y]->pl_po_cut;
                 $packinglistArray[$x][$y_Ctrl]['pl_factory_po'] = $number_number_collection[$y]->pl_factory_po;
                 $packinglistArray[$x][$y_Ctrl]['pl_sku'] = $number_number_collection[$y]->pl_sku;
                 $packinglistArray[$x][$y_Ctrl]['pl_material'] = $number_number_collection[$y]->pl_material;
@@ -502,7 +502,7 @@ class SeparateBalanceQuantityAllListener
                     }
                 }
                 if($packinglists[0]['pl_type'] === "EQUIPMENT"){
-                    $style_code = substr($packinglists[$x]['pl_sku'],-5);
+                    $style_code = $packinglists[$x]['pl_sku'];
                     $key = $style_code . $packinglists[$x]['carton_size'];
 
                     if(!$mcqdetails->contains('key',$key)){

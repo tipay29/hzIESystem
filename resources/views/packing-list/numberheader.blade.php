@@ -4,7 +4,7 @@
 
             <img src="{{ asset('storage/images/horizonlogo.png') }}" width="95" height="40" alt="Horizon Outdoor">
             <br>
-            <b> Horizon Outdoor Cambodia Co. LTD </b> <br>
+            <b> Horizon Outdoor Cambodia CO., LTD </b> <br>
             <p class="m-0" style="font-size: .8rem; ">
                 National Highway 5, 43 Kilometers, Phum Phsar Trach, Khum Longvek,</p>
             <p class="m-0" style="font-size: .8rem; ">
@@ -40,7 +40,7 @@
                @cannot('create', App\Models\PackingList::class)
                    {{'disabled'}}
                    @endcannot
-        >
+        >Remarks:
                                         {{$packinglists[0]['pl_remarks']}}
         </textarea>
 
