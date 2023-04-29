@@ -2,17 +2,25 @@
 
 
     <div style="min-height: 50px;" class="col-md-6">
-
+        <h6>Carton Marking</h6>
         <img src="{{ asset('storage/images/shipmark/' . $packinglists[$x][0]['pl_brand'] .
                                     '/' . $packinglists[$x][0]['pl_type'] . '/' .
                                     trim($packinglists[$x][0]['pl_country'] . " " .
                                       $packinglists[$x][0]['pl_country_two']) .
                                       '.png') }}"
              class="img-fluid">
-
+        <h6>Packing Method</h6>
+        <textarea rows="10" id="pl_rm_input_two" style="min-width: 100%"
+               @cannot('create', App\Models\PackingList::class)
+                   {{'disabled'}}
+                   @endcannot
+        >
+                                        {{$packinglists[$x][0]['pl_remarks_two']}}
+        </textarea>
     </div>
     <div style="min-height: 50px;" class="col-md-6">
-        <h6 class="text-center" style="border: 1px solid black;">Summary Details <b> {{$packinglists[$x][0]['pl_factory_po']}} </b></h6>
+        <h6 class="text-center" style="">Summary</h6>
+        <h6 class="text-center" style=""> Factory PO: <b> {{$packinglists[$x][0]['pl_factory_po']}} </b></h6>
         <div class="row">
             <div style="min-height: 50px;" class="col-md-5">
 
@@ -26,18 +34,13 @@
                                     <table class="table pl_table_number">
                                         <thead>
                                         <tr>
-                                            <th>
+                                            <th width="50%">
                                                 Special Pack
                                             </th>
-                                            <th>Pre Pack</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>
+                                            <th width="50%">
                                                 <input
                                                     style="text-align: center;
-                                                   border: 1px solid black;border-radius: 0px; background-color:	 #f1f1f1;
+                                                 border-radius: 0px; background-color:	 #f1f1f1;
                                                    font-weight: 500;font-size: 1.2rem;
                                                    padding:0px;line-height: 10px;
                                                     "
@@ -46,11 +49,20 @@
                                                     {{'disabled'}}
                                                     @endcannot
                                                 >
+
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <b>
+                                                Pre Pack</b>
                                             </td>
                                             <td>
                                                 <input
                                                     style="text-align: center;
-                                                   border: 1px solid black;border-radius: 0px;background-color:	 #f1f1f1;
+                                                 border-radius: 0px;background-color:	 #f1f1f1;
                                                    font-weight: 500;font-size: 1.2rem;
                                                    padding:0px;line-height: 10px;
                                                     "
@@ -126,7 +138,11 @@
                         <tbody>
                         @foreach($packinglists[$x][count($packinglists[$x])-1]['mcqcarton_details']['mcq_details'] as $key => $mcq)
                             <tr>
-                                <td>{{$mcq['basis']}} </td>
+                                <td>
+
+                                        {{$mcq['basis']}}
+
+                                   </td>
                                 <td>{{$mcq['carton_size']}}CM </td>
                                 <td class="text-end">{{$mcq['mcq']}}</td>
                             </tr>

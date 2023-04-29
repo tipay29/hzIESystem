@@ -644,6 +644,28 @@ pl_rm_input.change(function(e){
     });
 });
 
+let pl_rm_input_two = $('#pl_rm_input_two');
+
+pl_rm_input_two.change(function(e){
+    e.preventDefault();
+    let remarks = {
+        remarks_two: pl_rm_input_two.val(),
+        batch: pl_add_po_batch.val(),
+        number_batch: pl_add_po_number_batch.val(),
+    }
+    $.ajax({
+        type:'POST',
+        url: '/api/packing-lists/update/remarkstwo',
+        data: remarks,
+        success: function (remarks) {
+            console.log(remarks);
+        },
+        error: function (x,h,r) {
+            alert(x.responseText);
+        }
+    });
+});
+
 let pl_special_pack = $('#pl_special_pack');
 pl_special_pack.change(function (e) {
     e.preventDefault();

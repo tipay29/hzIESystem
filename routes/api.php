@@ -59,6 +59,7 @@ Route::group(['as' => 'api.'],function() {
     Route::post('packing-lists/update/prepacks','PackinglistApiController@prepacks')->name('packing-lists.prepacks');
     Route::post('packing-lists/update/destinations','PackinglistApiController@destinations')->name('packing-lists.destinations');
     Route::post('packing-lists/update/specials','PackinglistApiController@specials')->name('packing-lists.specials');
+    Route::post('packing-lists/update/remarkstwo','PackinglistApiController@remarkstwo')->name('packing-lists.remarkstwo');
     Route::post('packing-lists/update/remarks','PackinglistApiController@remarks')->name('packing-lists.remarks');
     Route::get('packing-lists','PackinglistApiController@index')->name('packing-lists.index');
     Route::post('packing-lists/{packinglist}/update-gw','PackinglistApiController@updategw')->name('packing-lists.updategw');

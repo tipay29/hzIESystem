@@ -1,10 +1,14 @@
-<h6>Summary:</h6>
+
+<h6>
+
+    Material Summary:</h6>
     <div class="table-responsive">
         <table class="table pl_table_number" >
             <thead>
             <tr>
 
                 <th width="10%">Style</th>
+                <th width="10%">Material</th>
                 <th width="20%">Description</th>
                 <th width="15%">Color</th>
                 @if($packinglists[0][0]['pl_type'] === "APPAREL")
@@ -22,6 +26,7 @@
                 <tbody>
                 @foreach($packinglists[$x][count($packinglists[$x])-1]['summary'] as $key => $summaryrow)
                     <tr>
+                        <td scope="col">{{$summaryrow['pl_sku']}}</td>
                         <td scope="col">{{$summaryrow['pl_material']}}</td>
                         <td  scope="col">{{$summaryrow['pl_description']}}</td>
                         <td scope="col">{{$summaryrow['pl_color']}}</td>
@@ -37,6 +42,7 @@
                 @endforeach
 
                 <tr>
+                    <td scope="col"></td>
                     <td scope="col"></td>
                     <td  scope="col"></td>
                     <td scope="col"></td>
@@ -54,6 +60,7 @@
                 <tbody>
                 @foreach($packinglists[$x][count($packinglists[$x])-1]['summary'] as $key => $summaryrow)
                     <tr>
+                        <td scope="col">{{$summaryrow['pl_sku']}}</td>
                         <td scope="col">{{$summaryrow['pl_material']}}</td>
                         <td  scope="col">{{$summaryrow['pl_description']}}</td>
                         <td scope="col">{{$summaryrow['pl_color']}}</td>
@@ -68,6 +75,7 @@
                 @endforeach
 
                 <tr>
+                    <td scope="col"></td>
                     <td scope="col"></td>
                     <td  scope="col"></td>
                     <td scope="col"></td>

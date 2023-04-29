@@ -1,11 +1,7 @@
 
 <h6>
-    @if($packinglists[0]['pl_type'] == "APPAREL")
-        Size
-    @else
-        Style
-    @endif
-    Summary:</h6>
+
+ Material Summary:</h6>
     <div class="table-responsive">
         <table class="table pl_table_number" >
 
@@ -17,7 +13,10 @@
                 <thead>
                 <tr>
                     <th width="10%">
-                        Style
+                       Style
+                    </th>
+                    <th width="10%">
+                        Material
                         </th>
                     <th width="20%">Description</th>
                     <th width="15%">Color</th>
@@ -36,6 +35,7 @@
                 <tbody>
                 @foreach($packinglists[count($packinglists)-1]['summary'] as $summaryrow)
                     <tr>
+                        <td scope="col">{{$summaryrow['pl_sku']}}</td>
                         <td scope="col">{{$summaryrow['pl_material']}}</td>
                         <td  scope="col">{{$summaryrow['pl_description']}}</td>
                         <td scope="col">{{$summaryrow['pl_color']}}</td>
@@ -48,6 +48,7 @@
                     </tr>
                 @endforeach
                 <tr>
+                    <td scope="col"></td>
                     <td scope="col"></td>
                     <td  scope="col"></td>
                     <td scope="col"></td>
@@ -66,6 +67,7 @@
                 <tbody>
                     @foreach($packinglists[count($packinglists)-1]['summary'] as $summaryrow)
                         <tr>
+                            <td scope="col">{{$summaryrow['pl_sku']}}</td>
                             <td scope="col">{{$summaryrow['pl_material']}}</td>
                             <td  scope="col">{{$summaryrow['pl_description']}}</td>
                             <td scope="col">{{$summaryrow['pl_color']}}</td>
@@ -77,6 +79,7 @@
                         </tr>
                     @endforeach
                     <tr>
+                        <td scope="col"></td>
                         <td scope="col"></td>
                         <td  scope="col"></td>
                         <td scope="col"></td>

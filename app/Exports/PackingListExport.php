@@ -70,11 +70,12 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                 $this->contentcount = count($this->packinglists);
                 $this->contentsummarycount = count($this->packinglists[count($this->packinglists)-1]['summary']);
 
-                $this->titleheadercount = 9;
-                $this->summarycount = $this->contentcount + $this->titleheadercount + 2;
+                $this->titleheadercount = 10;
+                $this->summarycount = $this->contentcount + $this->titleheadercount + 1;
                 $this->shipmarkcount = $this->summarycount + $this->contentsummarycount + 4;
             },
             AfterSheet::class => function(AfterSheet $event){
+
                 //LEFT HEADER
                 $event->sheet->setCellValue('A3','HORIZON OUTDOOR CAMBODIA Co. LTD');
                 $event->sheet->setCellValue('A4','National Highway 5, 43 Kilometers, Phum Phsar Trach, Khum Longvek, ');
@@ -114,9 +115,15 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                         ],
                     ],
                 ];
+                $fontBig = [
+                    'font' => [
+                        'size' => 18,
+                        'bold' => true,
+                    ],
+                ];
                 $event->sheet->mergeCells('G1:J1');
                 $event->sheet->setCellValue('G1','PACKING LIST')->getStyle('G1')
-                    ->applyFromArray($font)
+                    ->applyFromArray($fontBig)
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
                 $event->sheet->mergeCells('G2:J2');
@@ -124,12 +131,24 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                     ->applyFromArray($font)
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-                $event->sheet->mergeCells('G3:J3');
-                $event->sheet->setCellValue('G3',$this->packinglists[0]['pl_shipment_mode'])->getStyle('G3')
-                    ->applyFromArray($font)
+
+
+                $event->sheet->mergeCells('G3:H3');
+                $event->sheet->setCellValue('G3','Ship Mode')->getStyle('G3:H3')
+                    ->applyFromArray($font)->applyFromArray($borderall)
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-                $event->sheet->mergeCells('G4:J7');
+                $event->sheet->mergeCells('I3:J3');
+                $event->sheet->setCellValue('I3',$this->packinglists[0]['pl_shipment_mode'])
+                    ->getStyle('I3:J3')
+                    ->applyFromArray($font)->applyFromArray($borderall)
+                    ->getAlignment()
+                    ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+
+                $event->sheet->mergeCells('G4:J7')
+                    ->getStyle('G4:J7')
+                    ->applyFromArray($borderall);
+
                 $event->sheet->setCellValue('G4',$this->packinglists[0]['pl_remarks'])
                     ->getStyle('G4')
                     ->getAlignment()
@@ -252,7 +271,8 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                         ],
                     ],
                 ];
-                $event->sheet->getStyle('A' . ($this->summarycount-2) . ':Q' . ($this->summarycount-2))
+                $event->sheet->setCellValue('A' . ($this->summarycount-1),'TOTAL');
+                $event->sheet->getStyle('A' . ($this->summarycount-1) . ':Q' . ($this->summarycount-1))
                     ->applyFromArray($style);
 
 //                dd($this->contentcount);
@@ -264,6 +284,7 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                 //BODY
 
                 //SUMMARY
+
                 $summaries =  $this->packinglists[count($this->packinglists)-1]['summary'];
 //                dd($summaries);
                 $style = [
@@ -271,11 +292,10 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                     'bold' => true,
                   ] ,
                 ];
-                if($this->packinglists[0]['pl_type'] == "APPAREL"){
-                    $ssummary = 'Size Summary';
-                }else{
-                    $ssummary = 'Style Summary';
-                }
+
+                $event->sheet->setCellValue('A' . ($this->summarycount+1),'Material Summary')
+                    ->getStyle('A' . ($this->summarycount+1))
+                    ->applyFromArray($style);
                 $style = [
                     'font' => [
                         'bold' => true,
@@ -291,9 +311,7 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                         ],
                     ],
                 ];
-                $event->sheet->setCellValue('A' . $this->summarycount,$ssummary)
-                    ->getStyle('A' . $this->summarycount)
-                    ->applyFromArray($style);
+                $event->sheet->setCellValue('C' . ($this->summarycount+1),'Style');
                 $event->sheet->setCellValue('D' . ($this->summarycount+1),'Material');
                 $event->sheet->setCellValue('E' . ($this->summarycount+1),'Description');
                 $event->sheet->setCellValue('F' . ($this->summarycount+1),'Color');
@@ -306,6 +324,7 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                 $event->sheet->setCellValue('O' . ($this->summarycount+1),'TGW');
                 $event->sheet->setCellValue('Q' . ($this->summarycount+1),'CBM');
                 foreach($summaries as $key => $summary){
+                    $event->sheet->setCellValue('C' . ($this->summarycount+2+$key),$summary['pl_sku']);
                     $event->sheet->setCellValue('D' . ($this->summarycount+2+$key),$summary['pl_material']);
                     $event->sheet->setCellValue('E' . ($this->summarycount+2+$key),$summary['pl_description']);
                     $event->sheet->setCellValue('F' . ($this->summarycount+2+$key),$summary['pl_color']);
@@ -324,7 +343,7 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                 $event->sheet->setCellValue('M' . ($this->shipmarkcount-2),$this->packinglists[count($this->packinglists)-1]['total_nw']);
                 $event->sheet->setCellValue('O' . ($this->shipmarkcount-2),$this->packinglists[count($this->packinglists)-1]['total_gw']);
                 $event->sheet->setCellValue('Q' . ($this->shipmarkcount-2),$this->packinglists[count($this->packinglists)-1]['total_cbm']);
-
+                $event->sheet->setCellValue('A' . ($this->shipmarkcount-2),'TOTAL');
 
                 $event->sheet->getStyle('A' . ($this->shipmarkcount-2) . ':Q' . ($this->shipmarkcount-2))
                     ->applyFromArray($style);
@@ -353,29 +372,107 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
 
                 //BOTTOM
                 //SHIPMARK
+                $style = [
+                    'font' => [
+                        'bold' => true,
+                    ],
+                    ];
+                $event->sheet->setCellValue('A' . ($this->shipmarkcount),'Carton Marking')
+                    ->getStyle('A' . ($this->shipmarkcount))
+                    ->applyFromArray($style);
+                $borderUp = [
+                    'borders' => [
+                        //outline all
+                        'top' => [
+                            'borderStyle' => Border::BORDER_THICK,
+
+                        ],
+                    ],
+                ];
+
+
+
                 $worksheet = $event->sheet->getDelegate();
 
                 $this->setImage($worksheet);
                 //SHIPMARK
 
+                //PACKING METHOD
+                $event->sheet->setCellValue('A' . ($this->shipmarkcount+12),'Packing Method')
+                    ->getStyle('A' . ($this->shipmarkcount+12))
+                    ->applyFromArray($style);
+                $event->sheet->mergeCells('A' . ($this->shipmarkcount+13) . ':F' . ($this->shipmarkcount+23))
+                    ->getStyle('A' . ($this->shipmarkcount+13) . ':F' . ($this->shipmarkcount+23))
+                    ->applyFromArray($borderall);
+
+                $event->sheet->setCellValue('A'. ($this->shipmarkcount+13),$this->packinglists[0]['pl_remarks_two'])
+                    ->getStyle('A'.($this->shipmarkcount+13))
+                    ->getAlignment()
+                    ->setHorizontal(Alignment::HORIZONTAL_LEFT)
+                    ->setVertical(Alignment::VERTICAL_TOP)
+                    ->setWrapText(true);
+                //PACKING METHOD
+
                 //SUMMARY DETAILS
+
+                $style = [
+                    'font' => [
+                        'bold' => true,
+                    ],
+                    'borders' => [
+                        //outline all
+                        'outline' => [
+                            'borderStyle' => Border::BORDER_THIN,
+
+                        ],
+                    ],
+                ];
                 $event->sheet->mergeCells('I'. $this->shipmarkcount . ':Q' . $this->shipmarkcount);
                 $event->sheet->setCellValue('I'. $this->shipmarkcount,
-                    'Summary Details ' . $this->packinglists[0]['pl_factory_po'])
+                    'Summary')
                     ->getStyle('I'. $this->shipmarkcount . ':Q'. $this->shipmarkcount)
                     ->applyFromArray($style)->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+                $event->sheet->mergeCells('I'. ($this->shipmarkcount+1) . ':J' . ($this->shipmarkcount+1));
+                $event->sheet->mergeCells('K'. ($this->shipmarkcount+1) . ':Q' . ($this->shipmarkcount+1));
+                $event->sheet->setCellValue('I'. ($this->shipmarkcount+1),
+                     'Factory PO')
+                    ->getStyle('I'. ($this->shipmarkcount+1) . ':J'. ($this->shipmarkcount+1))
+                    ->applyFromArray($style)->getAlignment()
+                    ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+                $event->sheet->setCellValue('K'. ($this->shipmarkcount+1),
+                    $this->packinglists[0]['pl_factory_po'])
+                    ->getStyle('K'. ($this->shipmarkcount+1) . ':Q'. ($this->shipmarkcount+1))
+                    ->applyFromArray($style)->getAlignment()
+                    ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+
+
+                $event->sheet
+                    ->getStyle('A' . ($this->shipmarkcount) . ':Q' . ($this->shipmarkcount))
+                    ->applyFromArray($borderUp);
+                $event->sheet
+                    ->getStyle('A' . ($this->titleheadercount-1) . ':Q' . ($this->titleheadercount-1))
+                    ->applyFromArray($borderUp);
                 //SUMMARY DETAILS
+
+
                 //PACK DETAILS
                 $style = [
                     'font' => [
                         'bold' => true,
                     ],
+                    'borders' => [
+                        //outline all
+                        'outline' => [
+                            'borderStyle' => Border::BORDER_THIN,
+
+                        ],
+                    ],
                 ];
-                $event->sheet->mergeCells('I'. ($this->shipmarkcount+1) . ':L' . ($this->shipmarkcount+1));
-                $event->sheet->setCellValue('I'. ($this->shipmarkcount+1),
+                $event->sheet->mergeCells('I'. ($this->shipmarkcount+3) . ':L' . ($this->shipmarkcount+3));
+                $event->sheet->setCellValue('I'. ($this->shipmarkcount+3),
                     'Pack Details')
-                    ->getStyle('I'. ($this->shipmarkcount+1) . ':L' . ($this->shipmarkcount+1))
+                    ->getStyle('I'. ($this->shipmarkcount+3) . ':L' . ($this->shipmarkcount+3))
                     ->applyFromArray($style)->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
                 $style = [
@@ -384,30 +481,45 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                     ],
                     'borders' => [
                         //outline all
-                        'bottom' => [
-                            'borderStyle' => Border::BORDER_MEDIUM,
+                        'outline' => [
+                            'borderStyle' => Border::BORDER_THIN,
 
                         ],
                     ],
                 ];
-                $event->sheet->mergeCells('I'. ($this->shipmarkcount+2) . ':J' . ($this->shipmarkcount+2));
-                $event->sheet->setCellValue('I'. ($this->shipmarkcount+2),
+                $borders = [
+                    'borders' => [
+                        //outline all
+                        'outline' => [
+                            'borderStyle' => Border::BORDER_THIN,
+
+                        ],
+                    ],
+                ];
+                $event->sheet->mergeCells('I'. ($this->shipmarkcount+4) . ':J' . ($this->shipmarkcount+4));
+                $event->sheet->setCellValue('I'. ($this->shipmarkcount+4),
                     'Special Pack')
-                    ->getStyle('I'. ($this->shipmarkcount+2) . ':J' . ($this->shipmarkcount+2))
+                    ->getStyle('I'. ($this->shipmarkcount+4) . ':J' . ($this->shipmarkcount+4))
                     ->applyFromArray($style)->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-                $event->sheet->mergeCells('K'. ($this->shipmarkcount+2) . ':L' . ($this->shipmarkcount+2));
-                $event->sheet->setCellValue('K'. ($this->shipmarkcount+2),
+                $event->sheet->mergeCells('K'. ($this->shipmarkcount+4) . ':L' . ($this->shipmarkcount+4));
+                $event->sheet->setCellValue('K'. ($this->shipmarkcount+4),
+                    $this->packinglists[0]['pl_special_packs'])
+                    ->getStyle('K'. ($this->shipmarkcount+4) . ':L' . ($this->shipmarkcount+4))
+                    ->applyFromArray($borders)->getAlignment()
+                    ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+                $event->sheet->mergeCells('I'. ($this->shipmarkcount+5) . ':J' . ($this->shipmarkcount+5));
+                $event->sheet->mergeCells('K'. ($this->shipmarkcount+5) . ':L' . ($this->shipmarkcount+5));
+                $event->sheet->setCellValue('I'. ($this->shipmarkcount+5),
                     'Pre Pack')
-                    ->getStyle('K'. ($this->shipmarkcount+2) . ':L' . ($this->shipmarkcount+2))
+                    ->getStyle('I'. ($this->shipmarkcount+5) . ':J' . ($this->shipmarkcount+5))
                     ->applyFromArray($style)->getAlignment()
+                    ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);;
+                $event->sheet->setCellValue('K'. ($this->shipmarkcount+5),
+                    $this->packinglists[0]['pl_pre_pack'])
+                    ->getStyle('K'. ($this->shipmarkcount+5) . ':L' . ($this->shipmarkcount+5))
+                    ->applyFromArray($borders)->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-                $event->sheet->mergeCells('I'. ($this->shipmarkcount+3) . ':J' . ($this->shipmarkcount+3));
-                $event->sheet->mergeCells('K'. ($this->shipmarkcount+3) . ':L' . ($this->shipmarkcount+3));
-                $event->sheet->setCellValue('I'. ($this->shipmarkcount+3),
-                    $this->packinglists[0]['pl_special_packs']);
-                $event->sheet->setCellValue('K'. ($this->shipmarkcount+3),
-                    $this->packinglists[0]['pl_pre_pack']);
 
                 //PACKDETAILS
                 //CARTONDETAILS
@@ -415,11 +527,18 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                     'font' => [
                         'bold' => true,
                     ],
+                    'borders' => [
+                        //outline all
+                        'outline' => [
+                            'borderStyle' => Border::BORDER_THIN,
+
+                        ],
+                    ],
                 ];
-                $event->sheet->mergeCells('I'. ($this->shipmarkcount+5) . ':L' . ($this->shipmarkcount+5));
-                $event->sheet->setCellValue('I'. ($this->shipmarkcount+5),
+                $event->sheet->mergeCells('I'. ($this->shipmarkcount+7) . ':L' . ($this->shipmarkcount+7));
+                $event->sheet->setCellValue('I'. ($this->shipmarkcount+7),
                     'Carton Details')
-                    ->getStyle('I'. ($this->shipmarkcount+5) . ':L' . ($this->shipmarkcount+5))
+                    ->getStyle('I'. ($this->shipmarkcount+7) . ':L' . ($this->shipmarkcount+7))
                     ->applyFromArray($style)->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
                 $style = [
@@ -428,35 +547,39 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                     ],
                     'borders' => [
                         //outline all
-                        'bottom' => [
-                            'borderStyle' => Border::BORDER_MEDIUM,
+                        'outline' => [
+                            'borderStyle' => Border::BORDER_THIN,
 
                         ],
                     ],
                 ];
-                $event->sheet->mergeCells('I'. ($this->shipmarkcount+6) . ':J' . ($this->shipmarkcount+6));
-                $event->sheet->setCellValue('I'. ($this->shipmarkcount+6),
+                $event->sheet->mergeCells('I'. ($this->shipmarkcount+8) . ':J' . ($this->shipmarkcount+8));
+                $event->sheet->setCellValue('I'. ($this->shipmarkcount+8),
                     'Carton Size')
-                    ->getStyle('I'. ($this->shipmarkcount+6) . ':J' . ($this->shipmarkcount+6))
+                    ->getStyle('I'. ($this->shipmarkcount+8) . ':J' . ($this->shipmarkcount+8))
                     ->applyFromArray($style)->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-                $event->sheet->mergeCells('K'. ($this->shipmarkcount+6) . ':L' . ($this->shipmarkcount+6));
-                $event->sheet->setCellValue('K'. ($this->shipmarkcount+6),
+                $event->sheet->mergeCells('K'. ($this->shipmarkcount+8) . ':L' . ($this->shipmarkcount+8));
+                $event->sheet->setCellValue('K'. ($this->shipmarkcount+8),
                     'Quantity')
-                    ->getStyle('K'. ($this->shipmarkcount+6) . ':L' . ($this->shipmarkcount+6))
+                    ->getStyle('K'. ($this->shipmarkcount+8) . ':L' . ($this->shipmarkcount+8))
                     ->applyFromArray($style)->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-                $startCartonDetail = 7;
+                $startCartonDetail = 9;
 
                 $ctntotal_start = $this->shipmarkcount + $startCartonDetail + count($this->packinglists[count($this->packinglists)-1]['mcqcarton_details']['carton_details']);
                 $ctntotal =0;
                 foreach($this->packinglists[count($this->packinglists)-1]['mcqcarton_details']['carton_details'] as $key => $carton){
                     $event->sheet->mergeCells('I'. ($this->shipmarkcount+$startCartonDetail) . ':J' . ($this->shipmarkcount+$startCartonDetail));
                     $event->sheet->setCellValue('I'. ($this->shipmarkcount+$startCartonDetail),
-                        $key . 'CM');
+                        $key . 'CM')
+                        ->getStyle('I'. ($this->shipmarkcount+$startCartonDetail) . ':J' . ($this->shipmarkcount+$startCartonDetail))
+                        ->applyFromArray($borders);
                     $event->sheet->mergeCells('K'. ($this->shipmarkcount+$startCartonDetail) . ':L' . ($this->shipmarkcount+$startCartonDetail));
                     $event->sheet->setCellValue('K'. ($this->shipmarkcount+$startCartonDetail),
-                        $carton);
+                        $carton)
+                        ->getStyle('K'. ($this->shipmarkcount+$startCartonDetail) . ':L' . ($this->shipmarkcount+$startCartonDetail))
+                        ->applyFromArray($borders);;
                     $ctntotal = $ctntotal + $carton;
                     $startCartonDetail++;
                 }
@@ -468,11 +591,7 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                     ],
                     'borders' => [
                         //outline all
-                        'bottom' => [
-                            'borderStyle' => Border::BORDER_THIN,
-
-                        ],
-                        'top' => [
+                        'outline' => [
                             'borderStyle' => Border::BORDER_THIN,
 
                         ],
@@ -491,13 +610,16 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                     'font' => [
                         'bold' => true,
                     ],
+                    'outline' => [
+                        'borderStyle' => Border::BORDER_THIN,
 
+                    ],
                 ];
-                $event->sheet->mergeCells('O'. ($this->shipmarkcount+1) . ':Q' . ($this->shipmarkcount+1));
-                $event->sheet->setCellValue('O'. ($this->shipmarkcount+1),
+                $event->sheet->mergeCells('O'. ($this->shipmarkcount+3) . ':Q' . ($this->shipmarkcount+3));
+                $event->sheet->setCellValue('O'. ($this->shipmarkcount+3),
                     'MCQ Details')
-                    ->getStyle('O'. ($this->shipmarkcount+1) . ':Q' . ($this->shipmarkcount+1))
-                    ->applyFromArray($style)->getAlignment()
+                    ->getStyle('O'. ($this->shipmarkcount+3) . ':Q' . ($this->shipmarkcount+3))
+                    ->applyFromArray($style)->applyFromArray($borderall)->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 
                 $style = [
@@ -506,37 +628,53 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                     ],
                     'borders' => [
                         //outline all
-                        'bottom' => [
-                            'borderStyle' => Border::BORDER_MEDIUM,
+                        'outline' => [
+                            'borderStyle' => Border::BORDER_THIN,
 
                         ],
                     ],
                 ];
-                $event->sheet->setCellValue('O' .($this->shipmarkcount+2),'Size')->getStyle('O'.($this->shipmarkcount+2))
+                if($this->packinglists[0]['pl_type'] == "APPAREL"){
+                    $style_size = 'Size';
+                }else{
+                    $style_size = 'Style';
+                }
+                $event->sheet->setCellValue('O' .($this->shipmarkcount+4),$style_size)
+                    ->getStyle('O'.($this->shipmarkcount+4))
                     ->applyFromArray($style)
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-                $event->sheet->setCellValue('P' .($this->shipmarkcount+2),'Carton')->getStyle('P'.($this->shipmarkcount+2))
+                $event->sheet->setCellValue('P' .($this->shipmarkcount+4),'Carton')->getStyle('P'.($this->shipmarkcount+4))
                     ->applyFromArray($style)
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-                $event->sheet->setCellValue('Q' .($this->shipmarkcount+2),'MCQ')->getStyle('Q'.($this->shipmarkcount+2))
+                $event->sheet->setCellValue('Q' .($this->shipmarkcount+4),'MCQ')->getStyle('Q'.($this->shipmarkcount+4))
                     ->applyFromArray($style)
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-                $startMCQDetail = 3;
+                $startMCQDetail = 5;
                 foreach($this->packinglists[count($this->packinglists)-1]['mcqcarton_details']['mcq_details'] as $key => $mcq){
-                    $event->sheet->setCellValue('O' .($this->shipmarkcount+$startMCQDetail),$mcq['basis']);
-                    $event->sheet->setCellValue('P' .($this->shipmarkcount+$startMCQDetail),$mcq['carton_size'] . 'CM');
-                    $event->sheet->setCellValue('Q' .($this->shipmarkcount+$startMCQDetail),$mcq['mcq']);
+
+                    $event->sheet->setCellValue('O' .($this->shipmarkcount+$startMCQDetail),$mcq['basis'])
+                        ->getStyle('O' .($this->shipmarkcount+$startMCQDetail))
+                        ->applyFromArray($borders);
+                    $event->sheet->setCellValue('P' .($this->shipmarkcount+$startMCQDetail),$mcq['carton_size'] . 'CM')
+                        ->getStyle('P' .($this->shipmarkcount+$startMCQDetail))
+                        ->applyFromArray($borders);
+                    $event->sheet->setCellValue('Q' .($this->shipmarkcount+$startMCQDetail),$mcq['mcq'])
+                        ->getStyle('Q' .($this->shipmarkcount+$startMCQDetail))
+                        ->applyFromArray($borders);
                     $startMCQDetail++;
                 }
                 //MCQ DETAILS
 
                 //BOTTOM
+                $this->columnFormats();
             }
 
         ];
+
+
     }
 
 
@@ -618,8 +756,6 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
         return [
             'A' => NumberFormat::FORMAT_NUMBER,
             'B' => NumberFormat::FORMAT_NUMBER,
-
-
         ];
     }
 
@@ -639,7 +775,7 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
              $drawings->setPath(public_path('storage\images\sm.png'));
          }
          $drawings->setHeight(220);
-         $drawings->setCoordinates('A' . $this->shipmarkcount);
+         $drawings->setCoordinates('A' . ($this->shipmarkcount+1));
          $drawings->setWorksheet($worksheet);
      }
 

@@ -85,6 +85,7 @@ class SeparateBalanceQuantityAllListener
                 $packinglistArray[$x][$y_Ctrl]['pl_type'] = $number_number_collection[$y]->pl_type;
                 $packinglistArray[$x][$y_Ctrl]['pl_brand'] = $number_number_collection[$y]->pl_brand;
                 $packinglistArray[$x][$y_Ctrl]['pl_remarks'] = $number_number_collection[$y]->pl_remarks;
+                $packinglistArray[$x][$y_Ctrl]['pl_remarks_two'] = $number_number_collection[$y]->pl_remarks_two;
                 $packinglistArray[$x][$y_Ctrl]['pl_special_packs'] = $number_number_collection[$y]->pl_special_packs;
                 $packinglistArray[$x][$y_Ctrl]['pl_status'] = $number_number_collection[$y]->pl_status;
                 $packinglistArray[$x][$y_Ctrl]['pl_shipment_mode'] = $number_number_collection[$y]->pl_shipment_mode;
@@ -556,6 +557,7 @@ class SeparateBalanceQuantityAllListener
         $summary = collect();
         for($m = 0;$m < count($bases);$m++){
 
+            $plrow['pl_sku'] = '';
             $plrow['pl_material'] = '';
             $plrow['pl_description'] = '';
             $plrow['pl_color'] = '';
@@ -573,6 +575,7 @@ class SeparateBalanceQuantityAllListener
                     if($packinglists[0]['pl_type'] == "APPAREL"){
                         if($packinglists[$z]['pl_style_size'] == $bases[$m]){
 
+                            $plrow['pl_sku'] = $packinglists[$z]['pl_sku'];
                             $plrow['pl_material'] = $packinglists[$z]['pl_material'];
                             $plrow['pl_description'] = $packinglists[$z]['pl_description'];
                             $plrow['pl_color'] = $packinglists[$z]['pl_color'];
@@ -588,6 +591,7 @@ class SeparateBalanceQuantityAllListener
                     if($packinglists[0]['pl_type'] == "EQUIPMENT"){
                         if($packinglists[$z]['pl_material'] == $bases[$m]){
 
+                            $plrow['pl_sku'] = $packinglists[$z]['pl_sku'];
                             $plrow['pl_material'] = $packinglists[$z]['pl_material'];
                             $plrow['pl_description'] = $packinglists[$z]['pl_description'];
                             $plrow['pl_color'] = $packinglists[$z]['pl_color'];

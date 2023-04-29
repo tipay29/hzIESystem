@@ -133,6 +133,23 @@ class PackinglistApiController extends Controller
 
     }
 
+    public function remarkstwo(){
+
+        $packinglists = PackingList::where(
+            [
+                ['pl_batch',  request()->batch],
+                ['pl_number_batch',  request()->number_batch],
+            ]
+        )->get();
+
+        $packinglists->each(function ($item){
+            $item->update(['pl_remarks_two'=> request()->remarks_two]);
+        });
+
+        return response()->json(['success' => $packinglists],201);
+
+    }
+
     public function destinations(){
 
         $packinglists = PackingList::where(

@@ -89,6 +89,7 @@ class SeparateBalanceQuantityListener
             $packinglistArray[$x]['pl_type'] = $packinglistsRaw[$x]->pl_type;
             $packinglistArray[$x]['pl_brand'] = $packinglistsRaw[$x]->pl_brand;
             $packinglistArray[$x]['pl_remarks'] = $packinglistsRaw[$x]->pl_remarks;
+            $packinglistArray[$x]['pl_remarks_two'] = $packinglistsRaw[$x]->pl_remarks_two;
             $packinglistArray[$x]['pl_special_packs'] = $packinglistsRaw[$x]->pl_special_packs;
             $packinglistArray[$x]['pl_season'] = $packinglistsRaw[$x]->pl_season;
             $packinglistArray[$x]['pl_shipment_mode'] = $packinglistsRaw[$x]->pl_shipment_mode;
@@ -595,6 +596,7 @@ class SeparateBalanceQuantityListener
 //        dd($packinglists);
         for($m = 0;$m < count($bases);$m++){
 
+            $plrow['pl_sku'] = '';
             $plrow['pl_material'] = '';
             $plrow['pl_description'] = '';
             $plrow['pl_color'] = '';
@@ -612,6 +614,7 @@ class SeparateBalanceQuantityListener
                     if($packinglists[0]['pl_type'] == "APPAREL"){
                         if($packinglists[$z]['pl_style_size'] == $bases[$m]){
 
+                            $plrow['pl_sku'] = $packinglists[$z]['pl_sku'];
                             $plrow['pl_material'] = $packinglists[$z]['pl_material'];
                             $plrow['pl_description'] = $packinglists[$z]['pl_description'];
                             $plrow['pl_color'] = $packinglists[$z]['pl_color'];
@@ -628,6 +631,7 @@ class SeparateBalanceQuantityListener
                     if($packinglists[0]['pl_type'] == "EQUIPMENT"){
                         if($packinglists[$z]['pl_material'] == $bases[$m]){
 
+                            $plrow['pl_sku'] = $packinglists[$z]['pl_sku'];
                             $plrow['pl_material'] = $packinglists[$z]['pl_material'];
                             $plrow['pl_description'] = $packinglists[$z]['pl_description'];
                             $plrow['pl_color'] = $packinglists[$z]['pl_color'];
