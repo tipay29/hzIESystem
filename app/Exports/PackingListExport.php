@@ -66,7 +66,7 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
 //                dd($this->packinglists);
                 $event->sheet
                     ->getPageSetup()
-                    ->setFitToPage(true)
+                    ->setScale(57)
                     ->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
                 $this->mcqdetailcount = count($this->packinglists[count($this->packinglists)-1]['total_ctn_ctn']);
                 $this->contentcount = count($this->packinglists);
@@ -78,12 +78,26 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
             },
             AfterSheet::class => function(AfterSheet $event){
 
+                $fontSize = [
+                    'font' => [
+                        'size' => 8,
+                    ],
+                ];
+                $event->sheet->getStyle('E' . ($this->titleheadercount+1) . ':F' . ($this->titleheadercount+1+$this->contentcount))
+                ->applyFromArray($fontSize);
+                $event->sheet->getStyle('E' . ($this->summarycount+2) . ':F' . ($this->summarycount+2+$this->contentsummarycount))
+                ->applyFromArray($fontSize);
+
                 //LEFT HEADER
                 $event->sheet->setCellValue('A3','HORIZON OUTDOOR CAMBODIA CO., LTD');
                 $event->sheet->setCellValue('A4','National Highway 5, 43 Kilometers, Phum Phsar Trach, Khum Longvek, ');
                 $event->sheet->setCellValue('A5','Srok Kampong Trolach,Kampong Chhnang Province, Cambodia');
-                $event->sheet->setCellValue('A6','Tel: 855-78-210 076');
-                $event->sheet->setCellValue('A7','Country of Origin: Cambodia');
+                $event->sheet->setCellValue('A6','Tel:');
+                $event->sheet->setCellValue('B6','855-78-210 076');
+                $event->sheet->setCellValue('A7','Country of Origin: Cambodia')
+                ->getStyle('A7')
+                ->applyFromArray($fontSize);
+                $event->sheet->setCellValue('B7','Cambodia');
                 $style = [
                     'font' => [
                         'bold' => true,
@@ -233,7 +247,7 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
 
                 //TITLE
 
-                $event->sheet->getColumnDimension('A')->setWidth(11);
+                $event->sheet->getColumnDimension('A')->setWidth(12);
                 $event->sheet->getColumnDimension('B')->setWidth(16);
                 $event->sheet->getColumnDimension('C')->setWidth(10);
                 $event->sheet->getColumnDimension('D')->setWidth(14);
@@ -315,7 +329,7 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                 ];
                 $event->sheet->setCellValue('C' . ($this->summarycount+1),'Style');
                 $event->sheet->setCellValue('D' . ($this->summarycount+1),'Material');
-                $event->sheet->setCellValue('E' . ($this->summarycount+1),'Description');
+                $event->sheet->setCellValue('E' . ($this->summarycount+1),'Style Desc');
                 $event->sheet->setCellValue('F' . ($this->summarycount+1),'Color');
                 if($this->packinglists[0]['pl_type'] == "APPAREL"){
                 $event->sheet->setCellValue('G' . ($this->summarycount+1),'Size');
@@ -711,7 +725,7 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
             'PO',
             'Style',
             'Material',
-            'Description',
+            'Style Desc',
             'Color',
             'Size',
             'TtlQty',
