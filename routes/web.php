@@ -45,6 +45,7 @@ Route::group(['namespace' => 'Web'],function(){
     Route::get('packing-lists/batch/{batch}/view-all','PackingListController@viewa')->name('packing-lists.viewa');
     Route::get('packing-lists/batch/{batch}/number/{number}','PackingListController@number')->name('packing-lists.number');
     Route::get('packing-lists/batch/{batch}','PackingListController@batch')->name('packing-lists.batch');
+    Route::get('packing-lists/batch/{batch}/ctnform','PackingListController@ctnform')->name('packing-lists.ctnform');
     Route::get('packing-lists/batch/{batch}/export','PackingListController@exportBatch')->name('packing-lists.exportbatch');
     Route::get('packing-lists/export','PackingListController@export')->name('packing-lists.export');
     Route::get('packing-lists/batch/{batch}/number/{number}/export','PackingListController@exportNumber')->name('packing-lists.exportnumber');

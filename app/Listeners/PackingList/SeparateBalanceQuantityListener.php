@@ -579,8 +579,11 @@ class SeparateBalanceQuantityListener
     }
 
     protected function getSummary($packinglists){
+
+
         if($packinglists[0]['pl_type'] == "APPAREL"){
             $bases = $packinglists[count($packinglists)-1]['pl_ctn_list'];
+
         }elseif($packinglists[0]['pl_type'] == "EQUIPMENT"){
             $bases = [];
             for($x = 0; $x < count($packinglists);$x++){

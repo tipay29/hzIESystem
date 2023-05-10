@@ -177,14 +177,14 @@
             <div class="row">
                 <h6  class="col-md-6 text-md-end"> Destination Country:</h6>
 
-                <input disabled id="pl_destination_input" class="col-md-6 text-start"
+                <input id="pl_destination_input" class="col-md-6 text-start"
                        type="text"
                        style="text-align: center;
                                                    border: 0; background-color:	 #f1f1f1;
                                                    font-weight: 500;font-size: 1.2rem;
                                                    padding:0px;line-height: 10px;padding-left: 0.7em;
                                                     " value="{{$packinglists[0]['pl_destination']}}"
-                @cannot('create', App\Models\PackingList::class)
+                     @cannot('create', App\Models\PackingList::class)
                     {{'disabled'}}
                     @endcannot>
 

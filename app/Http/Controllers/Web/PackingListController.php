@@ -275,7 +275,7 @@ class PackingListController extends Controller
 
         $packinglists = event(new GetPackingListDataAllEvent($batch))[0];
 
-//        dd($packinglists[0][12]);
+//        dd($packinglists[1]);
 
         return view('packing-list.viewa',compact('packinglists'));
     }
@@ -527,6 +527,66 @@ class PackingListController extends Controller
         return $excel;
     }
 
+    public function ctnform($batch){
+        $excel = '';
 
+        $packinglists = event(new GetPackingListDataAllEvent($batch))[0];
+//            dd($packinglists[0]);
+
+        $cartonForm = $this->getCartonForm($packinglists);
+//        $excel = Excel::download(new PackingListMultiSheetExport($packinglists), 'pls.xlsx');
+
+        return $excel;
+    }
+
+    protected function getCartonForm($packinglists){
+
+
+//        dd($packinglists);
+        $bases = [];
+        $plrow = [];
+        $ctn_order = collect();
+        for($x = 0; $x < count($packinglists);$x++){
+
+            for($y = 0; $y < count($packinglists[$x]); $y++){
+
+                if($y !== count($packinglists[$x])-1) {
+
+                    $key =  $packinglists[$x][$y]['pl_factory_po'] . '-' .
+                        $packinglists[$x][$y]['pl_master_po'] . '-' .
+                        $packinglists[$x][$y]['pl_material'] . '-'. $packinglists[$x][$y]['pl_style_size'] . '-' . $packinglists[$x][$y]['carton_size'] ;
+
+                    if(!array_key_exists($key,$bases)){
+//                        array_push($bases,$key);
+//                        dump($key);
+
+                        $plrow[$key]['ctn_factory_po'] = $packinglists[$x][$y]['pl_factory_po'];
+                        $plrow[$key]['ctn_master_po'] = $packinglists[$x][$y]['pl_master_po'];
+                        $plrow[$key]['ctn_material'] = $packinglists[$x][$y]['pl_material'];
+                        $plrow[$key]['ctn_size'] = $packinglists[$x][$y]['pl_style_size'];
+                        $plrow[$key]['ctn_quantity'] = $packinglists[$x][$y]['pl_number_of_carton'];
+                        $plrow[$key]['ctn_carton'] = $packinglists[$x][$y]['carton_size'];
+
+
+                    }
+                    elseif(array_key_exists($key,$bases)){
+                        dd('aw');
+                        $plrow[$key]['ctn_quantity'] = $plrow[$key]['ctn_quantity'] + $packinglists[$x][$y]['pl_number_of_carton'];
+
+                    }
+
+//                    $ctn_order->add($plrow);
+                }
+
+
+            }
+
+        }
+
+        dd($plrow);
+        $ctn_order->add($plrow);
+
+        return $packinglists;
+    }
 
 }
