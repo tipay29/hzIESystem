@@ -12,12 +12,12 @@ class PackingListPolicy
 
     public function viewAny(User $user)
     {
-        return in_array($user->employee->job->id,[1,7,8]);
+        return in_array($user->employee->job->id,[1,6,7,8,9,10,11,12]);
     }
 
     public function view(User $user, PackingList $packingList)
     {
-        return in_array($user->employee->job->id,[1,7,8]);
+        return in_array($user->employee->job->id,[1,6,7,8,9,10,11,12]);
     }
 
 
