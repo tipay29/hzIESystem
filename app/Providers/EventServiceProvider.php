@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Events\Carton\GetPLCartonOrderFormEvent;
 use App\Events\GetCutEffEvent;
 use App\Events\GetTotalCutUtilEvent;
 use App\Events\InsertCutTableEvent;
@@ -41,6 +42,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         GetPackingListDataAllEvent::class => [
             \App\Listeners\PackingList\SeparateBalanceQuantityAllListener::class,
+        ],
+        GetPLCartonOrderFormEvent::class => [
+            \App\Listeners\Carton\SeparatePLCartonFormListener::class,
         ],
     ];
 

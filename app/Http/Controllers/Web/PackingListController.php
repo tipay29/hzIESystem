@@ -263,7 +263,7 @@ class PackingListController extends Controller
             ['type', $packinglists[0]['pl_type']],
         ])->get();
 
-//        dd($packinglists);
+        dd($packinglists);
 
 //        dd($summary->sum('pl_quantity'));
 
@@ -532,7 +532,7 @@ class PackingListController extends Controller
 
         $packinglists = event(new GetPackingListDataAllEvent($batch))[0];
 //            dd($packinglists[0]);
-
+//        dd($packinglists);
         $cartonForm = $this->getCartonForm($packinglists);
 //        $excel = Excel::download(new PackingListMultiSheetExport($packinglists), 'pls.xlsx');
 
@@ -566,7 +566,7 @@ class PackingListController extends Controller
                         $plrow[$key]['ctn_size'] = $packinglists[$x][$y]['pl_style_size'];
                         $plrow[$key]['ctn_quantity'] = $packinglists[$x][$y]['pl_number_of_carton'];
                         $plrow[$key]['ctn_carton'] = $packinglists[$x][$y]['carton_size'];
-
+                        $plrow[$key]['ctn_po_quantity'] = $packinglists[$x][$y]['pl_quantity'];
 
                     }
                     elseif(array_key_exists($key,$bases)){

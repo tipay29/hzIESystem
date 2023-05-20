@@ -53,6 +53,8 @@ Route::group(['namespace' => 'Web'],function(){
     Route::post('packing-lists/mark','PackingListController@mark')->name('packing-lists.mark');
 
     Route::resource('packing-lists','PackingListController');
+
+    Route::get('cartons/order/create','CartonController@orderCreate')->name('cartons.order-create');
     Route::resource('cartons','CartonController');
 
 

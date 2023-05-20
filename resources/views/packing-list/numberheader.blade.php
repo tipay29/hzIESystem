@@ -190,19 +190,10 @@
 
             </div>
 
-
-
-
-
             <button style="display: none;" id="addMcqModalBtn" type="button" class="btn btn-outline-info col-md-6" data-bs-toggle="modal"
                         data-bs-target="#addMcqModal">
                     Add MCQ
             </button>
-
-
-
-
-
 
         </div>
     </div>

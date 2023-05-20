@@ -13,9 +13,6 @@
 
                         <div>
 
-
-
-
                             <a href="{{route('cartons.create')}}"
                                class="btn btn-outline-success"
                             >Add Carton</a>

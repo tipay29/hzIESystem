@@ -19,6 +19,10 @@ return new class extends Migration
             $table->string('ctn_size');
             $table->float('ctn_weight');
             $table->string('type')->nullable();
+            $table->string('ctn_specification')->nullable();
+            $table->float('ctn_fob')->default(1.1);
+            $table->string('ctn_code_1001')->nullable();
+            $table->string('ctn_code_1004')->nullable();
             $table->timestamps();
         });
     }

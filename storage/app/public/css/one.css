@@ -20,8 +20,23 @@
     display: none;
 }
 
+#row-carton-header h6{
+    font-size: 12px;
+}
+#row-carton-header .row h6:nth-child(2){
+    text-decoration: underline;
+}
 
+.co-create-table th{
+    font-size:13px;
+    padding: 1px;
 
+}
+.co-create-table td{
+    font-size:12px;
+    padding: 1px;
+
+}
 
 @media print
 {
