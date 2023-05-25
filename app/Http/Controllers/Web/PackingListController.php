@@ -263,7 +263,11 @@ class PackingListController extends Controller
             ['type', $packinglists[0]['pl_type']],
         ])->get();
 
+<<<<<<< HEAD
 //        dd($packinglists);
+=======
+        // dd($packinglists); 
+>>>>>>> dad20daf75ebf8b232d6b03bb788f8e6ce9dafc4
 
 //        dd($summary->sum('pl_quantity'));
 
@@ -355,7 +359,7 @@ class PackingListController extends Controller
 
         $batches = PackingList::where('pl_batch',$batch)->pluck('id');
 
-        $this->authorize('delete',$batches);
+        // $this->authorize('delete',$batches);
         PackingList::destroy($batches);
 
         return redirect()->back();
@@ -367,7 +371,7 @@ class PackingListController extends Controller
         $numbers = PackingList::where([['pl_batch',$batch],
                                 ['pl_number_batch',$number]])->pluck('id');
 
-        $this->authorize('delete',$numbers);
+        // $this->authorize('delete',$numbers);
 
         $countPlNumbers = PackingList::where([['pl_batch',$batch]])->max('pl_number_batch');
         $countPlUniqNumbers = PackingList::where([['pl_batch',$batch]])->max('pl_uniq_number_batch');
