@@ -1,9 +1,4 @@
-@if(session()->has('message'))
-<div class="alert alert-danger">
-    {{ session()->get('message') }}
-</div>
-@endif
-<form action="{{route('packing-lists.batch', $packinglists[0]->pl_batch)}}" method="get">
+
     <div class="container-fluid p-0 section-pl-to-no-print">
         <div class="row">
             <div class="col-md-2">

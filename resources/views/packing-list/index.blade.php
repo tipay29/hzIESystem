@@ -21,12 +21,16 @@
 {{--                                <a href="{{route('packing-lists.ctnform', $packinglists[0][0]['pl_batch'])}}"--}}
 {{--                                   class="btn btn-outline-success">--}}
 {{--                                    Carton Form</a>--}}
-                            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#cartonOrderModal">
-                                Create Carton Form
-                            </button>
+{{--                            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#cartonOrderModal">--}}
+{{--                                Create Carton Form--}}
+{{--                            </button>--}}
+                                <a href="{{route('cartons.cartoncreate')}}"
+                                   class="btn btn-outline-secondary"
+                                >Create Carton Form</a>
 
-
-
+                            <a href="{{route('packing-lists.allviews')}}"
+                               class="btn btn-outline-secondary"
+                            >All View</a>
 
                             <a href="{{route('cartons.index')}}"
                             class="btn btn-outline-secondary"
@@ -192,7 +196,7 @@
     </div>
 
 
-    @include('carton.order-modal')
+{{--    @include('carton.order-modal')--}}
 
 @endsection
 

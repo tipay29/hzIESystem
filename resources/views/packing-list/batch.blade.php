@@ -36,6 +36,12 @@
 
                         <div class="card-body">
 
+                            @if(session()->has('message'))
+                                <div class="alert alert-danger">
+                                    {{ session()->get('message') }}
+                                </div>
+                            @endif
+                            <form action="{{route('packing-lists.batch', $packinglists[0]->pl_batch)}}" method="get">
                             @include('packing-list.batchfilter')
 
                             <div class="table-responsive">

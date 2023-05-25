@@ -52,8 +52,11 @@ Route::group(['namespace' => 'Web'],function(){
     Route::post('packing-lists/import','PackingListController@import')->name('packing-lists.import');
     Route::post('packing-lists/mark','PackingListController@mark')->name('packing-lists.mark');
 
+    Route::get('packing-lists/all/views','PackingListController@allViews')->name('packing-lists.allviews');
+
     Route::resource('packing-lists','PackingListController');
 
+    Route::get('cartons/carton/order/create','CartonController@cartonCreate')->name('cartons.cartoncreate');
     Route::get('cartons/order/create','CartonController@orderCreate')->name('cartons.order-create');
     Route::resource('cartons','CartonController');
 

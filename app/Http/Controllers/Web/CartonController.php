@@ -62,6 +62,11 @@ class CartonController extends Controller
         ]);
     }
 
+    public function cartonCreate(){
+
+        return view('carton.carton-create');
+    }
+
     public function orderCreate()
     {
 //        dd(request()->all());
@@ -73,11 +78,11 @@ class CartonController extends Controller
 //            ['pl_buy_month', request()->co_month],
 //        ])->get();
 
-        $packinglists = event(new GetPLCartonOrderFormEvent(request()->all()));
+//        $packinglists = event(new GetPLCartonOrderFormEvent(request()->all()));
+//
+//        $cartonorder = $this->getCartonForm($packinglists);
 
-        $cartonorder = $this->getCartonForm($packinglists);
-
-        $cartonorders = collect($cartonorder);
+        $cartonorders = collect();
 //        dd($cartonorders);
         return view('carton.order-create', compact('cartonorders'));
 
@@ -137,7 +142,6 @@ class CartonController extends Controller
 
 //                    $ctn_order->add($plrow);
                 }
-
 
             }
 
