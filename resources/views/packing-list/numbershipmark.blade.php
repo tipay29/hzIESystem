@@ -19,7 +19,7 @@
             @endforeach
 
         </select>
-        <
+        
         <img src="{{ asset('storage/images/shipmark/' . $packinglists[0]['pl_brand'] .
                                     '/' . $packinglists[0]['pl_type']  . '/' .
                                     trim($packinglists[0]['pl_country']. " "
