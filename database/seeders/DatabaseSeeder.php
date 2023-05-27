@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
             EmployeeSeeder::class,
             UserSeeder::class,
             StyleSeeder::class,
-            CutSeeder::class,
+            // CutSeeder::class,
             BrandSeeder::class,
             CartonSeeder::class,
             SizeSeeder::class,

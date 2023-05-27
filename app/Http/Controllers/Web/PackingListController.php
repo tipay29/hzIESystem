@@ -263,12 +263,6 @@ class PackingListController extends Controller
             ['type', $packinglists[0]['pl_type']],
         ])->get();
 
-<<<<<<< HEAD
-//        dd($packinglists);
-=======
-        // dd($packinglists); 
->>>>>>> dad20daf75ebf8b232d6b03bb788f8e6ce9dafc4
-
 //        dd($summary->sum('pl_quantity'));
 
         return view('packing-list.number', compact('packinglists','cartons','customers'));
