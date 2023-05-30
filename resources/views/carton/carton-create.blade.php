@@ -13,9 +13,7 @@
 
                         <div>
 
-                            <a href="{{route('cartons.order-create')}}"
-                               class="btn btn-outline-secondary"
-                            >Create Carton Form</a>
+
                             <a href="{{route('packing-lists.index')}}"
                                class="btn btn-outline-secondary">
                                 Back</a>

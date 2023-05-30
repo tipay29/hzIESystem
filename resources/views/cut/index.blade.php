@@ -125,6 +125,8 @@
                                         <th width="5%" scope="col">{{__('text.Cut').' '.__('text.ID')}}</th>
                                         <th width="10%" scope="col">{{__('text.Style')}}</th>
                                         <th width="15%" scope="col">{{__('text.PurchaseOrder')}}</th>
+                                        <th width="5%" scope="col">Color</th>
+                                        <th width="5%" scope="col">Type</th>
                                         <th width="5%" scope="col">{{__('text.Building')}}</th>
                                         <th width="5%" scope="col">{{__('text.Table')}}#</th>
                                         <th width="18%" scope="col">{{__('text.SpreadStart(date/time)')}}</th>
@@ -158,6 +160,16 @@
                                         <td  scope="row">
                                             @foreach($cut->purchase_orders as $purchase_order)
                                                 {{$purchase_order->purchase_order}}
+                                            @endforeach
+                                        </td>
+                                        <td  scope="row">
+                                            @foreach($cut->fabric_types as $fabric_type)
+                                                {{$fabric_type->fabric_type}} ,
+                                            @endforeach
+                                        </td>
+                                        <td  scope="row">
+                                            @foreach($cut->fabric_codes as $fabric_code)
+                                                {{$fabric_code->fabric_code}} ,
                                             @endforeach
                                         </td>
                                         <td  scope="row">

@@ -13,6 +13,9 @@
 
                         <div>
 
+                            <a href="{{route('cartons.order-create')}}"
+                               class="btn btn-outline-secondary"
+                            >Create Carton Form</a>
 
                             <a href="{{url()->previous()}}"
                                class="btn btn-outline-secondary">
@@ -45,6 +48,9 @@
                                     <th width="4%" scope="col">Buy Year</th>
                                     <th width="4%" scope="col">Buy Month</th>
                                     <th width="9%" scope="col">Master PO</th>
+                                    <th width="2%" scope="col">All
+                                        <input type="checkbox" id="allCheckBox">
+                                    </th>
                                     <th width="10%" scope="col">PO</th>
 
                                     <th width="8%" scope="col">Factory PO</th>
@@ -53,7 +59,7 @@
                                     <th width="18%" scope="col">Country</th>
                                     <th width="8%" scope="col">CRD</th>
                                     <th width="5%" scope="col">PrePack</th>
-                                    <th width="12%" scope="col">User</th>
+                                    <th width="10%" scope="col">User</th>
                                     @can('create', App\Models\PackingList::class)
                                         <th width="3%" scope="col">Del</th>
                                     @endcan
@@ -80,9 +86,13 @@
                                             @endif
                                         </td>
 
-                                        <td  scope="col">{{date('Y',strtotime($packinglist->pl_buy_year))}} </td>
-                                        <td  scope="col">{{date('M',strtotime($packinglist->pl_buy_month))}} </td>
+                                        <td  scope="col">{{$packinglist->pl_buy_year}} </td>
+                                        <td  scope="col">{{$packinglist->pl_buy_month}} </td>
                                         <td  scope="col">{{$packinglist->pl_master_po}} </td>
+                                        <td  scope="col">
+                                            <input type="checkbox" >
+
+                                        </td>
                                         <td  scope="col">{{$packinglist->pl_po_cut}} </td>
 
                                         <td  scope="col">{{$packinglist->pl_factory_po}} </td>
@@ -142,7 +152,7 @@
 
                         <div class="row">
                             <div class="col-12 d-flex justify-content-center ">
-                                {{$packinglists->withQueryString()->onEachSide(2)->links()}}
+{{--                                {{$packinglists->withQueryString()->onEachSide(2)->links()}}--}}
                             </div>
                         </div>
 

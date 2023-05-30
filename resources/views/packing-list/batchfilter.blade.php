@@ -138,15 +138,66 @@
                 <input id="pls_datecreated" type="date" class="form-control"
                        value="{{request('pls_date_created')}}" name="pls_date_created">
             </div>
+
             <div class="col-md-2">
-                <button id="pls_batch_btn_clear" style="height: 100%;" class="btn form-control btn-primary">
-                    {{__('text.Clear')}}</button>
+                <small for="pls_buy_month" >Buy Month</small>
+                <select name="pls_buy_month" id="pls_buy_month" class="form-control">
+                    <option value="0" selected disabled>Select Month</option>
+                    <option value="JAN" {{request('pls_buy_month') == "JAN" ? "selected" : ""}}>January</option>
+                    <option value="FEB" {{request('pls_buy_month') == "FEB" ? "selected" : ""}}>February</option>
+                    <option value="MAR" {{request('pls_buy_month') == "MAR" ? "selected" : ""}}>March</option>
+                    <option value="APR" {{request('pls_buy_month') == "APR" ? "selected" : ""}}>April</option>
+                    <option value="MAY" {{request('pls_buy_month') == "MAY" ? "selected" : ""}}>May</option>
+                    <option value="JUN" {{request('pls_buy_month') == "JUN" ? "selected" : ""}}>June</option>
+                    <option value="JUL" {{request('pls_buy_month') == "JUL" ? "selected" : ""}}>July</option>
+                    <option value="AUG" {{request('pls_buy_month') == "AUG" ? "selected" : ""}}>August</option>
+                    <option value="SEP" {{request('pls_buy_month') == "SEP" ? "selected" : ""}}>September</option>
+                    <option value="OCT" {{request('pls_buy_month') == "OCT" ? "selected" : ""}}>October</option>
+                    <option value="NOV" {{request('pls_buy_month') == "NOV" ? "selected" : ""}}>November</option>
+                    <option value="DEC" {{request('pls_buy_month') == "DEC" ? "selected" : ""}}>December</option>
+                </select>
             </div>
+
             <div class="col-md-2">
-                <button id="pls_btn_apply" style="height: 100%;" class="btn form-control btn-primary">
-                    {{__('text.Search')}}</button>
+                <small for="pls_date_created">Buy Year</small>
+
+                <select name="pls_buy_year" id="pls_buy_year" class="form-control">
+                    <option value="0" selected disabled>Select Year</option>
+                    <option value="2020" {{request('pls_buy_year') == "2020" ? "selected" : ""}}>2020</option>
+                    <option value="2021" {{request('pls_buy_year') == "2021" ? "selected" : ""}}>2021</option>
+                    <option value="2022" {{request('pls_buy_year') == "2022" ? "selected" : ""}}>2022</option>
+                    <option value="2023" {{request('pls_buy_year') == "2023" ? "selected" : ""}}>2023</option>
+                    <option value="2024" {{request('pls_buy_year') == "2024" ? "selected" : ""}}>2024</option>
+                    <option value="2025" {{request('pls_buy_year') == "2025" ? "selected" : ""}}>2025</option>
+                </select>
             </div>
+
         </div>
 
     </div>
+
+
+    <div class="row mt-2">
+        <div class="col-md-2"></div>
+        <div class="col-md-2"></div>
+        <div class="col-md-2">
+            <button id="pls_batch_btn_clear" style="height: 100%;" class="btn form-control btn-primary">
+                {{__('text.Clear')}}</button>
+        </div>
+        <div class="col-md-2">
+            <button id="pls_btn_apply" style="height: 100%;" class="btn form-control btn-primary">
+                {{__('text.Search')}}</button>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-2"></div>
+    </div>
 </form>
+
+<div class="row">
+
+
+
+
+</div>
+
+

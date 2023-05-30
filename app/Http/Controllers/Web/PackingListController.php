@@ -263,11 +263,7 @@ class PackingListController extends Controller
             ['type', $packinglists[0]['pl_type']],
         ])->get();
 
-<<<<<<< HEAD
-//        dd($packinglists);
-=======
-        // dd($packinglists); 
->>>>>>> dad20daf75ebf8b232d6b03bb788f8e6ce9dafc4
+
 
 //        dd($summary->sum('pl_quantity'));
 
@@ -289,34 +285,42 @@ class PackingListController extends Controller
 
         $this->authorize('viewAny',PackingList::class);
 
-        $packinglists = app(Pipeline::class)
-            ->send(
-                PackingList::query()
-            )
-            ->through([
-                \App\QueryFilters\Packing\Batch\PO::class,
-                \App\QueryFilters\Packing\Batch\MasterPO::class,
-                \App\QueryFilters\Packing\Batch\FactoryPO::class,
-                \App\QueryFilters\Packing\Batch\Material::class,
-                \App\QueryFilters\Packing\Batch\Status::class,
-                \App\QueryFilters\Packing\Batch\User::class,
-                \App\QueryFilters\Packing\Batch\CustomerName::class,
-                \App\QueryFilters\Packing\Batch\CRD::class,
-                \App\QueryFilters\Packing\Batch\CreateDate::class,
-                \App\QueryFilters\Packing\Batch\SortPO::class,
-                \App\QueryFilters\Packing\Batch\SortMasterPO::class,
-                \App\QueryFilters\Packing\Batch\SortFactoryPO::class,
-                \App\QueryFilters\Packing\Batch\SortMaterial::class,
-                \App\QueryFilters\Packing\Batch\SortCustomerName::class,
-                \App\QueryFilters\Packing\Batch\SortCRD::class,
-            ])
-            ->thenReturn()
-            ->where([
-                ['pl_status', '<>', 'Completed'],
-                ['pl_uniq_number_batch_number',1],
-            ])
-            ->orderBy('id','DESC')
-            ->get();
+//        dd(request()->all());
+
+
+            $packinglists = app(Pipeline::class)
+                ->send(
+                    PackingList::query()
+                )
+                ->through([
+                    \App\QueryFilters\Packing\Batch\PO::class,
+                    \App\QueryFilters\Packing\Batch\MasterPO::class,
+                    \App\QueryFilters\Packing\Batch\FactoryPO::class,
+                    \App\QueryFilters\Packing\Batch\Material::class,
+                    \App\QueryFilters\Packing\Batch\Status::class,
+                    \App\QueryFilters\Packing\Batch\User::class,
+                    \App\QueryFilters\Packing\Batch\CustomerName::class,
+                    \App\QueryFilters\Packing\Batch\CRD::class,
+                    \App\QueryFilters\Packing\Batch\CreateDate::class,
+                    \App\QueryFilters\Packing\Batch\SortPO::class,
+                    \App\QueryFilters\Packing\Batch\SortMasterPO::class,
+                    \App\QueryFilters\Packing\Batch\SortFactoryPO::class,
+                    \App\QueryFilters\Packing\Batch\SortMaterial::class,
+                    \App\QueryFilters\Packing\Batch\SortCustomerName::class,
+                    \App\QueryFilters\Packing\Batch\SortCRD::class,
+                    \App\QueryFilters\Packing\Batch\Month::class,
+                    \App\QueryFilters\Packing\Batch\Year::class,
+                ])
+                ->thenReturn()
+                ->where([
+                    ['pl_status', '<>', 'Completed'],
+                    ['pl_uniq_number_batch_number',1],
+                ])
+                ->orderBy('id','DESC')
+                ->get();
+
+
+
 
         $packinglistsqty = collect();
 
@@ -335,7 +339,7 @@ class PackingListController extends Controller
         }
         $pl_total_qty = $packinglistsqty->sum();
 
-        $packinglists = $packinglists->paginate(50);
+//        $packinglists = $packinglists->paginate(5);
 //        dd($packinglistsqty);
 
         return view('packing-list.all-view', compact('packinglists','packinglistsqty','pl_total_qty'));
