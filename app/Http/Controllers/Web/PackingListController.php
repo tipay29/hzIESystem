@@ -264,7 +264,6 @@ class PackingListController extends Controller
         ])->get();
 
 
-
 //        dd($summary->sum('pl_quantity'));
 
         return view('packing-list.number', compact('packinglists','cartons','customers'));

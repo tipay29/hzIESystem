@@ -13,6 +13,12 @@
 
                         <div>
 
+                        <a href="{{ asset('storage/files/TNFUPLOAD.xlsx') }}" download
+                        style="background-color: green;color:white;padding:5px;text-decoration: none;margin:5px;
+                                border: 2px solid darkgrey;"
+
+                        >Download Sample Upload </a>
+
                             <a href="{{route('packing-lists.index')}}"
                                class="btn btn-outline-success section-to-no-print">
                                 Lists</a>

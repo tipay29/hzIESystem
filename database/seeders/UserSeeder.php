@@ -293,6 +293,54 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('kin1234'), // password
                 'remember_token' => Str::random(10),
             ],
+            [
+                'name' => 'Sherry Vicmark',
+                'email' => 'sherry_vicmark@horizon-outdoor.com',
+                'email_verified_at' => now(),
+                'employee_id' => 28,
+                'password' => Hash::make('sherry1234'), // password
+                'remember_token' => Str::random(10),
+            ],
+            [
+                'name' => 'Merchandiser Vicmark',
+                'email' => 'merchandiser_vicmark@horizon-outdoor.com',
+                'email_verified_at' => now(),
+                'employee_id' => 29,
+                'password' => Hash::make('merchandiser1234'), // password
+                'remember_token' => Str::random(10),
+            ],
+            [
+                'name' => 'Sophaltith Vicmark',
+                'email' => 'sophaltith_vicmark@horizon-outdoor.com',
+                'email_verified_at' => now(),
+                'employee_id' => 30,
+                'password' => Hash::make('sophaltith1234'), // password
+                'remember_token' => Str::random(10),
+            ],
+            [
+                'name' => 'Vicheyly Vicmark',
+                'email' => 'vicheyly_vicmark@horizon-outdoor.com',
+                'email_verified_at' => now(),
+                'employee_id' => 31,
+                'password' => Hash::make('vicheyly1234'), // password
+                'remember_token' => Str::random(10),
+            ],
+            [
+                'name' => 'Export Vicmark',
+                'email' => 'export_vicmark@horizon-outdoor.com',
+                'email_verified_at' => now(),
+                'employee_id' => 32,
+                'password' => Hash::make('export1234'), // password
+                'remember_token' => Str::random(10),
+            ],
+            [
+                'name' => 'Qc Vicmark',
+                'email' => 'qc_vicmark@horizon-outdoor.com',
+                'email_verified_at' => now(),
+                'employee_id' => 33,
+                'password' => Hash::make('qc1234'), // password
+                'remember_token' => Str::random(10),
+            ],
 
 
         ];
