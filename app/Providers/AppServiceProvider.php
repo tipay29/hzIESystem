@@ -41,7 +41,7 @@ class AppServiceProvider extends ServiceProvider
     {
 
 
-        if(str_contains(url()->current(), 'packing-lists')){
+//        if(str_contains(url()->current(), 'packing-lists')){
             Collection::macro('paginate', function($perPage, $total = null, $page = null, $pageName = 'page') {
                 $page = $page ?: LengthAwarePaginator::resolveCurrentPage($pageName);
 
@@ -56,7 +56,7 @@ class AppServiceProvider extends ServiceProvider
                     ]
                 );
             });
-        }
+//        }
 
         Paginator::useBootstrap();
         View::composer('auth.register',EmployeeRegisterComposer::class);
