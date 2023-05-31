@@ -39,35 +39,47 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Collection::macro('paginate', function($perPage, $total = null, $page = null, $pageName = 'page') {
-            $page = $page ?: LengthAwarePaginator::resolveCurrentPage($pageName);
 
-            return new LengthAwarePaginator(
-                $this->forPage($page, $perPage),
-                $total ?: $this->count(),
-                $perPage,
-                $page,
-                [
-                    'path' => LengthAwarePaginator::resolveCurrentPath(),
-                    'pageName' => $pageName,
-                ]
-            );
-        });
+
+        if(str_contains(url()->current(), 'packing-lists')){
+            Collection::macro('paginate', function($perPage, $total = null, $page = null, $pageName = 'page') {
+                $page = $page ?: LengthAwarePaginator::resolveCurrentPage($pageName);
+
+                return new LengthAwarePaginator(
+                    $this->forPage($page, $perPage),
+                    $total ?: $this->count(),
+                    $perPage,
+                    $page,
+                    [
+                        'path' => LengthAwarePaginator::resolveCurrentPath(),
+                        'pageName' => $pageName,
+                    ]
+                );
+            });
+        }
 
         Paginator::useBootstrap();
         View::composer('auth.register',EmployeeRegisterComposer::class);
-        View::composer(['cut.create','cut.edit'],EmployeeComposer::class);
-        View::composer('employee.form',JobComposer::class);
-        View::composer('employee.form',BuildingComposer::class);
-        View::composer('style.form',FabricColorComposer::class);
-        View::composer('style.form',FabricCodeComposer::class);
-        View::composer('style.form',FabricTypeComposer::class);
-        View::composer('style.form',PlacementComposer::class);
-        View::composer('style.form',PurchaseOrderComposer::class);
-        View::composer('style.form',StylePOComposer::class);
-        View::composer(['cut.edit','cut.create'],StyleComposer::class);
-        View::composer('carton.form',BrandComposer::class);
-        View::composer(['style.show','packing-list.addmcq'],CartonComposer::class);
+        if(str_contains(url()->current(), 'cuts')) {
+            View::composer(['cut.create', 'cut.edit'], EmployeeComposer::class);
+            View::composer(['cut.edit','cut.create'],StyleComposer::class);
+        }
+        if(str_contains(url()->current(), 'employees')) {
+            View::composer('employee.form', JobComposer::class);
+            View::composer('employee.form', BuildingComposer::class);
+        }
+        if(str_contains(url()->current(), 'styles')) {
+            View::composer('style.form', FabricColorComposer::class);
+            View::composer('style.form', FabricCodeComposer::class);
+            View::composer('style.form', FabricTypeComposer::class);
+            View::composer('style.form', PlacementComposer::class);
+            View::composer('style.form', PurchaseOrderComposer::class);
+            View::composer('style.form', StylePOComposer::class);
+            View::composer(['style.show','packing-list.addmcq'],CartonComposer::class);
+        }
+        if(str_contains(url()->current(), 'cartons')) {
+            View::composer('carton.form',BrandComposer::class);
+        }
 
 
 
