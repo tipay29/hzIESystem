@@ -341,6 +341,22 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('qc1234'), // password
                 'remember_token' => Str::random(10),
             ],
+            [
+                'name' => 'QC Garment',
+                'email' => 'qcgarment_pp@horizon-outdoor.com',
+                'email_verified_at' => now(),
+                'employee_id' => 33,
+                'password' => Hash::make('qcgarment1234'), // password
+                'remember_token' => Str::random(10),
+            ],
+            [
+                'name' => 'Qc Bag',
+                'email' => 'qcbag_pp@horizon-outdoor.com',
+                'email_verified_at' => now(),
+                'employee_id' => 33,
+                'password' => Hash::make('qcbag1234'), // password
+                'remember_token' => Str::random(10),
+            ],
 
 
         ];
