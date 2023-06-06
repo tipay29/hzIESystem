@@ -7,7 +7,17 @@
             <h5 class="text-center">Horizon Cambodia Purchase Order</h5>
             <h5 class="text-center">宏盛柬埔寨采购单</h5>
         </div>
-        <div class="col-md-4"></div>
+        <div class="col-md-4 ">
+
+
+
+            <a href="{{url()->previous()}}" style="float:right;"
+               class="btn btn-outline-secondary">
+                Back</a>
+            <a href="#" style="float:right;margin-right:5px;"
+               class="btn btn-outline-success" >
+                Confirm</a>
+        </div>
     </div>
 
 
@@ -17,7 +27,10 @@
             <div class="row">
                 <h6 for="" class="col-md-3 text-md-end"> Bill# 采购单号:</h6>
 
-                <h6 for="" class="col-md-9 text-md-start text-un"> HPO-EQ-2304-0175</h6>
+                <h6 for="" class="col-md-9 text-md-start text-un">
+                    HPO-EQ-{{substr(date('Y'),-2) . date('m')}}-{{sprintf("%04d", (\App\Models\CartonOrder::max('id'))+1)
+                    }}
+                </h6>
 
             </div>
             <div class="row">
@@ -53,20 +66,20 @@
             <div class="row">
                 <h6 for="" class="col-md-3 text-md-end"> ATTN 联系人:</h6>
 
-                <h6 for="" class="col-md-9 text-md-start"> Queenie</h6>
+                <h6 for="" class="col-md-9 text-md-start"> {{auth()->user()->name}}</h6>
 
             </div>
             <div class="row">
                 <h6 for="" class="col-md-3 text-md-end"> TEL 电话:</h6>
 
-                <h6 for="" class="col-md-9 text-md-start"> +855 69 342 198</h6>
+                <h6 for="" class="col-md-9 text-md-start"> {{auth()->user()->employee->phone}}</h6>
 
             </div>
 
             <div class="row">
                 <h6 for="" class="col-md-3 text-md-end">E-mail 邮箱:</h6>
 
-                <h6 for="" class="col-md-9 text-md-start">Queenie_pp@horizon-outdoor.com</h6>
+                <h6 for="" class="col-md-9 text-md-start">{{auth()->user()->email}}</h6>
 
             </div>
             <div class="row">
@@ -88,62 +101,67 @@
             <div class="row">
                 <h6 for="" class="col-md-3 text-md-end"> Order Date 下单日:</h6>
 
-                <h6 for="" class="col-md-9 text-md-start">     {{now()->format('Y-m-d H:i')}}</h6>
+                <h6 for="" class="col-md-9 text-md-start">     {{date('Y-m-d')}}</h6>
 
             </div>
             <div class="row">
                 <h6 for="" class="col-md-3 text-md-end"> Supplier 供应方:</h6>
 
-                <h6 for="" class="col-md-9 text-md-start"> 永成包装（柬埔寨）有限公司</h6>
+                <select class="col-md-9 text-md-start" name="supplier" id="select_supplier"
+                style="border: none;text-decoration: underline;">
+                    <option value="1"> 永成包装（柬埔寨）有限公司</option>
+                    <option value="2">柬华纸箱（柬埔寨）有限公司 </option>
+                    <option value="3">东鑫纸业装饰品(柬埔寨)有限公司 </option>
+                </select>
 
             </div>
             <div class="row">
                 <h6 for="" class="col-md-3 text-md-end"></h6>
 
-                <h6 for="" class="col-md-9 text-md-start"> WING CHENG PACKAGING CO.,LTD</h6>
+                <h6 for="" class="col-md-9 text-md-start" id="h6_supplier_name_en"> WING CHENG PACKAGING CO.,LTD</h6>
 
             </div>
             <div class="row">
                 <h6 for="" class="col-md-3 text-md-end"></h6>
 
-                <h6 for="" class="col-md-9 text-md-start"> National Road $, Tumnup Kop SROV Road</h6>
+                <h6 for="" class="col-md-9 text-md-start" id="h6_supplier_address_one"> National Road $, Tumnup Kop SROV Road</h6>
 
             </div>
             <div class="row">
                 <h6 for="" class="col-md-3 text-md-end"></h6>
 
-                <h6 for="" class="col-md-9 text-md-start"> Phum Chung Rouk, Sangkat Trapeang Krasang, </h6>
+                <h6 for="" class="col-md-9 text-md-start" id="h6_supplier_address_two"> Phum Chung Rouk, Sangkat Trapeang Krasang, </h6>
 
             </div>
             <div class="row">
                 <h6 for="" class="col-md-3 text-md-end"></h6>
 
-                <h6 for="" class="col-md-9 text-md-start"> Khan Por Senchey, Phnom Penh, Cambodia</h6>
+                <h6 for="" class="col-md-9 text-md-start" id="h6_supplier_address_three"> Khan Por Senchey, Phnom Penh, Cambodia</h6>
 
             </div>
             <div class="row">
-                <h6 for="" class="col-md-3 text-md-end"> ATTN 联系人:</h6>
+                <h6 for="" class="col-md-3 text-md-end" > ATTN 联系人:</h6>
 
-                <h6 for="" class="col-md-9 text-md-start"> 唐雪艳</h6>
+                <h6 for="" class="col-md-9 text-md-start" id="h6_supplier_attn"> 唐雪艳</h6>
 
             </div>
             <div class="row">
                 <h6 for="" class="col-md-3 text-md-end"> TEL 电话:</h6>
 
-                <h6 for="" class="col-md-9 text-md-start"> 0887937999  /  092786688</h6>
+                <h6 for="" class="col-md-9 text-md-start" id="h6_supplier_phone"> 0887937999  /  092786688</h6>
 
             </div>
 
             <div class="row">
                 <h6 for="" class="col-md-3 text-md-end">E-mail 邮箱:</h6>
 
-                <h6 for="" class="col-md-9 text-md-start">wingchengxueyan@gmail.com; wingcheng6688@gmail.com</h6>
+                <h6 for="" class="col-md-9 text-md-start" id="h6_supplier_email">wingchengxueyan@gmail.com; wingcheng6688@gmail.com</h6>
 
             </div>
             <div class="row">
                 <h6 for="" class="col-md-3 text-md-end"> Remark备注:</h6>
 
-                <h6 for="" class="col-md-9 text-md-start"> VATL2021060941</h6>
+                <h6 for="" class="col-md-9 text-md-start" id="h6_supplier_remark"> VATL2021060941</h6>
 
             </div>
 
@@ -155,7 +173,7 @@
             <div class="row">
                 <h6 for="" class="col-md-3 text-md-end"> Delivery Date 交期:</h6>
 
-                <h6 for="" class="col-md-9 text-md-start">     3/2/2023</h6>
+                <h6 for="" class="col-md-9 text-md-start">  {{date('Y-m-d', strtotime('+5 days'))}}   </h6>
 
             </div>
             <div class="row">

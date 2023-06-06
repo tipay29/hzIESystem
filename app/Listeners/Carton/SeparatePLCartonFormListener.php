@@ -43,16 +43,7 @@ class SeparatePLCartonFormListener
     public function handle(GetPLCartonOrderFormEvent $event)
     {
         //PACKINGLIST
-        $packinglistsRaw = PackingList::with('user')->where(
-            [
-                ['pl_brand', $event->pl_criteria['co_brand']],
-                ['pl_type', $event->pl_criteria['co_type']],
-                ['pl_buy_year', $event->pl_criteria['co_year']],
-                ['pl_buy_month', $event->pl_criteria['co_month']],
-            ]
-        )
-            ->orderBy('pl_sku','ASC')
-            ->get();
+        $packinglistsRaw = $event->packinglists;
 //        return $packinglistsRaw;
         $packinglistsRawCount = count($packinglistsRaw)-1;
 
@@ -75,38 +66,38 @@ class SeparatePLCartonFormListener
 
         for($x = 0; $x <= $packinglistsRawCount; $x++ ){
 
-            $packinglistArray[$x]['id'] = $packinglistsRaw[$x]->id;
-            $packinglistArray[$x]['pl_master_po'] = $packinglistsRaw[$x]->pl_master_po;
-            $packinglistArray[$x]['pl_po_cut'] = $packinglistsRaw[$x]->pl_po_cut;
-            $packinglistArray[$x]['pl_factory_po'] = $packinglistsRaw[$x]->pl_factory_po;
-            $packinglistArray[$x]['pl_sku'] = $packinglistsRaw[$x]->pl_sku;
-            $packinglistArray[$x]['pl_material'] = $packinglistsRaw[$x]->pl_material;
-            $packinglistArray[$x]['pl_description'] = $packinglistsRaw[$x]->pl_description;
-            $packinglistArray[$x]['pl_color'] = $packinglistsRaw[$x]->pl_color;
-            $packinglistArray[$x]['pl_style_size'] = $packinglistsRaw[$x]->pl_style_size;
-            $packinglistArray[$x]['pl_country'] = $packinglistsRaw[$x]->pl_country;
-            $packinglistArray[$x]['pl_country_two'] = $packinglistsRaw[$x]->pl_country_two;
-            $packinglistArray[$x]['pl_destination'] = $packinglistsRaw[$x]->pl_destination;
-            $packinglistArray[$x]['pl_crd'] = $packinglistsRaw[$x]->pl_crd;
-            $packinglistArray[$x]['pl_pre_pack'] = $packinglistsRaw[$x]->pl_pre_pack;
-            $packinglistArray[$x]['pl_type'] = $packinglistsRaw[$x]->pl_type;
-            $packinglistArray[$x]['pl_brand'] = $packinglistsRaw[$x]->pl_brand;
-            $packinglistArray[$x]['pl_remarks'] = $packinglistsRaw[$x]->pl_remarks;
-            $packinglistArray[$x]['pl_remarks_two'] = $packinglistsRaw[$x]->pl_remarks_two;
-            $packinglistArray[$x]['pl_special_packs'] = $packinglistsRaw[$x]->pl_special_packs;
-            $packinglistArray[$x]['pl_season'] = $packinglistsRaw[$x]->pl_season;
-            $packinglistArray[$x]['pl_shipment_mode'] = $packinglistsRaw[$x]->pl_shipment_mode;
-            $packinglistArray[$x]['pl_status'] = $packinglistsRaw[$x]->pl_status;
-            $packinglistArray[$x]['pl_batch'] = $packinglistsRaw[$x]->pl_batch;
-            $packinglistArray[$x]['pl_number_batch'] = $packinglistsRaw[$x]->pl_number_batch;
-            $packinglistArray[$x]['user_id'] = $packinglistsRaw[$x]->user_id;
+            $packinglistArray[$x]['id'] = $packinglistsRaw[$x]['id'];
+            $packinglistArray[$x]['pl_master_po'] = $packinglistsRaw[$x]['pl_master_po'];
+            $packinglistArray[$x]['pl_po_cut'] = $packinglistsRaw[$x]['pl_po_cut'];
+            $packinglistArray[$x]['pl_factory_po'] = $packinglistsRaw[$x]['pl_factory_po'];
+            $packinglistArray[$x]['pl_sku'] = $packinglistsRaw[$x]['pl_sku'];
+            $packinglistArray[$x]['pl_material'] = $packinglistsRaw[$x]['pl_material'];
+            $packinglistArray[$x]['pl_description'] = $packinglistsRaw[$x]['pl_description'];
+            $packinglistArray[$x]['pl_color'] = $packinglistsRaw[$x]['pl_color'];
+            $packinglistArray[$x]['pl_style_size'] = $packinglistsRaw[$x]['pl_style_size'];
+            $packinglistArray[$x]['pl_country'] = $packinglistsRaw[$x]['pl_country'];
+            $packinglistArray[$x]['pl_country_two'] = $packinglistsRaw[$x]['pl_country_two'];
+            $packinglistArray[$x]['pl_destination'] = $packinglistsRaw[$x]['pl_destination'];
+            $packinglistArray[$x]['pl_crd'] = $packinglistsRaw[$x]['pl_crd'];
+            $packinglistArray[$x]['pl_pre_pack'] = $packinglistsRaw[$x]['pl_pre_pack'];
+            $packinglistArray[$x]['pl_type'] = $packinglistsRaw[$x]['pl_type'];
+            $packinglistArray[$x]['pl_brand'] = $packinglistsRaw[$x]['pl_brand'];
+            $packinglistArray[$x]['pl_remarks'] = $packinglistsRaw[$x]['pl_remarks'];
+            $packinglistArray[$x]['pl_remarks_two'] = $packinglistsRaw[$x]['pl_remarks_two'];
+            $packinglistArray[$x]['pl_special_packs'] = $packinglistsRaw[$x]['pl_special_packs'];
+            $packinglistArray[$x]['pl_season'] = $packinglistsRaw[$x]['pl_season'];
+            $packinglistArray[$x]['pl_shipment_mode'] = $packinglistsRaw[$x]['pl_shipment_mode'];
+            $packinglistArray[$x]['pl_status'] = $packinglistsRaw[$x]['pl_status'];
+            $packinglistArray[$x]['pl_batch'] = $packinglistsRaw[$x]['pl_batch'];
+            $packinglistArray[$x]['pl_number_batch'] = $packinglistsRaw[$x]['pl_number_batch'];
+            $packinglistArray[$x]['user_id'] = $packinglistsRaw[$x]['user_id'];
 
 
-            $iqty = $packinglistsRaw[$x]->pl_order_quantity;
+            $iqty = $packinglistsRaw[$x]['pl_order_quantity'];
             $packinglistArray[$x]['pl_order_quantity'] = $iqty;
 
             $prepack = $packinglistArray[$x]['pl_pre_pack'];
-            $style_code = ltrim(substr($packinglistsRaw[$x]->pl_sku,-5),0);
+            $style_code = ltrim(substr($packinglistsRaw[$x]['pl_sku'],-5),0);
 
 
             if($this->balance_qty == 0){
@@ -232,10 +223,10 @@ class SeparatePLCartonFormListener
                             $this->carton_number = $this->carton_number + $packinglistArray[$x]['pl_number_of_carton'];
 
                             //NET WEIGHT 1 CARTON
-                            if($packinglistsRaw[$x]->pl_nw_one == 0 || $packinglistsRaw[$x]->pl_nw_one == null){
+                            if($packinglistsRaw[$x]['pl_nw_one'] == 0 || $packinglistsRaw[$x]['pl_nw_one'] == null){
                                 $packinglistArray[$x]['net_weight_one_ctn'] = $mcqlist[$z] * $style_weight;
                             }else{
-                                $packinglistArray[$x]['net_weight_one_ctn'] = $packinglistsRaw[$x]->pl_nw_one;
+                                $packinglistArray[$x]['net_weight_one_ctn'] = $packinglistsRaw[$x]['pl_nw_one'];
                             }
 
                             //TOTAL NETWEIGHT ALL CARTON
@@ -268,11 +259,11 @@ class SeparatePLCartonFormListener
 
 
                             //GROSS WEIGHT 1 CARTON
-                            if($packinglistsRaw[$x]->pl_gw_one == 0 || $packinglistsRaw[$x]->pl_gw_one == null){
+                            if($packinglistsRaw[$x]['pl_gw_one'] == 0 || $packinglistsRaw[$x]['pl_gw_one'] == null){
                                 $packinglistArray[$x]['gross_weight_one_ctn'] =
                                     $packinglistArray[$x]['net_weight_one_ctn'] + $packinglistArray[$x]['carton_weight'];
                             }else{
-                                $packinglistArray[$x]['gross_weight_one_ctn'] = $packinglistsRaw[$x]->pl_gw_one;
+                                $packinglistArray[$x]['gross_weight_one_ctn'] = $packinglistsRaw[$x]['pl_gw_one'];
                             }
 
 
@@ -332,10 +323,10 @@ class SeparatePLCartonFormListener
                             $this->carton_number = $this->carton_number + $packinglistArray[$x]['pl_number_of_carton'];
 
                             //NET WEIGHT 1 CARTON
-                            if($packinglistsRaw[$x]->pl_nw_two == 0 || $packinglistsRaw[$x]->pl_nw_two == null){
+                            if($packinglistsRaw[$x]['pl_nw_two'] == 0 || $packinglistsRaw[$x]['pl_nw_two'] == null){
                                 $packinglistArray[$x]['net_weight_one_ctn'] = $packinglistArray[$x]['pl_order_quantity_cut'] * $style_weight;
                             }else{
-                                $packinglistArray[$x]['net_weight_one_ctn'] = $packinglistsRaw[$x]->pl_nw_two;
+                                $packinglistArray[$x]['net_weight_one_ctn'] = $packinglistsRaw[$x]['pl_nw_two'];
                             }
 
                             //TOTAL NETWEIGHT ALL CARTON
@@ -364,11 +355,11 @@ class SeparatePLCartonFormListener
                                 $mcqlist[$z];
 
                             //GROSS WEIGHT 1 CARTON
-                            if($packinglistsRaw[$x]->pl_gw_two == 0 || $packinglistsRaw[$x]->pl_gw_two == null){
+                            if($packinglistsRaw[$x]['pl_gw_two'] == 0 || $packinglistsRaw[$x]['pl_gw_two'] == null){
                                 $packinglistArray[$x]['gross_weight_one_ctn'] =
                                     $packinglistArray[$x]['net_weight_one_ctn'] + $packinglistArray[$x]['carton_weight'];
                             }else{
-                                $packinglistArray[$x]['gross_weight_one_ctn'] = $packinglistsRaw[$x]->pl_gw_two;
+                                $packinglistArray[$x]['gross_weight_one_ctn'] = $packinglistsRaw[$x]['pl_gw_two'];
                             }
 
                             //TOTAL GROSS WEIGHT ALL CARTON
@@ -472,15 +463,15 @@ class SeparatePLCartonFormListener
         $packinglistArray[$pl_last_num]['total_ctn_mcq'] = $this->total_ctn_mcq;
 
 //        dd($packinglistsRaw[0]->pl_type);
-        if($packinglistsRaw[0]->pl_type == "APPAREL"){
+        if($packinglistsRaw[0]['pl_type'] == "APPAREL"){
 //        dd($packinglistsRaw);
             $sizevalues = array_values(array_flip(collecT($this->sizes)->sort()->toArray()));
             $newsizeValues = array();
             foreach($sizevalues as $key => $sizevalue){
 
                 for($x=0; $x < count($packinglistsRaw);$x++){
-                    if($packinglistsRaw[$x]->pl_style_size == $sizevalue){
-                        $newsizeValues[$key] = $packinglistsRaw[$x]->pl_order_quantity;
+                    if($packinglistsRaw[$x]['pl_style_size'] == $sizevalue){
+                        $newsizeValues[$key] = $packinglistsRaw[$x]['pl_order_quantity'];
                     }
                 }
 

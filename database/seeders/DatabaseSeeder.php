@@ -36,6 +36,7 @@ class DatabaseSeeder extends Seeder
             CartonSeeder::class,
             SizeSeeder::class,
             DestinationSeeder::class,
+            SupplierSeeder::class,
         ]);
 
     }

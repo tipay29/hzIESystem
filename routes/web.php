@@ -58,6 +58,7 @@ Route::group(['namespace' => 'Web'],function(){
 
     Route::get('cartons/carton/order/create','CartonController@cartonCreate')->name('cartons.cartoncreate');
     Route::get('cartons/order/create','CartonController@orderCreate')->name('cartons.order-create');
+
     Route::resource('cartons','CartonController');
 
 

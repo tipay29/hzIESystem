@@ -14,11 +14,11 @@
                         <table class="table table-bordered co-create-table">
                             <thead style="background-color: #d1d2d4">
                                 <tr>
-                                    <th width="5%" class="text-center" scope="col">Fty PO#</th>
+                                    <th width="7%" class="text-center" scope="col">Fty PO#</th>
                                     <th width="4%" class="text-center" scope="col">DC Code</th>
                                     <th width="5%" class="text-center" scope="col">PO#</th>
                                     <th width="5%" class="text-center" scope="col">Material</th>
-                                    <th width="12%" class="text-center" scope="col">Description</th>
+                                    <th width="15%" class="text-center" scope="col">Description</th>
                                     <th width="3%" class="text-center" scope="col">Size</th>
                                     <th width="5%" class="text-center" scope="col">TtlQty</th>
                                     <th width="2%" class="text-center" scope="col">Qty/Ctn</th>
@@ -29,9 +29,9 @@
                                     <th width="3%" class="text-center" scope="col">G.W</th>
                                     <th width="5%" class="text-center" scope="col">Ctn Price</th>
                                     <th width="6%" class="text-center" scope="col">TTL Amount</th>
-                                    <th width="8%"  class="text-center" scope="col">Remark</th>
-                                    <th width="7%" class="text-center" scope="col">Carton Code</th>
-                                    <th width="7%" class="text-center" scope="col">Collection</th>
+                                    <th width="5%"  class="text-center" scope="col">Remark</th>
+                                    <th width="6%" class="text-center" scope="col">Carton Code</th>
+                                    <th width="6%" class="text-center" scope="col">Collection</th>
                                 </tr>
                                 <tr>
                                     <th width="5%" class="text-center" scope="col">批号</th>

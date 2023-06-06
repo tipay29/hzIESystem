@@ -14,11 +14,11 @@ class GetPLCartonOrderFormEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $pl_criteria;
+    public $packinglists;
 
-    public function __construct($pl_criteria)
+    public function __construct($packinglists)
     {
-        $this->pl_criteria = $pl_criteria;
+        $this->packinglists = $packinglists;
     }
 
 

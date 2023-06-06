@@ -13,9 +13,9 @@
 
                         <div>
 
-                            <a href="{{route('cartons.order-create')}}"
-                               class="btn btn-outline-secondary"
-                            >Create Carton Form</a>
+
+
+
 
                             <a href="{{url()->previous()}}"
                                class="btn btn-outline-secondary">
@@ -37,6 +37,10 @@
                         @include('packing-list.batchfilter')
 
                         <div class="table-responsive">
+
+                            <form action="{{route('cartons.order-create')}}" method="get">
+
+                                @csrf
                             <table class="table" >
                                 <thead>
 
@@ -49,7 +53,7 @@
                                     <th width="4%" scope="col">Buy Month</th>
                                     <th width="9%" scope="col">Master PO</th>
                                     <th width="2%" scope="col">All
-                                        <input type="checkbox" id="allCheckBox">
+                                        <input type="checkbox" id="cbSelectAll">
                                     </th>
                                     <th width="10%" scope="col">PO</th>
 
@@ -90,7 +94,9 @@
                                         <td  scope="col">{{$packinglist->pl_buy_month}} </td>
                                         <td  scope="col">{{$packinglist->pl_master_po}} </td>
                                         <td  scope="col">
-                                            <input type="checkbox" >
+                                            <input type="checkbox" name="pl_details[]" value="
+                                    {{$packinglist->pl_batch . '-' . $packinglist->pl_number_batch }}
+                                                ">
 
                                         </td>
                                         <td  scope="col">{{$packinglist->pl_po_cut}} </td>
@@ -147,7 +153,11 @@
 
 
                             </table>
-
+                            <button id="btn_create_carton_order"
+                                    class="btn btn-outline-secondary" type="submit"
+                                        style="position: absolute;top: 8px;right:15%;"
+                            >Carton Form</button>
+                             </form>
                         </div>
 
                         <div class="row">

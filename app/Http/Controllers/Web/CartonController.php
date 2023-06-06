@@ -62,10 +62,7 @@ class CartonController extends Controller
         ]);
     }
 
-    public function cartonCreate(){
 
-        return view('carton.carton-create');
-    }
 
     public function orderCreate()
     {
@@ -82,7 +79,27 @@ class CartonController extends Controller
 //
 //        $cartonorder = $this->getCartonForm($packinglists);
 
-        $cartonorders = collect();
+        $pl_details = request()->pl_details;
+
+        $packinglists = collect();
+
+//        $packinglists = array();
+
+        for($x=0;$x < count($pl_details);$x++){
+
+            $packinglists->add(PackingList::with('user')->where([
+                ['pl_batch',explode('-',$pl_details[$x])[0]],
+                ['pl_number_batch',explode('-',$pl_details[$x])[1]],
+            ])->get()->toArray());
+        }
+        $packinglists = collect($packinglists)->flatten(1)->sortBy('pl_sku')->values();
+
+//        dd($packinglists);
+        $packinglists = event(new GetPLCartonOrderFormEvent($packinglists));
+
+
+
+        $cartonorders = $this->getCartonForm($packinglists);
 //        dd($cartonorders);
         return view('carton.order-create', compact('cartonorders'));
 
