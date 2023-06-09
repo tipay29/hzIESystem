@@ -9,6 +9,8 @@
                                       $packinglists[$x][0]['pl_country_two']) .
                                       '.png') }}"
              class="img-fluid">
+
+        @if($packinglists[$x][0]['pl_remarks_two'] !== null || $packinglists[$x][0]['pl_type'] == "APPAREL")
         <h6>Packing Method</h6>
         <textarea rows="12" id="pl_rm_input_two" style="min-width: 100%"
                @cannot('create', App\Models\PackingList::class)
@@ -34,6 +36,7 @@
                                         {{$packinglists[$x][0]['pl_remarks_two']}}
 
         </textarea>
+            @endif
     </div>
     <div style="min-height: 50px;" class="col-md-6">
         <h6 class="text-center" style="">Summary</h6>
