@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Events\Carton\GetPLCartonOrderFormEvent;
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use App\Models\Carton;
 use App\Models\PackingList;
 use Illuminate\Http\Request;
@@ -99,8 +100,10 @@ class CartonController extends Controller
 
 
 
-        $cartonorders = $this->getCartonForm($packinglists);
-//        dd($cartonorders);
+        $cartonorders = collect($this->getCartonForm($packinglists));
+
+//        dd();
+//        dd($cartonorders->sum('ctn_fob_all'));
         return view('carton.order-create', compact('cartonorders'));
 
     }
@@ -134,6 +137,39 @@ class CartonController extends Controller
                         $plrow[$key]['ctn_quantity'] = $packinglists[$x][$y]['pl_number_of_carton'];
                         $plrow[$key]['ctn_carton'] = $packinglists[$x][$y]['carton_size'];
                         $plrow[$key]['ctn_pl_quantity'] = $packinglists[$x][$y]['pl_order_quantity_cut'];
+                        $plrow[$key]['ctn_brand'] = $packinglists[$x][$y]['pl_brand'];
+                        $plrow[$key]['ctn_type'] = $packinglists[$x][$y]['pl_type'];
+
+
+                        $ctn_info = Carton::where([
+                            ['ctn_size',$packinglists[$x][$y]['carton_size']],
+                            ['type',$packinglists[$x][$y]['pl_type']],
+                            ['brand_id',Brand::where('brand_name',$packinglists[$x][$y]['pl_brand'])->first()->id],
+                        ])->first();
+
+                        if($ctn_info !== null){
+                            $plrow[$key]['ctn_specification'] = $ctn_info->ctn_specification;
+                            $plrow[$key]['ctn_fob'] = ($ctn_info->ctn_fob);
+                            $plrow[$key]['ctn_fob_all'] = ($ctn_info->ctn_fob * $plrow[$key]['ctn_quantity']);
+                            $plrow[$key]['ctn_code'] = $ctn_info->ctn_code_1001 . $ctn_info->ctn_code_1004;
+                        }else{
+                            $plrow[$key]['ctn_specification'] = "";
+                            $plrow[$key]['ctn_fob'] = 0;
+                            $plrow[$key]['ctn_code'] = "";
+                            $plrow[$key]['ctn_fob_all'] = 0;
+                        }
+
+
+                        if($packinglists[$x][$y]['net_weight_one_ctn'] == 0 || $packinglists[$x][$y]['net_weight_one_ctn'] == null){
+                            $plrow[$key]['ctn_nw'] = "";
+                            $plrow[$key]['ctn_gw'] = "";
+                        }else{
+                            $plrow[$key]['ctn_nw'] = ($packinglists[$x][$y]['net_weight_one_ctn']/
+                                $packinglists[$x][$y]['pl_one_ctn_item_count']) * $plrow[$key]['ctn_pl_quantity'];
+                            $plrow[$key]['ctn_gw'] = ($packinglists[$x][$y]['gross_weight_one_ctn']/
+                                    $packinglists[$x][$y]['pl_one_ctn_item_count']) * $plrow[$key]['ctn_pl_quantity'];
+                        }
+//
 
                         $size_style_carton_id =
                             round($packinglists[$x][$y]['pl_style_size_id']) . $packinglists[$x][$y]['pl_style_id']
@@ -148,6 +184,8 @@ class CartonController extends Controller
                         }
 
                         $plrow[$key]['ctn_mcq'] = $mcq;
+
+
 
                     }
                     elseif(array_key_exists($key,$bases)){

@@ -11,9 +11,11 @@
 
                     <div class="card-body">
 
+                        <input id="ctn_content" type="hidden" value="{{$cartonorders}}">
+
                         <table class="table table-bordered co-create-table">
-                            <thead style="background-color: #d1d2d4">
-                                <tr>
+                            <thead >
+                                <tr class="table-active">
                                     <th width="7%" class="text-center" scope="col">Fty PO#</th>
                                     <th width="4%" class="text-center" scope="col">DC Code</th>
                                     <th width="5%" class="text-center" scope="col">PO#</th>
@@ -33,7 +35,7 @@
                                     <th width="6%" class="text-center" scope="col">Carton Code</th>
                                     <th width="6%" class="text-center" scope="col">Collection</th>
                                 </tr>
-                                <tr>
+                                <tr class="table-active">
                                     <th width="5%" class="text-center" scope="col">批号</th>
                                     <th width="4%" class="text-center" scope="col">DC</th>
                                     <th width="5%" class="text-center" scope="col">PO 号</th>
@@ -69,20 +71,35 @@
                                             <td class="text-center">{{$cartonorder['ctn_style_size']}}</td>
                                             <td class="text-center">{{$cartonorder['ctn_pl_quantity']}}</td>
                                             <td class="text-center">{{$cartonorder['ctn_mcq']}}</td>
-                                            <td class="text-center">A=A 200LB</td>
+                                            <td class="text-center">{{$cartonorder['ctn_specification']}}</td>
                                             <td class="text-center">{{$cartonorder['ctn_carton']}}CM</td>
                                             <td class="text-center">{{$cartonorder['ctn_quantity']}}</td>
-                                            <td class="text-center">1.01</td>
-                                            <td class="text-center">1.02</td>
-                                            <td class="text-center">$1.07</td>
-                                            <td class="text-center">$ {{$cartonorder['ctn_quantity'] * 1.07}} </td>
+                                            <td class="text-center">{{$cartonorder['ctn_nw']}}</td>
+                                            <td class="text-center">{{$cartonorder['ctn_gw']}}</td>
+                                            <td class="text-center">${{$cartonorder['ctn_fob']}}</td>
+                                            <td class="text-center">$ {{$cartonorder['ctn_fob_all']}} </td>
                                             <td class="text-center"></td>
-                                            <td class="text-center"></td>
+                                            <td class="text-center">{{$cartonorder['ctn_code']}}</td>
                                             <td class="text-center"></td>
                                         </tr>
                                 @endforeach
+                                <tr class="table-active">
+                                    <td colspan="10" class="text-center"> <b> Grand Total </b></td>
+                                    <td class="text-center"> <b>  {{$cartonorders->sum('ctn_quantity')}} </b></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"> <b> ${{$cartonorders->sum('ctn_fob_all')}} </b> </td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                </tr>
                             </tbody>
                         </table>
+
+                        @include('carton.order-create-summary')
+                        @include('carton.order-create-bottom')
+
 
                     </div>
                 </div>

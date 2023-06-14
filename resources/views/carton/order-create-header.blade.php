@@ -8,14 +8,11 @@
             <h5 class="text-center">宏盛柬埔寨采购单</h5>
         </div>
         <div class="col-md-4 ">
-
-
-
             <a href="{{url()->previous()}}" style="float:right;"
                class="btn btn-outline-secondary">
                 Back</a>
             <a href="#" style="float:right;margin-right:5px;"
-               class="btn btn-outline-success" >
+               class="btn btn-outline-success" id="ctn_btn_confirm" >
                 Confirm</a>
         </div>
     </div>
@@ -27,9 +24,15 @@
             <div class="row">
                 <h6 for="" class="col-md-3 text-md-end"> Bill# 采购单号:</h6>
 
-                <h6 for="" class="col-md-9 text-md-start text-un">
-                    HPO-EQ-{{substr(date('Y'),-2) . date('m')}}-{{sprintf("%04d", (\App\Models\CartonOrder::max('id'))+1)
-                    }}
+                <h6 for="" class="col-md-9 text-md-start text-un" id="ctn_bill_code">
+                    HPO-@if($cartonorders->first()['ctn_type'] == "APPAREL")
+                            AP
+                        @else
+EQ
+                        @endif
+                    -{{substr(date('Y'),-2) . date('m')}}-
+                                        {{sprintf("%04d", (\App\Models\CartonOrder::max('id'))+1)
+                                        }}
                 </h6>
 
             </div>
@@ -67,6 +70,7 @@
                 <h6 for="" class="col-md-3 text-md-end"> ATTN 联系人:</h6>
 
                 <h6 for="" class="col-md-9 text-md-start"> {{auth()->user()->name}}</h6>
+                <input type="hidden" value="{{auth()->user()->id}}" id="user_id">
 
             </div>
             <div class="row">
@@ -101,13 +105,13 @@
             <div class="row">
                 <h6 for="" class="col-md-3 text-md-end"> Order Date 下单日:</h6>
 
-                <h6 for="" class="col-md-9 text-md-start">     {{date('Y-m-d')}}</h6>
+                <h6 for="" class="col-md-9 text-md-start" id="ctn_order_date">     {{date('Y-m-d')}}</h6>
 
             </div>
             <div class="row">
                 <h6 for="" class="col-md-3 text-md-end"> Supplier 供应方:</h6>
 
-                <select class="col-md-9 text-md-start" name="supplier" id="select_supplier"
+                <select class="col-md-9 text-md-start" name="supplier_id" id="supplier_id"
                 style="border: none;text-decoration: underline;">
                     <option value="1"> 永成包装（柬埔寨）有限公司</option>
                     <option value="2">柬华纸箱（柬埔寨）有限公司 </option>
@@ -173,7 +177,7 @@
             <div class="row">
                 <h6 for="" class="col-md-3 text-md-end"> Delivery Date 交期:</h6>
 
-                <h6 for="" class="col-md-9 text-md-start">  {{date('Y-m-d', strtotime('+5 days'))}}   </h6>
+                <h6 for="" class="col-md-9 text-md-start" id="ctn_delivery_date">  {{date('Y-m-d', strtotime('+7 days'))}}   </h6>
 
             </div>
             <div class="row">
@@ -243,7 +247,7 @@
 
                 <h6 for="" class="col-md-3 text-md-end pt-2"> OTHER INSTRUCTION 其它说明：</h6>
                 <div class="col-md-7">
-                    <input class="form-control" type="text" name="message" >
+                    <input class="form-control" type="text" id="ctn_instruction">
                 </div>
 
             </div>

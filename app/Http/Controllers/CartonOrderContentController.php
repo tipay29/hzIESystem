@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Supplier;
+use App\Models\CartonOrderContent;
 use Illuminate\Http\Request;
 
-class SupplierApiController extends Controller
+class CartonOrderContentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,23 +41,21 @@ class SupplierApiController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\CartonOrderContent  $cartonOrderContent
      * @return \Illuminate\Http\Response
      */
-    public function show(Supplier $supplier)
+    public function show(CartonOrderContent $cartonOrderContent)
     {
-//        dd(request()->all());
-
-        return response()->json($supplier,200);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\CartonOrderContent  $cartonOrderContent
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(CartonOrderContent $cartonOrderContent)
     {
         //
     }
@@ -67,10 +64,10 @@ class SupplierApiController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\CartonOrderContent  $cartonOrderContent
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, CartonOrderContent $cartonOrderContent)
     {
         //
     }
@@ -78,10 +75,10 @@ class SupplierApiController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\CartonOrderContent  $cartonOrderContent
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(CartonOrderContent $cartonOrderContent)
     {
         //
     }
