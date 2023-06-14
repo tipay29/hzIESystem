@@ -171,10 +171,11 @@ class SeparateBalanceQuantityAllListener
 
                         //STyle WEight with size
                         $style_weight = $sizes[$z]->pivot->weight;
-
+                        $ctrl_row_cut = 0;
                         if ($this->balance_qty !== 0) {
                             $iqty = $this->balance_qty;
                             $this->balance_qty = 0;
+                            $ctrl_row_cut = 1;
                         }
 
                         //get proper MCQ
@@ -186,7 +187,7 @@ class SeparateBalanceQuantityAllListener
                             }
 
                             //1st batch
-                            if ($iqty >= $mcqlist[$z]) {
+                            if ($iqty >= $mcqlist[$z] && $ctrl_row_cut === 0) {
 
 
                                 $packinglistArray[$x][$y_Ctrl]['pl_style_size_id'] = $size_id;
