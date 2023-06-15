@@ -5,13 +5,17 @@ cbAll.click(function(){
     $('input:checkbox').prop('checked', this.checked);
 });
 
-
+let ctn_check = $('#ctn_check');
 let ctn_btn_confirm = $('#ctn_btn_confirm');
-let supplier_id = $('#supplier_id');
+let ctn_supplier_id = $('#ctn_supplier_id');
+let ctn_user_id = $('#ctn_user_id');
 let ctn_content = $('#ctn_content');
 let ctn_bill_code = $('#ctn_bill_code');
 let ctn_order_date = $('#ctn_order_date');
-// let ctn_user_id =
+let ctn_delivery_date = $('#ctn_delivery_date');
+let ctn_instruction = $('#ctn_instruction');
+let ctn_remarks = $('#ctn_remarks');
+
 
 let h6_supplier_phone = $('#h6_supplier_phone');
 let h6_supplier_name_en = $('#h6_supplier_name_en');
@@ -22,7 +26,7 @@ let h6_supplier_attn = $('#h6_supplier_attn');
 let h6_supplier_email = $('#h6_supplier_email');
 let h6_supplier_remark = $('#h6_supplier_remark');
 
-supplier_id.change(function(e){
+ctn_supplier_id.change(function(e){
     e.preventDefault();
 
     console.log(ctn_content.val());
@@ -51,4 +55,34 @@ supplier_id.change(function(e){
 ctn_btn_confirm.click(function(e){
     e.preventDefault();
 
+        //change if already finish
+    if(ctn_check.val() === 1){
+        alert('Cannot proceed, Check list if have empty!');
+    }else{
+
+        let carton_order = {
+            ctn_bill_code: ctn_bill_code.text(),
+            ctn_order_date: ctn_order_date.text(),
+            ctn_delivery_date: ctn_delivery_date.text(),
+            ctn_instruction: ctn_instruction.val(),
+            ctn_remarks: ctn_remarks.val(),
+            ctn_content: JSON.parse(ctn_content.val()),
+            ctn_supplier_id: ctn_supplier_id.val(),
+            ctn_user_id: ctn_user_id.val(),
+        };
+
+        $.ajax({
+            type:'POST',
+            url: '/api/carton-orders',
+            data: carton_order,
+            success: function (carton_order) {
+                alert('Updated Successfully!!!');
+                window.location.reload();
+            },
+            error: function (x,h,r) {
+                alert(x.responseText);
+            }
+        });
+
+    }
 });

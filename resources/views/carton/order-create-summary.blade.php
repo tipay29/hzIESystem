@@ -5,7 +5,7 @@
 
     <div class="col-md-4" style="min-height: 10px;">
 
-                                   <textarea rows="6" id="ctno_remarks_two" style="min-width: 100%" id="ctn_remarks">
+                                   <textarea rows="6" style="min-width: 100%" id="ctn_remarks">
                                         Remarks:
                                     </textarea>
     </div>

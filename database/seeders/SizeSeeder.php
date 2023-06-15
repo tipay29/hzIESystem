@@ -106,6 +106,33 @@ class SizeSeeder extends Seeder
                 'size' => 'XXXXL/XXXXXL'
             ] ,
             [
+                'size' => '01'
+            ] ,
+            [
+                'size' => '02'
+            ] ,
+            [
+                'size' => '03'
+            ] ,
+            [
+                'size' => '04'
+            ] ,
+            [
+                'size' => '05'
+            ] ,
+            [
+                'size' => '06'
+            ] ,
+            [
+                'size' => '07'
+            ] ,
+            [
+                'size' => '08'
+            ] ,
+            [
+                'size' => '09'
+            ] ,
+            [
                 'size' => '1'
             ] ,
             [

@@ -102,6 +102,8 @@ class CartonController extends Controller
 
         $cartonorders = collect($this->getCartonForm($packinglists));
 
+
+
 //        dd();
 //        dd($cartonorders->sum('ctn_fob_all'));
         return view('carton.order-create', compact('cartonorders'));

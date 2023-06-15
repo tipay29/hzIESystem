@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedInteger('carton_id')->default(1);
             $table->string('ctn_factory_po')->nullable();
             $table->string('ctn_dc_code')->nullable();
-            $table->text('ctn_po_cut')->nullable();
+            $table->text('ctn_master_po')->nullable();
             $table->string('ctn_material')->nullable();
             $table->text('ctn_description')->nullable();
             $table->text('ctn_style_size')->nullable();

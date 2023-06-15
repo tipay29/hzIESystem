@@ -10,4 +10,8 @@ class CartonOrderContent extends Model
     use HasFactory;
     protected $table='carton_order_contents';
     protected $guarded = [];
+
+    public function carton_order(){
+        return $this->belongsTo(CartonOrder::class);
+    }
 }

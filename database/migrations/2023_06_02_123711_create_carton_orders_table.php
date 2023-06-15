@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('carton_orders', function (Blueprint $table) {
             $table->id();
-            $table->string('ctn_bill_code');
-            $table->date('ctn_order_date');
-            $table->date('ctn_delivery_date');
-            $table->text('ctn_instruction');
-            $table->text('ctn_remarks');
+            $table->string('ctn_bill_code')->nullable();
+            $table->date('ctn_order_date')->nullable();
+            $table->date('ctn_delivery_date')->nullable();
+            $table->text('ctn_instruction')->nullable();
+            $table->text('ctn_remarks')->nullable();
             $table->unsignedInteger('supplier_id')->default(1);
             $table->unsignedInteger('user_id')->default(1);
             $table->timestamps();

@@ -12,8 +12,16 @@
                class="btn btn-outline-secondary">
                 Back</a>
             <a href="#" style="float:right;margin-right:5px;"
-               class="btn btn-outline-success" id="ctn_btn_confirm" >
+
+               class="btn btn-outline-success" id="ctn_btn_confirm" disabled>
                 Confirm</a>
+            <input type="hidden" id="ctn_check"
+                   @if(count($cartonorders->where('ctn_carton',"")) > 0)
+                   value="1"
+                   @else
+                       value="0"
+                   @endif
+                 >
         </div>
     </div>
 
@@ -70,7 +78,7 @@ EQ
                 <h6 for="" class="col-md-3 text-md-end"> ATTN 联系人:</h6>
 
                 <h6 for="" class="col-md-9 text-md-start"> {{auth()->user()->name}}</h6>
-                <input type="hidden" value="{{auth()->user()->id}}" id="user_id">
+                <input type="hidden" value="{{auth()->user()->id}}" id="ctn_user_id">
 
             </div>
             <div class="row">
@@ -111,7 +119,7 @@ EQ
             <div class="row">
                 <h6 for="" class="col-md-3 text-md-end"> Supplier 供应方:</h6>
 
-                <select class="col-md-9 text-md-start" name="supplier_id" id="supplier_id"
+                <select class="col-md-9 text-md-start" name="supplier_id" id="ctn_supplier_id"
                 style="border: none;text-decoration: underline;">
                     <option value="1"> 永成包装（柬埔寨）有限公司</option>
                     <option value="2">柬华纸箱（柬埔寨）有限公司 </option>

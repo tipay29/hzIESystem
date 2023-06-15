@@ -45,6 +45,7 @@ Route::group(['as' => 'api.'],function() {
 
     Route::get('cartons/brands', 'CartonApiController@showBrand')->name('cartons.showbrand');
     Route::post('cartons/order/create','CartonApiController@createCartonOrder')->name('packing-lists.createCartonOrder');
+    Route::post('carton-orders','CartonOrderApiController@storeCartonOrder')->name('packing-lists.storeCartonOrder');
 
     Route::get('suppliers/{supplier}','SupplierApiController@show')->name('packing-lists.show');
 
