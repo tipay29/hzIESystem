@@ -10,6 +10,8 @@ use Validator;
 class PackinglistApiController extends Controller
 {
 
+    protected $pl_number_batch;
+
     public function index(){
 
         $packinglists = PackingList::all();
@@ -162,6 +164,60 @@ class PackinglistApiController extends Controller
         $packinglists->each(function ($item){
             $item->update(['pl_destination'=> request()->destination]);
         });
+
+        return response()->json(['success' => $packinglists],201);
+
+    }
+
+    public function crds(){
+
+        $packinglists = PackingList::where(
+            [
+                ['pl_batch',  request()->batch],
+                ['pl_number_batch',  request()->number_batch],
+            ]
+        )->get();
+
+//        dd($packinglists);
+        if($packinglists[0]['pl_type'] === "EQUIPMENT"){
+            $pl_number_batch = PackingList::where([
+                ['pl_batch', $packinglists[0]->pl_batch],
+                ['pl_crd', request()->crd],
+                ['pl_country',$packinglists[0]->pl_country],
+                ['pl_pre_pack',$packinglists[0]->pl_pre_pack],
+                ['pl_shipment_mode',$packinglists[0]->pl_shipment_mode],
+            ])->first();
+
+
+
+            if($pl_number_batch !== null){
+
+                $this->pl_number_batch = $pl_number_batch->pl_number_batch;
+
+                $packinglists->each(function ($item){
+                    $update_details = array(
+                        'pl_crd'=> request()->crd,
+                        'pl_number_batch' => $this->pl_number_batch,
+                        'pl_uniq_number_batch_number' => 2,
+                        'pl_uniq_number_batch' => 2
+                    );
+                    $item->update($update_details);
+                });
+            }else{
+
+                $packinglists->each(function ($item){
+                    $item->update(['pl_crd'=> request()->crd]);
+                });
+            }
+
+        }else{
+            $packinglists->each(function ($item){
+                $item->update(['pl_crd'=> request()->crd]);
+            });
+        }
+
+
+
 
         return response()->json(['success' => $packinglists],201);
 

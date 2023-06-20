@@ -843,6 +843,28 @@ pl_destination_input.change(function(e){
     });
 });
 
+let pl_crd_input = $('#pl_crd_input');
+
+pl_crd_input.change(function(e){
+    e.preventDefault();
+    let crds = {
+        crd: pl_crd_input.val(),
+        batch: pl_add_po_batch.val(),
+        number_batch: pl_add_po_number_batch.val(),
+    }
+    $.ajax({
+        type:'POST',
+        url: '/api/packing-lists/update/crds',
+        data: crds,
+        success: function (crds) {
+            console.log(crds);
+        },
+        error: function (x,h,r) {
+            alert(x.responseText);
+        }
+    });
+});
+
 pl_add_po_btn.click(function(e){
 
     e.preventDefault();

@@ -161,9 +161,20 @@
             <div class="row">
                 <h6 for="" class="col-md-6 text-md-end"> CRD:</h6>
 
-                <p class="col-md-6 text-start m-0" style="font-size: 1rem;">
-                    {{$packinglists[0]['pl_crd']}}
-                </p>
+                <input id="pl_crd_input" class="col-md-6 text-start"
+                       type="date"
+                       style="text-align: center;
+                                                   border: 0; background-color:	 #f1f1f1;
+                                                   font-weight: 500;font-size: 1.2rem;
+                                                   padding:0px;line-height: 15px;padding-left: 0.7em;
+                                                    " value="{{$packinglists[0]['pl_crd']}}"
+                @cannot('create', App\Models\PackingList::class)
+                    {{'disabled'}}
+                @endcannot
+                >
+
+
+
 
             </div>
             <div class="row">
