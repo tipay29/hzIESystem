@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
 use App\Models\CartonOrder;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class CartonOrderController extends Controller
 {
@@ -14,7 +15,11 @@ class CartonOrderController extends Controller
      */
     public function index()
     {
-        //
+
+        $carton_orders = CartonOrder::with('carton_order_contents')->get();
+
+        return view('carton-order.index',compact('carton_orders'));
+
     }
 
     /**
@@ -44,9 +49,11 @@ class CartonOrderController extends Controller
      * @param  \App\Models\CartonOrder  $cartonOrder
      * @return \Illuminate\Http\Response
      */
-    public function show(CartonOrder $cartonOrder)
+    public function show(CartonOrder $carton_order)
     {
-        //
+        $carton_order->load(['carton_order_contents']);
+
+        return view('carton-order.show', compact('carton_order'));
     }
 
     /**

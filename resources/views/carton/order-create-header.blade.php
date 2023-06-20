@@ -17,7 +17,7 @@
                 Confirm</a>
             <input type="hidden" id="ctn_check"
                    @if(count($cartonorders->where('ctn_carton',"")) > 0)
-                   value="1"
+                        value="1"
                    @else
                        value="0"
                    @endif

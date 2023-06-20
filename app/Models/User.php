@@ -33,6 +33,11 @@ class User extends Authenticatable
         return $this->hasOne(PackingList::class);
     }
 
+    public function carton_orders(){
+
+        return $this->hasMany(CartonOrder::class);
+    }
+
     public function cuts(){
 
         return $this->hasMany(Cut::class);

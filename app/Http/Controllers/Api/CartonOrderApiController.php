@@ -28,6 +28,8 @@ class CartonOrderApiController extends Controller
 
         foreach(request('ctn_content') as $key => $ctn_content){
 
+
+
             $carton = Carton::where([
                 ['brand_id',Brand::where('brand_name',$ctn_content['ctn_brand'])->first()->id],
                 ['type',$ctn_content['ctn_type']],
@@ -51,7 +53,7 @@ class CartonOrderApiController extends Controller
 
         }
 
-        dd($carton_order->carton_order_contents);
+        return response()->json($carton_order,200);
     }
 
     public function index()

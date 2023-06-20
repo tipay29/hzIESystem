@@ -139,6 +139,9 @@
                                     <li >
                                         <a class="dropdown-item" href="{{route('cartons.index')}}">Cartons</a>
                                     </li>
+                                    <li >
+                                        <a class="dropdown-item" href="{{route('carton-orders.index')}}">Carton Orders</a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>

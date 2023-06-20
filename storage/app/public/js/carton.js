@@ -54,7 +54,7 @@ ctn_supplier_id.change(function(e){
 
 ctn_btn_confirm.click(function(e){
     e.preventDefault();
-
+    alert(ctn_check.val());
         //change if already finish
     if(ctn_check.val() === 1){
         alert('Cannot proceed, Check list if have empty!');
@@ -76,8 +76,9 @@ ctn_btn_confirm.click(function(e){
             url: '/api/carton-orders',
             data: carton_order,
             success: function (carton_order) {
-                alert('Updated Successfully!!!');
-                window.location.reload();
+                console.log(carton_order);
+                alert('Save Successfully!!!');
+                window.location.href = '/carton-orders/' + carton_order.id;
             },
             error: function (x,h,r) {
                 alert(x.responseText);

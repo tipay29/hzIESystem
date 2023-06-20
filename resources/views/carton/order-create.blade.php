@@ -31,7 +31,6 @@
                                     <th width="3%" class="text-center" scope="col">G.W</th>
                                     <th width="5%" class="text-center" scope="col">Ctn Price</th>
                                     <th width="6%" class="text-center" scope="col">TTL Amount</th>
-                                    <th width="5%"  class="text-center" scope="col">Remark</th>
                                     <th width="6%" class="text-center" scope="col">Carton Code</th>
                                     <th width="6%" class="text-center" scope="col">Collection</th>
                                 </tr>
@@ -53,7 +52,6 @@
                                     <th width="3%" class="text-center" scope="col">毛重</th>
                                     <th width="5%" class="text-center" scope="col">单价</th>
                                     <th width="6%" class="text-center" scope="col">金额</th>
-                                    <th width="8%"  class="text-center" scope="col">备注</th>
                                     <th width="7%" class="text-center" scope="col">纸箱代号</th>
                                     <th width="7%" class="text-center" scope="col">纸箱代号</th>
                                 </tr>
@@ -77,8 +75,7 @@
                                             <td class="text-center">{{$cartonorder['ctn_nw']}}</td>
                                             <td class="text-center">{{$cartonorder['ctn_gw']}}</td>
                                             <td class="text-center">${{$cartonorder['ctn_fob']}}</td>
-                                            <td class="text-center">$ {{$cartonorder['ctn_fob_all']}} </td>
-                                            <td class="text-center"></td>
+                                            <td class="text-center">${{$cartonorder['ctn_fob_all']}} </td>
                                             <td class="text-center">{{$cartonorder['ctn_code']}}</td>
                                             <td class="text-center"></td>
                                         </tr>
@@ -90,7 +87,6 @@
                                     <td class="text-center"></td>
                                     <td class="text-center"></td>
                                     <td class="text-center"> <b> ${{$cartonorders->sum('ctn_fob_all')}} </b> </td>
-                                    <td class="text-center"></td>
                                     <td class="text-center"></td>
                                     <td class="text-center"></td>
                                 </tr>
