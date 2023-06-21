@@ -109,15 +109,21 @@ class PackingListController extends Controller
 
 
         for($x=1; $x <= count($packinglistsNew);$x++){
-            $packinglistsdummy->add(PackingList::with('user')->where(
+            
+            $pl = PackingList::with('user')->where(
                 [
                     ['pl_batch', $batch],
                     ['pl_number_batch', $x],
                 ]
             )
-                ->get());
+                ->get();
+            
 
-            $packinglistsqty->add($packinglistsdummy[$x-1]->sum('pl_order_quantity'));
+            if($pl !== null){
+                $packinglistsdummy->add($pl);
+                $packinglistsqty->add($packinglistsdummy[$x-1]->sum('pl_order_quantity'));
+            }
+        
         }
         $pl_total_qty = $packinglistsqty->sum();
 
