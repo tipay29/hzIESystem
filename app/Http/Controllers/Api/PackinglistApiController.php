@@ -11,6 +11,7 @@ class PackinglistApiController extends Controller
 {
 
     protected $pl_number_batch;
+    protected $ctrl_number_batch;
 
     public function index(){
 
@@ -216,7 +217,35 @@ class PackinglistApiController extends Controller
             });
         }
 
+        $count_pl_max_number_batch = PackingList::where('pl_batch',request()->batch)->max('pl_number_batch');
 
+
+        $this->ctrl_number_batch = array();
+
+        for($x = 1; $x <= $count_pl_max_number_batch;$x++){
+            $pl_aline_number_batch = PackingList::where([
+                ['pl_batch',request()->batch],
+                ['pl_number_batch', $x],
+                ])->get();
+
+
+
+            if(count($pl_aline_number_batch) !== 0){
+                dump($this->ctrl_number_batch);
+                if(count($this->ctrl_number_batch) !== 0){
+                    $pl_aline_number_batch->each(function ($item){
+                        $item->update(['pl_number_batch' => $this->ctrl_number_batch[0]]);
+                    });
+                    unset($this->ctrl_number_batch[0]);
+                    $this->ctrl_number_batch = array_values($this->ctrl_number_batch);
+                    array_push($this->ctrl_number_batch,$x);
+                }
+
+            }else{
+                array_push($this->ctrl_number_batch,$x);
+            }
+
+        }
 
 
         return response()->json(['success' => $packinglists],201);

@@ -9,13 +9,21 @@ Route::group(['namespace' => 'Web'],function(){
 
 
     route::get('/aw',function(){
-       $styles = Style::all();
+        $countpl = (\App\Models\PackingList::where('pl_batch',7)->max('pl_number_batch'));
 
-       foreach($styles as $style){
-        $style->update(['created_at' => "2023-04-01 17:57:04"]);
-       }
+        $test = array();
+        dump(count($test));
+        array_push($test,1);
+        array_push($test,2);
+        array_push($test,3);
+        array_push($test,4);
+        array_push($test,5);
+        unset($test[0]);
+        $test = array_values($test);
+        array_push($test,6);
 
-       return 0;
+        dump(count($test));
+        dd($test);
     });
 
 
