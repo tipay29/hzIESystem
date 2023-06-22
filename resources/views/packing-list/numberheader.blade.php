@@ -180,9 +180,29 @@
             <div class="row">
                 <h6  class="col-md-6 text-md-end"> Customer Name:</h6>
 
-                <p class="col-md-6 text-start m-0" style="font-size: 1rem;">
-                    {{$packinglists[0]['pl_country'] . " " .$packinglists[0]['pl_country_two']}}
-                </p>
+
+                <input id="pl_country_input" class="col-md-6 text-start"
+                       type="text"
+                       style="text-align: center;
+                               border: 0; background-color:	 #f1f1f1;
+                               font-weight: 500;font-size: 1.2rem;
+                               padding:0;line-height: 10px;padding-left: 0.7em;"
+                       value="{{$packinglists[0]['pl_country']}}"
+                @cannot('create', App\Models\PackingList::class)
+                    {{'disabled'}}
+                    @endcannot >
+
+                <h6  class="col-md-6 text-md-end"></h6>
+                <input id="pl_country_two_input" class="col-md-6 text-start"
+                       type="text"
+                       style="text-align: center;
+                           border: 0; background-color:	 #f1f1f1;
+                           font-weight: 500;font-size: 1.2rem;
+                           padding:0;line-height: 10px;padding-left: 0.7em;"
+                       value="{{$packinglists[0]['pl_country_two']}}"
+                @cannot('create', App\Models\PackingList::class)
+                    {{'disabled'}}
+                    @endcannot >
 
             </div>
             <div class="row">

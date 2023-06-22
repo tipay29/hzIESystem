@@ -1710,6 +1710,21 @@ class SizeSeeder extends Seeder
             [
                 'size' => '180/82A(20-SHT)'
             ] ,
+            [
+                'size' => '1X'
+            ] ,
+            [
+                'size' => '2X'
+            ] ,
+            [
+                'size' => '3X'
+            ] ,
+            [
+                'size' => '4X'
+            ] ,
+            [
+                'size' => '5X'
+            ] ,
 
         ];
 

@@ -204,6 +204,8 @@ class PackinglistApiController extends Controller
                     );
                     $item->update($update_details);
                 });
+
+                $this->alineNumberBatch();
             }else{
 
                 $packinglists->each(function ($item){
@@ -217,36 +219,68 @@ class PackinglistApiController extends Controller
             });
         }
 
-        $count_pl_max_number_batch = PackingList::where('pl_batch',request()->batch)->max('pl_number_batch');
+
+        return response()->json(['success' => $packinglists],201);
+
+    }
+
+    public function countries(){
+
+        $packinglists = PackingList::where(
+            [
+                ['pl_batch',  request()->batch],
+                ['pl_number_batch',  request()->number_batch],
+            ]
+        )->get();
+
+        if($packinglists[0]['pl_type'] === "EQUIPMENT"){
+            $pl_number_batch = PackingList::where([
+                ['pl_batch', $packinglists[0]->pl_batch],
+                ['pl_crd', $packinglists[0]->pl_crd],
+                ['pl_country',request()->country],
+                ['pl_country_two',request()->country_two],
+                ['pl_pre_pack',$packinglists[0]->pl_pre_pack],
+                ['pl_shipment_mode',$packinglists[0]->pl_shipment_mode],
+            ])->first();
+//            dd($pl_number_batch);
+            if($pl_number_batch !== null){
+
+                $this->pl_number_batch = $pl_number_batch->pl_number_batch;
+
+                $packinglists->each(function ($item){
+                    $update_details = array(
+                        'pl_country'=> request()->country,
+                        'pl_country_two' => request()->country_two,
+                        'pl_number_batch' => $this->pl_number_batch,
+                        'pl_uniq_number_batch_number' => 2,
+                        'pl_uniq_number_batch' => 2
+                    );
+                    $item->update($update_details);
+                });
 
 
-        $this->ctrl_number_batch = array();
-
-        for($x = 1; $x <= $count_pl_max_number_batch;$x++){
-            $pl_aline_number_batch = PackingList::where([
-                ['pl_batch',request()->batch],
-                ['pl_number_batch', $x],
-                ])->get();
-
-
-
-            if(count($pl_aline_number_batch) !== 0){
-                dump($this->ctrl_number_batch);
-                if(count($this->ctrl_number_batch) !== 0){
-                    $pl_aline_number_batch->each(function ($item){
-                        $item->update(['pl_number_batch' => $this->ctrl_number_batch[0]]);
-                    });
-                    unset($this->ctrl_number_batch[0]);
-                    $this->ctrl_number_batch = array_values($this->ctrl_number_batch);
-                    array_push($this->ctrl_number_batch,$x);
-                }
+                $this->alineNumberBatch();
 
             }else{
-                array_push($this->ctrl_number_batch,$x);
+
+                $packinglists->each(function ($item){
+                    $update_details = array(
+                        'pl_country'=> request()->country,
+                        'pl_country_two' => request()->country_two,
+                    );
+                    $item->update($update_details);
+                });
             }
 
+        }else{
+            $packinglists->each(function ($item){
+                $update_details = array(
+                    'pl_country'=> request()->country,
+                    'pl_country_two' => request()->country_two,
+                );
+                $item->update($update_details);
+            });
         }
-
 
         return response()->json(['success' => $packinglists],201);
 
@@ -498,5 +532,35 @@ class PackinglistApiController extends Controller
             'pl_number_batch' => request('pl_number_batch'),
             'user_id' => request('user_id'),
         ];
+    }
+
+    protected function alineNumberBatch(){
+        $count_pl_max_number_batch = PackingList::where('pl_batch',request()->batch)->max('pl_number_batch');
+
+
+        $this->ctrl_number_batch = array();
+
+        for($x = 1; $x <= $count_pl_max_number_batch;$x++){
+            $pl_aline_number_batch = PackingList::where([
+                ['pl_batch',request()->batch],
+                ['pl_number_batch', $x],
+            ])->get();
+
+            if(count($pl_aline_number_batch) !== 0){
+                dump($this->ctrl_number_batch);
+                if(count($this->ctrl_number_batch) !== 0){
+                    $pl_aline_number_batch->each(function ($item){
+                        $item->update(['pl_number_batch' => $this->ctrl_number_batch[0]]);
+                    });
+                    unset($this->ctrl_number_batch[0]);
+                    $this->ctrl_number_batch = array_values($this->ctrl_number_batch);
+                    array_push($this->ctrl_number_batch,$x);
+                }
+
+            }else{
+                array_push($this->ctrl_number_batch,$x);
+            }
+
+        }
     }
 }

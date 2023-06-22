@@ -865,6 +865,34 @@ pl_crd_input.change(function(e){
     });
 });
 
+let pl_country_input = $('#pl_country_input');
+let pl_country_two_input = $('#pl_country_two_input');
+
+$('#pl_country_input, #pl_country_two_input').change(function(e){
+    e.preventDefault();
+    // alert(1);
+    if(confirm("Do you want to save new Customer Name???")){
+        let countries = {
+            country: pl_country_input.val(),
+            country_two: pl_country_two_input.val(),
+            batch: pl_add_po_batch.val(),
+            number_batch: pl_add_po_number_batch.val(),
+        }
+        $.ajax({
+            type:'POST',
+            url: '/api/packing-lists/update/countries',
+            data: countries,
+            success: function (countries) {
+                console.log(countries);
+            },
+            error: function (x,h,r) {
+                alert(x.responseText);
+            }
+        });
+    }
+
+});
+
 pl_add_po_btn.click(function(e){
 
     e.preventDefault();
