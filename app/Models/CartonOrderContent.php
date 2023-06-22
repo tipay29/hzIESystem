@@ -14,4 +14,8 @@ class CartonOrderContent extends Model
     public function carton_order(){
         return $this->belongsTo(CartonOrder::class);
     }
+
+    public function carton(){
+        return $this->belongsTo(Carton::class);
+    }
 }

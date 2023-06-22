@@ -16,28 +16,19 @@ class CartonOrderController extends Controller
     public function index()
     {
 
-        $carton_orders = CartonOrder::with('carton_order_contents')->get();
+        $carton_orders = CartonOrder::with('carton_order_contents')->paginate(10)->sortByDesc('id');
 
         return view('carton-order.index',compact('carton_orders'));
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         //
@@ -53,7 +44,9 @@ class CartonOrderController extends Controller
     {
         $carton_order->load(['carton_order_contents']);
 
-        return view('carton-order.show', compact('carton_order'));
+
+
+        return view('carton-order.order-show', compact('carton_order'));
     }
 
     /**

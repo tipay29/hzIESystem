@@ -33,9 +33,9 @@
                             <table class="table" >
                                 <thead>
                                 <tr>
-                                    <th width="5%" scope="col">No </th>
+                                    <th width="7%" scope="col">No </th>
                                     <th width="10%" scope="col">Bill Code</th>
-                                    <th width="15%" scope="col">Order Date </th>
+                                    <th width="13%" scope="col">Order Date </th>
                                     <th width="15%" scope="col">Delivery Date </th>
                                     <th width="15%" scope="col">Brand </th>
                                     <th width="10%" scope="col">Type</th>
@@ -48,21 +48,21 @@
 
                                     @foreach($carton_orders as $key => $carton_order)
                                         <tr>
-                                            <td widtd="5%" scope="col">
+                                            <td scope="col">
 
                                                 <a href="{{route('carton-orders.show', $carton_order->id)}}">
                                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                                     {{$carton_order->id}} </a>
 
                                             </td>
-                                            <td widtd="10%" scope="col">{{$carton_order->ctn_bill_code}}</td>
-                                            <td widtd="15%" scope="col">{{$carton_order->ctn_order_date}} </td>
-                                            <td widtd="10%" scope="col">{{$carton_order->ctn_delivery_date}}</td>
-                                            <td widtd="15%" scope="col">Brand </td>
-                                            <td widtd="10%" scope="col">Type</td>
-                                            <td widtd="10%" scope="col">Buy Montd</td>
-                                            <td widtd="10%" scope="col">Buy Year</td>
-                                            <td widtd="20%" scope="col">{{$carton_order->user->name}} </td>
+                                            <td scope="col">{{$carton_order->ctn_bill_code}}</td>
+                                            <td scope="col">{{$carton_order->ctn_order_date}} </td>
+                                            <td scope="col">{{$carton_order->ctn_delivery_date}}</td>
+                                            <td scope="col">Brand </td>
+                                            <td scope="col">Type</td>
+                                            <td scope="col">Buy Montd</td>
+                                            <td scope="col">Buy Year</td>
+                                            <td scope="col">{{$carton_order->user->name}} </td>
                                         </tr>
                                     @endforeach
 
