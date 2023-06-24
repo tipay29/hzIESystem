@@ -15,6 +15,10 @@
 
                class="btn btn-outline-success" >
                 Approve</a>
+            <a href="#" style="float:right;margin-right:5px;"
+
+               class="btn btn-outline-success" id="ctn_btn_edit_show" disabled>
+                Edit</a>
         </div>
 
     </div>

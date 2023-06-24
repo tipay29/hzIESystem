@@ -15,6 +15,7 @@
 
                class="btn btn-outline-success" id="ctn_btn_confirm" disabled>
                 Confirm</a>
+
             <input type="hidden" id="ctn_check"
                    @if(count($cartonorders->where('ctn_carton',"")) > 0)
                         value="1"

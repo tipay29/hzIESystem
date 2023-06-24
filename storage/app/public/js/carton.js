@@ -1,7 +1,7 @@
 
 let cbAll = $('#cbSelectAll');
-
-cbAll.click(function(){
+let cbEditCartonFormAll = $('#cbEditCartonFormAll');
+cbAll.add(cbEditCartonFormAll).click(function(){
     $('input:checkbox').prop('checked', this.checked);
 });
 
@@ -54,7 +54,7 @@ ctn_supplier_id.change(function(e){
 
 ctn_btn_confirm.click(function(e){
     e.preventDefault();
-    alert(ctn_check.val());
+
         //change if already finish
     if(ctn_check.val() === 1){
         alert('Cannot proceed, Check list if have empty!');
@@ -87,3 +87,37 @@ ctn_btn_confirm.click(function(e){
 
     }
 });
+
+let ctn_btn_edit_show = $('#ctn_btn_edit_show');
+let ctn_btn_edit_hide = $('#ctn_btn_edit_hide');
+let ctn_btn_edit_edit = $('#ctn_btn_edit_edit');
+let tr_edit = $('.cbsEditCartonForm');
+
+ctn_btn_edit_show.click(function(e){
+    e.preventDefault();
+
+    tr_edit.show();
+
+});
+
+ctn_btn_edit_hide.click(function(e){
+    e.preventDefault();
+
+    tr_edit.hide();
+
+});
+
+ctn_btn_edit_edit.click(function(e){
+    e.preventDefault();
+
+    let myArray = [];
+
+    $('.cf_details:checkbox:checked').each(function(){
+        myArray.push(this.value);
+    });
+
+    alert(myArray);
+
+});
+
+

@@ -100,6 +100,8 @@ class PackingListController extends Controller
                 \App\QueryFilters\Packing\Batch\SortMaterial::class,
                 \App\QueryFilters\Packing\Batch\SortCustomerName::class,
                 \App\QueryFilters\Packing\Batch\SortCRD::class,
+                \App\QueryFilters\Packing\Batch\Brand::class,
+                \App\QueryFilters\Packing\Batch\Type::class,
             ])
             ->thenReturn()
             ->where([['pl_batch',$batch],
@@ -109,7 +111,7 @@ class PackingListController extends Controller
 
 
         for($x=1; $x <= count($packinglistsNew);$x++){
-            
+
             $pl = PackingList::with('user')->where(
                 [
                     ['pl_batch', $batch],
@@ -117,13 +119,13 @@ class PackingListController extends Controller
                 ]
             )
                 ->get();
-            
+
 
             if($pl !== null){
                 $packinglistsdummy->add($pl);
                 $packinglistsqty->add($packinglistsdummy[$x-1]->sum('pl_order_quantity'));
             }
-        
+
         }
         $pl_total_qty = $packinglistsqty->sum();
 
@@ -290,9 +292,11 @@ class PackingListController extends Controller
 
         $this->authorize('viewAny',PackingList::class);
 
-//        dd(request()->all());
-
-
+        if(request()->all() === []){
+            $packinglists = collect();
+            $packinglistsqty = collect();
+            $pl_total_qty = 0;
+        }else{
             $packinglists = app(Pipeline::class)
                 ->send(
                     PackingList::query()
@@ -315,37 +319,36 @@ class PackingListController extends Controller
                     \App\QueryFilters\Packing\Batch\SortCRD::class,
                     \App\QueryFilters\Packing\Batch\Month::class,
                     \App\QueryFilters\Packing\Batch\Year::class,
+                    \App\QueryFilters\Packing\Batch\Brand::class,
+                    \App\QueryFilters\Packing\Batch\Type::class,
                 ])
                 ->thenReturn()
                 ->where([
                     ['pl_status', '<>', 'Completed'],
-                    ['pl_uniq_number_batch_number',1],
+                    ['pl_uniq_number_batch_number', 1],
                 ])
-                ->orderBy('id','DESC')
+                ->orderBy('id', 'DESC')
                 ->get();
 
 
+            $packinglistsqty = collect();
+
+            foreach($packinglists as $key => $packinglist){
+                $packinglistsdummy = collect();
+                $packinglistsdummy->add(PackingList::with('user')->where(
+                    [
+                        ['pl_batch', $packinglist['pl_batch']],
+                        ['pl_number_batch', $packinglist['pl_number_batch']],
+                    ]
+                )
+                    ->get());
 
 
-        $packinglistsqty = collect();
-
-        foreach($packinglists as $key => $packinglist){
-            $packinglistsdummy = collect();
-            $packinglistsdummy->add(PackingList::with('user')->where(
-                [
-                    ['pl_batch', $packinglist['pl_batch']],
-                    ['pl_number_batch', $packinglist['pl_number_batch']],
-                ]
-            )
-                ->get());
-
-
-            $packinglistsqty->add($packinglistsdummy[0]->sum('pl_order_quantity'));
+                $packinglistsqty->add($packinglistsdummy[0]->sum('pl_order_quantity'));
+            }
+            $pl_total_qty = $packinglistsqty->sum();
         }
-        $pl_total_qty = $packinglistsqty->sum();
 
-//        $packinglists = $packinglists->paginate(5);
-//        dd($packinglistsqty);
 
         return view('packing-list.all-view', compact('packinglists','packinglistsqty','pl_total_qty'));
 

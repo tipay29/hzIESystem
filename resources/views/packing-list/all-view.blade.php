@@ -72,65 +72,67 @@
 
                                 <tbody>
 
-                                @forelse($packinglists as $key => $packinglist)
-                                    <tr>
-                                        <td width="5%" scope="col">
-                                            <a href="{{route('packing-lists.number', [$packinglist->pl_batch
-                                                                        ,$packinglist->pl_number_batch])}}">
-                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                                {{$packinglist->id}} </a>
-                                        </td>
-                                        <td scope="col" >
-                                            @if($packinglist->pl_status === "Draft")
-                                                <p style="background-color: yellow;">{{$packinglist->pl_status}}</p>
-                                            @elseif($packinglist->pl_status === "Canceled")
-                                                <p style="background-color: red;">{{$packinglist->pl_status}}</p>
-                                            @elseif($packinglist->pl_status === "Final")
-                                                <p class="bg-success text-white">{{$packinglist->pl_status}}</p>
-                                            @endif
-                                        </td>
+                                @if(count($packinglists) !== 0)
 
-                                        <td  scope="col">{{$packinglist->pl_buy_year}} </td>
-                                        <td  scope="col">{{$packinglist->pl_buy_month}} </td>
-                                        <td  scope="col">{{$packinglist->pl_master_po}} </td>
-                                        <td  scope="col">
-                                            <input type="checkbox" name="pl_details[]" value="
-                                    {{$packinglist->pl_batch . '-' . $packinglist->pl_number_batch }}
-                                                ">
-
-                                        </td>
-                                        <td  scope="col">{{$packinglist->pl_po_cut}} </td>
-
-                                        <td  scope="col">{{$packinglist->pl_factory_po}} </td>
-                                        <td  scope="col">{{$packinglist->pl_material}} </td>
-                                        <td  scope="col">{{number_format((float)$packinglistsqty[$key])}} </td>
-                                        <td  scope="col">{{$packinglist->pl_country}} </td>
-                                        <td  scope="col">{{$packinglist->pl_crd}} </td>
-                                        <td scope="col">{{$packinglist->pl_pre_pack}} </td>
-                                        <td  scope="col">{{$packinglist->user->name}} </td>
-                                        @can('create', App\Models\PackingList::class)
-
-
-                                            <td scope="col">
-                                                @if(auth()->user()->id == $packinglist->user_id)
-                                                    <form style="display:inline;" action="{{route('packing-lists.destroy-number', [$packinglist->pl_batch
-                                                                        ,$packinglist->pl_number_batch])}}" method="post">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button style="border: none;background-color: white;color:darkred;"
-                                                                onclick="return confirm('Delete Packing List Batch Number ?')" >
-                                                            <i class="fa fa-trash" aria-hidden="true"></i></button>
-                                                    </form>
+                                    @forelse($packinglists as $key => $packinglist)
+                                        <tr>
+                                            <td width="5%" scope="col">
+                                                <a href="{{route('packing-lists.number', [$packinglist->pl_batch
+                                                                            ,$packinglist->pl_number_batch])}}">
+                                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                                    {{$packinglist->id}} </a>
+                                            </td>
+                                            <td scope="col" >
+                                                @if($packinglist->pl_status === "Draft")
+                                                    <p style="background-color: yellow;">{{$packinglist->pl_status}}</p>
+                                                @elseif($packinglist->pl_status === "Canceled")
+                                                    <p style="background-color: red;">{{$packinglist->pl_status}}</p>
+                                                @elseif($packinglist->pl_status === "Final")
+                                                    <p class="bg-success text-white">{{$packinglist->pl_status}}</p>
                                                 @endif
-
                                             </td>
 
-                                        @endcan
-                                    </tr>
-                                @empty
-                                    <h6 class="bg-danger"> No Packing List Record</h6>
-                                @endforelse
+                                            <td  scope="col">{{$packinglist->pl_buy_year}} </td>
+                                            <td  scope="col">{{$packinglist->pl_buy_month}} </td>
+                                            <td  scope="col">{{$packinglist->pl_master_po}} </td>
+                                            <td  scope="col">
+                                                <input type="checkbox" name="pl_details[]" value="
+                                        {{$packinglist->pl_batch . '-' . $packinglist->pl_number_batch }}
+                                                    ">
 
+                                            </td>
+                                            <td  scope="col">{{$packinglist->pl_po_cut}} </td>
+
+                                            <td  scope="col">{{$packinglist->pl_factory_po}} </td>
+                                            <td  scope="col">{{$packinglist->pl_material}} </td>
+                                            <td  scope="col">{{number_format((float)$packinglistsqty[$key])}} </td>
+                                            <td  scope="col">{{$packinglist->pl_country}} </td>
+                                            <td  scope="col">{{$packinglist->pl_crd}} </td>
+                                            <td scope="col">{{$packinglist->pl_pre_pack}} </td>
+                                            <td  scope="col">{{$packinglist->user->name}} </td>
+                                            @can('create', App\Models\PackingList::class)
+
+
+                                                <td scope="col">
+                                                    @if(auth()->user()->id == $packinglist->user_id)
+                                                        <form style="display:inline;" action="{{route('packing-lists.destroy-number', [$packinglist->pl_batch
+                                                                            ,$packinglist->pl_number_batch])}}" method="post">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button style="border: none;background-color: white;color:darkred;"
+                                                                    onclick="return confirm('Delete Packing List Batch Number ?')" >
+                                                                <i class="fa fa-trash" aria-hidden="true"></i></button>
+                                                        </form>
+                                                    @endif
+
+                                                </td>
+
+                                            @endcan
+                                        </tr>
+                                    @empty
+                                        <h6 class="bg-danger"> No Packing List Record</h6>
+                                    @endforelse
+                                @endif
                                 <tr>
                                     <td></td>
                                     <td></td>

@@ -31,6 +31,12 @@
                                 <th width="6%" class="text-center" scope="col">TTL Amount</th>
                                 <th width="6%" class="text-center" scope="col">Carton Code</th>
                                 <th width="6%" class="text-center" scope="col">Collection</th>
+                                <th style="display: none;"  width="2%" class="text-center cbsEditCartonForm" scope="col">
+                                    <button id="ctn_btn_edit_edit" class="btn btn-primary" style="padding: 0;"
+                                            data-bs-toggle="modal" data-bs-target="#order_carton_edit_modal">EDIT</button>
+
+                                </th>
+
                             </tr>
                             <tr class="table-active">
                                 <th width="5%" class="text-center" scope="col">批号</th>
@@ -52,6 +58,10 @@
                                 <th width="6%" class="text-center" scope="col">金额</th>
                                 <th width="7%" class="text-center" scope="col">纸箱代号</th>
                                 <th width="7%" class="text-center" scope="col">纸箱代号</th>
+                                <th style="display: none;" width="2%" class="text-center cbsEditCartonForm" scope="col">
+                                    <input id="cbEditCartonFormAll" type="checkbox">
+                                </th>
+
                             </tr>
 
                             </thead>
@@ -82,6 +92,11 @@
                                     </div>
                                     <td class="text-center">{{$cartonorder->carton->ctb_code_1001 . $cartonorder->carton->ctb_code_1004}}</td>
                                     <td class="text-center"></td>
+                                    <td style="display: none;"  class="cbsEditCartonForm">
+                                        &nbsp;&nbsp;&nbsp;
+                                        <input class="cf_details"  type="checkbox" name="cf_details[]" value="{{$cartonorder->id}}">
+                                    </td>
+
                                 </tr>
                             @endforeach
                             <tr class="table-active">
@@ -93,12 +108,15 @@
                                 <td class="text-center"> <b> $ {{$total_fob_all}}</b> </td>
                                 <td class="text-center"></td>
                                 <td class="text-center"></td>
+                                <td style="display: none;" class="text-center cbsEditCartonForm"><button class="btn btn-secondary" id="ctn_btn_edit_hide" style="padding: 0;">HIDE</button></td>
+
                             </tr>
                             </tbody>
                         </table>
 
                         @include('carton-order.order-show-summary')
                         @include('carton-order.order-show-bottom')
+                        @include('carton-order.order-edit-modal')
                     </div>
                 </div>
             </div>

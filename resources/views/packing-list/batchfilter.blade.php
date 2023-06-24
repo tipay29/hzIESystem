@@ -178,6 +178,33 @@
 
 
     <div class="row mt-2">
+        <div class="col-md-2">
+
+            <small for="pls_brand">Brand</small>
+
+            <select name="pls_brand" id="pls_brand" class="form-control">
+                <option value="0" selected disabled>Select Brand</option>
+                <option value="ADVANTUS" {{request('pls_brand') == "ADVANTUS" ? "selected" : ""}}>ADVANTUS</option>
+                <option value="DICKIES" {{request('pls_brand') == "DICKIES" ? "selected" : ""}}>DICKIES</option>
+                <option value="EASTPAK" {{request('pls_brand') == "EASTPAK" ? "selected" : ""}}>EASTPAK</option>
+                <option value="JANSPORT" {{request('pls_brand') == "JANSPORT" ? "selected" : ""}}>JANSPORT</option>
+                <option value="NAPAPIJRI" {{request('pls_brand') == "NAPAPIJRI" ? "selected" : ""}}>NAPAPIJRI</option>
+                <option value="TNF" {{request('pls_brand') == "TNF" ? "selected" : ""}}>TNF</option>
+                <option value="VANS" {{request('pls_brand') == "VANS" ? "selected" : ""}}>VANS</option>
+            </select>
+
+        </div>
+        <div class="col-md-2">
+
+            <small for="pls_type">Type</small>
+
+            <select name="pls_type" id="pls_type" class="form-control">
+                <option value="0" selected disabled>Select Type</option>
+                <option value="APPAREL" {{request('pls_type') == "APPAREL" ? "selected" : ""}}>APPAREL</option>
+                <option value="EQUIPMENT" {{request('pls_type') == "EQUIPMENT" ? "selected" : ""}}>EQUIPMENT</option>
+            </select>
+
+        </div>
         <div class="col-md-2"></div>
         <div class="col-md-2"></div>
         <div class="col-md-2">
@@ -188,8 +215,7 @@
             <button id="pls_btn_apply" style="height: 100%;" class="btn form-control btn-primary">
                 {{__('text.Search')}}</button>
         </div>
-        <div class="col-md-2"></div>
-        <div class="col-md-2"></div>
+
     </div>
 </form>
 
