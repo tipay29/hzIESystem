@@ -19,6 +19,8 @@ return new class extends Migration
             $table->unsignedInteger('carton_id')->default(1);
             $table->string('ctn_factory_po')->nullable();
             $table->string('ctn_dc_code')->nullable();
+            $table->string('ctn_customer_name')->nullable();
+            $table->string('ctn_destination')->nullable();
             $table->text('ctn_master_po')->nullable();
             $table->string('ctn_material')->nullable();
             $table->text('ctn_description')->nullable();
@@ -26,6 +28,8 @@ return new class extends Migration
             $table->integer('ctn_po_quantity')->nullable();
             $table->integer('ctn_quantity_per_carton')->nullable();
             $table->integer('ctn_quantity')->nullable();
+            $table->string('ctn_code')->nullable();
+            $table->string('ctn_collection')->nullable();
             $table->double('ctn_nw_one')->nullable();
             $table->double('ctn_gw_one')->nullable();
             $table->timestamps();

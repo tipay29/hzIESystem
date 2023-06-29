@@ -21,4 +21,8 @@ class CartonOrder extends Model
     public function supplier(){
         return $this->belongsTo(Supplier::class);
     }
+
+    public function brand(){
+        return $this->belongsTo(Brand::class);
+    }
 }

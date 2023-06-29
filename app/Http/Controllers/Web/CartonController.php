@@ -135,12 +135,16 @@ class CartonController extends Controller
                         $plrow[$key]['ctn_material'] = $packinglists[$x][$y]['pl_material'];
                         $plrow[$key]['ctn_desc'] = $packinglists[$x][$y]['pl_color'];
                         $plrow[$key]['ctn_dc_code'] = explode(' ',trim($packinglists[$x][$y]['pl_country']))[0];
+                        $plrow[$key]['ctn_customer_name'] = substr(strstr($packinglists[$x][$y]['pl_country']," "), 1);
+                        $plrow[$key]['ctn_destination'] = $packinglists[$x][$y]['pl_destination'];
                         $plrow[$key]['ctn_style_size'] = $packinglists[$x][$y]['pl_style_size'];
                         $plrow[$key]['ctn_quantity'] = $packinglists[$x][$y]['pl_number_of_carton'];
                         $plrow[$key]['ctn_carton'] = $packinglists[$x][$y]['carton_size'];
                         $plrow[$key]['ctn_pl_quantity'] = $packinglists[$x][$y]['pl_order_quantity_cut'];
                         $plrow[$key]['ctn_brand'] = $packinglists[$x][$y]['pl_brand'];
                         $plrow[$key]['ctn_type'] = $packinglists[$x][$y]['pl_type'];
+                        $plrow[$key]['ctn_buy_year'] = $packinglists[$x][$y]['pl_buy_year'];
+                        $plrow[$key]['ctn_buy_month'] = $packinglists[$x][$y]['pl_buy_month'];
 
 
                         $ctn_info = Carton::where([

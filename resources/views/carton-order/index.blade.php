@@ -16,7 +16,6 @@
                             <a href="{{route('packing-lists.allviews')}}"
                                class="btn btn-outline-secondary"
                             >Create</a>
-
                             <a href="{{route('cartons.index')}}"
                                class="btn btn-outline-secondary"
                             >View Carton</a>
@@ -33,15 +32,17 @@
                             <table class="table" >
                                 <thead>
                                 <tr>
-                                    <th width="7%" scope="col">No </th>
-                                    <th width="10%" scope="col">Bill Code</th>
-                                    <th width="13%" scope="col">Order Date </th>
-                                    <th width="15%" scope="col">Delivery Date </th>
-                                    <th width="15%" scope="col">Brand </th>
-                                    <th width="10%" scope="col">Type</th>
-                                    <th width="10%" scope="col">Buy Month</th>
-                                    <th width="10%" scope="col">Buy Year</th>
-                                    <th width="20%" scope="col">Created By </th>
+                                    <th width="5%" scope="col">No </th>
+                                    <th width="15%" scope="col">Bill Code</th>
+                                    <th width="5%" scope="col">Buy Year</th>
+                                    <th width="5%" scope="col">Buy Month</th>
+                                    <th width="8%" scope="col">Order Date </th>
+                                    <th width="8%" scope="col">Delivery Date </th>
+                                    <th width="8%" scope="col">Brand </th>
+                                    <th width="8%" scope="col">Type</th>
+                                    <th width="10%" scope="col">Status</th>
+                                    <th width="10%" scope="col">Approve</th>
+                                    <th width="14%" scope="col">Created By </th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -56,12 +57,14 @@
 
                                             </td>
                                             <td scope="col">{{$carton_order->ctn_bill_code}}</td>
+                                            <td scope="col"> {{$carton_order->ctn_buy_year}} </td>
+                                            <td scope="col">{{$carton_order->ctn_buy_month}}</td>
                                             <td scope="col">{{$carton_order->ctn_order_date}} </td>
                                             <td scope="col">{{$carton_order->ctn_delivery_date}}</td>
-                                            <td scope="col">Brand </td>
-                                            <td scope="col">Type</td>
-                                            <td scope="col">Buy Montd</td>
-                                            <td scope="col">Buy Year</td>
+                                            <td scope="col">{{$carton_order->brand->brand_name}} </td>
+                                            <td scope="col">{{$carton_order->ctn_type}} </td>
+                                            <td scope="col">{{$carton_order->ctn_status}} </td>
+                                            <td scope="col">{{$carton_order->ctn_approve_date}}</td>
                                             <td scope="col">{{$carton_order->user->name}} </td>
                                         </tr>
                                     @endforeach

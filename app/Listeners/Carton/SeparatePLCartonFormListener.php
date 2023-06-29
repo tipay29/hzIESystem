@@ -82,6 +82,8 @@ class SeparatePLCartonFormListener
             $packinglistArray[$x]['pl_pre_pack'] = $packinglistsRaw[$x]['pl_pre_pack'];
             $packinglistArray[$x]['pl_type'] = $packinglistsRaw[$x]['pl_type'];
             $packinglistArray[$x]['pl_brand'] = $packinglistsRaw[$x]['pl_brand'];
+            $packinglistArray[$x]['pl_buy_month'] = $packinglistsRaw[$x]['pl_buy_month'];
+            $packinglistArray[$x]['pl_buy_year'] = $packinglistsRaw[$x]['pl_buy_year'];
             $packinglistArray[$x]['pl_remarks'] = $packinglistsRaw[$x]['pl_remarks'];
             $packinglistArray[$x]['pl_remarks_two'] = $packinglistsRaw[$x]['pl_remarks_two'];
             $packinglistArray[$x]['pl_special_packs'] = $packinglistsRaw[$x]['pl_special_packs'];

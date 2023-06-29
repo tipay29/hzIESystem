@@ -14,4 +14,8 @@ class Brand extends Model
     public function cartons(){
         return $this->hasMany(Carton::class);
     }
+
+    public function carton_orders(){
+        return $this->hasMany(CartonOrder::class);
+    }
 }

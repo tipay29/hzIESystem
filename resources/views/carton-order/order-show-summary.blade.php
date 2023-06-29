@@ -3,14 +3,14 @@
 <div class="row">
 
 
-    <div class="col-md-4" style="min-height: 10px;">
+    <div class="col-md-4 col-sm-4" style="min-height: 10px;">
 
-                                   <textarea rows="6" style="min-width: 100%" id="ctn_remarks">
-                                        Remarks: {{$cartonorder->remarks}}
+                                   <textarea class="ctn-remarks" rows="6" style="min-width: 100%;" id="ctn_remarks">
+                                    {{$carton_order->ctn_remarks}}
                                     </textarea>
     </div>
 
-    <div class="col-md-8" style="min-height: 10px;">
+    <div class="col-md-8  col-sm-8" style="min-height: 10px;">
 
         <table class="table table-bordered co-create-table">
             <thead >
@@ -76,7 +76,7 @@
         }}
                             {{
 $total_amount = $total_amount + ($ctn->carton->ctn_fob*
-                                $carton_order->carton_order_contents->where('carton_id',$ctn->carton->id)->sum('ctn_quantity'));
+                                $carton_order->carton_order_contents->where('carton_id',$ctn->carton->id)->sum('ctn_quantity'))
                             }}
                             {{$total_all = $total_all + floor($carton_order->carton_order_contents->where('carton_id',$ctn->carton->id)->sum('ctn_quantity')/100) +
  $carton_order->carton_order_contents->where('carton_id',$ctn->carton->id)->sum('ctn_quantity')}}

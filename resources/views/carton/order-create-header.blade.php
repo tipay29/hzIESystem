@@ -16,10 +16,12 @@
                class="btn btn-outline-success" id="ctn_btn_confirm" disabled>
                 Confirm</a>
 
+{{--            {{dd(count($cartonorders->where('ctn_carton',"")))}}--}}
+
             <input type="hidden" id="ctn_check"
                    @if(count($cartonorders->where('ctn_carton',"")) > 0)
                         value="1"
-                   @else
+                   @elseif(count($cartonorders->where('ctn_carton',"")) === 0)
                        value="0"
                    @endif
                  >

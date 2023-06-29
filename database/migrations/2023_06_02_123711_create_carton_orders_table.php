@@ -20,6 +20,12 @@ return new class extends Migration
             $table->date('ctn_delivery_date')->nullable();
             $table->text('ctn_instruction')->nullable();
             $table->text('ctn_remarks')->nullable();
+            $table->text('ctn_buy_month')->nullable();
+            $table->text('ctn_buy_year')->nullable();
+            $table->unsignedInteger('brand_id')->nullable();
+            $table->text('ctn_type')->nullable();
+            $table->text('ctn_status')->nullable()->default('Open');
+            $table->date('ctn_approve_date')->nullable();
             $table->unsignedInteger('supplier_id')->default(1);
             $table->unsignedInteger('user_id')->default(1);
             $table->timestamps();

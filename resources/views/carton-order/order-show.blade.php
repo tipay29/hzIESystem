@@ -5,32 +5,34 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
 
-                <div class="card">
+                <div class="card section-to-print">
 
                     @include('carton-order.order-show-header')
-
+                    <div></div>
                     <div class="card-body">
 
-                        <table class="table table-bordered co-create-table">
+                        <table class="table table-bordered co-create-table" style="table-layout: fixed;">
                             <thead >
                             <tr class="table-active">
                                 <th width="7%" class="text-center" scope="col">Fty PO#</th>
                                 <th width="4%" class="text-center" scope="col">DC Code</th>
-                                <th width="5%" class="text-center" scope="col">PO#</th>
-                                <th width="5%" class="text-center" scope="col">Material</th>
+                                <th width="12%" class="text-center" scope="col">Customer Name</th>
+                                <th width="7%" class="text-center" scope="col">Destination</th>
+                                <th width="7%" class="text-center" scope="col">PO#</th>
+                                <th width="8%" class="text-center" scope="col">Material</th>
                                 <th width="15%" class="text-center" scope="col">Description</th>
                                 <th width="3%" class="text-center" scope="col">Size</th>
                                 <th width="5%" class="text-center" scope="col">TtlQty</th>
-                                <th width="2%" class="text-center" scope="col">Qty/Ctn</th>
-                                <th width="8%" class="text-center" scope="col">Ctn Specification</th>
-                                <th width="10%" class="text-center" scope="col">Ctn Measurement</th>
+                                <th width="4%" class="text-center" scope="col">Qty/Ctn</th>
+                                <th width="5%" class="text-center" scope="col">CtnSpec</th>
+                                <th width="7%" class="text-center" scope="col">CtnMsrm</th>
                                 <th width="5%" class="text-center" scope="col">CtnQty</th>
-                                <th width="3%" class="text-center" scope="col">N.W</th>
-                                <th width="3%" class="text-center" scope="col">G.W</th>
-                                <th width="5%" class="text-center" scope="col">Ctn Price</th>
-                                <th width="6%" class="text-center" scope="col">TTL Amount</th>
-                                <th width="6%" class="text-center" scope="col">Carton Code</th>
-                                <th width="6%" class="text-center" scope="col">Collection</th>
+                                <th width="4%" class="text-center" scope="col">N.W</th>
+                                <th width="4%" class="text-center" scope="col">G.W</th>
+                                <th width="4%" class="text-center" scope="col">Ctn Price</th>
+                                <th width="5%" class="text-center" scope="col">TTL Amount</th>
+                                <th width="4%" class="text-center" scope="col">CtnCde</th>
+                                <th width="4%" class="text-center" scope="col">Cllctn</th>
                                 <th style="display: none;"  width="2%" class="text-center cbsEditCartonForm" scope="col">
                                     <button id="ctn_btn_edit_edit" class="btn btn-primary" style="padding: 0;"
                                             data-bs-toggle="modal" data-bs-target="#order_carton_edit_modal">EDIT</button>
@@ -40,25 +42,25 @@
                             </tr>
                             <tr class="table-active">
                                 <th width="5%" class="text-center" scope="col">批号</th>
-                                <th width="4%" class="text-center" scope="col">DC</th>
-                                <th width="5%" class="text-center" scope="col">PO 号</th>
-                                <th width="5%" class="text-center" scope="col">款号</th>
-                                <th width="12%" class="text-center" scope="col">颜色全称</th>
-                                <th width="3%" class="text-center" scope="col">尺码</th>
-                                <th width="5%" class="text-center" scope="col">成品数量</th>
-
-                                <th width="2%" class="text-center" scope="col" style="font-size: 11px !important;">单箱件数</th>
-
-                                <th width="8%" class="text-center" scope="col">材质规格</th>
-                                <th width="10%" class="text-center" scope="col">纸箱尺寸</th>
-                                <th width="5%" class="text-center" scope="col">纸箱数量</th>
-                                <th width="3%" class="text-center" scope="col">净重</th>
-                                <th width="3%" class="text-center" scope="col">毛重</th>
-                                <th width="5%" class="text-center" scope="col">单价</th>
-                                <th width="6%" class="text-center" scope="col">金额</th>
-                                <th width="7%" class="text-center" scope="col">纸箱代号</th>
-                                <th width="7%" class="text-center" scope="col">纸箱代号</th>
-                                <th style="display: none;" width="2%" class="text-center cbsEditCartonForm" scope="col">
+                                <th class="text-center" scope="col">DC</th>
+                                <th class="text-center" scope="col">客人名称</th>
+                                <th class="text-center" scope="col">គ目的地</th>
+                                <th class="text-center" scope="col">PO 号</th>
+                                <th class="text-center" scope="col">款号</th>
+                                <th  class="text-center" scope="col">颜色全称</th>
+                                <th class="text-center" scope="col">尺码</th>
+                                <th class="text-center" scope="col">成品数量</th>
+                                <th class="text-center" scope="col" >单箱件数</th>
+                                <th class="text-center" scope="col">材质规格</th>
+                                <th  class="text-center" scope="col">纸箱尺寸</th>
+                                <th class="text-center" scope="col">纸箱数量</th>
+                                <th class="text-center" scope="col">净重</th>
+                                <th class="text-center" scope="col">毛重</th>
+                                <th class="text-center" scope="col">单价</th>
+                                <th class="text-center" scope="col">金额</th>
+                                <th class="text-center" scope="col">纸箱代号</th>
+                                <th class="text-center" scope="col">纸箱代号</th>
+                                <th style="display: none;" class="text-center cbsEditCartonForm" scope="col">
                                     <input id="cbEditCartonFormAll" type="checkbox">
                                 </th>
 
@@ -74,6 +76,8 @@
 
                                     <td class="text-center">{{$cartonorder['ctn_factory_po']}}</td>
                                     <td class="text-center">{{$cartonorder['ctn_dc_code']}}</td>
+                                    <td class="text-center">{{$cartonorder['ctn_customer_name']}}</td>
+                                    <td class="text-center">{{$cartonorder['ctn_destination']}}</td>
                                     <td class="text-center">{{$cartonorder['ctn_master_po']}}</td>
                                     <td class="text-center">{{$cartonorder['ctn_material']}}</td>
                                     <td class="text-center">{{$cartonorder['ctn_description']}}</td>
@@ -90,8 +94,8 @@
                                     <div style="display: none;">
                                         {{$total_fob_all = $total_fob_all + $cartonorder->carton->ctn_fob*$cartonorder['ctn_quantity']}}
                                     </div>
-                                    <td class="text-center">{{$cartonorder->carton->ctb_code_1001 . $cartonorder->carton->ctb_code_1004}}</td>
-                                    <td class="text-center"></td>
+                                    <td class="text-center">{{$cartonorder->ctn_code}}</td>
+                                    <td class="text-center">{{$cartonorder->ctn_collection}}</td>
                                     <td style="display: none;"  class="cbsEditCartonForm">
                                         &nbsp;&nbsp;&nbsp;
                                         <input class="cf_details"  type="checkbox" name="cf_details[]" value="{{$cartonorder->id}}">
@@ -100,7 +104,7 @@
                                 </tr>
                             @endforeach
                             <tr class="table-active">
-                                <td colspan="10" class="text-center"> <b> Grand Total </b></td>
+                                <td colspan="12" class="text-center"> <b> Grand Total </b></td>
                                 <td class="text-center"> <b>  {{$carton_order->carton_order_contents->sum('ctn_quantity')}} </b></td>
                                 <td class="text-center"></td>
                                 <td class="text-center"></td>

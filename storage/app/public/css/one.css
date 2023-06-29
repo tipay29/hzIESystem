@@ -24,7 +24,7 @@
     font-size: 12px;
 }
 #row-carton-header .row h6:nth-child(2){
-    text-decoration: underline;
+    /*text-decoration: underline;*/
 }
 
 .co-create-table th{
@@ -33,13 +33,56 @@
 
 }
 .co-create-table td{
-    font-size:12px;
+    font-size:10px;
     padding: 1px;
 
 }
 
 @media print
 {
+
+    #row-carton-header h6{
+        font-size: 7px;
+        line-height: 7px;
+        padding: 0;
+    }
+    #row-carton-header .row h6:nth-child(2){
+        /*text-decoration: underline;*/
+    }
+    .ctn-instruction{
+        font-size: 7px;
+        line-height: 7px;
+    }
+    .ctn-instruction-value{
+        padding: 0;
+        font-size: 7px;
+        line-height: 7px;
+    }
+    .co-create-table th{
+        font-size:6px;  line-height: 8px;
+        padding: 0;
+
+    }
+    .co-create-table td{
+        font-size:6px;
+        line-height: 8px;
+        padding: 0;
+
+    }
+    .ctn-remarks{
+        font-size: 9px;
+        line-height: 9px;
+    }
+
+    .ctn-notes h6, .ctn-notes p {
+        font-size: 9px;
+        line-height: 9px;
+    }
+
+    .ctn-sign h6 b, .ctn-sign p,.ctn-sign h6 {
+        font-size: 8px;
+        line-height: 8px;
+    }
 
     @page{
         margin: 0;
@@ -76,6 +119,9 @@
         display: none!important;
     }
 
+    .section-no-print-none{
+        display: none;
+    }
 
     .cut-section-h1-to-print{
         position: absolute;
@@ -125,10 +171,13 @@
         page-break-before: always;
     }
 
-
+    .section-to-print, .section-to-print *{
+        visibility: visible;
+        margin: 0;
+    }
 
 
 }
 
 
-input:placeholder-shown
+

@@ -54,10 +54,12 @@ ctn_supplier_id.change(function(e){
 
 ctn_btn_confirm.click(function(e){
     e.preventDefault();
-
+    // alert(ctn_check.val());
         //change if already finish
+    // alert(ctn_check.val());
+
     if(ctn_check.val() === 1){
-        alert('Cannot proceed, Check list if have empty!');
+        alert('Cannot proceed, Check the list!');
     }else{
 
         let carton_order = {
@@ -77,14 +79,17 @@ ctn_btn_confirm.click(function(e){
             data: carton_order,
             success: function (carton_order) {
                 console.log(carton_order);
-                alert('Save Successfully!!!');
-                window.location.href = '/carton-orders/' + carton_order.id;
+                if(carton_order.message === "Check carton!!!"){
+                    alert(carton_order.message);
+                }else{
+                    alert('Save Successfully!!!');
+                    window.location.href = '/carton-orders/' + carton_order.id;
+                }
             },
             error: function (x,h,r) {
                 alert(x.responseText);
             }
         });
-
     }
 });
 
@@ -107,17 +112,99 @@ ctn_btn_edit_hide.click(function(e){
 
 });
 
+
+let ctn_edit_quantity_input = $('#ctn_edit_quantity_input');
+let ctn_edit_quantity_btn = $('#ctn_edit_quantity_btn');
+let ctn_edit_code_input = $('#ctn_edit_code_input');
+let ctn_edit_code_btn = $('#ctn_edit_code_btn');
+let ctn_edit_collection_input = $('#ctn_edit_collection_input');
+let ctn_edit_collection_btn = $('#ctn_edit_collection_btn');
+var ctn_array =[];
+
 ctn_btn_edit_edit.click(function(e){
     e.preventDefault();
 
-    let myArray = [];
-
     $('.cf_details:checkbox:checked').each(function(){
-        myArray.push(this.value);
+        globalThis.ctn_array.push(this.value);
     });
-
-    alert(myArray);
 
 });
 
+ctn_edit_quantity_btn.click(function(e){
+    e.preventDefault();
 
+    let carton_order = {
+        ctn_ids: ctn_array,
+        ctn_quantity: ctn_edit_quantity_input.val(),
+    };
+
+    $.ajax({
+        type:'POST',
+        url: '/api/carton-orders/update/quantity',
+        data: carton_order,
+        success: function (carton_order) {
+            console.log(carton_order);
+            alert('Save Successfully!!!');
+            location.reload();
+        },
+        error: function (x,h,r) {
+            alert(x.responseText);
+        }
+    });
+
+});
+
+ctn_edit_code_btn.click(function(e){
+    e.preventDefault();
+
+    let carton_order = {
+        ctn_ids: ctn_array,
+        ctn_code: ctn_edit_code_input.val(),
+    };
+
+    $.ajax({
+        type:'POST',
+        url: '/api/carton-orders/update/code',
+        data: carton_order,
+        success: function (carton_order) {
+            console.log(carton_order);
+            alert('Save Successfully!!!');
+            location.reload();
+        },
+        error: function (x,h,r) {
+            alert(x.responseText);
+        }
+    });
+
+});
+
+ctn_edit_collection_btn.click(function(e){
+    e.preventDefault();
+
+    let carton_order = {
+        ctn_ids: ctn_array,
+        ctn_collection: ctn_edit_collection_input.val(),
+    };
+
+    $.ajax({
+        type:'POST',
+        url: '/api/carton-orders/update/collection',
+        data: carton_order,
+        success: function (carton_order) {
+            console.log(carton_order);
+            alert('Save Successfully!!!');
+            location.reload();
+        },
+        error: function (x,h,r) {
+            alert(x.responseText);
+        }
+    });
+
+});
+
+let ctn_print = $('#ctn_print');
+
+ctn_print.click(function(e){
+    e.preventDefault();
+    window.print();
+});
