@@ -74,14 +74,24 @@
         line-height: 9px;
     }
 
-    .ctn-notes h6, .ctn-notes p {
+ .ctn-notes p {
         font-size: 9px;
         line-height: 9px;
     }
-
+    .ctn-notes h6{
+        background-color: darkblue;color:white;
+        font-size: 9px;
+        line-height: 9px;
+    }
     .ctn-sign h6 b, .ctn-sign p,.ctn-sign h6 {
-        font-size: 8px;
-        line-height: 8px;
+        font-size: 7px;
+        line-height: 7px;
+    }
+
+
+    .ctn-title-factory{
+        font-size: .8em;
+        line-height: 1em;
     }
 
     @page{

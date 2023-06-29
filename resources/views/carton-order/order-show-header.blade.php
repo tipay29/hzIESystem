@@ -4,8 +4,8 @@
             <img src="{{ asset('storage/images/horizonlogoword.png') }}" width="120" height="45" alt="Horizon Outdoor">
         </div>
         <div class="col-md-4 col-sm-4">
-            <h5 style="font-size: .9em;line-height: .9em;" class="text-center">Horizon Cambodia Purchase Order</h5>
-            <h5 style="font-size: .9em;line-height: .9em;" class="text-center">宏盛柬埔寨采购单</h5>
+            <h5   class="text-center ctn-title-factory">Horizon Cambodia Purchase Order</h5>
+            <h5  class="text-center ctn-title-factory">宏盛柬埔寨采购单</h5>
         </div>
         <div class="col-md-4 col-sm-4">
             <a href="{{url()->previous()}}" style="float:right;"

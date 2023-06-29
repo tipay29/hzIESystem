@@ -36,7 +36,7 @@
     <div class="col-md-2 col-sm-2"></div>
 
     <div class="col-md-3 col-sm-3">
-        <h6 id="supp_name_sign" class="mt-3 mb-5 text-center" style="font-size: 12px;"> <b>HORIZON OUTDOOR(CAMBODIA) CO., LTD. </b></h6>
+        <h6 id="supp_name_sign" class="mt-3 mb-5 text-center" > <b>HORIZON OUTDOOR(CAMBODIA) CO., LTD. </b></h6>
         <p style="border-bottom:3px solid black;" class="mb-0"></p>
         <p class="m-0 p-0 text-center" style="font-size: 11px;"> (Buyer's Signature)</p>
     </div>
