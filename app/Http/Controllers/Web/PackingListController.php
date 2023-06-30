@@ -42,6 +42,15 @@ class PackingListController extends Controller
                 \App\QueryFilters\Packing\Index\CustomerName::class,
                 \App\QueryFilters\Packing\Index\CRD::class,
                 \App\QueryFilters\Packing\Index\CreateDate::class,
+                \App\QueryFilters\Packing\Batch\SortPO::class,
+                \App\QueryFilters\Packing\Batch\SortMasterPO::class,
+                \App\QueryFilters\Packing\Batch\SortFactoryPO::class,
+                \App\QueryFilters\Packing\Batch\SortMaterial::class,
+                \App\QueryFilters\Packing\Batch\SortCustomerName::class,
+                \App\QueryFilters\Packing\Batch\SortCRD::class,
+                \App\QueryFilters\Packing\Batch\Brand::class,
+                \App\QueryFilters\Packing\Batch\Type::class,
+
             ])
             ->thenReturn()
             ->orderBy('id', 'DESC')

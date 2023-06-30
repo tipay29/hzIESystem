@@ -79,8 +79,13 @@
 
             <div class="col-md-2">
                 <small for="pls_status">Status</small>
-                <input id="pls_status" type="text" class="form-control"
-                       value="{{request('pls_status')}}"  name="pls_status">
+
+                <select name="pls_status" id="pls_status" class="form-control">
+                    <option value="0" selected disabled>Select Status</option>
+                    <option value="Draft" {{request('pls_status') == "Draft" ? "selected" : ""}}>Draft</option>
+                    <option value="Cancelled" {{request('pls_status') == "Cancelled" ? "selected" : ""}}>Cancelled</option>
+                    <option value="Final" {{request('pls_status') == "Final" ? "selected" : ""}}>Final</option>
+                </select>
             </div>
             <div class="col-md-2">
                 <small for="pls_customer_name">Customer Name</small>
@@ -104,8 +109,17 @@
         <div class="row mt-1">
             <div class="col-md-2">
                 <small for="pls_user">Created By</small>
-                <input maxlength="1" id="pls_user" type="text" class="form-control"
-                       value="{{request('pls_user')}}" name="pls_user">
+                <select name="pls_user" id="pls_user" class="form-control">
+                    <option value="0" selected disabled>Select User</option>
+                    <option value="30" {{request('pls_user') == "30" ? "selected" : ""}}>William</option>
+                    <option value="12" {{request('pls_user') == "12" ? "selected" : ""}}>Christian</option>
+                    <option value="14" {{request('pls_user') == "14" ? "selected" : ""}}>Raksa</option>
+                    <option value="16" {{request('pls_user') == "16" ? "selected" : ""}}>Jevon</option>
+                    <option value="19" {{request('pls_user') == "19" ? "selected" : ""}}>Bert</option>
+                    <option value="20" {{request('pls_user') == "20" ? "selected" : ""}}>Franklin</option>
+                    <option value="21" {{request('pls_user') == "21" ? "selected" : ""}}>Vinus</option>
+                    <option value="23" {{request('pls_user') == "23" ? "selected" : ""}}>Jayson</option>
+                </select>
             </div>
 
             <div class="col-md-2">
