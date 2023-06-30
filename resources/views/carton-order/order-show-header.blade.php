@@ -13,7 +13,7 @@
                 Back</a>
             <a href="#" style="float:right;margin-right:5px;"
 
-               class="btn btn-outline-success section-no-print-none" >
+               class="btn btn-outline-success section-no-print-none" id="ctn_approve_btn">
                 Approve</a>
             <a href="#" style="float:right;margin-right:5px;"
 
@@ -23,6 +23,8 @@
             <a href="#" id="ctn_print" style="float:right;margin-right:5px;"
                class="btn btn-outline-primary section-no-print-none">
                 Print</a>
+
+
         </div>
 
     </div>
@@ -37,6 +39,8 @@
                 <h6 for="" class="col-md-9 col-sm-9 text-md-start text-un" id="ctn_bill_code">
                         {{$carton_order->ctn_bill_code}}
                 </h6>
+
+                <input type="hidden" id="ctn_order_id" value="{{$carton_order->id}}">
 
             </div>
             <div class="row">

@@ -49,6 +49,7 @@ Route::group(['as' => 'api.'],function() {
     Route::post('carton-orders/update/quantity','CartonOrderApiController@updateCartonQuantity')->name('packing-lists.updateCartonQuantity');
     Route::post('carton-orders/update/code','CartonOrderApiController@updateCartonCode')->name('packing-lists.updateCartonCode');
     Route::post('carton-orders/update/collection','CartonOrderApiController@updateCartonCollection')->name('packing-lists.updateCartonCollection');
+    Route::post('carton-orders/update/approve','CartonOrderApiController@updateCartonApprove')->name('packing-lists.updateCartonApprove');
 
     Route::get('suppliers/{supplier}','SupplierApiController@show')->name('packing-lists.show');
 

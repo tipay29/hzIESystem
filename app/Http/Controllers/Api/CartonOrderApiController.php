@@ -101,6 +101,14 @@ class CartonOrderApiController extends Controller
         return response()->json(['message' => 'success'],200);
     }
 
+    public function updateCartonApprove(){
+
+        $carton_order = CartonOrder::where('id',request('ctn_order_id'))->first();
+        $carton_order->update(['ctn_approve_date' => now()]);
+
+        return response()->json(['message' => 'Success Approve Date!!!'],200);
+    }
+
     public function index()
     {
         //

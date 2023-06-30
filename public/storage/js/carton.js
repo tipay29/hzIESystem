@@ -208,3 +208,27 @@ ctn_print.click(function(e){
     e.preventDefault();
     window.print();
 });
+
+let ctn_approve_btn = $('#ctn_approve_btn');
+
+ctn_approve_btn.click(function(e){
+    e.preventDefault();
+
+    let carton_order = {
+        ctn_order_id: $('#ctn_order_id').val(),
+    };
+    $.ajax({
+        type:'POST',
+        url: '/api/carton-orders/update/approve',
+        data: carton_order,
+        success: function (carton_order) {
+            console.log(carton_order);
+            alert(carton_order.message);
+            location.reload();
+        },
+        error: function (x,h,r) {
+            alert(x.responseText);
+        }
+    });
+
+});

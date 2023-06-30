@@ -25,7 +25,7 @@ return new class extends Migration
             $table->unsignedInteger('brand_id')->nullable();
             $table->text('ctn_type')->nullable();
             $table->text('ctn_status')->nullable()->default('Open');
-            $table->date('ctn_approve_date')->nullable();
+            $table->dateTime('ctn_approve_date')->nullable();
             $table->unsignedInteger('supplier_id')->default(1);
             $table->unsignedInteger('user_id')->default(1);
             $table->timestamps();

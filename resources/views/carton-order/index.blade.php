@@ -40,9 +40,9 @@
                                     <th width="8%" scope="col">Delivery Date </th>
                                     <th width="8%" scope="col">Brand </th>
                                     <th width="8%" scope="col">Type</th>
-                                    <th width="10%" scope="col">Status</th>
-                                    <th width="10%" scope="col">Approve</th>
-                                    <th width="14%" scope="col">Created By </th>
+                                    <th width="8%" scope="col">Status</th>
+                                    <th width="16%" scope="col">Approve</th>
+                                    <th width="12%" scope="col">Created By </th>
                                 </tr>
                                 </thead>
                                 <tbody>
