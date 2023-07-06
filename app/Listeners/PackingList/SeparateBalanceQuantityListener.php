@@ -324,8 +324,8 @@ class SeparateBalanceQuantityListener
                             //CTN#
                             $packinglistArray[$x]['carton_number_display'] = ($this->carton_number + 1) . "-" . ($this->carton_number + $packinglistArray[$x]['pl_number_of_carton']);
 
-                            unset($packinglistArray[$x]['pl_number_of_carton']);
-                            $packinglistArray[$x]['pl_number_of_carton'] = 1;
+//                            unset($packinglistArray[$x]['pl_number_of_carton']);
+//                            $packinglistArray[$x]['pl_number_of_carton'] = 1;
 
                             $this->carton_number = $this->carton_number + $packinglistArray[$x]['pl_number_of_carton'];
 

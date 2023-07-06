@@ -39,6 +39,7 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
 
     public function __construct($packinglists)
     {
+//        dd($packinglists);
         $this->packinglists = $packinglists;
         $this->shipmarkcount = 0 ;
         $this->mcqdetailcount = 0 ;
