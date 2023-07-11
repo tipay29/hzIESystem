@@ -272,7 +272,7 @@ class PackingListController extends Controller
             return redirect()->back()->with('message', 'Invalid Filter!!!');
         }
 
-//        dd($packinglists);
+    //    dd($packinglists);
 
         $customers = Destination::where([
             ['customer_name', $packinglists[0]['pl_country']],
