@@ -38,6 +38,52 @@
 
                 </div>
 
+                <div class="card pl_section-to-print">
+                    <div class="card-header">
+                        <div class="row m-0 p-0">
+                            <div class="col-md-6 m-0 p-0">
+
+                            </div>
+                            <div class="col-md-6 m-0 p-0">
+                                <table class="table table-bordered m-0" style="table-layout: fixed;">
+
+
+
+                                    <tbody>
+                                    <tr>
+                                        <th class="text-center" width="20%" style="padding: 0px;margin: 0px;" scope="col" >Merchandiser</th>
+                                        <th class="text-center" width="20%" style="padding: 0px;margin: 0px;" scope="col">Supervisor</th>
+                                        <th class="text-center" width="20%" style="padding: 0px;margin: 0px;" scope="col">Building 6</th>
+                                        <th class="text-center" width="20%" style="padding: 0px;margin: 0px;" scope="col">CFA</th>
+                                        <th class="text-center" width="20%" style="padding: 0px;margin: 0px;" scope="col">Warehouse</th>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 0px;margin: 0px; font-size: 12px;">Date:</td>
+                                        <td style="padding: 0px;margin: 0px; font-size: 12px;">Date:</td>
+                                        <td style="padding: 0px;margin: 0px; font-size: 12px;">Date:</td>
+                                        <td style="padding: 0px;margin: 0px; font-size: 12px;">Date:</td>
+                                        <td style="padding: 0px;margin: 0px; font-size: 12px;">Date:</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="padding: 0px;margin: 0px; font-size: 12px; height: 60px;
+                                    vertical-align:bottom;text-align:center;">Name</td>
+                                        <td style="padding: 0px;margin: 0px; font-size: 12px;height: 60px;
+                                    vertical-align:bottom;text-align:center;">Name</td>
+                                        <td style="padding: 0px;margin: 0px; font-size: 12px;height: 60px;
+                                    vertical-align:bottom;text-align:center;">Name</td>
+                                        <td style="padding: 0px;margin: 0px; font-size: 12px;height: 60px;
+                                    vertical-align:bottom;text-align:center;">Name</td>
+                                        <td style="padding: 0px;margin: 0px; font-size: 12px;height: 60px;
+                                    vertical-align:bottom;text-align:center;">Name</td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="card mb-3 pl_section-to-print">
 

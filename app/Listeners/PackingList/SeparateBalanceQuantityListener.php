@@ -67,7 +67,7 @@ class SeparateBalanceQuantityListener
 //            dump($style_code);
 //        }
 //        dd('aw');
-
+//        dd($packinglistsRaw);
 
 
         for($x = 0; $x <= $packinglistsRawCount; $x++ ){
@@ -103,8 +103,14 @@ class SeparateBalanceQuantityListener
             $packinglistArray[$x]['pl_order_quantity'] = $iqty;
 
             $prepack = $packinglistArray[$x]['pl_pre_pack'];
-            $style_code = ltrim(substr($packinglistsRaw[$x]->pl_sku,-5),0);
-
+//            $style_code = ltrim(substr($packinglistsRaw[$x]->pl_sku,-5),0);
+            $aw = 1;
+            if($aw == 0){
+                $style_code = ltrim(substr($packinglistsRaw[$x]->pl_sku,-5),0);
+            }else{
+                $style_code = ltrim(substr($packinglistsRaw[$x]->pl_material,-8),0);
+            }
+//            dd($style_code_two);
 
             if($this->balance_qty == 0){
                 $this->total_qty_ship = $this->total_qty_ship + $iqty;
@@ -164,12 +170,10 @@ class SeparateBalanceQuantityListener
             //get MCQ LIST
             $mcqlistnew = array();
 
-
             for($y = 0; $y <= $sizesCount; $y++){
                 $mcqlistnew[$sizes[$y]->pivot->carton_id] = $sizes[$y]->pivot->mcq;
 
             }
-
 
             $cartonidlist = collect(array_flip(collect($mcqlistnew)->sort()->toArray()))->values()->toArray();
 
@@ -177,11 +181,9 @@ class SeparateBalanceQuantityListener
 //            dd($mcqlist);
 //            dump($mcqlist);
 //            dd($mcqlist);
-//
+
 //            dump($packinglistsRaw[$x]->pl_order_quantity);
-
             //get the suited carton for the quantity
-
 
             //check if mcq have if not we put blank in the else
             if(count($mcqlist) !== 0) {
@@ -204,9 +206,6 @@ class SeparateBalanceQuantityListener
                         if ($prepack !== null && $prepack !== 0) {
                             $mcqlist[$z] = (int)floor(($mcqlist[$z] / $prepack)) * $prepack;
                         }
-
-
-
 
                         //1st batch
                         if ($iqty >= $mcqlist[$z] && $ctrl_row_cut === 0) {
