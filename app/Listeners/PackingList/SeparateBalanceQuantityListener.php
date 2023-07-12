@@ -186,21 +186,21 @@ class SeparateBalanceQuantityListener
             //get the suited carton for the quantity
 
             //check if mcq have if not we put blank in the else
-          
+
             if(count($mcqlist) !== 0) {
                 $ctrl_row_cut = 0;
                 for ($z = 0; $z <= $sizesCount; $z++) {
 
                     //STyle WEight with size
                     $style_weight = $sizes[$z]->pivot->weight;
-           
+
                     if ($this->balance_qty !== 0) {
                         // dd($this->balance_qty);
                         $iqty = $this->balance_qty;
                         $this->balance_qty = 0;
                         $ctrl_row_cut = 1;
                     }
-               
+
                     //get proper MCQ
                     if ($iqty <= $mcqlist[$z] || $z == $sizesCount) {
 
@@ -241,7 +241,7 @@ class SeparateBalanceQuantityListener
                             $packinglistArray[$x]['net_weight_total'] = $packinglistArray[$x]['net_weight_one_ctn'] * $packinglistArray[$x]['pl_number_of_carton'];
                             //Total netweight
                             $this->total_nw = $this->total_nw + $packinglistArray[$x]['net_weight_total'];
-
+//                            dd($cartonidlist);
                             //Carton WEight
                             $packinglistArray[$x]['carton_weight'] = $cartons->where('id', $cartonidlist[$z])->first()->ctn_weight;
 
