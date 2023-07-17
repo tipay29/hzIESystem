@@ -100,7 +100,8 @@
                        <td  > <b> {{$cartonorders->sum('ctn_quantity')}}  </b> </td>
                        <td> <b> pcs </b></td>
                        <td> <b> $ 0.28 </b></td>
-                       <td><b>$ {{60*30/1000*.28*$cartonorders->sum('ctn_quantity')}}</b> </td>
+{{--                       <td><b>$ {{60*30/1000*.28*$cartonorders->sum('ctn_quantity')}}</b> </td>--}}
+                      <td><b>$ {{0.28*$cartonorders->sum('ctn_quantity')}}</b> </td>
                        <td>-</td>
                         <td><b> {{$cartonorders->sum('ctn_quantity')}}  </b> </td>
 

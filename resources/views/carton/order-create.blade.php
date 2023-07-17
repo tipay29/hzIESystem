@@ -64,7 +64,6 @@
                             <tbody>
                                 @foreach($cartonorders as $key => $cartonorder)
                                         <tr>
-
                                             <td class="text-center">{{$cartonorder['ctn_factory_po']}}</td>
                                             <td class="text-center">{{$cartonorder['ctn_dc_code']}}</td>
                                             <td class="text-center">{{$cartonorder['ctn_customer_name']}}</td>
@@ -84,8 +83,6 @@
                                             <td class="text-center">${{$cartonorder['ctn_fob_all']}} </td>
                                             <td class="text-center">{{$cartonorder['ctn_code']}}</td>
                                             <td class="text-center"></td>
-
-
                                         </tr>
                                 @endforeach
                                 <tr class="table-active">
