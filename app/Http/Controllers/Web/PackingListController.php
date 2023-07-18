@@ -653,7 +653,7 @@ class PackingListController extends Controller
 
                     }
                     elseif(array_key_exists($key,$bases)){
-                        dd('aw');
+//                        dd('aw');
                         $plrow[$key]['ctn_quantity'] = $plrow[$key]['ctn_quantity'] + $packinglists[$x][$y]['pl_number_of_carton'];
 
                     }
@@ -666,7 +666,7 @@ class PackingListController extends Controller
 
         }
 
-        dd($plrow);
+//        dd($plrow);
         $ctn_order->add($plrow);
 
         return $packinglists;

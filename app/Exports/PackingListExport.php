@@ -901,8 +901,6 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
 
     public function setImage($worksheet){
 
-
-
         $drawings = new Drawing();
          $drawings->setName('sm');
          $drawings->setDescription('sm Logo');
