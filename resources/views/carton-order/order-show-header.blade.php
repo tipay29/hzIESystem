@@ -24,6 +24,9 @@
                class="btn btn-outline-primary section-no-print-none">
                 Print</a>
 
+            <a href="{{route('carton-orders.export', $carton_order->id)}}"
+               class="btn btn-outline-success">
+                Excel</a>
 
         </div>
 

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Exports\CartonOrderExport;
 use App\Models\CartonOrder;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CartonOrderController extends Controller
 {
@@ -49,12 +51,14 @@ class CartonOrderController extends Controller
         return view('carton-order.order-show', compact('carton_order'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\CartonOrder  $cartonOrder
-     * @return \Illuminate\Http\Response
-     */
+    public function export(CartonOrder $cartonorder){
+        $cartonorder->load('carton_order_contents');
+//        dd($cartonorder);
+        $excel = Excel::download(new CartonOrderExport($cartonorder), 'carton-form.xlsx');
+
+        return $excel;
+    }
+
     public function edit(CartonOrder $cartonOrder)
     {
         //

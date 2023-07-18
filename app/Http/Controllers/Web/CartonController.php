@@ -166,14 +166,13 @@ class CartonController extends Controller
                         }
 
 
+
                         if($packinglists[$x][$y]['net_weight_one_ctn'] == 0 || $packinglists[$x][$y]['net_weight_one_ctn'] == null){
                             $plrow[$key]['ctn_nw'] = "";
                             $plrow[$key]['ctn_gw'] = "";
                         }else{
-                            $plrow[$key]['ctn_nw'] = ($packinglists[$x][$y]['net_weight_one_ctn']/
-                                $packinglists[$x][$y]['pl_one_ctn_item_count']) * $plrow[$key]['ctn_pl_quantity'];
-                            $plrow[$key]['ctn_gw'] = ($packinglists[$x][$y]['gross_weight_one_ctn']/
-                                    $packinglists[$x][$y]['pl_one_ctn_item_count']) * $plrow[$key]['ctn_pl_quantity'];
+                            $plrow[$key]['ctn_nw'] = $packinglists[$x][$y]['net_weight_one_ctn'];
+                            $plrow[$key]['ctn_gw'] = $packinglists[$x][$y]['gross_weight_one_ctn'];
                         }
 //
 

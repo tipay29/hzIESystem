@@ -111,7 +111,7 @@ $total_amount = $total_amount + ($ctn->carton->ctn_fob*
                 <td  > <b> {{$carton_order->carton_order_contents->sum('ctn_quantity')}}  </b> </td>
                 <td> <b> pcs </b></td>
                 <td> <b> $ 0.28 </b></td>
-                <td><b>$ {{60*30/1000*.28*$carton_order->carton_order_contents->sum('ctn_quantity')}}</b> </td>
+                <td><b>$ {{0.28*$carton_order->carton_order_contents->sum('ctn_quantity')}}</b> </td>
                 <td>-</td>
                 <td><b> {{$carton_order->carton_order_contents->sum('ctn_quantity')}}  </b> </td>
 
