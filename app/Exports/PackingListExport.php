@@ -199,8 +199,8 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                     ->getStyle('N10')
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT);
-                $event->sheet->setCellValue('N10','Customer Name:')
-                    ->getStyle('N10')
+                $event->sheet->setCellValue('N11','Customer Name:')
+                    ->getStyle('N11')
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT);
                 $event->sheet->setCellValue('N12','Destination Country:')

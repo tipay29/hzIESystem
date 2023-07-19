@@ -397,7 +397,7 @@ class CartonOrderExport implements FromCollection,WithCustomStartCell,WithHeadin
                     $event->sheet->setCellValue('P' . ($this->summarycontentstart+$x),
                         floor($this->cartonorder->carton_order_contents->where('carton_id',$ctn->carton->id)->sum('ctn_quantity')/100))
                         ->getStyle('P' . ($this->summarycontentstart+$x) .':Q' . ($this->summarycontentstart+$x))->applyFromArray($border);
-                    $event->sheet->setCellValue('R' . ($this->summarycontentstart+$x),'$' .
+                    $event->sheet->setCellValue('R' . ($this->summarycontentstart+$x),
                         (floor($this->cartonorder->carton_order_contents->where('carton_id',$ctn->carton->id)->sum('ctn_quantity')/100) +
                         $this->cartonorder->carton_order_contents->where('carton_id',$ctn->carton->id)->sum('ctn_quantity')))
                         ->getStyle('R' . ($this->summarycontentstart+$x) .':S' . ($this->summarycontentstart+$x))->applyFromArray($border);
@@ -429,7 +429,7 @@ class CartonOrderExport implements FromCollection,WithCustomStartCell,WithHeadin
                     ->getStyle('N' . ($this->summarycontentstart+$this->summarycontentcount) .':O' . ($this->summarycontentstart+$x))->applyFromArray($border);
                 $event->sheet->setCellValue('P' . ($this->summarycontentstart+$this->summarycontentcount),$total_allowance)
                     ->getStyle('P' . ($this->summarycontentstart+$this->summarycontentcount) .':Q' . ($this->summarycontentstart+$x))->applyFromArray($border);
-                $event->sheet->setCellValue('R' . ($this->summarycontentstart+$this->summarycontentcount),'$' . $total_all)
+                $event->sheet->setCellValue('R' . ($this->summarycontentstart+$this->summarycontentcount), $total_all)
                     ->getStyle('R' . ($this->summarycontentstart+$this->summarycontentcount) .':S' . ($this->summarycontentstart+$x))->applyFromArray($border);
                 //summarycontent
                 //carton paper
