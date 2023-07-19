@@ -105,13 +105,13 @@ class SeparateBalanceQuantityListener
             $prepack = $packinglistArray[$x]['pl_pre_pack'];
 //            $style_code = ltrim(substr($packinglistsRaw[$x]->pl_sku,-5),0);
             $aw = 1;
-            if($aw == 0){
+            if($aw == 1){
                 $style_code = ltrim(substr($packinglistsRaw[$x]->pl_sku,-5),0);
             }else{
                 $style_code = ltrim(substr($packinglistsRaw[$x]->pl_material,-8),0);
             }
 //            dd($style_code_two);
-
+            
             if($this->balance_qty == 0){
                 $this->total_qty_ship = $this->total_qty_ship + $iqty;
             }
@@ -129,6 +129,9 @@ class SeparateBalanceQuantityListener
                     'style_code' => $style_code,
                 ])->load('sizes');
             }
+
+            // dd($style);
+
 
             $packinglistArray[$x]['pl_style_id'] = $style->id;
 //            dd($style);
@@ -174,11 +177,11 @@ class SeparateBalanceQuantityListener
                 $mcqlistnew[$sizes[$y]->pivot->carton_id] = $sizes[$y]->pivot->mcq;
 
             }
-
+    
             $cartonidlist = collect(array_flip(collect($mcqlistnew)->sort()->toArray()))->values()->toArray();
-
+            // dd($sizes);
             $mcqlist = collect($mcqlistnew)->sort()->values()->toArray();
-//            dd($mcqlist);
+        //    dd($cartonidlist);
 //            dump($mcqlist);
 //            dd($mcqlist);
 
@@ -190,7 +193,7 @@ class SeparateBalanceQuantityListener
             if(count($mcqlist) !== 0) {
                 $ctrl_row_cut = 0;
                 for ($z = 0; $z <= $sizesCount; $z++) {
-
+                    // dump($z);
                     //STyle WEight with size
                     $style_weight = $sizes[$z]->pivot->weight;
 
@@ -214,9 +217,12 @@ class SeparateBalanceQuantityListener
 
                             //for sort by size
                             $packinglistArray[$x]['pl_style_size_id'] = $size_id;
-
+                    
                             //QTY/SHIP
+                        
+
                             $packinglistArray[$x]['pl_order_quantity_cut'] = ((int)floor($iqty / $mcqlist[$z])) * $mcqlist[$z];
+                      
                             //QTY / CTN
                             $packinglistArray[$x]['pl_one_ctn_item_count'] = $mcqlist[$z];
                             //NO OF CTN#
@@ -241,7 +247,7 @@ class SeparateBalanceQuantityListener
                             $packinglistArray[$x]['net_weight_total'] = $packinglistArray[$x]['net_weight_one_ctn'] * $packinglistArray[$x]['pl_number_of_carton'];
                             //Total netweight
                             $this->total_nw = $this->total_nw + $packinglistArray[$x]['net_weight_total'];
-//                            dd($cartonidlist);
+                        //    dd($cartonidlist);
                             //Carton WEight
                             $packinglistArray[$x]['carton_weight'] = $cartons->where('id', $cartonidlist[$z])->first()->ctn_weight;
 
