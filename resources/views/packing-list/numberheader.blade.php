@@ -3,17 +3,7 @@
         <div class="col-md-4">
 
             <img src="{{ asset('storage/images/horizonlogo.png') }}" width="95" height="40" alt="Horizon Outdoor">
-            <br>
-            <b> Horizon Outdoor Cambodia CO., LTD </b> <br>
-            <p class="m-0" style="font-size: .8rem; ">
-                National Highway 5, 43 Kilometers, Phum Phsar Trach, Khum Longvek,</p>
-            <p class="m-0" style="font-size: .8rem; ">
-                Srok Kampong Trolach,Kampong Chhnang Province, Cambodia</p>
-            <p class="m-0" style="font-size: .8rem; ">
-                Tel: 855-78-210 076</p>
-            <p class="text-start m-0" style="font-size: .9rem;">
-                <b>Country of Origin:</b> Cambodia
-            </p>
+
         </div>
 
         <div class="col-md-4" >
