@@ -72,35 +72,37 @@ class StyleApiController extends Controller
 
                     if(($mcq !== null && $mcq !== "") && ($carton_id !== null && $carton_id !== "")){
 
-                        if (Size::where('size', $size_size)->doesntExist()) {
-                            $size = Size::create(['size' => $size_size]);
-                        } else {
-                            $size = Size::where('size', $size_size)->first();
+                        if($mcq !== 0){
+                        
+                            if (Size::where('size', $size_size)->doesntExist()) {
+                                $size = Size::create(['size' => $size_size]);
+                            } else {
+                                $size = Size::where('size', $size_size)->first();
+                            }
+
+                            $size_style_carton_id = $size->id . $style->id . $carton_id;
+
+                            if ($size->styles()->where('size_style_carton_id', $size_style_carton_id)->exists()) {
+
+                                $size->styles()->wherePivot('size_style_carton_id', '=', $size_style_carton_id)->detach();
+
+                                $size->styles()->attach([$style->id => [
+                                    'weight' => $weight,
+                                    'carton_id' => $carton_id,
+                                    'mcq' => $mcq,
+                                    'size_style_carton_id' => $size_style_carton_id,
+                                ]]);
+
+                            }else{
+                                $size->styles()->attach([$style->id => [
+                                    'weight' => $weight,
+                                    'carton_id' => $carton_id,
+                                    'mcq' => $mcq,
+                                    'size_style_carton_id' => $size_style_carton_id,
+                                ]]);
+                            }
+
                         }
-
-                        $size_style_carton_id = $size->id . $style->id . $carton_id;
-
-                        if ($size->styles()->where('size_style_carton_id', $size_style_carton_id)->exists()) {
-
-                            $size->styles()->wherePivot('size_style_carton_id', '=', $size_style_carton_id)->detach();
-
-                            $size->styles()->attach([$style->id => [
-                                'weight' => $weight,
-                                'carton_id' => $carton_id,
-                                'mcq' => $mcq,
-                                'size_style_carton_id' => $size_style_carton_id,
-                            ]]);
-
-                        }else{
-                            $size->styles()->attach([$style->id => [
-                                'weight' => $weight,
-                                'carton_id' => $carton_id,
-                                'mcq' => $mcq,
-                                'size_style_carton_id' => $size_style_carton_id,
-                            ]]);
-                        }
-
-
                     }
 
 

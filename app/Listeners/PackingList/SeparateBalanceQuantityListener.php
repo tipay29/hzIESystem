@@ -217,9 +217,12 @@ class SeparateBalanceQuantityListener
 
                             //for sort by size
                             $packinglistArray[$x]['pl_style_size_id'] = $size_id;
-
+                    
                             //QTY/SHIP
+                        
+
                             $packinglistArray[$x]['pl_order_quantity_cut'] = ((int)floor($iqty / $mcqlist[$z])) * $mcqlist[$z];
+                      
                             //QTY / CTN
                             $packinglistArray[$x]['pl_one_ctn_item_count'] = $mcqlist[$z];
                             //NO OF CTN#
