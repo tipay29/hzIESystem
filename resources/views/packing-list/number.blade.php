@@ -41,13 +41,153 @@
                 <div class="card pl_section-to-print">
                     <div class="card-header">
                         <div class="row m-0 p-0">
-                            <div class="col-md-6 m-0 p-0">
+                            <div class="col-md-4 m-0 p-0">
+
+                                <img src="{{ asset('storage/images/horizonlogo.png') }}"
+                                     width="80" height="35" alt="Horizon Outdoor" style="position: fixed;">
+
+                                <div class="row m-0 p-0">
+                                    <h6 for="" class="col-md-4 text-md-end"> Status:</h6>
+
+                                    <select id="pl_status" class="col-md-7 text-start" style="
+                                    {{$packinglists[0]['pl_status']=="Drafted" ? 'background-color:yellow;' : ''}}
+                                    {{$packinglists[0]['pl_status']=="Canceled" ? 'background-color:red;' : ''}}
+                                    {{$packinglists[0]['pl_status']=="Final" ? 'background-color:green;color:white;' : ''}}
+                                        font-size: 1rem;
+                                        border:none;"
+                                    @cannot('create', App\Models\PackingList::class)
+                                        {{'disabled'}}
+                                        @endcannot
+                                    >
+                                        <option value="Draft"
+                                            {{ $packinglists[0]['pl_status']=="Draft" ? 'selected' : ''  }}
+                                        >Draft</option>
+                                        <option value="Cancelled"
+                                            {{ $packinglists[0]['pl_status']=="Cancelled" ? 'selected' : ''  }}
+                                        >Cancelled</option>
+                                        <option value="Final"
+                                            {{ $packinglists[0]['pl_status']=="Final" ? 'selected' : ''  }}
+                                        >Final</option>
+
+                                    </select>
+
+                                </div>
+                                <div class="row">
+                                    <h6  class="col-md-4 text-md-end"> MD:</h6>
+
+                                    <p class="col-md-7 text-start m-0" style="font-size: 1rem;">
+                                        {{\App\Models\User::where('id',$packinglists[0]['user_id'])->first()->name}}
+                                    </p>
+
+                                </div>
+
+                                <div class="row">
+                                    <h6  class="col-md-4 text-md-end"> Print Date:</h6>
+
+                                    <p class="col-md-7 text-start m-0" style="font-size: 1rem;">
+                                        {{now()->format('Y-m-d H:i')}}
+                                    </p>
+
+                                </div>
+
+                                <div class="row">
+                                    <h6 for="" class="col-md-4 text-md-end"> CRD:</h6>
+
+                                    <input id="pl_crd_input" class="col-md-7 text-start"
+                                           type="date"
+                                           style="text-align: center;
+                                                   border: 0; background-color:	 #f1f1f1;
+                                                   font-weight: 500;font-size: 1.2rem;
+                                                   padding:0px;line-height: 15px;padding-left: 0.7em;
+                                                    " value="{{$packinglists[0]['pl_crd']}}"
+                                    @cannot('create', App\Models\PackingList::class)
+                                        {{'disabled'}}
+                                        @endcannot
+                                    >
+
+
+
+
+                                </div>
+                                <div class="row">
+                                    <h6  class="col-md-4 text-md-end"> Customer Name:</h6>
+
+
+                                    <input id="pl_country_input" class="col-md-7 text-start"
+                                           type="text"
+                                           style="text-align: center;
+                               border: 0; background-color:	 #f1f1f1;
+                               font-weight: 500;font-size: 1.2rem;
+                               padding:0;line-height: 10px;padding-left: 0.7em;"
+                                           value="{{$packinglists[0]['pl_country']}}"
+                                    @cannot('create', App\Models\PackingList::class)
+                                        {{'disabled'}}
+                                        @endcannot >
+
+                                    <h6  class="col-md-4 text-md-end"></h6>
+                                    <input id="pl_country_two_input" class="col-md-7 text-start"
+                                           type="text"
+                                           style="text-align: center;
+                           border: 0; background-color:	 #f1f1f1;
+                           font-weight: 500;font-size: 1.2rem;
+                           padding:0;line-height: 10px;padding-left: 0.7em;"
+                                           value="{{$packinglists[0]['pl_country_two']}}"
+                                    @cannot('create', App\Models\PackingList::class)
+                                        {{'disabled'}}
+                                        @endcannot >
+
+                                </div>
+                                <div class="row">
+                                    <h6  class="col-md-4 text-md-end"> Destination Country:</h6>
+
+                                    <input id="pl_destination_input" class="col-md-7 text-start"
+                                           type="text"
+                                           style="text-align: center;
+                                                   border: 0; background-color:	 #f1f1f1;
+                                                   font-weight: 500;font-size: 1.2rem;
+                                                   padding:0px;line-height: 10px;padding-left: 0.7em;
+                                                    " value="{{$packinglists[0]['pl_destination']}}"
+                                    @cannot('create', App\Models\PackingList::class)
+                                        {{'disabled'}}
+                                        @endcannot>
+
+                                </div>
+
+
 
                             </div>
-                            <div class="col-md-6 m-0 p-0">
+
+                            <div class="col-md-2 m-0 p-0">
+                                <h4 class="text-center mt-3" >PACKING LIST</h4>
+                                <input id="pl_factory_po_input" type="text" class="form-control"
+                                       style="text-align: center;
+                                                   border: 0; background-color:	 #f1f1f1;
+                                                   font-weight: 500;font-size: 1.2rem;
+                                                   padding:0px;line-height: 10px;
+                                                    " value="{{$packinglists[0]['pl_factory_po']}}"
+                                @cannot('create', App\Models\PackingList::class)
+                                    {{'disabled'}}
+                                    @endcannot
+                                >
+                                <input disabled id="pl_shipment_input" type="text" class="form-control"
+                                       style="text-align: center;
+                                                   border: 0; background-color:	 #f1f1f1;
+                                                   font-weight: 500;font-size: 1.2rem;
+                                                   padding:0px;line-height: 10px;
+                                                    " value="{{$packinglists[0]['pl_shipment_mode']}}">
+
+                                <textarea rows="2" id="pl_rm_input" style="min-width: 100%"
+                                       @cannot('create', App\Models\PackingList::class)
+                                           {{'disabled'}}
+                                           @endcannot
+                                        >Remarks:
+                                                                {{$packinglists[0]['pl_remarks']}}
+                                </textarea>
+
+                            </div>
+
+                            <div class="col-md-6 mt-4" style="padding-left: 20px;">
                                 <table class="table table-bordered m-0" style="table-layout: fixed;">
-
-
 
                                     <tbody>
                                     <tr>
@@ -66,7 +206,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td style="padding: 0px;margin: 0px; font-size: 12px; height: 60px;
+                                        <td style="padding: 0px;margin: 0px; font-size: 12px; height: 80px;
                                     vertical-align:bottom;text-align:center;">Name</td>
                                         <td style="padding: 0px;margin: 0px; font-size: 12px;height: 60px;
                                     vertical-align:bottom;text-align:center;">Name</td>
