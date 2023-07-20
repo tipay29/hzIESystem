@@ -73,7 +73,7 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                 $this->contentcount = count($this->packinglists);
                 $this->contentsummarycount = count($this->packinglists[count($this->packinglists)-1]['summary']);
 
-                $this->titleheadercount = 15;
+                $this->titleheadercount = 10;
                 $this->summarycount = $this->contentcount + $this->titleheadercount + 1;
                 $this->shipmarkcount = $this->summarycount + $this->contentsummarycount + 4;
             },
@@ -92,22 +92,7 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                 ->applyFromArray($fontSize);
 
                 //LEFT HEADER
-                $event->sheet->setCellValue('A8','HORIZON OUTDOOR CAMBODIA CO., LTD');
-                $event->sheet->setCellValue('A9','National Highway 5, 43 Kilometers, Phum Phsar Trach, Khum Longvek, ');
-                $event->sheet->setCellValue('A10','Srok Kampong Trolach,Kampong Chhnang Province, Cambodia');
-                $event->sheet->setCellValue('A11','Tel:');
-                $event->sheet->setCellValue('B11','855-78-210 076');
-                $event->sheet->setCellValue('A12','Country of Origin: Cambodia')
-                ->getStyle('A12')
-                ->applyFromArray($fontSize);
-                $event->sheet->setCellValue('B12','Cambodia');
-                $style = [
-                    'font' => [
-                        'bold' => true,
-                    ],
-                ];
-                $event->sheet->getStyle('A8')
-                    ->applyFromArray($style);
+
                 //LEFTHEADER
 
                 //MID HEADER
@@ -140,36 +125,36 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                         'bold' => true,
                     ],
                 ];
-                $event->sheet->mergeCells('G6:J6');
-                $event->sheet->setCellValue('G6','PACKING LIST')->getStyle('G6')
+                $event->sheet->mergeCells('E2:F2');
+                $event->sheet->setCellValue('E2','PACKING LIST')
+                    ->getStyle('E2')
                     ->applyFromArray($fontBig)
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-                $event->sheet->mergeCells('G7:J7');
-                $event->sheet->setCellValue('G7',$this->packinglists[0]['pl_factory_po'])->getStyle('G7')
+                $event->sheet->mergeCells('E3:F3');
+                $event->sheet->setCellValue('E3',$this->packinglists[0]['pl_factory_po'])
+                    ->getStyle('E3')
                     ->applyFromArray($font)
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 
 
-                $event->sheet->mergeCells('G8:H8');
-                $event->sheet->setCellValue('G8','Ship Mode')->getStyle('G8:H8')
+                $event->sheet->setCellValue('E4','Ship Mode')->getStyle('E4')
                     ->applyFromArray($font)->applyFromArray($borderall)
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-                $event->sheet->mergeCells('I8:J8');
-                $event->sheet->setCellValue('I8',$this->packinglists[0]['pl_shipment_mode'])
-                    ->getStyle('I8:J8')
+                $event->sheet->setCellValue('F4',$this->packinglists[0]['pl_shipment_mode'])
+                    ->getStyle('F4')
                     ->applyFromArray($font)->applyFromArray($borderall)
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
 
-                $event->sheet->mergeCells('G9:J12')
-                    ->getStyle('G9:J12')
+                $event->sheet->mergeCells('E5:F7')
+                    ->getStyle('E5:F7')
                     ->applyFromArray($borderall);
 
-                $event->sheet->setCellValue('G9','Remarks:' . $this->packinglists[0]['pl_remarks'])
-                    ->getStyle('G9')
+                $event->sheet->setCellValue('E5','Remarks:' . $this->packinglists[0]['pl_remarks'])
+                    ->getStyle('E5')
                     ->getAlignment()
                     ->setHorizontal(Alignment::HORIZONTAL_LEFT)
                     ->setVertical(Alignment::VERTICAL_TOP)
@@ -177,54 +162,48 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                 //MID HEADER
 
                 //RIGHT HEADER
-                $event->sheet->mergeCells('N7:O7');
-                $event->sheet->mergeCells('N8:O8');
-                $event->sheet->mergeCells('N9:O9');
-                $event->sheet->mergeCells('N10:O10');
-                $event->sheet->mergeCells('N11:O11');
-                $event->sheet->mergeCells('N12:O12');
-                $event->sheet->setCellValue('N7','Status:')
-                    ->getStyle('N7')
+                $event->sheet->setCellValue('A2','Status:')
+                    ->getStyle('A2')
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT);
-                $event->sheet->setCellValue('N8','MD:')
-                    ->getStyle('N8')
+                $event->sheet->setCellValue('A3','MD:')
+                    ->getStyle('A3')
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT);
-                $event->sheet->setCellValue('N9','Print Date:')
-                    ->getStyle('N9')
+                $event->sheet->setCellValue('A4','Print Date:')
+                    ->getStyle('A4')
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT);
-                $event->sheet->setCellValue('N10','CRD:')
-                    ->getStyle('N10')
+                $event->sheet->setCellValue('A5','CRD:')
+                    ->getStyle('A5')
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT);
-                $event->sheet->setCellValue('N11','Customer Name:')
-                    ->getStyle('N11')
+                $event->sheet->setCellValue('A6','Customer:')
+                    ->getStyle('A6')
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT);
-                $event->sheet->setCellValue('N12','Destination Country:')
-                    ->getStyle('N12')
+                $event->sheet->setCellValue('A7','DestinatioN:')
+                    ->getStyle('A7')
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_RIGHT);
 
 
-                $event->sheet->mergeCells('P7:Q7')->setCellValue('P7',$this->packinglists[0]['pl_status']);
-                $event->sheet->mergeCells('P8:Q8')->setCellValue('P8',
+                $event->sheet->setCellValue('B2',$this->packinglists[0]['pl_status']);
+                $event->sheet->setCellValue('B3',
                     User::where('id',$this->packinglists[0]['user_id'])->first()->name);
-                $event->sheet->mergeCells('P9:Q9')->setCellValue('P9','=now()');
-                $event->sheet->mergeCells('P10:Q10')->setCellValue('P10',$this->packinglists[0]['pl_crd']);
-                $event->sheet->mergeCells('P11:Q11')->setCellValue('P11',$this->packinglists[0]['pl_country']);
-                $event->sheet->mergeCells('P12:Q12')->setCellValue('P12',$this->packinglists[0]['pl_destination']);
-                $event->sheet->getStyle('P9')->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_DATE_DDMMYYYY);
-                $event->sheet->getStyle('P9')->getAlignment()
+                $event->sheet->setCellValue('B4','=now()');
+                $event->sheet->setCellValue('B5',$this->packinglists[0]['pl_crd']);
+                $event->sheet->setCellValue('B6',$this->packinglists[0]['pl_country']);
+                $event->sheet->setCellValue('B7',$this->packinglists[0]['pl_destination']);
+                $event->sheet->getStyle('B4')->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_DATE_DDMMYYYY);
+                $event->sheet->getStyle('B4')->getAlignment()
                     ->setHorizontal(Alignment::HORIZONTAL_LEFT);
                 $style = [
                     'font' => [
                         'bold' => true,
                     ],
                 ];
-                $event->sheet->getStyle('N7:N12')
+                $event->sheet->getStyle('A2:A7')
                     ->applyFromArray($style);
                 //RIGHT HEADER
 
@@ -711,19 +690,20 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                 //BOTTOM
                 $this->columnFormats();
 
-                $event->sheet->mergeCells('H1:I1');
-                $event->sheet->mergeCells('J1:K1');
-                $event->sheet->mergeCells('L1:M1');
-                $event->sheet->mergeCells('N1:O1');
                 $event->sheet->mergeCells('H2:I2');
                 $event->sheet->mergeCells('J2:K2');
                 $event->sheet->mergeCells('L2:M2');
                 $event->sheet->mergeCells('N2:O2');
-                $event->sheet->mergeCells('H3:I5');
-                $event->sheet->mergeCells('J3:K5');
-                $event->sheet->mergeCells('L3:M5');
-                $event->sheet->mergeCells('N3:O5');
-                $event->sheet->mergeCells('P3:P5');
+
+                $event->sheet->mergeCells('H3:I3');
+                $event->sheet->mergeCells('J3:K3');
+                $event->sheet->mergeCells('L3:M3');
+                $event->sheet->mergeCells('N3:O3');
+                $event->sheet->mergeCells('H4:I7');
+                $event->sheet->mergeCells('J4:K7');
+                $event->sheet->mergeCells('L4:M7');
+                $event->sheet->mergeCells('N4:O7');
+                $event->sheet->mergeCells('P4:P7');
                 $border = [
                     'borders' => [
                         //outline all
@@ -735,75 +715,75 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                 ];
 
 
-                $event->sheet->setCellValue('H1','Merchandiser')->getStyle('H1:I1')
+                $event->sheet->setCellValue('H2','Merchandiser')->getStyle('H2:I2')
                     ->applyFromArray($border)
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-                $event->sheet->setCellValue('J1','Supervisor')->getStyle('J1:K1')
+                $event->sheet->setCellValue('J2','Supervisor')->getStyle('J2:K2')
                     ->applyFromArray($border)
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-                $event->sheet->setCellValue('L1','Building 6')->getStyle('L1:M1')
+                $event->sheet->setCellValue('L2','Building 6')->getStyle('L2:M2')
                     ->applyFromArray($border)
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-                $event->sheet->setCellValue('N1','CFA')->getStyle('N1:O1')
+                $event->sheet->setCellValue('N2','CFA')->getStyle('N2:O2')
                     ->applyFromArray($border)
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-                $event->sheet->setCellValue('P1','Warehouse')->getStyle('P1')
+                $event->sheet->setCellValue('P2','Warehouse')->getStyle('P2')
                     ->applyFromArray($border)
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-                $event->sheet->setCellValue('H2','Date:')
-                    ->getStyle('H2:I2')
+                $event->sheet->setCellValue('H3','Date:')
+                    ->getStyle('H3:I3')
                     ->applyFromArray($border)
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
-                $event->sheet->setCellValue('J2','Date:')
-                    ->getStyle('J2:K2')
+                $event->sheet->setCellValue('J3','Date:')
+                    ->getStyle('J3:K3')
                     ->applyFromArray($border)
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
-                $event->sheet->setCellValue('L2','Date:')
-                    ->getStyle('L2:M2')
+                $event->sheet->setCellValue('L3','Date:')
+                    ->getStyle('L3:M3')
                     ->applyFromArray($border)
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
-                $event->sheet->setCellValue('N2','Date:')
-                    ->getStyle('N2:O2')
+                $event->sheet->setCellValue('N3','Date:')
+                    ->getStyle('N3:O3')
                     ->applyFromArray($border)
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
-                $event->sheet->setCellValue('P2','Date:')
-                    ->getStyle('P2')
+                $event->sheet->setCellValue('P3','Date:')
+                    ->getStyle('P3')
                     ->applyFromArray($border)
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
 
-                $event->sheet->setCellValue('H3','Name')->getStyle('H3:I5')
-                    ->applyFromArray($border)
-                    ->getAlignment()
-                    ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER)
-                    ->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_BOTTOM);
-
-                $event->sheet->setCellValue('J3','Name')->getStyle('J3:K5')
+                $event->sheet->setCellValue('H4','Name')->getStyle('H4:I7')
                     ->applyFromArray($border)
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER)
                     ->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_BOTTOM);
 
-                $event->sheet->setCellValue('L3','Name')->getStyle('L3:M5')
+                $event->sheet->setCellValue('J4','Name')->getStyle('J4:K7')
                     ->applyFromArray($border)
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER)
                     ->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_BOTTOM);
-                $event->sheet->setCellValue('N3','Name')->getStyle('N3:O5')
+
+                $event->sheet->setCellValue('L4','Name')->getStyle('L4:M7')
                     ->applyFromArray($border)
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER)
                     ->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_BOTTOM);
-                $event->sheet->setCellValue('P3','Name')->getStyle('P3:P5')
+                $event->sheet->setCellValue('N4','Name')->getStyle('N4:O7')
+                    ->applyFromArray($border)
+                    ->getAlignment()
+                    ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER)
+                    ->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_BOTTOM);
+                $event->sheet->setCellValue('P4','Name')->getStyle('P4:P7')
                     ->applyFromArray($border)
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER)
@@ -922,7 +902,9 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
          $drawings->setName('Horizon');
          $drawings->setDescription('Horizon Logo');
          $drawings->setPath(public_path('storage\images\horizonlogo-small.png'));
-         $drawings->setCoordinates('A6');
+         $drawings->setHeight(25);
+
+         $drawings->setCoordinates('A1');
 
 
          return [$drawings];
