@@ -44,7 +44,7 @@
                             <div class="col-md-4 m-0 p-0">
 
                                 <img src="{{ asset('storage/images/horizonlogo.png') }}"
-                                     width="80" height="35" alt="Horizon Outdoor" style="position: fixed;">
+                                     width="80" height="35" alt="Horizon Outdoor" style="position: absolute;">
 
                                 <div class="row m-0 p-0">
                                     <h6 for="" class="col-md-4 text-md-end"> Status:</h6>

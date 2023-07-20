@@ -53,7 +53,9 @@
                     <div class="card pl_section-to-print">
                         <div class="card-header">
                             <div class="row m-0 p-0">
-                                <div class="col-md-6 m-0 p-0">
+                                <div class="col-md-4 m-0 p-0">
+                                </div>
+                                <div class="col-md-2 m-0 p-0">
 
                                 </div>
                                 <div class="col-md-6 m-0 p-0">
