@@ -98,10 +98,10 @@ class CartonController extends Controller
 //        dd($packinglists);
         $packinglists = event(new GetPLCartonOrderFormEvent($packinglists));
 
-
+//        dd($packinglists);
 
         $cartonorders = collect($this->getCartonForm($packinglists));
-
+//        dd($cartonorders);
 
 
 //        dd();
@@ -185,7 +185,11 @@ class CartonController extends Controller
 //                            dd($size_style_carton_id);
                             $mcq = '';
                         }else{
-                            $mcq = $mcq->mcq;
+                            if($plrow[$key]['ctn_pl_quantity'] < $mcq->mcq){
+                                $mcq = $plrow[$key]['ctn_pl_quantity'];
+                            }else{
+                               $mcq = $mcq->mcq;
+                            }
                         }
 
                         $plrow[$key]['ctn_mcq'] = $mcq;
