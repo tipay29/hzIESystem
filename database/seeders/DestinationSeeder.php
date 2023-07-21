@@ -1382,6 +1382,43 @@ class DestinationSeeder extends Seeder
                 'type' => 'EQUIPMENT',
             ] ,
             //DICKIES EQUIPMENT
+            //TNF APPAREL ADDED
+            [
+                'customer_name' => '1010 Dropship International',
+                'customer_name_two' => 'SERTRADING BR LTDA',
+                'destination' => 'Brazil巴西',
+                'brand' => 'TNF',
+                'type' => 'APPAREL',
+            ] ,
+            [
+                'customer_name' => '1010 Dropship International',
+                'customer_name_two' => 'SISTEMAS AEREOS SA DE CV',
+                'destination' => 'EL SALVADOR萨尔瓦多',
+                'brand' => 'TNF',
+                'type' => 'APPAREL',
+            ] ,
+            [
+                'customer_name' => '1010 Dropship International',
+                'customer_name_two' => 'BLU LOGISTICS',
+                'destination' => 'Panama巴拿马',
+                'brand' => 'TNF',
+                'type' => 'APPAREL',
+            ] ,
+            [
+                'customer_name' => '1010 Dropship International',
+                'customer_name_two' => 'JUST US S A',
+                'destination' => 'Argentina阿根廷',
+                'brand' => 'TNF',
+                'type' => 'APPAREL',
+            ] ,
+            [
+                'customer_name' => '1010 Dropship International',
+                'customer_name_two' => 'GRIMOLDI SA',
+                'destination' => 'Argentina阿根廷',
+                'brand' => 'TNF',
+                'type' => 'APPAREL',
+            ] ,
+            //TNF APPAREL ADDED
         ];
 
         foreach($destinations as $destination){
