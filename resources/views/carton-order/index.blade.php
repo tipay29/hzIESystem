@@ -31,30 +31,28 @@
                         <div class="table-responsive">
                             <table class="table" >
                                 <thead>
-                                <tr>
-                                    <th width="5%" scope="col">No </th>
-                                    <th width="15%" scope="col">Bill Code</th>
-                                    <th width="5%" scope="col">Buy Year</th>
-                                    <th width="5%" scope="col">Buy Month</th>
-                                    <th width="8%" scope="col">Order Date </th>
-                                    <th width="8%" scope="col">Delivery Date </th>
-                                    <th width="8%" scope="col">Brand </th>
-                                    <th width="8%" scope="col">Type</th>
-                                    <th width="8%" scope="col">Status</th>
-                                    <th width="16%" scope="col">Approve</th>
-                                    <th width="12%" scope="col">Created By </th>
-                                </tr>
+                                    <tr>
+                                        <th width="5%" scope="col">No </th>
+                                        <th width="15%" scope="col">Bill Code</th>
+                                        <th width="5%" scope="col">Buy Year</th>
+                                        <th width="5%" scope="col">Buy Month</th>
+                                        <th width="8%" scope="col">Order Date </th>
+                                        <th width="8%" scope="col">Delivery Date </th>
+                                        <th width="8%" scope="col">Brand </th>
+                                        <th width="8%" scope="col">Type</th>
+                                        <th width="8%" scope="col">Status</th>
+                                        <th width="16%" scope="col">Approve</th>
+                                        <th width="12%" scope="col">Created By </th>
+                                    </tr>
                                 </thead>
                                 <tbody>
 
                                     @foreach($carton_orders as $key => $carton_order)
                                         <tr>
                                             <td scope="col">
-
                                                 <a href="{{route('carton-orders.show', $carton_order->id)}}">
                                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                                     {{$carton_order->id}} </a>
-
                                             </td>
                                             <td scope="col">{{$carton_order->ctn_bill_code}}</td>
                                             <td scope="col"> {{$carton_order->ctn_buy_year}} </td>

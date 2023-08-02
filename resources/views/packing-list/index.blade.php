@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10">
@@ -67,7 +68,6 @@
                                             </td>
                                             <td  scope="col">{{$packinglist->pl_master_po}} </td>
                                             <td scope="col">{{$packinglist->pl_po_cut}} </td>
-
                                             <td scope="col">{{$packinglist->pl_factory_po}}</td>
                                             <td scope="col">{{$packinglist->pl_brand}}</td>
                                             <td  scope="col">{{$packinglist->pl_type}}</td>
@@ -108,11 +108,14 @@
                             </div>
                         </div>
 
-
                     </div>
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
 
 
