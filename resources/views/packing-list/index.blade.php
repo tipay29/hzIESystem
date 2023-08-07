@@ -13,6 +13,7 @@
                         <h5 class="mt-2">Packing Lists</h5>
 
                         <div>
+
                             @can('create', App\Models\PackingList::class)
                             <a href="{{route('packing-lists.create')}}"
                                class="btn btn-outline-success">
@@ -28,6 +29,7 @@
                             <a href="{{url()->previous()}}"
                                class="btn btn-outline-secondary">
                                 Back</a>
+
                         </div>
 
                     </div>
@@ -95,11 +97,13 @@
                                 </tbody>
 
                             </table>
+
 {{--                            <div class="row">--}}
 {{--                                <div class="col-12 d-flex justify-content-center ">--}}
 {{--                                    {{$packinglists->render("pagination::bootstrap-4")}}--}}
 {{--                                </div>--}}
 {{--                            </div>--}}
+
                         </div>
 
                         <div class="row">

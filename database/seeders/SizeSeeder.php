@@ -1749,6 +1749,30 @@ class SizeSeeder extends Seeder
             [
                 'size' => '5X'
             ] ,
+            [
+                'size' => '1M'
+            ] ,
+            [
+                'size' => '2M'
+            ] ,
+            [
+                'size' => '3M'
+            ] ,
+            [
+                'size' => '6M'
+            ] ,
+            [
+                'size' => '9M'
+            ] ,
+            [
+                'size' => '12M'
+            ] ,
+            [
+                'size' => '18M'
+            ] ,
+            [
+                'size' => '24M'
+            ] ,
 
         ];
 
