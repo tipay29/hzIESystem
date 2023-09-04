@@ -18,8 +18,6 @@
                        <label for="">Size &emsp;&emsp;&nbsp; Qty </label>
                        <div class="input-group">
 
-
-
                            <input
                                id="pl_mcq_size_input" type="text" class="form-control" >
                            <div class="input-group-append">

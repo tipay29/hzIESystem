@@ -36,12 +36,10 @@ class PackingListPolicy
         return in_array($user->employee->job->id,[1,7]);
     }
 
-
     public function restore(User $user, PackingList $packingList)
     {
         return in_array($user->employee->job->id,[1,7]);
     }
-
 
     public function forceDelete(User $user, PackingList $packingList)
     {

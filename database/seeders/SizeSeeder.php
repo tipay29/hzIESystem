@@ -385,13 +385,25 @@ class SizeSeeder extends Seeder
                 'size' => 'XXXXXS-LNG'
             ] ,
             [
+                'size' => '5XS-LNG'
+            ] ,
+            [
                 'size' => 'XXXXS-LNG'
+            ] ,
+            [
+                'size' => '4XS-LNG'
             ] ,
             [
                 'size' => 'XXXS-LNG'
             ] ,
             [
+                'size' => '3XS-LNG'
+            ] ,
+            [
                 'size' => 'XXS-LNG'
+            ] ,
+            [
+                'size' => '2XS-LNG'
             ] ,
             [
                 'size' => 'XS-LNG'
@@ -412,13 +424,25 @@ class SizeSeeder extends Seeder
                 'size' => 'XXL-LNG'
             ] ,
             [
+                'size' => '2XL-LNG'
+            ] ,
+            [
                 'size' => 'XXXL-LNG'
+            ] ,
+            [
+                'size' => '3XL-LNG'
             ] ,
             [
                 'size' => 'XXXXL-LNG'
             ] ,
             [
+                'size' => '4XL-LNG'
+            ] ,
+            [
                 'size' => 'XXXXXL-LNG'
+            ] ,
+            [
+                'size' => '5XL-LNG'
             ] ,
             [
                 'size' => '28-LNG'

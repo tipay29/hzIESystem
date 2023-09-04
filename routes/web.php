@@ -77,9 +77,7 @@ Route::group(['namespace' => 'Web'],function(){
 
 });
 
-
 Auth::routes();
-
 
 //single route
 
