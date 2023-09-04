@@ -688,7 +688,34 @@ class SizeSeeder extends Seeder
                 'size' => '30-REG'
             ] ,
             [
+                'size' => '31-REG'
+            ] ,
+            [
                 'size' => '32-REG'
+            ] ,
+            [
+                'size' => '33-REG'
+            ] ,
+            [
+                'size' => '34-REG'
+            ] ,
+            [
+                'size' => '35-REG'
+            ] ,
+            [
+                'size' => '36-REG'
+            ] ,
+            [
+                'size' => '37-REG'
+            ] ,
+            [
+                'size' => '38-REG'
+            ] ,
+            [
+                'size' => '39-REG'
+            ] ,
+            [
+                'size' => '40-REG'
             ] ,
             [
                 'size' => '00-LNG'
