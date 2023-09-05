@@ -528,6 +528,26 @@ class CartonSeeder extends Seeder
                 'ctn_code_1001' => '',
                 'ctn_code_1004' => '',
             ] ,
+            [
+                'brand_id' => 2,
+                'ctn_size' => '60.5*40*20',
+                'ctn_weight' => '1.26',
+                'type' => 'APPAREL',
+                'ctn_specification' => 'A=A 200LB',
+                'ctn_fob' => '1',
+                'ctn_code_1001' => '',
+                'ctn_code_1004' => '',
+            ] ,
+            [
+                'brand_id' => 2,
+                'ctn_size' => '60.5*40*37.5',
+                'ctn_weight' => '1.46',
+                'type' => 'APPAREL',
+                'ctn_specification' => 'A=A 200LB',
+                'ctn_fob' => '1',
+                'ctn_code_1001' => '',
+                'ctn_code_1004' => '',
+            ] ,
         ];
 
         foreach($cartons as $carton){
