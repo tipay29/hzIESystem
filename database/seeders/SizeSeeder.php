@@ -1842,6 +1842,39 @@ class SizeSeeder extends Seeder
             [
                 'size' => '24M'
             ] ,
+            [
+                'size' => '10W-REG'
+            ] ,
+            [
+                'size' => '12W-REG'
+            ] ,
+            [
+                'size' => '14W-REG'
+            ] ,
+            [
+                'size' => '16W-REG'
+            ] ,
+            [
+                'size' => '18W-REG'
+            ] ,
+            [
+                'size' => '20W-REG'
+            ] ,
+            [
+                'size' => '22W-REG'
+            ] ,
+            [
+                'size' => '24W-REG'
+            ] ,
+            [
+                'size' => '26W-REG'
+            ] ,
+            [
+                'size' => '28W-REG'
+            ] ,
+            [
+                'size' => '30W-REG'
+            ] ,
 
         ];
 
