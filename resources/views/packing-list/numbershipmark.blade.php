@@ -19,7 +19,7 @@
             @endforeach
 
         </select>
-        
+
         <img src="{{ asset('storage/images/shipmark/' . $packinglists[0]['pl_brand'] .
                                     '/' . $packinglists[0]['pl_type']  . '/' .
                                     trim($packinglists[0]['pl_country']. " "
@@ -34,6 +34,7 @@
                     @csrf
 
                     <input type="hidden" name="country" value="{{$packinglists[0]['pl_country']}}">
+                    <input type="hidden" name="country_two" value="{{$packinglists[0]['pl_country_two']}}">
                     <input id="pl_select_brand" type="hidden" name="brand" value="{{$packinglists[0]['pl_brand']}}">
                     <input id="pl_select_type" type="hidden" name="type" value="{{$packinglists[0]['pl_type']}}">
                     Select PNG to upload:

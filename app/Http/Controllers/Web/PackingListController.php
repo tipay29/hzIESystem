@@ -74,7 +74,8 @@ class PackingListController extends Controller
 
 
         $pathname = 'public/images/shipmark/' . request()->brand . '/' . request()->type . '/'  ;
-        $filename = request()->country . '.png';
+        $filenameTrim = trim(request()->country . ' ' . request()->country_two);
+        $filename = $filenameTrim . '.png';
         $file = request()->file('file')->storeAs($pathname, $filename);
 
         return redirect()->back();
