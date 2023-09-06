@@ -888,12 +888,13 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
              $drawings->setPath(public_path('storage\images\shipmark\\' . $this->packinglists[0]['pl_brand'] . '\\'
                  . $this->packinglists[0]['pl_type'] . '\\' . trim($this->packinglists[0]['pl_country'] . " "
                      . $this->packinglists[0]['pl_country_two']) . '.png'));
+             $drawings->setHeight(250);
+             $drawings->setCoordinates('A' . ($this->shipmarkcount+1));
+             $drawings->setWorksheet($worksheet);
          }catch (\Exception $e){
-             $drawings->setPath(public_path('storage\images\sm.png'));
+
          }
-         $drawings->setHeight(250);
-         $drawings->setCoordinates('A' . ($this->shipmarkcount+1));
-         $drawings->setWorksheet($worksheet);
+
      }
 
      public function drawings()
