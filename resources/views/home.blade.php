@@ -7,6 +7,24 @@
 
          <h1 class="mb-5">Welcome to Horizon IE System</h1>
 
+            <a href="{{ asset('storage/files/ExcelLesson1.xlsx') }}" download
+               style="background-color: green;color:white;padding:5px;text-decoration: none;margin:5px;
+                    border: 2px solid darkgrey;"
+
+            >Download ExcelLesson1 </a>
+
+            <a href="{{ asset('storage/files/ExcelLesson2.xlsx') }}" download
+               style="background-color: green;color:white;padding:5px;text-decoration: none;margin:5px;
+                    border: 2px solid darkgrey;"
+
+            >Download ExcelLesson2 </a>
+
+            <a href="{{ asset('storage/files/ExcelLesson3.xlsx') }}" download
+               style="background-color: green;color:white;padding:5px;text-decoration: none;margin:5px;
+                    border: 2px solid darkgrey;"
+
+            >Download ExcelLesson3 </a>
+
              <a href="{{ asset('storage/files/ExcelExam1.xlsx') }}" download
             style="background-color: green;color:white;padding:5px;text-decoration: none;margin:5px;
                     border: 2px solid darkgrey;"
@@ -22,11 +40,13 @@
 
             >Download ExcelExam2 </a>
 
-            <a href="{{ asset('storage/files/ExcelLesson2.xlsx') }}" download
+            <a href="{{ asset('storage/files/ExcelExam3.xlsx') }}" download
                style="background-color: green;color:white;padding:5px;text-decoration: none;margin:5px;
                     border: 2px solid darkgrey;"
 
-            >Download ExcelLesson2 </a>
+            >Download ExcelExam3 </a>
+
+
 
 
             <form action="{{route('upload.excel')}}" method="post" enctype="multipart/form-data"
@@ -48,7 +68,7 @@
             </form>
 
 
-            
+
 
 
 
