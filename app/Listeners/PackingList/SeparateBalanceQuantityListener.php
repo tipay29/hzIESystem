@@ -71,7 +71,7 @@ class SeparateBalanceQuantityListener
 
 
         for($x = 0; $x <= $packinglistsRawCount; $x++ ){
-
+//            dd($packinglistsRaw[$x]);
             $packinglistArray[$x]['id'] = $packinglistsRaw[$x]->id;
             $packinglistArray[$x]['pl_master_po'] = $packinglistsRaw[$x]->pl_master_po;
             $packinglistArray[$x]['pl_po_cut'] = $packinglistsRaw[$x]->pl_po_cut;
@@ -104,14 +104,19 @@ class SeparateBalanceQuantityListener
 
             $prepack = $packinglistArray[$x]['pl_pre_pack'];
 //            $style_code = ltrim(substr($packinglistsRaw[$x]->pl_sku,-5),0);
-            $aw = 1;
-            if($aw == 1){
+//            dd(substr($packinglistsRaw[$x]->pl_material,-8));
+
+            if($packinglistsRaw[$x]->pl_version == 1){
                 $style_code = ltrim(substr($packinglistsRaw[$x]->pl_sku,-5),0);
-            }else{
+            }elseif($packinglistsRaw[$x]->pl_version == 2){
                 $style_code = ltrim(substr($packinglistsRaw[$x]->pl_material,-8),0);
             }
+
+//            dd($style_code);
+
+
 //            dd($style_code_two);
-            
+
             if($this->balance_qty == 0){
                 $this->total_qty_ship = $this->total_qty_ship + $iqty;
             }
@@ -177,7 +182,7 @@ class SeparateBalanceQuantityListener
                 $mcqlistnew[$sizes[$y]->pivot->carton_id] = $sizes[$y]->pivot->mcq;
 
             }
-    
+
             $cartonidlist = collect(array_flip(collect($mcqlistnew)->sort()->toArray()))->values()->toArray();
             // dd($sizes);
             $mcqlist = collect($mcqlistnew)->sort()->values()->toArray();
@@ -217,12 +222,12 @@ class SeparateBalanceQuantityListener
 
                             //for sort by size
                             $packinglistArray[$x]['pl_style_size_id'] = $size_id;
-                    
+
                             //QTY/SHIP
-                        
+
 
                             $packinglistArray[$x]['pl_order_quantity_cut'] = ((int)floor($iqty / $mcqlist[$z])) * $mcqlist[$z];
-                      
+
                             //QTY / CTN
                             $packinglistArray[$x]['pl_one_ctn_item_count'] = $mcqlist[$z];
                             //NO OF CTN#
