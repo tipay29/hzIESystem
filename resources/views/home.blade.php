@@ -11,38 +11,38 @@
                style="background-color: green;color:white;padding:5px;text-decoration: none;margin:5px;
                     border: 2px solid darkgrey;"
 
-            >Download ExcelLesson1 </a>
+            > ExcelLesson1 </a>
 
             <a href="{{ asset('storage/files/ExcelLesson2.xlsx') }}" download
                style="background-color: green;color:white;padding:5px;text-decoration: none;margin:5px;
                     border: 2px solid darkgrey;"
 
-            >Download ExcelLesson2 </a>
+            > ExcelLesson2 </a>
 
             <a href="{{ asset('storage/files/ExcelLesson3.xlsx') }}" download
                style="background-color: green;color:white;padding:5px;text-decoration: none;margin:5px;
                     border: 2px solid darkgrey;"
 
-            >Download ExcelLesson3 </a>
+            >ExcelLesson3 </a>
 
              <a href="{{ asset('storage/files/ExcelExam1.xlsx') }}" download
             style="background-color: green;color:white;padding:5px;text-decoration: none;margin:5px;
                     border: 2px solid darkgrey;"
 
-            >Download ExcelExam1 </a>
+            >ExcelExam1 </a>
 
 
             <a href="{{ asset('storage/files/ExcelExam2.xlsx') }}" download
             style="background-color: green;color:white;padding:5px;text-decoration: none;margin:5px;
                     border: 2px solid darkgrey;"
 
-            >Download ExcelExam2 </a>
+            >ExcelExam2 </a>
 
             <a href="{{ asset('storage/files/ExcelExam3.xlsx') }}" download
                style="background-color: green;color:white;padding:5px;text-decoration: none;margin:5px;
                     border: 2px solid darkgrey;"
 
-            >Download ExcelExam3 </a>
+            > ExcelExam3 </a>
 
 
 

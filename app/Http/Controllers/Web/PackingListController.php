@@ -145,6 +145,8 @@ class PackingListController extends Controller
             return redirect(route('packing-lists.batch', $batch))->with('message', 'Invalid Search!!!');
         }
 
+        // dd($packinglists);
+
 //        $packinglists = $packinglists->sortBy('pl_po_cut');
 
         return view('packing-list.batch', compact('packinglists','packinglistsqty','pl_total_qty'));
