@@ -32,8 +32,6 @@
             >ExcelExam1 </a>
 
 
-
-
             <a href="{{ asset('storage/files/ExcelExam2.xlsx') }}" download
             style="background-color: green;color:white;padding:5px;text-decoration: none;margin:5px;
                     border: 2px solid darkgrey;"
