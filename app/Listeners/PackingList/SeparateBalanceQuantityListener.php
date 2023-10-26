@@ -106,11 +106,11 @@ class SeparateBalanceQuantityListener
 //            $style_code = ltrim(substr($packinglistsRaw[$x]->pl_sku,-5),0);
 //            dd(substr($packinglistsRaw[$x]->pl_material,-8));
 
-            if($packinglistsRaw[$x]->pl_version == 1){
+            // if($packinglistsRaw[$x]->pl_version == 1){
                 $style_code = ltrim(substr($packinglistsRaw[$x]->pl_sku,-5),0);
-            }elseif($packinglistsRaw[$x]->pl_version == 2){
-                $style_code = ltrim(substr($packinglistsRaw[$x]->pl_material,-8),0);
-            }
+            // }elseif($packinglistsRaw[$x]->pl_version == 2){
+            //     $style_code = ltrim(substr($packinglistsRaw[$x]->pl_material,-8),0);
+            // }
 
 //            dd($style_code);
 
