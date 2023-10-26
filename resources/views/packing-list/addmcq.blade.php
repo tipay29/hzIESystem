@@ -5,6 +5,7 @@
 
         <div class="modal-content">
             <div class="modal-header">
+{{--                here change--}}
                 <h1 class="modal-title fs-5" id="addMcqLabel">Add MCQ <span id="add_mcq_title"></span></h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -74,8 +75,7 @@
                            <input id="pl_mcq_qty_first_input" type="text" class="form-control" >
                            <div class="input-group-append">
                                <button id="ata_mcq_btn" class="btn btn-primary" type="button"
-                                       style="padding-left: 1px;padding-right: 1px;"
-                               >
+                                       style="padding-left: 1px;padding-right: 1px;">
                                    <i class="fa fa-sort-amount-asc" aria-hidden="true"></i>
                                </button>
                            </div>

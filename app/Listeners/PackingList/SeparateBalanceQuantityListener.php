@@ -66,12 +66,11 @@ class SeparateBalanceQuantityListener
 //            $style_code = substr($packinglistsRaw[$x]->pl_sku,-5);
 //            dump($style_code);
 //        }
-//        dd('aw');
-//        dd($packinglistsRaw);
+
 
 
         for($x = 0; $x <= $packinglistsRawCount; $x++ ){
-//            dd($packinglistsRaw[$x]);
+
             $packinglistArray[$x]['id'] = $packinglistsRaw[$x]->id;
             $packinglistArray[$x]['pl_master_po'] = $packinglistsRaw[$x]->pl_master_po;
             $packinglistArray[$x]['pl_po_cut'] = $packinglistsRaw[$x]->pl_po_cut;
@@ -96,6 +95,7 @@ class SeparateBalanceQuantityListener
             $packinglistArray[$x]['pl_status'] = $packinglistsRaw[$x]->pl_status;
             $packinglistArray[$x]['pl_batch'] = $packinglistsRaw[$x]->pl_batch;
             $packinglistArray[$x]['pl_number_batch'] = $packinglistsRaw[$x]->pl_number_batch;
+            $packinglistArray[$x]['pl_version'] = $packinglistsRaw[$x]->pl_version;
             $packinglistArray[$x]['user_id'] = $packinglistsRaw[$x]->user_id;
 
 
@@ -114,9 +114,6 @@ class SeparateBalanceQuantityListener
 
 //            dd($style_code);
 
-
-//            dd($style_code_two);
-
             if($this->balance_qty == 0){
                 $this->total_qty_ship = $this->total_qty_ship + $iqty;
             }
@@ -129,13 +126,17 @@ class SeparateBalanceQuantityListener
                 ['style_code',$style_code],
             ])->first();
 
+
+
+
+
             if($style == null){
                 $style = Style::create([
                     'style_code' => $style_code,
                 ])->load('sizes');
             }
 
-            // dd($style);
+//             dd($style);
 
 
             $packinglistArray[$x]['pl_style_id'] = $style->id;
@@ -186,9 +187,6 @@ class SeparateBalanceQuantityListener
             $cartonidlist = collect(array_flip(collect($mcqlistnew)->sort()->toArray()))->values()->toArray();
             // dd($sizes);
             $mcqlist = collect($mcqlistnew)->sort()->values()->toArray();
-        //    dd($cartonidlist);
-//            dump($mcqlist);
-//            dd($mcqlist);
 
 //            dump($packinglistsRaw[$x]->pl_order_quantity);
             //get the suited carton for the quantity

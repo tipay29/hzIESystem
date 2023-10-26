@@ -127,9 +127,11 @@ class CartonController extends Controller
                         $packinglists[$x][$y]['pl_material'] . '-'. $packinglists[$x][$y]['pl_style_size'] . '-' . $packinglists[$x][$y]['carton_size'] ;
 
                     if(!array_key_exists($key,$bases)){
+                        $bases[$key] = 0;
+
 //                        array_push($bases,$key);
 //                        dump($key);
-
+//                        dd($bases);
                         $plrow[$key]['ctn_factory_po'] = $packinglists[$x][$y]['pl_factory_po'];
                         $plrow[$key]['ctn_master_po'] = $packinglists[$x][$y]['pl_master_po'];
                         $plrow[$key]['ctn_material'] = $packinglists[$x][$y]['pl_material'];
@@ -208,7 +210,7 @@ class CartonController extends Controller
                 }
 
             }
-
+//            dd($bases);
         }
 
 //        dd($plrow);

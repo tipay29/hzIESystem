@@ -260,6 +260,9 @@ row_selected.click(function (e) {
     pl_update_gw_input.val(pl_gw);
     pl_update_rowcut_input.val(pl_row_cut);
 
+
+
+    //here need change
     let pl_style_code = $(this).find('input:eq(5)').val();
     let pl_size = $(this).find('input:eq(6)').val();
     let pl_style_id = $(this).find('input:eq(7)').val();

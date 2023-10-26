@@ -64,12 +64,7 @@
                 <h4 class="text-center"> when you are done</h4>
 
             </form>
-
-
-
-
-
-
+            
 {{--            <img src="{{ asset('storage/images/pl.png') }}" alt="">--}}
 {{--            <div></div>--}}
 {{--            <img src="{{ asset('storage/images/pll.png') }}" alt="">--}}

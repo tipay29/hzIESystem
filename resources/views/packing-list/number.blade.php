@@ -72,7 +72,9 @@
                                     </select>
 
                                 </div>
+
                                 <div class="row">
+
                                     <h6  class="col-md-4 text-md-end"> MD:</h6>
 
                                     <p class="col-md-7 text-start m-0" style="font-size: 1rem;">
@@ -82,6 +84,7 @@
                                 </div>
 
                                 <div class="row">
+
                                     <h6  class="col-md-4 text-md-end"> Print Date:</h6>
 
                                     <p class="col-md-7 text-start m-0" style="font-size: 1rem;">
@@ -230,33 +233,40 @@
                     @include('packing-list.numberheader')
 
                     <div class="card-body">
+
                         @if(session()->has('message'))
                             <div class="alert alert-danger">
                                 {{ session()->get('message') }}
                             </div>
                         @endif
+
                         <form action="{{route('packing-lists.number', [$packinglists[0]['pl_batch']
                                                                         ,$packinglists[0]['pl_number_batch']])}}"
                               method="get">
+
                             <div class="row mb-1 section-pl-to-no-print">
+
                                 <div class="col-md-2">
                                     <select name="pln_po_cut[]" id="pln_po_cut" multiple class="chosen-select form-control"
                                             data-placeholder="Select PO">
 
                                     </select>
                                 </div>
+
                                 <div class="col-md-2">
                                     <select name="pln_master_po[]" id="pln_master_po" multiple class="chosen-select form-control"
                                             data-placeholder="Select Master PO">
 
                                     </select>
                                 </div>
+
                                 <div class="col-md-2">
                                     <select name="pln_material[]" id="pln_material" multiple class="chosen-select form-control"
                                             data-placeholder="Select Material">
 
                                     </select>
                                 </div>
+
                                 <div class="col-md-2">
                                     <select name="pln_description[]" id="pln_description" multiple class="chosen-select form-control"
                                             data-placeholder="Select Description">
@@ -306,7 +316,7 @@
                                         <th width="12%" scope="col">Color</th>
 
                                         @if($packinglists[0]['pl_type']  == 'APPAREL')
-                                        <th width="2%" scope="col">Size</th>
+                                            <th width="2%" scope="col">Size</th>
                                         @endif
                                         <th class="text-end" width="3%" scope="col">TtlQty</th>
                                         <th class="text-end" width="3%" scope="col">Qty/Ctn</th>
@@ -357,8 +367,14 @@
                                                 <input type="hidden" value="{{$packinglist['pl_order_quantity']}}">
                                                 <input type="hidden" value="{{$packinglist['net_weight_one_ctn']}}">
                                                 <input type="hidden" value="{{$packinglist['gross_weight_one_ctn']}}">
-                                                <input type="hidden" value="{{ltrim(substr($packinglist['pl_sku'],-5),0)}}">
 
+{{--                                                here change--}}
+
+                                                @if($packinglist['pl_version'] == 1)
+                                                <input type="hidden" value="{{ltrim(substr($packinglist['pl_sku'],-5),0)}}">
+                                                @elseif($packinglist['pl_version'] == 2)
+                                                    <input type="hidden" value="{{ltrim(substr($packinglist['pl_material'],-8),0)}}">
+                                                @endif
                                                 <input type="hidden" value="{{$packinglist['pl_style_size']}}">
 
                                                 <input type="hidden" value="{{$packinglist['pl_style_id']}}">
@@ -396,7 +412,6 @@
                                 </tbody>
 
                             </table>
-
 
                         </div>
 
