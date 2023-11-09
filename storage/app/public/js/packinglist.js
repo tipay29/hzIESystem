@@ -45,6 +45,7 @@ let l = window.location;
 let lsplit = l.pathname.split('/');
 let pl_status = $('#pl_status');
 let pl_version = $('#pls_version');
+let batch_version = $('#batch_version');
 
 pl_version.change(function(e){
     e.preventDefault();
@@ -67,6 +68,24 @@ pl_version.change(function(e){
         }
     });
 });
+
+if(lsplit.includes('packing-lists')) {
+    if (lsplit.includes('batch') && lsplit.includes('number')) {
+
+        getPO(lsplit[3],lsplit[5]);
+        getMasterPO(lsplit[3],lsplit[5]);
+        getMaterial(lsplit[3],lsplit[5]);
+        getDescription(lsplit[3],lsplit[5]);
+        getColor(lsplit[3],lsplit[5]);
+        getCarton();
+    }
+
+    if (lsplit.includes('batch')){
+        batch_version.show();
+    }else{
+        batch_version.hide();
+    }
+}
 
 
 if(lsplit.includes('packing-lists')) {
