@@ -307,7 +307,6 @@
 
                         <select id="pl_mcq_carton_three_input_four" class="form-control">
                             <option disabled selected>Select Carton</option>
-
                         </select>
                     </div>
                     <div class="col-md-1" style="background-color: #F7FBC0;">

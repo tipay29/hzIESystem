@@ -97,7 +97,8 @@ class SeparateBalanceQuantityListener
             $packinglistArray[$x]['pl_number_batch'] = $packinglistsRaw[$x]->pl_number_batch;
             $packinglistArray[$x]['pl_version'] = $packinglistsRaw[$x]->pl_version;
             $packinglistArray[$x]['user_id'] = $packinglistsRaw[$x]->user_id;
-
+            $packinglistArray[$x]['pl_buy_year'] = $packinglistsRaw[$x]->pl_buy_year;
+            $packinglistArray[$x]['pl_buy_month'] = $packinglistsRaw[$x]->pl_buy_month;
 
             $iqty = $packinglistsRaw[$x]->pl_order_quantity;
             $packinglistArray[$x]['pl_order_quantity'] = $iqty;
@@ -106,11 +107,13 @@ class SeparateBalanceQuantityListener
 //            $style_code = ltrim(substr($packinglistsRaw[$x]->pl_sku,-5),0);
 //            dd(substr($packinglistsRaw[$x]->pl_material,-8));
 
-            // if($packinglistsRaw[$x]->pl_version == 1){
+             if($packinglistsRaw[$x]->pl_version == 1){
                 $style_code = ltrim(substr($packinglistsRaw[$x]->pl_sku,-5),0);
-            // }elseif($packinglistsRaw[$x]->pl_version == 2){
-            //     $style_code = ltrim(substr($packinglistsRaw[$x]->pl_material,-8),0);
-            // }
+             }elseif($packinglistsRaw[$x]->pl_version == 2){
+                 $style_code = ltrim(substr($packinglistsRaw[$x]->pl_material,-8),0);
+             }elseif($packinglistsRaw[$x]->pl_version == 3){
+                 $style_code = ltrim(substr($packinglistsRaw[$x]->pl_material,-8),0) . $packinglistArray[$x]['pl_buy_year'] . $packinglistArray[$x]['pl_buy_month'];
+             }
 
 //            dd($style_code);
 

@@ -72,7 +72,7 @@ class FirstPlImport implements ToModel, WithHeadingRow
                 'pl_uniq_number_batch_number' => $this->uniqnumber,
                 'pl_uniq_number_batch' => $this->uniq,
                 'user_id' => $this->user,
-                'pl_version' => 2,
+                'pl_version' => 3,
             ]);
         }
         return null;

@@ -371,10 +371,15 @@
 {{--                                                here change--}}
 
                                                 @if($packinglist['pl_version'] == 1)
-                                                <input type="hidden" value="{{ltrim(substr($packinglist['pl_sku'],-5),0)}}">
+                                                     <input type="hidden" value="{{ltrim(substr($packinglist['pl_sku'],-5),0)}}">
                                                 @elseif($packinglist['pl_version'] == 2)
                                                     <input type="hidden" value="{{ltrim(substr($packinglist['pl_material'],-8),0)}}">
+                                                @elseif($packinglist['pl_version'] == 3)
+                                                    <input type="hidden" value="{{ltrim(substr($packinglist['pl_material'],-8),0) .
+                                                    $packinglist['pl_buy_year'] . $packinglist['pl_buy_month'] }}">
                                                 @endif
+
+
                                                 <input type="hidden" value="{{$packinglist['pl_style_size']}}">
 
                                                 <input type="hidden" value="{{$packinglist['pl_style_id']}}">

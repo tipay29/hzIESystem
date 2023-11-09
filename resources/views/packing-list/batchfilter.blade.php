@@ -220,7 +220,19 @@
 
         </div>
         <div class="col-md-2"></div>
-        <div class="col-md-2"></div>
+        <div class="col-md-2">
+
+            <small for="pls_version">Version</small>
+
+            <select name="pls_version" id="pls_version" class="form-control">
+                <option value="0" selected disabled>Select Version</option>
+                <option value="1" >PL ver 1</option>
+                <option value="2" >PL ver 2</option>
+                <option value="3" >PL ver 3</option>
+            </select>
+
+
+        </div>
         <div class="col-md-2">
             <button id="pls_batch_btn_clear" style="height: 100%;" class="btn form-control btn-primary">
                 {{__('text.Clear')}}</button>

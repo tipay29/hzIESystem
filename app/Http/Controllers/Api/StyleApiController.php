@@ -73,7 +73,7 @@ class StyleApiController extends Controller
                     if(($mcq !== null && $mcq !== "") && ($carton_id !== null && $carton_id !== "")){
 
                         if($mcq !== 0){
-                        
+
                             if (Size::where('size', $size_size)->doesntExist()) {
                                 $size = Size::create(['size' => $size_size]);
                             } else {

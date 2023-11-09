@@ -44,6 +44,30 @@ Dropzone.options.instandMcq = {
 let l = window.location;
 let lsplit = l.pathname.split('/');
 let pl_status = $('#pl_status');
+let pl_version = $('#pls_version');
+
+pl_version.change(function(e){
+    e.preventDefault();
+    let loc = window.location.href.split('/');
+
+    let packinglist = {
+        version: pl_version.val(),
+        batch: loc[5],
+    }
+    $.ajax({
+        type:'POST',
+        url: '/api/packing-lists/update/versions',
+        data: packinglist,
+        success: function (packinglist) {
+            alert('Updated Successfully!!!');
+            window.location.reload();
+        },
+        error: function (x,h,r) {
+            alert(x.responseText);
+        }
+    });
+});
+
 
 if(lsplit.includes('packing-lists')) {
     if (lsplit.includes('batch') && lsplit.includes('number')) {
@@ -56,6 +80,9 @@ if(lsplit.includes('packing-lists')) {
         getCarton();
     }
 }
+
+
+
 let ctn_brand = $('#ctn_brand');
 let ctn_type = $('#ctn_type');
 
@@ -624,6 +651,8 @@ let pl_add_po_batch = $('#pl_add_po_batch');
 let pl_add_po_crd = $('#pl_add_po_crd');
 let pl_add_po_country = $('#pl_add_po_country');
 let pl_add_po_user = $('#pl_add_po_user');
+
+
 
 let pl_rm_input = $('#pl_rm_input');
 
