@@ -4,6 +4,8 @@ use App\Models\Style;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\CutsExport;
 
 Route::group(['namespace' => 'Web'],function(){
 
@@ -29,6 +31,11 @@ Route::group(['namespace' => 'Web'],function(){
 
     Route::resource('employees','EmployeeController');
 
+    Route::get('cuts/export', function(){
+
+        return Excel::download(new CutsExport, 'cuts.xlsx');
+
+    })->name('export.cuts');
     Route::get('cuts/total-utilization', 'CutController@totalUtil')->name('cuts.total-util');
     Route::get('cuts/utilization', 'CutController@util')->name('cuts.util');
     Route::resource('cuts','CutController');
@@ -96,5 +103,6 @@ route::post('/upload-excel',function(){
 
     return 0;
 })->name('upload.excel');
+
 
 
