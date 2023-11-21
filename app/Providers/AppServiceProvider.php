@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\View\Composers\FactoryComposer;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Http\View\Composers\BrandComposer;
@@ -79,6 +80,10 @@ class AppServiceProvider extends ServiceProvider
         }
         if(str_contains(url()->current(), 'cartons')) {
             View::composer('carton.form',BrandComposer::class);
+        }
+        if(str_contains(url()->current(), 'cartons/order')) {
+//            dump('aw');
+            View::composer('carton.order-create-header',FactoryComposer::class);
         }
 
 

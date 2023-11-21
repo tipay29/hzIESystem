@@ -36,7 +36,8 @@ class FirstPlImport implements ToModel, WithHeadingRow
 
 
         $crd = $this->convertDate($row['crd_at_origin']);
-        $country = $row['dc_code'] . ' ' . $row['plant_name'];
+        $country = $row['dc_code'] . ' ' . $row['dest'];
+        $country_two = $row['customer_name'];
         $destination = $this->getDestination($country);
 
         if(
@@ -58,6 +59,7 @@ class FirstPlImport implements ToModel, WithHeadingRow
                 'pl_color' => $row['color_description'],
                 'pl_style_size' => $row['style_size'],
                 'pl_country' => $country,
+                'pl_country_two' => $country_two,
                 'pl_destination' => $destination,
                 'pl_crd' => $crd,
                 'pl_pre_pack' => (int)$row['prepack'],

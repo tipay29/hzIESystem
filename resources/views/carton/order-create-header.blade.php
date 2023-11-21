@@ -4,7 +4,7 @@
             <img src="{{ asset('storage/images/horizonlogoword.png') }}" width="140" height="55" alt="Horizon Outdoor">
         </div>
         <div class="col-md-4">
-            <h5 class="text-center">Horizon Cambodia Purchase Order</h5>
+            <h5 class="text-center">Horizon {{$factory->key_name}} Purchase Order</h5>
             <h5 class="text-center">宏盛柬埔寨采购单</h5>
         </div>
         <div class="col-md-4 ">
@@ -50,31 +50,31 @@ EQ
             <div class="row">
                 <h6 for="" class="col-md-3 text-md-end"> Bill To 采购方:</h6>
 
-                <h6 for="" class="col-md-9 text-md-start"> HORIZON OUTDOOR (CAMBODIA) CO., LTD.</h6>
+                <h6 for="" class="col-md-9 text-md-start"> {{$factory->name}}</h6>
 
             </div>
             <div class="row">
                 <h6 for="" class="col-md-3 text-md-end"></h6>
 
-                <h6 for="" class="col-md-9 text-md-start"> Phoum Psar Trach, National road  NO.5,</h6>
+                <h6 for="" class="col-md-9 text-md-start"> {{$factory->address_one}}</h6>
 
             </div>
             <div class="row">
                 <h6 for="" class="col-md-3 text-md-end"></h6>
 
-                <h6 for="" class="col-md-9 text-md-start"> Khum LoungVek, Srok Kompong Trach,</h6>
+                <h6 for="" class="col-md-9 text-md-start"> {{$factory->address_two}}</h6>
 
             </div>
             <div class="row">
                 <h6 for="" class="col-md-3 text-md-end"></h6>
 
-                <h6 for="" class="col-md-9 text-md-start"> Kompong Chhnang Province,</h6>
+                <h6 for="" class="col-md-9 text-md-start"> {{$factory->address_three}}</h6>
 
             </div>
             <div class="row">
                 <h6 for="" class="col-md-3 text-md-end"></h6>
 
-                <h6 for="" class="col-md-9 text-md-start"> Cambodia</h6>
+                <h6 for="" class="col-md-9 text-md-start"> {{$factory->address_four}}</h6>
 
             </div>
             <div class="row">
