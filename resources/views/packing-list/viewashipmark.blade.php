@@ -47,8 +47,47 @@
                 <div class="row">
                     <div class="col-md-12">
 
+
+
+
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-12" style="border:1px solid black;">
+                                <h6 class="text-center" > <u>Carton details</u></h6>
+                                <div class="table-responsive">
+                                    <table class="table pl_table_number">
+                                        <thead>
+                                        <tr>
+                                            <th>
+                                                Carton
+                                            </th>
+                                            <th>Quantity</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <div style="display: none;"> @php $total = 0; @endphp</div>
+                                        @forelse($packinglists[$x][count($packinglists[$x])-1]['mcqcarton_details']['carton_details'] as $key => $carton)
+                                            <tr>
+                                                <td>{{$key}}</td>
+                                                <td>{{$carton}}</td>
+                                            </tr>
+                                            <div style="display: none;"> {{$total += $carton}}</div>
+                                        @empty
+                                            <tr>
+                                                <td> No Carton Record!!!</td>
+                                            </tr>
+                                        @endforelse
+                                        <tr>
+                                            <td>Total</td>
+                                            <td>{{$total}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12" style="border:1px solid black;">
                                 <h6 class="text-center" > <u>Pack details</u></h6>
                                 <div class="table-responsive">
                                     <table class="table pl_table_number">
@@ -77,7 +116,7 @@
                                         <tr>
                                             <td>
                                                 <b>
-                                                Pre Pack</b>
+                                                    Pre Pack</b>
                                             </td>
                                             <td>
                                                 <input
@@ -102,57 +141,26 @@
                             </div>
                         </div>
 
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h6 class="text-center" > <u>Carton details</u></h6>
-                                <div class="table-responsive">
-                                    <table class="table pl_table_number">
-                                        <thead>
-                                        <tr>
-                                            <th>
-                                                Carton
-                                            </th>
-                                            <th>Quantity</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @forelse($packinglists[$x][count($packinglists[$x])-1]['mcqcarton_details']['carton_details'] as $key => $carton)
-                                            <tr>
-                                                <td>{{$key}}</td>
-                                                <td>{{$carton}}</td>
-                                            </tr>
-                                        @empty
-                                            <tr>
-                                                <td> No Carton Record!!!</td>
-                                            </tr>
-                                        @endforelse
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
 
                 </div>
 
             </div>
-            <div style="min-height: 50px;" class="col-md-7">
+            <div style="min-height: 50px;border:1px solid black;" class="col-md-7">
                 <h6 class="text-center" > <u>MCQ details</u></h6>
                 <div class="table-responsive">
                     <table class="table pl_table_number">
                         <thead>
                         <tr>
-                            <th>
+                            <th width="35%">
                                 @if($packinglists[$x][0]['pl_type'] == "APPAREL")
                                     Size
                                 @else
                                     Style
                                 @endif
                             </th>
-                            <th>Carton</th>
-                            <th class="text-end">MCQ</th>
+                            <th width="35%">Carton</th>
+                            <th width="30%" class="text-end">MCQ</th>
                         </tr>
                         </thead>
                         <tbody>

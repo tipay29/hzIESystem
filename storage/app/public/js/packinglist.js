@@ -44,7 +44,8 @@ Dropzone.options.instandMcq = {
 let l = window.location;
 let lsplit = l.pathname.split('/');
 let pl_status = $('#pl_status');
-let pl_version = $('#pls_version');
+let pls_version = $('#pls_version');
+let pl_version = $('#pl_version');
 let batch_version = $('#batch_version');
 
 pl_version.change(function(e){
@@ -52,7 +53,31 @@ pl_version.change(function(e){
     let loc = window.location.href.split('/');
 
     let packinglist = {
-        version: pl_version.val(),
+        version: pls_version.val(),
+        batch: loc[5],
+        number: loc[7],
+    }
+    $.ajax({
+        type:'POST',
+        url: '/api/packing-lists/update/versions/one',
+        data: packinglist,
+        success: function (packinglist) {
+            alert('Updated Successfully!!!');
+            window.location.reload();
+        },
+        error: function (x,h,r) {
+            alert(x.responseText);
+        }
+    });
+
+});
+
+pls_version.change(function(e){
+    e.preventDefault();
+    let loc = window.location.href.split('/');
+
+    let packinglist = {
+        version: pls_version.val(),
         batch: loc[5],
     }
     $.ajax({

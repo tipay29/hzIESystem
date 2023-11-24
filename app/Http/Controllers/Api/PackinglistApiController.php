@@ -152,6 +152,23 @@ class PackinglistApiController extends Controller
 
     }
 
+    public function versionsone(){
+
+        $packinglists = PackingList::where(
+            [
+                ['pl_batch',  request()->batch],
+                ['pl_number_batch',  request()->number],
+            ]
+        )->get();
+
+        $packinglists->each(function ($item){
+            $item->update(['pl_version'=> request()->version]);
+        });
+
+        return response()->json(['success' => $packinglists],201);
+
+    }
+
     public function remarkstwo(){
 
         $packinglists = PackingList::where(

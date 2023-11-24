@@ -221,17 +221,7 @@
         </div>
         <div class="col-md-2"></div>
         <div  class="col-md-2">
-            <div id="batch_version">
-                <small for="pls_version">Version</small>
 
-                <select name="pls_version" id="pls_version" class="form-control">
-                    <option value="0" selected disabled>Select Version</option>
-                    <option value="1" >PL ver 1</option>
-                    <option value="2" >PL ver 2</option>
-                    <option value="3" >PL ver 3</option>
-                    <option value="4" >PL ver 4</option>
-                </select>
-            </div>
 
         </div>
         <div class="col-md-2">

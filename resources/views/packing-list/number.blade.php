@@ -13,6 +13,15 @@
                         <h5 class="mt-2">Packing List View</h5>
 
                         <div>
+
+                            <select name="pl_version" id="pl_version" class="btn btn-outline-info">
+                                <option value="0" selected disabled>Select Version</option>
+                                <option value="1" >PL ver 1</option>
+                                <option value="2" >PL ver 2</option>
+                                <option value="3" >PL ver 3</option>
+                                <option value="4" >PL ver 4</option>
+                            </select>
+
                             @can('create', App\Models\PackingList::class)
                             <button id="addPOModalBtn" type="button" class="btn btn-outline-info" data-bs-toggle="modal"
                                     data-bs-target="#addPOModal">
@@ -194,11 +203,11 @@
 
                                     <tbody>
                                     <tr>
-                                        <th class="text-center" width="20%" style="padding: 0px;margin: 0px;" scope="col" >Merchandiser</th>
+                                        <th class="text-center" width="20%" style="padding: 0px;margin: 0px;" scope="col">Merchandiser</th>
                                         <th class="text-center" width="20%" style="padding: 0px;margin: 0px;" scope="col">Supervisor</th>
-                                        <th class="text-center" width="20%" style="padding: 0px;margin: 0px;" scope="col">Building 6</th>
                                         <th class="text-center" width="20%" style="padding: 0px;margin: 0px;" scope="col">CFA</th>
                                         <th class="text-center" width="20%" style="padding: 0px;margin: 0px;" scope="col">Warehouse</th>
+                                        <th class="text-center" width="20%" style="padding: 0px;margin: 0px;" scope="col">Shipping</th>
                                     </tr>
                                     <tr>
                                         <td style="padding: 0px;margin: 0px; font-size: 12px;">Date:</td>
