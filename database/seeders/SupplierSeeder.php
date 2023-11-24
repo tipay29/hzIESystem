@@ -15,7 +15,7 @@ class SupplierSeeder extends Seeder
      */
     public function run()
     {
-        $users = [
+        $suppliers = [
             [
                 'name_ch' => '永成包装（柬埔寨）有限公司',
                 'name_en' => 'WING CHENG PACKAGING CO.,LTD',
@@ -52,8 +52,29 @@ class SupplierSeeder extends Seeder
 
         ];
 
-        foreach($users as $user){
-            Supplier::create($user);
+        $suppliers_ningbo = [
+            [
+                'name_ch' => '宁波市鄞州丰顺纸箱厂',
+                'name_en' => '',
+                'address_one' => '宁波市鄞州区塘溪镇管江村',
+                'address_two' => '浙江省宁波市',
+                'address_three' => '',
+                'attn' => '钱丰',
+                'phone' => '13306611613',
+                'email' => '13306611613@163.com',
+                'remark' => '',
+            ],
+        ];
+
+        $factory_number = Factory::where('active',1)->first()->factory_number;
+        if($factory_number === "0000721415"){
+            foreach($suppliers as $supplier){
+                Supplier::create($supplier);
+            }
+        }elseif($factory_number === "0000721414"){
+            foreach($suppliers_ningbo as $supplier){
+                Supplier::create($supplier);
+            }
         }
     }
 }
