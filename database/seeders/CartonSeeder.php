@@ -650,8 +650,8 @@ class CartonSeeder extends Seeder
                 Carton::create($carton);
             }
         }elseif($factory_number === "0000721414"){
-            foreach($cartons_ningbo as $destination){
-                Carton::create($cartons_ningbo);
+            foreach($cartons_ningbo as $carton){
+                Carton::create($carton);
             }
         }
     }
