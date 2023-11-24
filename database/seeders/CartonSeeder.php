@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Carton;
+use App\Models\Factory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -550,8 +551,108 @@ class CartonSeeder extends Seeder
             ] ,
         ];
 
-        foreach($cartons as $carton){
-            Carton::create($carton);
+       $cartons_ningbo = [
+           [
+               'brand_id' => 1,
+               'ctn_size' => '59*38*16.5',
+               'ctn_weight' => '1.2',
+               'type' => 'APPAREL',
+               'ctn_specification' => 'A=A 200LB',
+               'ctn_fob' => '6.14',
+               'ctn_code_1001' => '',
+               'ctn_code_1004' => '',
+           ] ,
+           [
+               'brand_id' => 1,
+               'ctn_size' => '59*39*29',
+               'ctn_weight' => '1.2',
+               'type' => 'APPAREL',
+               'ctn_specification' => 'A=A 200LB',
+               'ctn_fob' => '7.63',
+               'ctn_code_1001' => '',
+               'ctn_code_1004' => '',
+           ] ,
+           [
+               'brand_id' => 1,
+               'ctn_size' => '60*39.5*30',
+               'ctn_weight' => '1.2',
+               'type' => 'APPAREL',
+               'ctn_specification' => 'A=A 200LB',
+               'ctn_fob' => '7.9',
+               'ctn_code_1001' => '',
+               'ctn_code_1004' => '',
+           ] ,
+            [
+               'brand_id' => 1,
+               'ctn_size' => '60*39.5*40',
+               'ctn_weight' => '1.4',
+               'type' => 'APPAREL',
+               'ctn_specification' => 'A=A 200LB',
+               'ctn_fob' => '8.98',
+               'ctn_code_1001' => '',
+               'ctn_code_1004' => '',
+           ] ,
+           [
+               'brand_id' => 1,
+               'ctn_size' => '65.00*38.50*23.50',
+               'ctn_weight' => '1.1',
+               'type' => 'APPAREL',
+               'ctn_specification' => 'A=A 200LB',
+               'ctn_fob' => '7.24',
+               'ctn_code_1001' => 'R5',
+               'ctn_code_1004' => '',
+           ] ,
+           [
+               'brand_id' => 1,
+               'ctn_size' => '65.04*38.10*31.75',
+               'ctn_weight' => '1.2',
+               'type' => 'APPAREL',
+               'ctn_specification' => 'A=A 200LB',
+               'ctn_fob' => '8.28',
+               'ctn_code_1001' => '',
+               'ctn_code_1004' => '',
+           ] ,
+           [
+               'brand_id' => 1,
+               'ctn_size' => '68*40*30',
+               'ctn_weight' => '1.4',
+               'type' => 'APPAREL',
+               'ctn_specification' => 'A=A 200LB',
+               'ctn_fob' => '8.58',
+               'ctn_code_1001' => '',
+               'ctn_code_1004' => '',
+           ] ,
+           [
+               'brand_id' => 1,
+               'ctn_size' => '71.50*38.50*13',
+               'ctn_weight' => '1.1',
+               'type' => 'APPAREL',
+               'ctn_specification' => 'A=A 200LB',
+               'ctn_fob' => '6.42',
+               'ctn_code_1001' => '',
+               'ctn_code_1004' => '',
+           ] ,
+           [
+               'brand_id' => 1,
+               'ctn_size' => '71.50*38.50*29.50',
+               'ctn_weight' => '1.2',
+               'type' => 'APPAREL',
+               'ctn_specification' => 'A=A 200LB',
+               'ctn_fob' => '8.36',
+               'ctn_code_1001' => 'R7',
+               'ctn_code_1004' => '',
+           ] ,
+       ];
+
+        $factory_number = Factory::where('active',1)->first()->factory_number;
+        if($factory_number === "0000721415"){
+            foreach($cartons as $carton){
+                Carton::create($carton);
+            }
+        }elseif($factory_number === "0000721414"){
+            foreach($cartons_ningbo as $destination){
+                Destination::create($destination);
+            }
         }
     }
 }
