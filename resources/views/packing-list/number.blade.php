@@ -203,8 +203,8 @@
 
                                     <tbody>
                                     <tr>
-                                        <th class="text-center" width="20%" style="padding: 0px;margin: 0px;" scope="col">Merchandiser</th>
                                         <th class="text-center" width="20%" style="padding: 0px;margin: 0px;" scope="col">Supervisor</th>
+                                        <th class="text-center" width="20%" style="padding: 0px;margin: 0px;" scope="col">QC</th>
                                         <th class="text-center" width="20%" style="padding: 0px;margin: 0px;" scope="col">CFA</th>
                                         <th class="text-center" width="20%" style="padding: 0px;margin: 0px;" scope="col">Warehouse</th>
                                         <th class="text-center" width="20%" style="padding: 0px;margin: 0px;" scope="col">Shipping</th>
