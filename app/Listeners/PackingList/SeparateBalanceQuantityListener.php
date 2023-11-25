@@ -114,9 +114,13 @@ class SeparateBalanceQuantityListener
              }elseif($packinglistsRaw[$x]->pl_version == 3){
                  $style_code = ltrim(substr($packinglistsRaw[$x]->pl_material,-8),0)
                      . $packinglistArray[$x]['pl_buy_year'] . $packinglistArray[$x]['pl_buy_month'] ;
-             }elseif($packinglistsRaw[$x]->pl_version == 3){
+             }elseif($packinglistsRaw[$x]->pl_version == 4){
                  $style_code = ltrim(substr($packinglistsRaw[$x]->pl_material,-8),0)
                      . $packinglistArray[$x]['pl_buy_year'] . $packinglistArray[$x]['pl_buy_month'] . 'DEST';
+             }elseif($packinglistsRaw[$x]->pl_version == 5){
+                 $style_code = ltrim(substr($packinglistsRaw[$x]->pl_material,-8),0)
+                     . $packinglistArray[$x]['pl_buy_year'] . $packinglistArray[$x]['pl_buy_month']
+                     . $packinglistArray[$x]['pl_po_cut'];
              }
 
 //            dd($style_code);

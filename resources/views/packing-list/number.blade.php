@@ -386,9 +386,12 @@
                                                 @elseif($packinglist['pl_version'] == 3)
                                                     <input type="hidden" value="{{ltrim(substr($packinglist['pl_material'],-8),0) .
                                                     $packinglist['pl_buy_year'] . $packinglist['pl_buy_month'] }}">
-                                                @elseif($packinglist['pl_version'] == 3)
+                                                @elseif($packinglist['pl_version'] == 4)
                                                     <input type="hidden" value="{{ltrim(substr($packinglist['pl_material'],-8),0) .
                                                     $packinglist['pl_buy_year'] . $packinglist['pl_buy_month'] . "DEST" }}">
+                                                @elseif($packinglist['pl_version'] == 5)
+                                                    <input type="hidden" value="{{ltrim(substr($packinglist['pl_material'],-8),0) .
+                                                    $packinglist['pl_buy_year'] . $packinglist['pl_buy_month'] . $packinglist['pl_po_cut'] }}">
                                                 @endif
 
 
