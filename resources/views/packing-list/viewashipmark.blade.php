@@ -39,8 +39,9 @@
             @endif
     </div>
     <div style="min-height: 50px;" class="col-md-6">
+        <div style="border:1px solid black;">
         <h6 class="text-center" style="">Summary</h6>
-        <h6 class="text-center" style=""> Factory PO: <b> {{$packinglists[$x][0]['pl_factory_po']}} </b></h6>
+        <h6 class="text-center" style=""> Factory PO: <b> {{$packinglists[$x][0]['pl_factory_po']}} </b></h6></div>
         <div class="row">
             <div style="min-height: 50px;" class="col-md-5">
 
