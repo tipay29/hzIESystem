@@ -31,11 +31,7 @@ Route::group(['namespace' => 'Web'],function(){
 
     Route::resource('employees','EmployeeController');
 
-    Route::get('cuts/export', function(){
-
-        return Excel::download(new CutsExport, 'cuts.xlsx');
-
-    })->name('export.cuts');
+    Route::post('cuts/export', 'CutController@exportData')->name('export.cuts');
     Route::get('cuts/total-utilization', 'CutController@totalUtil')->name('cuts.total-util');
     Route::get('cuts/utilization', 'CutController@util')->name('cuts.util');
     Route::resource('cuts','CutController');

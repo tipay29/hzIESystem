@@ -28,7 +28,9 @@
                                        class="btn btn-outline-success">
                                         {{__('text.CuttingReport'). '2'}} </a>
                             @endcan
-
+                                <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#dataReportModal">
+                                    Data Report
+                                </button>
 
                         </div>
 
@@ -228,4 +230,6 @@
         </div>
     </div>
 @endsection
+
+@include('cut.datareport')
 

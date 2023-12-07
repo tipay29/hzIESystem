@@ -285,6 +285,33 @@
 
         </div>
 
+        <div class="form-group">
+
+
+            <label for="machine_auto">Machine Auto
+                @error('machine_auto') <small class="text-danger">{{$message}}</small>  @enderror
+            </label>
+            <div class="mt-2">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="machine_auto" id="machine_auto2" value="0"
+                        {{0 == old('machine_auto') ? 'checked' : (0 == $cut->machine_auto ? 'checked' : '')}}
+                    >
+                    <label class="form-check-label" for="machine_auto">No</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="machine_auto" id="machine_auto1" value="1"
+                        {{1 == old('machine_auto') ? 'checked' : (1 == $cut->machine_auto ? 'checked' : '')}}
+                    >
+                    <label class="form-check-label" for="machine_auto">Yes</label>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
 
     </div>
     <div class="row-three d-flex align-items-start flex-column flex-wrap">

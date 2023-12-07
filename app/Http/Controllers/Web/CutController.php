@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Web;
 
 use App\Events\GetCutEffEvent;
+use App\Exports\CutsExport;
 use App\Http\Controllers\Controller;
 use App\Models\Cut;
 use App\Models\Style;
 use Illuminate\Http\Request;
 use DateTime;
 use Illuminate\Pipeline\Pipeline;
-
+use Maatwebsite\Excel\Facades\Excel;
 class CutController extends Controller
 {
 
@@ -49,7 +50,7 @@ class CutController extends Controller
         ->take(1000)
         ->get();
         $cuts = $cuts->paginate(10);
-    
+
         return view('cut.index',compact('cuts'));
     }
 
@@ -84,6 +85,7 @@ class CutController extends Controller
             'spread_end' => request()->spread_end,
             'cut_start' => request()->cut_start,
             'cut_end' => request()->cut_end,
+            'machine_auto' => request()->machine_auto,
             'user_id' => auth()->user()->id,
         ]);
 
@@ -102,7 +104,7 @@ class CutController extends Controller
         $cut->load(['building','user','styles','purchase_orders',
                     'fabric_codes','fabric_colors','fabric_types',
                     'placements','employees.job']);
-
+//        DD($cut);
         return view('cut.show',compact('cut'));
     }
 
@@ -135,6 +137,7 @@ class CutController extends Controller
             'spread_end' => request()->spread_end,
             'cut_start' => request()->cut_start,
             'cut_end' => request()->cut_end,
+            'machine_auto' => request()->machine_auto,
             'user_id' => auth()->user()->id,
         ]);
 
@@ -180,9 +183,16 @@ class CutController extends Controller
 
     }
 
+    public function exportData(){
 
+        return Excel::download(new CutsExport(request()->all()), 'cuts.xlsx');
+    }
 
     protected function requestValidate(){
+
+//        dd(request()->all());
+
+
         return request()->validate([
             'purchase_order' => 'required|array',
             'style' => 'required',
@@ -202,6 +212,7 @@ class CutController extends Controller
             'cutter_id' => 'required',
             'cut_start' => 'required|before:cut_end',
             'cut_end' => 'required|after:cut_start',
+            'machine_auto' => 'required',
         ]);
     }
 

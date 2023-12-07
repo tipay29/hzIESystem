@@ -160,12 +160,23 @@
                                     {{$cut->cut_end}}
                                 </p>
                             </div>
-
+                            <div>
+                                <strong>
+                                    Machine Auto
+                                </strong>
+                                <p>
+                                    @if($cut->machine_auto == 1)
+                                      YES
+                                    @else
+                                       NO
+                                    @endif
+                                </p>
+                            </div>
 
                         </div>
 
-                        
-                        
+
+
                         <div id="cut-show-div-three">
 
                             <div>

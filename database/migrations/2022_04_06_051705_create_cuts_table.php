@@ -23,6 +23,7 @@ return new class extends Migration
             $table->dateTime('spread_end');
             $table->dateTime('cut_start');
             $table->dateTime('cut_end');
+            $table->integer('machine_auto')->default(0);
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
