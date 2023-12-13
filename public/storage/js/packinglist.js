@@ -1377,7 +1377,7 @@ ata_nw_btn.click(function(e){
     e.preventDefault();
 
     if(pl_mcq_size_input_two.val() !== ""){
-    pl_mcq_weight_input_two.val(pl_mcq_weight_input.val());
+        pl_mcq_weight_input_two.val(pl_mcq_weight_input.val());
     }
     if(pl_mcq_size_input_three.val() !== "") {
         pl_mcq_weight_input_three.val(pl_mcq_weight_input.val());
@@ -1406,6 +1406,10 @@ ata_nw_btn.click(function(e){
 });
 ata_carton_btn.click(function(e){
     e.preventDefault();
+
+    if(pl_mcq_carton_first_input_two.val() !== ""){
+        pl_mcq_carton_first_input_two.val(pl_mcq_weight_input.val());
+    }
 
 });
 ata_mcq_btn.click(function(e){

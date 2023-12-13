@@ -9,6 +9,8 @@ use App\Exports\CutsExport;
 
 Route::group(['namespace' => 'Web'],function(){
 
+    Route::get('users/change','UserController@changePassword')->name('users.changepass');
+    Route::post('users/change/update','UserController@passwordUpdate')->name('users.passupdate');
 
     route::get('/aw',function(){
         $countpl = (\App\Models\PackingList::where('pl_batch',7)->max('pl_number_batch'));
@@ -27,7 +29,6 @@ Route::group(['namespace' => 'Web'],function(){
         dump(count($test));
         dd($test);
     });
-
 
     Route::resource('employees','EmployeeController');
 
