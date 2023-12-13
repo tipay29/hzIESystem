@@ -271,6 +271,21 @@
 
                                                         @else
                                                             <tr>
+                                                                @if($packinglists[$x][$y]['pl_version'] == 1)
+                                                                    <input type="hidden" value="{{ltrim(substr($packinglists[$x][$y]['pl_sku'],-5),0)}}">
+                                                                @elseif($packinglists[$x][$y]['pl_version'] == 2)
+                                                                    <input type="hidden" value="{{ltrim(substr($packinglists[$x][$y]['pl_material'],-8),0)}}">
+                                                                @elseif($packinglists[$x][$y]['pl_version'] == 3)
+                                                                    <input type="hidden" value="{{ltrim(substr($packinglists[$x][$y]['pl_material'],-8),0) .
+                                                                    $packinglists[$x][$y]['pl_buy_year'] . $packinglists[$x][$y]['pl_buy_month'] }}">
+                                                                @elseif($packinglists[$x][$y]['pl_version'] == 4)
+                                                                    <input type="hidden" value="{{ltrim(substr($packinglists[$x][$y]['pl_material'],-8),0) .
+                                                                    $packinglists[$x][$y]['pl_buy_year'] . $packinglists[$x][$y]['pl_buy_month'] . "DEST" }}">
+                                                                @elseif($packinglists[$x][$y]['pl_version'] == 5)
+                                                                    <input type="hidden" value="{{ltrim(substr($packinglists[$x][$y]['pl_material'],-8),0) .
+                                                                    $packinglists[$x][$y]['pl_buy_year'] . $packinglists[$x][$y]['pl_buy_month'] . $packinglists[$x][$y]['pl_po_cut'] }}">
+                                                                @endif
+
                                                                 <td scope="col">{{$packinglists[$x][$y]['pl_master_po']}}</td>
                                                                 <td scope="col">{{$packinglists[$x][$y]['pl_po_cut']}}</td>
                                                                 <td scope="col">{{$packinglists[$x][$y]['pl_sku']}}</td>

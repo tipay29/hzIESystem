@@ -92,18 +92,39 @@ class SeparateBalanceQuantityAllListener
                 $packinglistArray[$x][$y_Ctrl]['pl_season'] = $number_number_collection[$y]->pl_season;
                 $packinglistArray[$x][$y_Ctrl]['pl_batch'] = $number_number_collection[$y]->pl_batch;
                 $packinglistArray[$x][$y_Ctrl]['pl_number_batch'] = $number_number_collection[$y]->pl_number_batch;
+                $packinglistArray[$x][$y_Ctrl]['pl_version'] = $number_number_collection[$y]->pl_version;
                 $packinglistArray[$x][$y_Ctrl]['user_id'] = $number_number_collection[$y]->user_id;
                 $packinglistArray[$x][$y_Ctrl]['pl_nw_one'] = $number_number_collection[$y]->pl_nw_one;
                 $packinglistArray[$x][$y_Ctrl]['pl_nw_two'] = $number_number_collection[$y]->pl_nw_two;
                 $packinglistArray[$x][$y_Ctrl]['pl_gw_one'] = $number_number_collection[$y]->pl_gw_one;
                 $packinglistArray[$x][$y_Ctrl]['pl_gw_two'] = $number_number_collection[$y]->pl_gw_two;
+                $packinglistArray[$x][$y_Ctrl]['pl_buy_year'] = $number_number_collection[$y]->pl_buy_year;
+                $packinglistArray[$x][$y_Ctrl]['pl_buy_month'] = $number_number_collection[$y]->pl_buy_month;
 
                 $iqty = $number_number_collection[$y]->pl_order_quantity;
                 $packinglistArray[$x][$y_Ctrl]['pl_order_quantity'] = $iqty;
 
                 $prepack = $packinglistArray[$x][$y_Ctrl]['pl_pre_pack'];
 
-                $style_code = ltrim(substr($number_number_collection[$y]->pl_sku,-5),0);
+                if($number_number_collection[$y]->pl_version == 1){
+                    $style_code = ltrim(substr($number_number_collection[$y]->pl_sku,-5),0);
+                }elseif($number_number_collection[$y]->pl_version == 2){
+                    $style_code = ltrim(substr($number_number_collection[$y]->pl_material,-8),0);
+                }elseif($number_number_collection[$y]->pl_version == 3){
+                    $style_code = ltrim(substr($number_number_collection[$y]->pl_material,-8),0)
+                        . $packinglistArray[$x][$y_Ctrl]['pl_buy_year'] . $packinglistArray[$x][$y_Ctrl]['pl_buy_month'] ;
+                }elseif($number_number_collection[$y]->pl_version == 4){
+                    $style_code = ltrim(substr($number_number_collection[$y]->pl_material,-8),0)
+                        . $packinglistArray[$x][$y_Ctrl]['pl_buy_year'] . $packinglistArray[$x][$y_Ctrl]['pl_buy_month'] . 'DEST';
+                }elseif($number_number_collection[$y]->pl_version == 5){
+                    $style_code = ltrim(substr($number_number_collection[$y]->pl_material,-8),0)
+                        . $packinglistArray[$x][$y_Ctrl]['pl_buy_year'] . $packinglistArray[$x][$y_Ctrl]['pl_buy_month']
+                        . $packinglistArray[$x][$y_Ctrl]['pl_po_cut'];
+                }
+
+
+
+
 
                 if($this->balance_qty == 0){
                     $this->total_qty_ship = $this->total_qty_ship + $iqty;
@@ -432,7 +453,7 @@ class SeparateBalanceQuantityAllListener
 
             }
 
-            
+
             $packinglistArray[$x] = collect(collect($packinglistArray[$x])->sortBy('pl_style_size_id')->values())->toArray();
 
             $pl_last_num = count($packinglistArray[$x]);
