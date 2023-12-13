@@ -20,6 +20,7 @@
     <script src="{{ asset('storage/js/main.js') }}" defer></script>
     <script src="{{ asset('storage/js/packinglist.js') }}" defer></script>
     <script src="{{ asset('storage/js/carton.js') }}" defer></script>
+    <script src="{{ asset('storage/js/style/style.js') }}" defer></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">

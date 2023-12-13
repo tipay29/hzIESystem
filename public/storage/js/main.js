@@ -4,7 +4,6 @@ $('document').ready(function() {
 
     $.getScript(originUrl + '/storage/js/cutting.js');
     $.getScript(originUrl + '/storage/js/employee.js');
-    $.getScript(originUrl + '/storage/js/style/style.js');
     $.getScript(originUrl + '/storage/js/style/purchase-order.js');
     $.getScript(originUrl + '/storage/js/style/fabric-color.js');
     $.getScript(originUrl + '/storage/js/style/fabric-code.js');

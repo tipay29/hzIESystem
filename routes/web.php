@@ -37,7 +37,8 @@ Route::group(['namespace' => 'Web'],function(){
     Route::get('cuts/utilization', 'CutController@util')->name('cuts.util');
     Route::resource('cuts','CutController');
 
-
+    Route::post('styles/update/weights','StyleController@updateweights')->name('styles.updateweights');
+    Route::get('styles/edit/weights','StyleController@editweights')->name('styles.editweights');
     Route::resource('styles','StyleController');
 
     Route::get('purchase-orders','PurchaseOrderController@index')->name('purchase-orders.index');

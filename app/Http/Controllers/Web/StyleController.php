@@ -113,6 +113,18 @@ class StyleController extends Controller
         return redirect(route('styles.index'));
     }
 
+    public function editweights()
+    {
+
+       return view('style.editweight');
+    }
+
+    public function updateweights()
+    {
+        dd(request()->file());
+//        return 0;
+    }
+
     protected function requestValidate(){
         return request()->validate([
             'purchase_order' => 'unique:purchase_orders,purchase_order',

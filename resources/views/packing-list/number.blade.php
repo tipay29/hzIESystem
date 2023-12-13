@@ -18,8 +18,9 @@
                                 <option value="0" selected disabled>Select Version</option>
                                 <option value="1" >Style</option>
                                 <option value="2" >Material</option>
-                                <option value="3" >Lock 1 by 1</option>
+                                <option value="3" >Mat+BuyM+BuyY</option>
                                 <option value="4" >Destination</option>
+                                <option value="4" >Lock</option>
                             </select>
 
                             @can('create', App\Models\PackingList::class)
@@ -383,7 +384,7 @@
                                                 @if($packinglist['pl_version'] == 1)
                                                      <input type="hidden" value="{{ltrim(substr($packinglist['pl_sku'],-5),0)}}">
                                                 @elseif($packinglist['pl_version'] == 2)
-                                                    <input type="hidden" value="{{ltrim(substr($packinglist['pl_material'],-8),0)}}">
+                                                    <input type="hidden" value="{{ltrim($packinglist['pl_material'])}}">
                                                 @elseif($packinglist['pl_version'] == 3)
                                                     <input type="hidden" value="{{ltrim(substr($packinglist['pl_material'],-8),0) .
                                                     $packinglist['pl_buy_year'] . $packinglist['pl_buy_month'] }}">

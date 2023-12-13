@@ -1,4 +1,18 @@
 
+Dropzone.options.stylesWeight = {
+    init: function () {
+        this.on('success', function() {
+            var args = Array.prototype.slice.call(arguments);
+
+            alert('Weight Updated!!!');
+            // setTimeout(Reload,1000);
+            //
+            // function Reload(){
+            //     window.location.href = '/packing-lists/batch/' + args[1]
+            // }
+        });
+    }
+}
 
 $('window').change(function () {
     if (window.location.hash) {

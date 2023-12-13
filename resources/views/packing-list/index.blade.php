@@ -26,6 +26,10 @@
                             <a href="{{route('cartons.index')}}"
                             class="btn btn-outline-secondary"
                             >View Carton</a>
+                            <a href="{{route('styles.editweights')}}"
+                               class="btn btn-outline-secondary"
+                            >Update NW</a>
+
                             <a href="{{url()->previous()}}"
                                class="btn btn-outline-secondary">
                                 Back</a>
