@@ -28,7 +28,10 @@
                             >View Carton</a>
                             <a href="{{route('styles.editweights')}}"
                                class="btn btn-outline-secondary"
-                            >Update NW</a>
+                            >Edit NW</a>
+                            <a href="{{route('styles.editmcqs')}}"
+                               class="btn btn-outline-secondary"
+                            >Edit MCQ</a>
 
                             <a href="{{url()->previous()}}"
                                class="btn btn-outline-secondary">

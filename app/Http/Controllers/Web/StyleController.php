@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+
+use App\Imports\StyleMCQImport;
+use App\Imports\StyleWeightImport;
 use App\Models\PurchaseOrder;
 use App\Models\Style;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class StyleController extends Controller
 {
@@ -121,8 +125,36 @@ class StyleController extends Controller
 
     public function updateweights()
     {
-        dd(request()->file());
-//        return 0;
+        $file = request()->file('file');
+
+//        dd($file);
+//
+        $import = new StyleWeightImport();
+//        $import->onlySheets('Worksheet');
+
+        Excel::import($import, $file);
+
+        return 0;
+    }
+
+    public function editmcqs()
+    {
+
+        return view('style.editmcq');
+    }
+
+    public function updatemcqs()
+    {
+        $file = request()->file('file');
+
+//        dd($file);
+//
+        $import = new StyleMCQImport();
+//        $import->onlySheets('Worksheet');
+
+        Excel::import($import, $file);
+
+        return 0;
     }
 
     protected function requestValidate(){
