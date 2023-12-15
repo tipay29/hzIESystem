@@ -36,13 +36,13 @@ class FirstPlImport implements ToModel, WithHeadingRow
 
 
         $crd = $this->convertDate($row['crd_at_origin']);
-        $country = $row['dc_code'] . ' ' . $row['dest'];
+        $country = $row['dc_code'] . ' ' . $row['plant_name'];
         $country_two = $row['customer_name'];
         $destination = $this->getDestination($country);
 
         if(
             $this->checkUpdateSize($crd,$country,(int)$row['prepack'],$row['po']
-                ,$this->type,$row['shipment_mode'],$row['style_size'],$row['quantity'])
+                ,$this->type,$row['shipment_mode'],$row['size_1'],$row['quantity'])
             ===
             0) {
 
@@ -57,7 +57,7 @@ class FirstPlImport implements ToModel, WithHeadingRow
                 'pl_material' => $row['material'],
                 'pl_description' => $row['material_description'],
                 'pl_color' => $row['color_description'],
-                'pl_style_size' => $row['style_size'],
+                'pl_style_size' => $row['size_1'],
                 'pl_country' => $country,
                 'pl_country_two' => $country_two,
                 'pl_destination' => $destination,

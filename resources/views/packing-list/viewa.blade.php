@@ -276,7 +276,7 @@
                                                                 @elseif($packinglists[$x][$y]['pl_version'] == 2)
                                                                     <input type="hidden" value="{{ltrim($packinglists[$x][$y]['pl_material'])}}">
                                                                 @elseif($packinglists[$x][$y]['pl_version'] == 3)
-                                                                    <input type="hidden" value="{{ltrim(substr($packinglists[$x][$y]['pl_material'],-8),0) .
+                                                                    <input type="hidden" value="{{ltrim(substr($packinglists[$x][$y]['pl_sku'],-5),0) .
                                                                     $packinglists[$x][$y]['pl_buy_year'] . $packinglists[$x][$y]['pl_buy_month'] }}">
                                                                 @elseif($packinglists[$x][$y]['pl_version'] == 4)
                                                                     <input type="hidden" value="{{ltrim(substr($packinglists[$x][$y]['pl_material'],-8),0) .
