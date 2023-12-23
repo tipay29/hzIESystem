@@ -609,22 +609,17 @@
                         <input id="pl_mcq_weight_input_ten"  type="text" class="form-control" >
                     </div>
                     <div class="col-md-2" style="background-color: #C0F5FB;">
-
                         <select id="pl_mcq_carton_first_input_ten" class="form-control">
                             <option disabled selected>Select Carton</option>
 
                         </select>
                     </div>
                     <div class="col-md-1" style="background-color: #C0F5FB;">
-
                         <input id="pl_mcq_qty_first_input_ten" type="text" class="form-control" >
                     </div>
-
                     <div class="col-md-2" style="background-color: #D0FBC0;">
-
                         <select id="pl_mcq_carton_second_input_ten" class="form-control">
                             <option disabled selected>Select Carton</option>
-
                         </select>
                     </div>
                     <div class="col-md-1" style="background-color: #D0FBC0;">
@@ -680,6 +675,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-md-3">
                         <label for="pl_update_nw_input" class=" col-form-label text-md-end">Net Weight </label>
                         <div class="input-group">

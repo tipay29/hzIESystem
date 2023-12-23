@@ -362,12 +362,15 @@ class SeparateBalanceQuantityListener
                             //Total netweight
                             $this->total_nw = $this->total_nw + $packinglistArray[$x]['net_weight_total'];
 
+                            try{
                             //Carton WEight
                             $packinglistArray[$x]['carton_weight'] = $cartons->where('id', $cartonidlist[$z])->first()->ctn_weight;
 
                             //Carton Measurement
                             $packinglistArray[$x]['carton_size'] = $cartons->where('id', $cartonidlist[$z])->first()->ctn_size;
-
+                            }catch(\Exception $e) {
+                                dd( 'Message: ' . 'MCQ error!!!');
+                            }
                             if (array_key_exists($packinglistArray[$x]['carton_size'],$this->total_ctn_ctn))
                             {
                                 $this->total_ctn_ctn[$packinglistArray[$x]['carton_size']] =
