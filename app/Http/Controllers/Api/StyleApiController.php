@@ -105,8 +105,6 @@ class StyleApiController extends Controller
                         }
                     }
 
-
-
                 }
             }
 

@@ -37,6 +37,8 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
     protected $summarycount;
     protected $contentsummarycount;
 
+    public $carton_num;
+
     public function __construct($packinglists)
     {
 //        dd($packinglists);
@@ -48,12 +50,16 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
         $this->contentcount = 0;
         $this->summarycount = 0;
         $this->contentsummarycount = 0;
+        $this->carton_num = 0;
     }
 
     public function collection()
     {
 //        dd($this->packinglists);
+
+
         $newpl = $this->getPackingListExcel($this->packinglists);
+
 //        dd($newpl);
 //        dd($newpl);
 //        dd($this->packinglists);
@@ -715,23 +721,23 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                 ];
 
 
-                $event->sheet->setCellValue('H2','Merchandiser')->getStyle('H2:I2')
+                $event->sheet->setCellValue('H2','Line Supervisor')->getStyle('H2:I2')
                     ->applyFromArray($border)
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-                $event->sheet->setCellValue('J2','Supervisor')->getStyle('J2:K2')
+                $event->sheet->setCellValue('J2','QC')->getStyle('J2:K2')
                     ->applyFromArray($border)
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-                $event->sheet->setCellValue('L2','Building 6')->getStyle('L2:M2')
+                $event->sheet->setCellValue('L2','CFA')->getStyle('L2:M2')
                     ->applyFromArray($border)
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-                $event->sheet->setCellValue('N2','CFA')->getStyle('N2:O2')
+                $event->sheet->setCellValue('N2','Warehouse')->getStyle('N2:O2')
                     ->applyFromArray($border)
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-                $event->sheet->setCellValue('P2','Warehouse')->getStyle('P2')
+                $event->sheet->setCellValue('P2','Shipping')->getStyle('P2')
                     ->applyFromArray($border)
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
@@ -858,17 +864,30 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
                 $pl = collect($packinglist)
                     ->only(['pl_po_cut','pl_master_po','pl_sku',
                         'pl_material','pl_description',
-                        'pl_color','pl_order_quantity_cut','pl_one_ctn_item_count','pl_style_size',
-                        'carton_number_display','pl_number_of_carton',
-                        'net_weight_one_ctn','net_weight_total',
-                        'gross_weight_one_ctn','gross_weight_total',
-                        'carton_size','cbm'])
+                        'pl_color','pl_order_quantity_cut','pl_one_ctn_item_count','pl_style_size'])
                     ->toArray();
+                $pl['carton_number_display'] = ($this->carton_num+1) . '-' . ($this->carton_num+$packinglist['pl_number_of_carton']) ;
+                $this->carton_num = $this->carton_num + $packinglist['pl_number_of_carton'];
+                $pl['pl_number_of_carton'] = $packinglist['pl_number_of_carton'];
+                $pl['net_weight_one_ctn'] = $packinglist['net_weight_one_ctn'];
+                $pl['net_weight_total'] = $packinglist['net_weight_total'];
+                $pl['gross_weight_one_ctn'] = $packinglist['gross_weight_one_ctn'];
+                $pl['gross_weight_total'] = $packinglist['gross_weight_total'];
+                $pl['carton_size'] = $packinglist['carton_size'];
+                $pl['cbm'] = $packinglist['cbm'];
+
+
                 $newpl->add($pl);
             }
         }
+
+        $this->carton_num = 0;
+
+
         return $newpl;
     }
+
+
 
     public function columnFormats(): array
     {

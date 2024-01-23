@@ -32,7 +32,6 @@ Route::group(['as' => 'api.'],function() {
         Route::post('cut-sheetdbs', 'CutSheetDBApiController@store')->name('cut-sheetdbs.store');
     });
 
-
     Route::get('cartons/brands', 'CartonApiController@showBrand')->name('cartons.showbrand');
     Route::post('cartons/order/create','CartonApiController@createCartonOrder')->name('packing-lists.createCartonOrder');
     Route::post('carton-orders','CartonOrderApiController@storeCartonOrder')->name('packing-lists.storeCartonOrder');
@@ -71,3 +70,4 @@ Route::group(['as' => 'api.'],function() {
     Route::post('packing-lists','PackinglistApiController@store')->name('packing-lists.store');
 
 });
+
