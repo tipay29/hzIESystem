@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use mysql_xdevapi\Exception;
+use function PHPUnit\Framework\isNull;
 
 class StyleWeightImport implements ToCollection, WithHeadingRow
 {
@@ -18,14 +19,14 @@ class StyleWeightImport implements ToCollection, WithHeadingRow
     }
 
     protected function changeWeight($collection){
+
         foreach($collection as $collect){
 
             $style = Style::where('style_code',$collect['basis'])->first();
             $size = Size::where('size',$collect['size'])->first();
 
-
             if($style == null){
-
+//                dd($style);
                 $style = Style::create([
                     'style_code' => $collect['basis'],
                 ]);
@@ -37,7 +38,8 @@ class StyleWeightImport implements ToCollection, WithHeadingRow
                     dd("Size doesn't exist!!!");
                 }
             }else{
-                $size->styles()->sync([$style->id => [
+
+                $size->styles()->syncWithoutDetaching([$style->id => [
                     'weight' => $collect['weight'],
                 ]]);
 //                $size->styles()->attach([$style->id => [
