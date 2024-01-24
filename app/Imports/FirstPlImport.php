@@ -63,7 +63,7 @@ class FirstPlImport implements ToModel, WithHeadingRow
                 'pl_material' => $row['material'],
                 'pl_description' => $row['material_description'],
                 'pl_color' => $row['color_description'],
-                'pl_style_size' => $row['size_1'] . $size2,
+                'pl_style_size' => trim($row['size_1']) . trim($size2),
                 'pl_country' => $country,
                 'pl_country_two' => $country_two,
                 'pl_destination' => $destination,
