@@ -17,6 +17,12 @@
 
                         </div>
 
+                        <a href="{{ asset('storage/files/UploadFile.xlsx') }}" download
+                           style="background-color: green;color:white;padding:5px;text-decoration: none;margin:5px;
+                                border: 2px solid darkgrey;"
+
+                        >Download Sample Upload </a>
+
                     </div>
 
                     <div class="card-body">
