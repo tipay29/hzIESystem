@@ -588,14 +588,10 @@ class PackingListController extends Controller
         if(count($packinglists) == 1){
             return redirect()->back()->with('message', 'Invalid Filter!!!');
         }
-
 //        dd($packinglists);
-
-
 
 //        $packinglists = new PackingList($packinglists);
 //        $packinglists =  $packinglists->toArray();
-
 
         $excel = Excel::download(new PackingListExport($packinglists), 'pl.xlsx');
 

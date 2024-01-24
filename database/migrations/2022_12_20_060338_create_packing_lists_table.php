@@ -48,6 +48,7 @@ return new class extends Migration
             $table->integer('pl_uniq_number_batch_number')->nullable();
             $table->integer('pl_uniq_number_batch')->nullable();
             $table->unsignedInteger('user_id')->nullable();
+            $table->integer('pl_version')->default(1);
             $table->timestamps();
         });
     }

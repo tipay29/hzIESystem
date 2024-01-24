@@ -170,8 +170,9 @@ class SeparateBalanceQuantityListener
             $size_id = Size::where('size',$packinglistArray[$x]['pl_style_size'])->first()->id;
 
             } catch (\Exception $e) {
+                    dd($packinglistArray[$x]['pl_style_size'] . ' Size not Found!!!' );
 
-        dd($e->getMessage());
+
             }
 
             $packinglistArray[$x]['pl_style_size_id'] = $size_id;
