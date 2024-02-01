@@ -52,9 +52,9 @@ let batch_version = $('#batch_version');
 pl_version.change(function(e){
     e.preventDefault();
     let loc = window.location.href.split('/');
-
+        alert(loc[5] + ' ' + loc[7]);
     let packinglist = {
-        version: pls_version.val(),
+        version: pl_version.val(),
         batch: loc[5],
         number: loc[7],
     }
