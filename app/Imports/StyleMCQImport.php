@@ -42,6 +42,7 @@ class StyleMCQImport implements ToCollection, WithHeadingRow
                         $sizeable = DB::table('sizeables')->where([
                         ['size_id',$size->id],
                         ['sizeable_id',$style->id],
+                        ['size_style_carton_id',$size_style_carton_id],
                         ])->first();
 //                        dd($sizeable);
                         if($sizeable == null){
