@@ -19,6 +19,7 @@ class FirstPlImport implements ToModel, WithHeadingRow
     protected $uniq;
     protected $uniqnumber;
 
+
     public function __construct($batch_number,$brandntype)
     {
 
@@ -44,11 +45,15 @@ class FirstPlImport implements ToModel, WithHeadingRow
             $size2 = "";
         }else{
             $size2 = "-" . $row['size_2'];
+
         }
+
+        $size = $row['size_1'] . $size2;
+
 
         if(
             $this->checkUpdateSize($crd,$country,(int)$row['prepack'],$row['po']
-                ,$this->type,$row['shipment_mode'],$row['size_1'],$row['quantity'])
+                ,$this->type,$row['shipment_mode'],$size,$row['quantity'])
             ===
             0) {
 
@@ -63,7 +68,7 @@ class FirstPlImport implements ToModel, WithHeadingRow
                 'pl_material' => $row['material'],
                 'pl_description' => $row['material_description'],
                 'pl_color' => $row['color_description'],
-                'pl_style_size' => trim($row['size_1']) . trim($size2),
+                'pl_style_size' => trim($size),
                 'pl_country' => $country,
                 'pl_country_two' => $country_two,
                 'pl_destination' => $destination,
