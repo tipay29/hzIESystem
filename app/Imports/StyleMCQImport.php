@@ -31,6 +31,7 @@ class StyleMCQImport implements ToCollection, WithHeadingRow
                         'style_code' => $collect['basis'],
                     ]);
                     $styles = collect();
+
                     $styles->add($style);
 
                 }

@@ -77,7 +77,7 @@ class CartonController extends Controller
 //        ])->get();
 
 //        $packinglists = event(new GetPLCartonOrderFormEvent(request()->all()));
-//
+
 //        $cartonorder = $this->getCartonForm($packinglists);
 
         $pl_details = request()->pl_details;
@@ -98,24 +98,18 @@ class CartonController extends Controller
 //        dd($packinglists);
         $packinglists = event(new GetPLCartonOrderFormEvent($packinglists));
 
-//        dd($packinglists);
-
         $cartonorders = collect($this->getCartonForm($packinglists));
-//        dd($cartonorders);
 
-        dd($cartonorders);
-//        dd();
-//        dd($cartonorders->sum('ctn_fob_all'));
         return view('carton.order-create', compact('cartonorders'));
 
     }
 
     protected function getCartonForm($packinglists){
 
-//        dd($packinglists);
         $bases = [];
         $plrow = [];
         $ctn_order = collect();
+
         for($x = 0; $x < count($packinglists);$x++){
 
             for($y = 0; $y < count($packinglists[$x]); $y++){
@@ -129,9 +123,6 @@ class CartonController extends Controller
                     if(!array_key_exists($key,$bases)){
                         $bases[$key] = 1;
 
-//                        array_push($bases,$key);
-//                        dump($key);
-//                        dd($bases);
                         $plrow[$key]['ctn_factory_po'] = $packinglists[$x][$y]['pl_factory_po'];
                         $plrow[$key]['ctn_master_po'] = $packinglists[$x][$y]['pl_master_po'];
                         $plrow[$key]['ctn_material'] = $packinglists[$x][$y]['pl_material'];
@@ -195,7 +186,6 @@ class CartonController extends Controller
                         }
 
                         $plrow[$key]['ctn_mcq'] = $mcq;
-
 
                     }
                     elseif(array_key_exists($key,$bases)){
