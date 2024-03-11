@@ -100,8 +100,8 @@
                                             @endif
                                             </td>
 
-                                            <td  scope="col">{{date('Y',strtotime($packinglist->pl_buy_year))}} </td>
-                                            <td  scope="col">{{date('M',strtotime($packinglist->pl_buy_month))}} </td>
+                                            <td  scope="col">{{$packinglist->pl_buy_year}} </td>
+                                            <td  scope="col">{{strtoupper(substr($packinglist->pl_buy_month,0,3))}} </td>
                                             <td  scope="col">{{$packinglist->pl_master_po}} </td>
                                             <td  scope="col">{{$packinglist->pl_po_cut}} </td>
 
