@@ -14,14 +14,14 @@
 
                         <div>
 
-                            <select name="pl_version" id="pl_version" class="btn btn-outline-info">
-                                <option value="0" selected disabled>Select Version</option>
-                                <option value="1" >Style</option>
-                                <option value="2" >Material</option>
-                                <option value="3" >Mat+BuyM+BuyY</option>
-                                <option value="4" >Destination</option>
-                                <option value="5" >Lock</option>
-                            </select>
+{{--                            <select name="pl_version" id="pl_version" class="btn btn-outline-info">--}}
+{{--                                <option value="0" selected disabled>Select Version</option>--}}
+{{--                                <option value="1" >Style</option>--}}
+{{--                                <option value="2" >Material</option>--}}
+{{--                                <option value="3" >Mat+BuyM+BuyY</option>--}}
+{{--                                <option value="4" >Destination</option>--}}
+{{--                                <option value="5" >Lock</option>--}}
+{{--                            </select>--}}
 
                             @can('create', App\Models\PackingList::class)
                             <button id="addPOModalBtn" type="button" class="btn btn-outline-info" data-bs-toggle="modal"

@@ -13,14 +13,14 @@
 
                             <div>
 
-                                <select name="pls_version" id="pls_version" class="btn btn-outline-info">
-                                    <option value="0" selected disabled>Select Version</option>
-                                    <option value="1" >Style</option>
-                                    <option value="2" >Material</option>
-                                    <option value="3" >Mat+BuyM+BuyY</option>
-                                    <option value="4" >Destination</option>
-                                    <option value="4" >Lock</option>
-                                </select>
+{{--                                <select name="pls_version" id="pls_version" class="btn btn-outline-info">--}}
+{{--                                    <option value="0" selected disabled>Select Version</option>--}}
+{{--                                    <option value="1" >Style</option>--}}
+{{--                                    <option value="2" >Material</option>--}}
+{{--                                    <option value="3" >Mat+BuyM+BuyY</option>--}}
+{{--                                    <option value="4" >Destination</option>--}}
+{{--                                    <option value="4" >Lock</option>--}}
+{{--                                </select>--}}
 
                                 <a href="{{route('packing-lists.index')}}"
                                    class="btn btn-outline-success section-to-no-print">
