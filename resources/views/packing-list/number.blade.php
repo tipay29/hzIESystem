@@ -15,7 +15,7 @@
                         <div>
 
 
-                            @if(auth()->user()->id==1)
+                            @if(auth()->user()->id===1)
                             <select name="pl_version" id="pl_version" class="btn btn-outline-info">
                                 <option value="0" selected disabled>Select Version</option>
                                 <option value="1" >Style</option>
@@ -258,51 +258,51 @@
                                                                         ,$packinglists[0]['pl_number_batch']])}}"
                               method="get">
 
-                            <div class="row mb-1 section-pl-to-no-print">
+{{--                            <div class="row mb-1 section-pl-to-no-print">--}}
 
-                                <div class="col-md-2">
-                                    <select name="pln_po_cut[]" id="pln_po_cut" multiple class="chosen-select form-control"
-                                            data-placeholder="Select PO">
+{{--                                <div class="col-md-2">--}}
+{{--                                    <select name="pln_po_cut[]" id="pln_po_cut" multiple class="chosen-select form-control"--}}
+{{--                                            data-placeholder="Select PO">--}}
 
-                                    </select>
-                                </div>
+{{--                                    </select>--}}
+{{--                                </div>--}}
 
-                                <div class="col-md-2">
-                                    <select name="pln_master_po[]" id="pln_master_po" multiple class="chosen-select form-control"
-                                            data-placeholder="Select Master PO">
+{{--                                <div class="col-md-2">--}}
+{{--                                    <select name="pln_master_po[]" id="pln_master_po" multiple class="chosen-select form-control"--}}
+{{--                                            data-placeholder="Select Master PO">--}}
 
-                                    </select>
-                                </div>
+{{--                                    </select>--}}
+{{--                                </div>--}}
 
-                                <div class="col-md-2">
-                                    <select name="pln_material[]" id="pln_material" multiple class="chosen-select form-control"
-                                            data-placeholder="Select Material">
+{{--                                <div class="col-md-2">--}}
+{{--                                    <select name="pln_material[]" id="pln_material" multiple class="chosen-select form-control"--}}
+{{--                                            data-placeholder="Select Material">--}}
 
-                                    </select>
-                                </div>
+{{--                                    </select>--}}
+{{--                                </div>--}}
 
-                                <div class="col-md-2">
-                                    <select name="pln_description[]" id="pln_description" multiple class="chosen-select form-control"
-                                            data-placeholder="Select Description">
+{{--                                <div class="col-md-2">--}}
+{{--                                    <select name="pln_description[]" id="pln_description" multiple class="chosen-select form-control"--}}
+{{--                                            data-placeholder="Select Description">--}}
 
-                                    </select>
-                                </div>
+{{--                                    </select>--}}
+{{--                                </div>--}}
 
-                                <div class="col-md-2">
-                                    <select name="pln_color[]" id="pln_color" multiple class="chosen-select form-control"
-                                            data-placeholder="Select Color">
+{{--                                <div class="col-md-2">--}}
+{{--                                    <select name="pln_color[]" id="pln_color" multiple class="chosen-select form-control"--}}
+{{--                                            data-placeholder="Select Color">--}}
 
-                                    </select>
-                                </div>
-                                <div class="col-md-2">
-                                    <select name="pln_carton[]" id="pln_carton" multiple class="chosen-select form-control"
-                                            data-placeholder="Select Carton">
+{{--                                    </select>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-md-2">--}}
+{{--                                    <select name="pln_carton[]" id="pln_carton" multiple class="chosen-select form-control"--}}
+{{--                                            data-placeholder="Select Carton">--}}
 
-                                    </select>
-                                </div>
-                                <input id="pln_value_ctn" type="hidden" value="{{$cartons}}">
+{{--                                    </select>--}}
+{{--                                </div>--}}
+{{--                                <input id="pln_value_ctn" type="hidden" value="{{$cartons}}">--}}
 
-                            </div>
+{{--                            </div>--}}
             <div class="row section-pl-to-no-print">
                 <div class="col-md-6">
                     <button id="pln_clear" style="height: 100%;" class="btn form-control btn-primary">

@@ -13,7 +13,7 @@
 
                             <div>
 
-                                @if(auth()->user()->id==1)
+                                @if(auth()->user()->id===1)
                                 <select name="pls_version" id="pls_version" class="btn btn-outline-info">
                                     <option value="0" selected disabled>Select Version</option>
                                     <option value="1" >Style</option>
