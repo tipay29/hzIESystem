@@ -303,16 +303,16 @@
 {{--                                <input id="pln_value_ctn" type="hidden" value="{{$cartons}}">--}}
 
 {{--                            </div>--}}
-            <div class="row section-pl-to-no-print">
-                <div class="col-md-6">
-                    <button id="pln_clear" style="height: 100%;" class="btn form-control btn-primary">
-                        Clear</button>
-                </div>
-                <div class="col-md-6">
-                    <button id="pln_filter" style="height: 100%;" class="btn form-control btn-primary">
-                        Filter</button>
-                </div>
-            </div>
+{{--            <div class="row section-pl-to-no-print">--}}
+{{--                <div class="col-md-6">--}}
+{{--                    <button id="pln_clear" style="height: 100%;" class="btn form-control btn-primary">--}}
+{{--                        Clear</button>--}}
+{{--                </div>--}}
+{{--                <div class="col-md-6">--}}
+{{--                    <button id="pln_filter" style="height: 100%;" class="btn form-control btn-primary">--}}
+{{--                        Filter</button>--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
 
 
