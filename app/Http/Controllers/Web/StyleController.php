@@ -9,6 +9,8 @@ use App\Imports\StyleWeightImport;
 use App\Models\PurchaseOrder;
 use App\Models\Style;
 use Illuminate\Http\Request;
+use Illuminate\Pipeline\Pipeline;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
 class StyleController extends Controller
@@ -28,13 +30,23 @@ class StyleController extends Controller
     public function index()
     {
 
-        $styles = Style::with([
-            'purchase_orders',
-            'fabric_colors',
-            'fabric_codes',
-            'fabric_types',
-            'placements'
-        ])
+
+        $styles = app(Pipeline::class)
+            ->send(
+                Style::query()
+            )
+            ->through([
+                \App\QueryFilters\Style\Style::class,
+
+            ])
+            ->thenReturn()
+            ->with([
+                'purchase_orders',
+                'fabric_colors',
+                'fabric_codes',
+                'fabric_types',
+                'placements'
+            ])
             ->paginate(10);
 
         if (request()->ajax()) {
@@ -74,7 +86,7 @@ class StyleController extends Controller
 
     public function show(Style $style)
     {
-//        dd($style->sizes[0]->pivot->mcq);
+//        dd($style->sizes[0]->pivot);
 
         return view('style.show',compact('style'));
     }
@@ -115,6 +127,18 @@ class StyleController extends Controller
         $style->delete();
 
         return redirect(route('styles.index'));
+    }
+
+    public function destroyMCQ($id)
+    {
+
+        $style_mcq = DB::table('sizeables')->where('id', '=', $id)->first();
+
+        $style = Style::where('id',$style_mcq->sizeable_id)->first();
+
+        $style->sizes()->wherePivot('id',$id)->detach($style_mcq->size_id);
+
+        return redirect()->back();
     }
 
     public function editweights()

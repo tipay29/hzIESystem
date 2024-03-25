@@ -11,12 +11,24 @@
 
                         <h5 class="mt-2">{{ __('text.Style') .' '. __('text.List') }}</h5>
 
-                        <div>
+                        <div class="d-flex justify-content-end">
                             @can('create', App\Models\Style::class)
                             <a href="{{route('styles.create')}}"
-                               class="btn btn-outline-success float-right">
+                               class="btn btn-outline-success" style="margin-right: 10px;">
                                 {{ __('text.Add') .' '. __('text.Style') }} </a>
                             @endcan
+
+                                <form action="{{route('styles.index')}}" method="get">
+                                    @csrf
+                            <div class="input-group">
+
+
+
+                                <input type="text" class="form-control" placeholder="Search Style" id="s_style" name="s_style">
+                                <button class="input-group-text" ><i class="fa fa-search" aria-hidden="true"></i></button>
+
+                            </div>
+                                </form>
 
                         </div>
 

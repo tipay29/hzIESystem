@@ -41,7 +41,7 @@ class Style extends Model
 //    }
 
     public function sizes(){
-        return $this->morphToMany(Size::class,'sizeable')->withTimestamps()->withPivot('mcq','weight','carton_id');
+        return $this->morphToMany(Size::class,'sizeable')->withTimestamps()->withPivot('mcq','weight','carton_id','id');
     }
 
 }

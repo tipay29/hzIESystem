@@ -37,6 +37,7 @@ Route::group(['namespace' => 'Web'],function(){
     Route::get('cuts/utilization', 'CutController@util')->name('cuts.util');
     Route::resource('cuts','CutController');
 
+    Route::delete('styles/destroy/mcq/{id}','StyleController@destroyMCQ')->name('styles.destroymcq');
     Route::post('styles/update/mcqs','StyleController@updatemcqs')->name('styles.updatemcqs');
     Route::get('styles/edit/mcqs','StyleController@editmcqs')->name('styles.editmcqs');
     Route::post('styles/update/weights','StyleController@updateweights')->name('styles.updateweights');

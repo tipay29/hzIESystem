@@ -81,11 +81,11 @@
 
                                         <thead>
                                         <tr>
-                                            <th width="25%" scope="col"> Size</th>
-                                            <th width="25%" scope="col"> Weight</th>
-                                            <th width="25%" scope="col"> Carton</th>
-                                            <th width="25%" scope="col"> MCQ</th>
-
+                                            <th width="20%" scope="col"> Size</th>
+                                            <th width="20%" scope="col"> Weight</th>
+                                            <th width="30%" scope="col"> Carton</th>
+                                            <th width="20%" scope="col"> MCQ</th>
+                                            <th width="10%" scope="col"> Del</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -94,13 +94,23 @@
                                             <tr>
                                                 <td width="20%" scope="col">{{$size->size}}</td>
                                                 <td width="20%" scope="col"> {{$size->pivot->weight}}</td>
-                                                <td width="35%" scope="col">
+                                                <td width="30%" scope="col">
                                                     @foreach($cartons as $carton)
                                                     {{$carton->id == $size->pivot->carton_id ? $carton->brand->brand_name . " " .  $carton->ctn_size : "" }}
                                                     @endforeach
                                                 </td>
-                                                <td width="25%" scope="col"> {{$size->pivot->mcq}}</td>
+                                                <td width="20%" scope="col"> {{$size->pivot->mcq}}</td>
+                                                <td width="10%" scope="col">
 
+                                                    <form style="display:inline;" action="{{route('styles.destroymcq', $size->pivot->id)}}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button style="border: none;background-color: white;color:darkred;"
+                                                                onclick="return confirm('Delete Style MCQ #{{$size->pivot->id}} ?')" >
+                                                            <i class="fa fa-trash" aria-hidden="true"></i></button>
+                                                    </form>
+
+                                                </td>
                                             </tr>
 
                                             @endforeach

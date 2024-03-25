@@ -234,7 +234,7 @@
         </div>
 
     </div>
-</form>
+
 
 <div class="row">
 

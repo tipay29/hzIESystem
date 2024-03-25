@@ -13,6 +13,6 @@ class Size extends Model
     protected $guarded = [];
 
     public function styles(){
-        return $this->morphedByMany(Style::class, 'sizeable')->withTimestamps()->withPivot('mcq','weight','carton_id');
+        return $this->morphedByMany(Style::class, 'sizeable')->withTimestamps()->withPivot('mcq','weight','carton_id','id');
     }
 }
