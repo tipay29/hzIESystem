@@ -23,6 +23,7 @@
                                 <option value="3" >Mat+BuyM+BuyY</option>
                                 <option value="4" >Destination</option>
                                 <option value="5" >Lock</option>
+                                <option value="6" >DC</option>
                             </select>
                             @endif
 

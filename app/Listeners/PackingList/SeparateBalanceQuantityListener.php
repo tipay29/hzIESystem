@@ -121,7 +121,12 @@ class SeparateBalanceQuantityListener
                  $style_code = ltrim(substr($packinglistsRaw[$x]->pl_material,-8),0)
                      . $packinglistArray[$x]['pl_buy_year'] . $packinglistArray[$x]['pl_buy_month']
                      . $packinglistArray[$x]['pl_po_cut'];
+             }elseif($packinglistsRaw[$x]->pl_version == 6){
+                 $style_code = ltrim(substr($packinglistsRaw[$x]->pl_sku,-5))
+                     . $packinglistArray[$x]['pl_buy_year'] . $packinglistArray[$x]['pl_buy_month']
+                     . explode(' ',trim($packinglistArray[$x]['pl_country']))[0];
              }
+
 
 //            dd($style_code);
 
