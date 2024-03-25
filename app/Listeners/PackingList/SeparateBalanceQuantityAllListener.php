@@ -159,7 +159,7 @@ class SeparateBalanceQuantityAllListener
 //$size_id = 1;
                 } catch (\Exception $e) {
 
-                   dd($e->getMessage());
+                    dd('Size not found in Style' . $style_code);
                 }
 
 
@@ -251,7 +251,7 @@ class SeparateBalanceQuantityAllListener
                                     //Carton Measurement
                                     $packinglistArray[$x][$y_Ctrl]['carton_size'] = $cartons->where('id', $cartonidlist[$z])->first()->ctn_size;
                                 }catch(\Exception $e) {
-                                    dd( 'Message: ' . 'MCQ error!!!');
+                                    dd('MCQ error for Style '. $style_code );
                                 }
 
 

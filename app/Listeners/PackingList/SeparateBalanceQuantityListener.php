@@ -175,7 +175,7 @@ class SeparateBalanceQuantityListener
             $size_id = Size::where('size',$packinglistArray[$x]['pl_style_size'])->first()->id;
 
             } catch (\Exception $e) {
-                    dd($packinglistArray[$x]['pl_style_size'] . ' Size not Found!!!' );
+                    dd('Size not found in Style' . $style_code);
 
 
             }
@@ -269,10 +269,17 @@ class SeparateBalanceQuantityListener
                             $this->total_nw = $this->total_nw + $packinglistArray[$x]['net_weight_total'];
                         //    dd($cartonidlist);
                             //Carton WEight
-                            $packinglistArray[$x]['carton_weight'] = $cartons->where('id', $cartonidlist[$z])->first()->ctn_weight;
 
-                            //Carton Measurement
-                            $packinglistArray[$x]['carton_size'] = $cartons->where('id', $cartonidlist[$z])->first()->ctn_size;
+                            try{
+                                $packinglistArray[$x]['carton_weight'] = $cartons->where('id', $cartonidlist[$z])->first()->ctn_weight;
+
+                                //Carton Measurement
+                                $packinglistArray[$x]['carton_size'] = $cartons->where('id', $cartonidlist[$z])->first()->ctn_size;
+                            } catch (\Exception $e) {
+                                dd('MCQ error for style '. $style_code );
+
+                            }
+
 
                             if (array_key_exists($packinglistArray[$x]['carton_size'],$this->total_ctn_ctn))
                             {
