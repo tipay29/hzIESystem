@@ -27,7 +27,8 @@ class PackingListController extends Controller
 
     public function index()
     {
-
+        $this->authorize('viewAny',PackingList::class);
+        if(request()->all()){
         $packinglists = app(Pipeline::class)
             ->send(
                 PackingList::query()
@@ -58,15 +59,17 @@ class PackingListController extends Controller
                 'user',
             ])
             ->get();
-
-        $this->authorize('viewAny',PackingList::class);
-
+        }else{
+            $packinglists = PackingList::where('id',0)
+               ->get();
+        }
 
         if(request()->all()){
             $packinglists = collect($packinglists->unique('pl_batch'))->paginate(10);
         }else{
             $packinglists = collect($packinglists->where('pl_uniq_number_batch',1))->paginate(10);
         }
+
         return view('packing-list.index', compact('packinglists'));
     }
 

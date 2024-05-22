@@ -128,7 +128,7 @@ class SeparateBalanceQuantityListener
              }
 
 
-            dd($style_code);
+//            dd($style_code);
 
             if($this->balance_qty == 0){
                 $this->total_qty_ship = $this->total_qty_ship + $iqty;

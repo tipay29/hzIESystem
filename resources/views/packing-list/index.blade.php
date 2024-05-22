@@ -98,7 +98,7 @@
                                         </tr>
 
                                     @empty
-                                        <h6 class="bg-danger"> No Packing List Record</h6>
+                                        <h6 class="bg-warning">     </h6>
                                     @endforelse
 
                                 </tbody>
