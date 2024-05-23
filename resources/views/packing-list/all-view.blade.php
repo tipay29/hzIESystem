@@ -34,6 +34,7 @@
 
                         @include('packing-list.batchfilter')
 
+                        </form>
                         <div class="table-responsive">
 
                             <form action="{{route('cartons.order-create')}}" method="get">
@@ -166,6 +167,7 @@
                             </div>
                         </div>
 
+                        </form>
                     </div>
 
                 </div>

@@ -119,6 +119,10 @@
                     <option value="20" {{request('pls_user') == "20" ? "selected" : ""}}>Franklin</option>
                     <option value="21" {{request('pls_user') == "21" ? "selected" : ""}}>Vinus</option>
                     <option value="23" {{request('pls_user') == "23" ? "selected" : ""}}>Jayson</option>
+                    <option value="35" {{request('pls_user') == "35" ? "selected" : ""}}>Kesey</option>
+                    <option value="36" {{request('pls_user') == "36" ? "selected" : ""}}>Nary</option>
+                    <option value="37" {{request('pls_user') == "37" ? "selected" : ""}}>Arman</option>
+                    <option value="1" {{request('pls_user') == "1" ? "selected" : ""}}>Warren</option>
                 </select>
             </div>
 

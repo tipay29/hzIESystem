@@ -54,8 +54,9 @@ Route::group(['namespace' => 'Web'],function(){
 
     Route::resource('outputs','OutputController');
 
-    Route::get('packing-lists/exports/batches/{batch}','PackingListController@exportBatches')->name('packing-lists.exportbatches');
 
+
+    Route::get('packing-lists/exports/batches/{batch}','PackingListController@exportBatches')->name('packing-lists.exportbatches');
     Route::delete('packing-lists/destroy-batch/{batch}/destroy-number/{number}','PackingListController@destroyNumber')->name('packing-lists.destroy-number');
     Route::delete('packing-lists/destroy-batch/{batch}','PackingListController@destroyBatch')->name('packing-lists.destroy-batch');
     Route::get('packing-lists/batch/{batch}/view-all','PackingListController@viewa')->name('packing-lists.viewa');
@@ -67,20 +68,18 @@ Route::group(['namespace' => 'Web'],function(){
     Route::get('packing-lists/batch/{batch}/number/{number}/export','PackingListController@exportNumber')->name('packing-lists.exportnumber');
     Route::post('packing-lists/import','PackingListController@import')->name('packing-lists.import');
     Route::post('packing-lists/mark','PackingListController@mark')->name('packing-lists.mark');
-
     Route::get('packing-lists/all/views','PackingListController@allViews')->name('packing-lists.allviews');
-
     Route::resource('packing-lists','PackingListController');
 
     Route::get('cartons/carton/order/create','CartonController@cartonCreate')->name('cartons.cartoncreate');
     Route::get('cartons/order/create','CartonController@orderCreate')->name('cartons.order-create');
+    Route::resource('cartons','CartonController');
 
     Route::get('carton-orders/export/{cartonorder}','CartonOrderController@export')->name('carton-orders.export');
     Route::resource('carton-orders','CartonOrderController');
     Route::get('carton-orders/{cartonorder}','CartonOrderController@show')->name('carton-orders.show');
 
 
-    Route::resource('cartons','CartonController');
 
 
 });

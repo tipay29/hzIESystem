@@ -382,6 +382,9 @@ class SizeSeeder extends Seeder
                 'size' => '40-REG'
             ] ,
             [
+                'size' => '42-REG'
+            ] ,
+            [
                 'size' => 'XXXXXS-LNG'
             ] ,
             [
@@ -482,6 +485,9 @@ class SizeSeeder extends Seeder
             ] ,
             [
                 'size' => '40-LNG'
+            ] ,
+            [
+                'size' => '42-LNG'
             ] ,
             [
                 'size' => 'XXXXXS-SHT'
@@ -599,6 +605,9 @@ class SizeSeeder extends Seeder
             ] ,
             [
                 'size' => '40-SHT'
+            ] ,
+            [
+                'size' => '42-SHT'
             ] ,
             [
                 'size' => '00'
