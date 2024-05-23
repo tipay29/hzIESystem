@@ -99,7 +99,27 @@ class SeparatePLCartonFormListener
             $packinglistArray[$x]['pl_order_quantity'] = $iqty;
 
             $prepack = $packinglistArray[$x]['pl_pre_pack'];
-            $style_code = ltrim(substr($packinglistsRaw[$x]['pl_sku'],-5),0);
+
+            if($packinglistsRaw[$x]['pl_version'] == 1){
+                $style_code = ltrim(substr($packinglistsRaw[$x]['pl_sku'],-5),0);
+            }elseif($packinglistsRaw[$x]['pl_version'] == 2){
+                $style_code = ltrim($packinglistsRaw[$x]['pl_material']);
+            }elseif($packinglistsRaw[$x]['pl_version'] == 3){
+                $style_code = ltrim(substr($packinglistsRaw[$x]['pl_sku'],-5),0)
+                    . $packinglistArray[$x]['pl_buy_year'] . $packinglistArray[$x]['pl_buy_month'] ;
+            }elseif($packinglistsRaw[$x]['pl_version'] == 4){
+                $style_code = ltrim(substr($packinglistsRaw[$x]['pl_material'],-8),0)
+                    . $packinglistArray[$x]['pl_buy_year'] . $packinglistArray[$x]['pl_buy_month'] . 'DEST';
+            }elseif($packinglistsRaw[$x]['pl_version'] == 5){
+                $style_code = ltrim(substr($packinglistsRaw[$x]['pl_material'],-8),0)
+                    . $packinglistArray[$x]['pl_buy_year'] . $packinglistArray[$x]['pl_buy_month']
+                    . $packinglistArray[$x]['pl_po_cut'];
+            }elseif($packinglistsRaw[$x]['pl_version'] == 6){
+                $style_code = ltrim(substr($packinglistsRaw[$x]['pl_sku'],-5))
+                    . $packinglistArray[$x]['pl_buy_year'] . $packinglistArray[$x]['pl_buy_month']
+                    . explode(' ',trim($packinglistArray[$x]['pl_country']))[0];
+            }
+
 
 
             if($this->balance_qty == 0){

@@ -92,7 +92,10 @@ class CartonController extends Controller
                 ['pl_batch',explode('-',$pl_details[$x])[0]],
                 ['pl_number_batch',explode('-',$pl_details[$x])[1]],
             ])->get()->toArray());
+
+
         }
+//        dd($packinglists);
         $packinglists = collect($packinglists)->flatten(1)->sortBy('pl_sku')->values();
 
 //        dd($packinglists);
