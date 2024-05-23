@@ -121,7 +121,7 @@ class PackingListController extends Controller
                 ['pl_uniq_number_batch_number',1]])
             ->get();
 
-
+        dd($packinglistsNew);
 
         for($x=1; $x <= count($packinglistsNew);$x++){
 

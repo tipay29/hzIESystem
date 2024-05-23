@@ -76,8 +76,8 @@
                                             <th width="5%" scope="col">Quantity</th>
                                             <th width="18%" scope="col">Country</th>
                                             <th width="8%" scope="col">CRD</th>
-                                            <th width="5%" scope="col">PrePack</th>
-                                            <th width="12%" scope="col">User</th>
+
+
                                             @can('create', App\Models\PackingList::class)
                                             <th width="3%" scope="col">Del</th>
                                                 @endcan
@@ -114,8 +114,7 @@
                                             <td  scope="col">{{number_format((float)$packinglistsqty[$key])}} </td>
                                             <td  scope="col">{{$packinglist->pl_country}} </td>
                                             <td  scope="col">{{$packinglist->pl_crd}} </td>
-                                            <td scope="col">{{$packinglist->pl_pre_pack}} </td>
-                                            <td  scope="col">{{$packinglist->user->name}} </td>
+
                                             @can('create', App\Models\PackingList::class)
 
 
@@ -151,8 +150,7 @@
                                             <td></td>
                                             <td><b>  {{number_format((float)$pl_total_qty)}} </b></td>
                                             <td></td>
-                                            <td></td>
-                                            <td></td>
+
                                             <td></td>
                                         </tr>
 

@@ -39,10 +39,10 @@
                                         <th width="8%" scope="col">Order Date </th>
                                         <th width="8%" scope="col">Delivery Date </th>
                                         <th width="8%" scope="col">Brand </th>
-                                        <th width="8%" scope="col">Type</th>
                                         <th width="8%" scope="col">Status</th>
                                         <th width="16%" scope="col">Approve</th>
                                         <th width="12%" scope="col">Created By </th>
+                                        <th width="8%" scope="col">Opt</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -60,10 +60,21 @@
                                             <td scope="col">{{$carton_order->ctn_order_date}} </td>
                                             <td scope="col">{{$carton_order->ctn_delivery_date}}</td>
                                             <td scope="col">{{$carton_order->brand->brand_name}} </td>
-                                            <td scope="col">{{$carton_order->ctn_type}} </td>
                                             <td scope="col">{{$carton_order->ctn_status}} </td>
                                             <td scope="col">{{$carton_order->ctn_approve_date}}</td>
                                             <td scope="col">{{$carton_order->user->name}} </td>
+                                            <td scope="col">
+                                                @if(auth()->user()->id == $carton_order->user_id)
+                                                    <form style="display:inline;" action="{{route('carton-orders.destroy', $carton_order->id)}}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button style="border: none;background-color: white;color:darkred;"
+                                                                onclick="return confirm('Delete Carton Order?')" >
+                                                            <i class="fa fa-trash" aria-hidden="true"></i></button>
+                                                    </form>
+
+                                                @endif
+                                            </td>
                                         </tr>
                                     @endforeach
 

@@ -58,7 +58,9 @@ class CartonOrderController extends Controller
 
     public function destroy(CartonOrder $cartonOrder)
     {
-
+        $cartonOrder->carton_order_contents()->delete();
+        $cartonOrder->delete();
+        return redirect(route('carton-orders.index'));
     }
 
 }
