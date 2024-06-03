@@ -176,7 +176,7 @@ ctn_edit_code_btn.click(function(e){
         }
     });
 
-});
+})  ;
 
 ctn_edit_collection_btn.click(function(e){
     e.preventDefault();

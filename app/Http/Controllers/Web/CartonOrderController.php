@@ -6,6 +6,7 @@ use App\Exports\CartonOrderExport;
 use App\Models\CartonOrder;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 
 class CartonOrderController extends Controller
@@ -46,6 +47,14 @@ class CartonOrderController extends Controller
         return $excel;
     }
 
+    public function exportPDF(CartonOrder $cartonorder){
+        $cartonorder->load('carton_order_contents');
+//        dd('aw');
+        $pdf = Excel::download(new CartonOrderExport($cartonorder), 'carton-form.pdf',\Maatwebsite\Excel\Excel::MPDF);
+
+        return $pdf;
+    }
+
     public function edit(CartonOrder $cartonOrder)
     {
 
@@ -61,6 +70,21 @@ class CartonOrderController extends Controller
         $cartonOrder->carton_order_contents()->delete();
         $cartonOrder->delete();
         return redirect(route('carton-orders.index'));
+    }
+
+    public function sendMail()
+    {
+        $emails = explode(';',request()->ctn_mail_email);
+
+        Mail::to($emails)->cc('warren_pp@horizon-outdoor.com')->send(new \App\Mail\TestEmail(request()->ctn_mail_subject,request()->ctn_mail_content,request()->allFiles()));
+
+        foreach (request()->allFiles()['ctn_mail_files'] as $key =>  $file) {
+
+            unlink(storage_path('app\public\files\\' . $file->getClientOriginalName()));
+
+        }
+
+        return redirect()->back();
     }
 
 }

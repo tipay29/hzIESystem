@@ -24,8 +24,14 @@
                class="btn btn-outline-primary section-no-print-none">
                 Print</a>
 
-            <a href="{{route('carton-orders.export', $carton_order->id)}}"
-               class="btn btn-outline-success">
+            <button id="emailCtnOrderBtn" type="button" class="btn btn-outline-success section-no-print-none" data-bs-toggle="modal"
+                    data-bs-target="#emailCtnOrderModal" style="float:right;margin-right:5px;">
+                Email
+            </button>
+
+
+            <a href="{{route('carton-orders.export', $carton_order->id)}}" style="float:right;margin-right:5px;"
+               class="btn btn-outline-success section-no-print-none">
                 Excel</a>
 
         </div>

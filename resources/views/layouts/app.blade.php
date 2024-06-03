@@ -196,8 +196,6 @@
 
 
 
-
-
                         </li>
                         <!-- Authentication Links -->
                         @guest
@@ -241,18 +239,11 @@
             @yield('content')
         </main>
 
-
     </div>
 
 
 
-
 </body>
-
-
-
-
-
 
 
 

@@ -47,7 +47,7 @@ class SupplierSeeder extends Seeder
                 'address_three' => 'Cambodia',
                 'attn' => 'Ah Lian',
                 'phone' => '+855 012656638',
-                'email' => 'xinding888@gmail.com',
+                'email' => 'xinyahe@xinyahe.net; xinding888@gmail.com',
                 'remark' => 'VAT#L001-100186432',
             ],
 

@@ -6,7 +6,8 @@
 
             <div class="modal-header">
                 <h5> Add PO </h5>
-                <button id="btn-close-fabric-code-modal" type="button" class="btn-close" aria-label="Close"></button>
+                <button id="btn-close-fabric-code-modal" type="button" data-bs-dismiss="modal"
+                        class="btn-close" aria-label="Close"></button>
             </div>
 
             <form  >

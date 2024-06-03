@@ -295,12 +295,14 @@
 
                                     </select>
                                 </div>
+
                                 <div class="col-md-2">
                                     <select name="pln_carton[]" id="pln_carton" multiple class="chosen-select form-control"
                                             data-placeholder="Select Carton">
 
                                     </select>
                                 </div>
+
                                 <input id="pln_value_ctn" type="hidden" value="{{$cartons}}">
 
                             </div>

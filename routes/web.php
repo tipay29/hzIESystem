@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\CutsExport;
 
+
+
+
 Route::group(['namespace' => 'Web'],function(){
 
     Route::get('users/change','UserController@changePassword')->name('users.changepass');
@@ -75,6 +78,7 @@ Route::group(['namespace' => 'Web'],function(){
     Route::get('cartons/order/create','CartonController@orderCreate')->name('cartons.order-create');
     Route::resource('cartons','CartonController');
 
+    Route::post('carton-orders/mail','CartonOrderController@sendMail')->name('carton-orders.sendMail');
     Route::get('carton-orders/export/{cartonorder}','CartonOrderController@export')->name('carton-orders.export');
     Route::resource('carton-orders','CartonOrderController');
     Route::get('carton-orders/{cartonorder}','CartonOrderController@show')->name('carton-orders.show');
@@ -90,6 +94,22 @@ Auth::routes();
 
 Route::get('/', function () {
     return view('home');
+});
+
+Route::get('/testmail', function () {
+    $name = 'Warren';
+
+//    $mailable = new \Illuminate\Mail\Mailable();
+//
+//    $mailable->from('it_borin@horizon-outdoor.com')
+//        ->to('jwarren.hernandez@gmail.com')
+//        ->subject('Sample Mailable')
+//        ->html('My Messages');
+//    \Illuminate\Support\Facades\Config::set('mail.from', [
+//        'address' => 'example@expal.com',
+//        'name' => 'example',
+//    ]); // default
+    \Illuminate\Support\Facades\Mail::to('jwarren.hernandez@gmail.com')->send(new \App\Mail\TestEmail($name));
 });
 
 Route::get('locale/{locale}', function ($locale){

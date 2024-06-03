@@ -121,6 +121,7 @@
                         @include('carton-order.order-show-summary')
                         @include('carton-order.order-show-bottom')
                         @include('carton-order.order-edit-modal')
+                        @include('carton-order.mail-order')
                     </div>
                 </div>
             </div>

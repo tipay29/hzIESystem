@@ -35,15 +35,8 @@
             <div class="row">
                 <h6 for="" class="col-md-3 text-md-end"> Bill# 采购单号:</h6>
 
-                <h6 for="" class="col-md-9 text-md-start text-un" id="ctn_bill_code">
-                    HPO-@if($cartonorders->first()['ctn_type'] == "APPAREL")
-                            AP
-                        @else
-EQ
-                        @endif
-                    -{{substr(date('Y'),-2) . date('m')}}-
-                                        {{sprintf("%04d", (\App\Models\CartonOrder::max('id'))+1)
-                                        }}
+                <h6 for="" class="col-md-9 text-md-start text-un" id="ctn_bill_code" contenteditable="true">
+                    HPO
                 </h6>
 
             </div>
