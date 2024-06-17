@@ -67,6 +67,31 @@ class SupplierSeeder extends Seeder
             ],
         ];
 
+        $suppliers_vicmark = [
+            [
+                'name_ch' => '和成 新包装（柬埔寨）有限公司',
+                'name_en' => 'HE CHENG XING PACKAGING(CAMBODIA) CO.,LTD',
+                'address_one' => 'House No.262,Steet No136DT, Sre Chum Rov,Choam Chao',
+                'address_two' => 'Por Senchey',
+                'address_three' => 'Phnom Penh',
+                'attn' => 'Zhang Sheng',
+                'phone' => '087390882',
+                'email' => 'harcheng6688@163.com',
+                'remark' => 'VAT#L001-902004143',
+            ],
+            [
+                'name_ch' => '永成包装有限公司',
+                'name_en' => 'WING CHENG PACKAGING CO.,LTD',
+                'address_one' => 'NATIONAL ROAD 4 TUMNUP KOP SROV ROAD,',
+                'address_two' => 'PHUM CHUNG ROUK, SANGKAT TRAPEANG KRASANG,',
+                'address_three' => 'KHAN POR SEN CHEY, PHNOM PENH',
+                'attn' => 'Berry',
+                'phone' => '070806688',
+                'email' => 'wingchengxueyan@gmail.com',
+                'remark' => 'VAT L001-902102915',
+            ],
+        ];
+
         $factory_number = Factory::where('active',1)->first()->factory_number;
         if($factory_number === "0000721415"){
             foreach($suppliers as $supplier){
@@ -76,6 +101,11 @@ class SupplierSeeder extends Seeder
             foreach($suppliers_ningbo as $supplier){
                 Supplier::create($supplier);
             }
+        }elseif($factory_number === "0000755347"){
+            foreach($suppliers_vicmark as $supplier){
+                Supplier::create($supplier);
+            }
         }
+
     }
 }

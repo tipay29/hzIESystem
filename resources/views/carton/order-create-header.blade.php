@@ -104,8 +104,6 @@
 
         <div class="col-md-4" style="" >
 
-
-
             <div class="row">
                 <h6 for="" class="col-md-3 text-md-end"> Order Date 下单日:</h6>
 
@@ -127,13 +125,11 @@
                 <h6 for="" class="col-md-3 text-md-end"></h6>
 
                 <h6 for="" class="col-md-9 text-md-start" id="h6_supplier_name_en"> WING CHENG PACKAGING CO.,LTD</h6>
-
             </div>
             <div class="row">
                 <h6 for="" class="col-md-3 text-md-end"></h6>
 
                 <h6 for="" class="col-md-9 text-md-start" id="h6_supplier_address_one"> National Road $, Tumnup Kop SROV Road</h6>
-
             </div>
             <div class="row">
                 <h6 for="" class="col-md-3 text-md-end"></h6>

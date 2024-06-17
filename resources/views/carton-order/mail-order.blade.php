@@ -40,7 +40,7 @@
 {{--                    value="{{$carton_order->supplier->email}}"--}}
                 </div>
 
-                <div class="modal-body">
+                <div class="modal-footer">
                     <button id="btn_ctn_send_mail"  class="btn btn-primary form-control">Send</button>
                 </div>
             </form>

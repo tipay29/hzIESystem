@@ -31,11 +31,7 @@ class TestEmail extends Mailable
         $this->files = $files;
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
+
     public function build()
     {
 //        dd($this->files);

@@ -92,20 +92,17 @@
                 <h6 for="" class="col-md-3 col-sm-3 text-md-end"> TEL 电话:</h6>
 
                 <h6 for="" class="col-md-9 col-sm-9 text-md-start"> {{$carton_order->user->employee->phone}}</h6>
-
             </div>
 
             <div class="row">
                 <h6 for="" class="col-md-3 col-sm-3 text-md-end">E-mail 邮箱:</h6>
 
                 <h6 for="" class="col-md-9 col-sm-9 text-md-start">{{$carton_order->user->email}}</h6>
-
             </div>
             <div class="row">
                 <h6 for="" class="col-md-3 col-sm-3 text-md-end"> Remark备注:</h6>
 
                 <h6 for="" class="col-md-9 col-sm-9 text-md-start"> VAT100186432</h6>
-
             </div>
 
         </div>
@@ -114,8 +111,6 @@
 
 
         <div class="col-md-4 col-sm-4" style="" >
-
-
 
             <div class="row">
                 <h6 for="" class="col-md-3 col-sm-3 text-md-end">Orderdate下单日:</h6>
@@ -127,7 +122,7 @@
                 <h6 for="" class="col-md-3 col-sm-3 text-md-end">Supplier供应方:</h6>
 
                 <h6 for="" class="col-md-9 col-sm-9 text-md-start" id="h6_supplier_name_en"> {{$carton_order->supplier->name_ch}}</h6>
-
+-
             </div>
             <div class="row">
                 <h6 for="" class="col-md-3 col-sm-3 text-md-end"></h6>
@@ -245,6 +240,7 @@
                 <h6 for="" class="col-md-9 col-sm-9 text-md-start"> </h6>
 
             </div>
+
 
 
 
