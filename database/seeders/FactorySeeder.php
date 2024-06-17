@@ -36,6 +36,15 @@ class FactorySeeder extends Seeder
                     'address_three' => 'Post Code 315800',
                     'address_four' => 'China',
                 ] ,
+                [
+                    'factory_number' => '0000755347',
+                    'key_name' => 'Vicmark',
+                    'name' => 'Vicmark Fashion Cambodia Co. LTD',
+                    'address_one' => 'Lot 2071, Plov Lum, Prey Pring Village',
+                    'address_two' => 'Sangkat Chom Chao 3, Khan Por Senchey',
+                    'address_three' => 'Pnhom Penh, ',
+                    'address_four' => 'Cambodia',
+                ] ,
             ];
 
         foreach($factories as $factory){
