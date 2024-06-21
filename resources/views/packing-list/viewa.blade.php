@@ -216,7 +216,13 @@
                                         <table class="table pl_table_number" >
                                             <thead>
                                             <tr>
-                                                <th width="7%" scope="col">Master PO</th>
+                                                <th width="7%" scope="col">
+                                                    @if($packinglists[0][0]['pl_brand']  == 'ZAVETTI CANADA' || $packinglists[0][0]['pl_brand']  == 'MONTERRAIN' )
+                                                        Item No
+                                                    @else
+                                                        Master PO
+                                                    @endif
+                                                </th>
                                                 <th width="7%" scope="col">PO</th>
                                                 <th width="6%" scope="col">Style</th>
                                                 <th width="7%" scope="col">Material</th>
