@@ -1127,7 +1127,7 @@ div_btn_brand_zvc_app.click(function(e){
     e.preventDefault();
     pl_create_select_brand.hide();
     pl_create_title.html('Create Packing List ZAVETTI CANADA-APPAREL');
-    pl_create_brand.val('ZAVETTI CANADA-EQUIPMENT');
+    pl_create_brand.val('ZAVETTI CANADA-APPAREL');
     pl_create_drop_zone.show();
     div_btn_brand_choose.show();
 });
@@ -1241,7 +1241,7 @@ div_btn_brand_choose.click(function(e){
 });
 
 function getCartonPerBrand(brand,type){
-
+    alert(brand + type);
     let cartons = {
         brand: brand,
         type: type,
