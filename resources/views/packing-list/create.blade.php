@@ -66,15 +66,15 @@
                             <div id="div_btn_brand_vans_eq" style="min-height: 50px;" class="col-md-6 div_btn_brand">
                                 <h6 class="text-center mt-2">VANS-EQUIPMENT</h6>
                             </div>
-                            <div class="col-md-6">
-
+                            <div id="div_btn_brand_zvc_app" style="min-height: 50px;" class="col-md-6 div_btn_brand">
+                                <h6 class="text-center mt-2">ZAVETTI CANADA-APPAREL</h6>
                             </div>
 
                             <div id="div_btn_brand_adv_eq" style="min-height: 50px;" class="col-md-6 div_btn_brand">
                                 <h6 class="text-center mt-2">ADVANTUS-EQUIPMENT</h6>
                             </div>
-                            <div id="" style="min-height: 50px;" class="col-md-6 ">
-
+                            <div id="div_btn_brand_monterrain_app" style="min-height: 50px;" class="col-md-6 div_btn_brand">
+                                <h6 class="text-center mt-2">MONTERRAIN-APPAREL</h6>
                             </div>
 
                             <div id="div_btn_brand_jansport_eq" style="min-height: 50px;" class="col-md-6 div_btn_brand">

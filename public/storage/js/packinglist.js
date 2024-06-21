@@ -1101,6 +1101,8 @@ pl_print_batch.click(function(e){
     window.print();
 });
 
+let div_btn_brand_zvc_app = $('#div_btn_brand_zvc_app');
+let div_btn_brand_monterrain_app = $('#div_btn_brand_monterrain_app');
 
 let pl_create_drop_zone = $('#pl_create_drop_zone');
 let div_btn_brand_dickies_app = $('#div_btn_brand_dickies_app');
@@ -1120,6 +1122,24 @@ let pl_create_title = $('#pl_create_title');
 let div_btn_brand_adv_eq = $('#div_btn_brand_adv_eq');
 pl_create_drop_zone.hide();
 div_btn_brand_choose.hide();
+
+div_btn_brand_zvc_app.click(function(e){
+    e.preventDefault();
+    pl_create_select_brand.hide();
+    pl_create_title.html('Create Packing List ZAVETTI CANADA-APPAREL');
+    pl_create_brand.val('ZAVETTI CANADA-EQUIPMENT');
+    pl_create_drop_zone.show();
+    div_btn_brand_choose.show();
+});
+
+div_btn_brand_monterrain_app.click(function(e){
+    e.preventDefault();
+    pl_create_select_brand.hide();
+    pl_create_title.html('Create Packing List MONTERRAIN-APPAREL');
+    pl_create_brand.val('MONTERRAIN-APPAREL');
+    pl_create_drop_zone.show();
+    div_btn_brand_choose.show();
+});
 
 div_btn_brand_adv_eq.click(function(e){
     e.preventDefault();

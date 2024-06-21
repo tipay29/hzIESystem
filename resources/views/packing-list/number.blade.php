@@ -69,8 +69,8 @@
                                     {{$packinglists[0]['pl_status']=="Final" ? 'background-color:green;color:white;' : ''}}
                                         font-size: 1rem;
                                         border:none;"
-                                    @cannot('create', App\Models\PackingList::class)
-                                        {{'disabled'}}
+                                        @cannot('create', App\Models\PackingList::class)
+                                                {{'disabled'}}
                                         @endcannot
                                     >
                                         <option value="Draft"
