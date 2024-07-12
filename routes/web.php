@@ -57,7 +57,9 @@ Route::group(['namespace' => 'Web'],function(){
 
     Route::resource('outputs','OutputController');
 
-
+    Route::post('v2-packing-lists/import','V2PackingListController@import')->name('v2-packing-lists.import');
+    Route::get('v2-packing-lists','V2PackingListController@index')->name('v2-packing-lists.index');
+    Route::get('v2-packing-lists/create','V2PackingListController@create')->name('v2-packing-lists.create');
 
     Route::get('packing-lists/exports/batches/{batch}','PackingListController@exportBatches')->name('packing-lists.exportbatches');
     Route::delete('packing-lists/destroy-batch/{batch}/destroy-number/{number}','PackingListController@destroyNumber')->name('packing-lists.destroy-number');

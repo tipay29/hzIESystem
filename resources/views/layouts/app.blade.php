@@ -19,6 +19,7 @@
     <script src="{{asset('storage/js/chosen-jquery.js')}}"></script>{{--for chosen--}}
     <script src="{{ asset('storage/js/main.js') }}" defer></script>
     <script src="{{ asset('storage/js/packinglist.js') }}" defer></script>
+    <script src="{{ asset('storage/js/v2packinglist.js') }}" defer></script>
     <script src="{{ asset('storage/js/carton.js') }}" defer></script>
     <script src="{{ asset('storage/js/style/style.js') }}" defer></script>
     <!-- Fonts -->
@@ -137,6 +138,12 @@
                                         <a class="dropdown-item" href="{{route('packing-lists.create')}}">Packing Lists Create</a>
                                     </li>
                                     @endcan
+                                    <li >
+                                        <a class="dropdown-item" href="{{route('v2-packing-lists.index')}}">Packing Lists v2</a>
+                                    </li>
+                                    <li >
+                                        <a class="dropdown-item" href="{{route('v2-packing-lists.create')}}">Packing Lists v2 Create</a>
+                                    </li>
                                     <li >
                                         <a class="dropdown-item" href="{{route('cartons.index')}}">Cartons</a>
                                     </li>

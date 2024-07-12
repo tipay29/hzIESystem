@@ -182,8 +182,8 @@
                                                    font-weight: 500;font-size: 1.2rem;
                                                    padding:0px;line-height: 10px;
                                                     " value="{{$packinglists[0]['pl_factory_po']}}"
-                                @cannot('create', App\Models\PackingList::class)
-                                    {{'disabled'}}
+                                    @cannot('create', App\Models\PackingList::class)
+                                        {{'disabled'}}
                                     @endcannot
                                 >
                                 <input disabled id="pl_shipment_input" type="text" class="form-control"

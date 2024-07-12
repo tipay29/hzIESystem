@@ -298,7 +298,7 @@ class SeparateBalanceQuantityAllListener
                                 }
                                 $cbm = $carton_size_value * $packinglistArray[$x][$y_Ctrl]['pl_number_of_carton'] / 1000000;
 
-                                $packinglistArray[$x][$y_Ctrl]['cbm'] = round($cbm, 2);
+                                $packinglistArray[$x][$y_Ctrl]['cbm'] = $cbm;
 
                                 //total cbm
                                 $this->total_cbm = $this->total_cbm + $packinglistArray[$x][$y_Ctrl]['cbm'];
@@ -393,7 +393,7 @@ class SeparateBalanceQuantityAllListener
                                 }
                                 $cbm = $carton_size_value * $packinglistArray[$x][$y_Ctrl]['pl_number_of_carton'] / 1000000;
 
-                                $packinglistArray[$x][$y_Ctrl]['cbm'] = round($cbm, 2);
+                                $packinglistArray[$x][$y_Ctrl]['cbm'] = $cbm;
 
                                 //total cbm
                                 $this->total_cbm = $this->total_cbm + $packinglistArray[$x][$y_Ctrl]['cbm'];
