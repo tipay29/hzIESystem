@@ -14,7 +14,10 @@
 
                         <div>
 
-
+                            <a href="{{route('packing-lists.refreshweights', [$packinglists[0]['pl_batch']
+                                                                        ,$packinglists[0]['pl_number_batch']])}}"
+                               class="btn btn-outline-success">
+                                Refresh Weight</a>
                             @if(auth()->user()->id===1)
                             <select name="pl_version" id="pl_version" class="btn btn-outline-info">
                                 <option value="0" selected disabled>Select Version</option>

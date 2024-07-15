@@ -674,4 +674,27 @@ class PackingListController extends Controller
         return $packinglists;
     }
 
+    public function refreshWeights($batch,$number)
+    {
+
+        $this->authorize('create',PackingList::class);
+
+        $packinglists = PackingList::where([['pl_batch',$batch],
+            ['pl_number_batch',$number]])->get();
+
+        foreach($packinglists as $packinglist){
+
+            $packinglist->update([
+                                'pl_nw_one' => 0,
+                                'pl_nw_two' => 0,
+                                'pl_gw_one' => 0,
+                                'pl_gw_two' => 0,
+                                    ]);
+
+        }
+
+        return redirect()->back();
+
+    }
+
 }

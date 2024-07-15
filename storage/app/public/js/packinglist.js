@@ -1241,7 +1241,7 @@ div_btn_brand_choose.click(function(e){
 });
 
 function getCartonPerBrand(brand,type){
-    alert(brand + type);
+    // alert(brand + type);
     let cartons = {
         brand: brand,
         type: type,

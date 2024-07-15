@@ -61,6 +61,7 @@ Route::group(['namespace' => 'Web'],function(){
     Route::get('v2-packing-lists','V2PackingListController@index')->name('v2-packing-lists.index');
     Route::get('v2-packing-lists/create','V2PackingListController@create')->name('v2-packing-lists.create');
 
+    Route::get('packing-lists/batch/{batch}/number/{number}/refresh-weight','PackingListController@refreshWeights')->name('packing-lists.refreshweights');
     Route::get('packing-lists/exports/batches/{batch}','PackingListController@exportBatches')->name('packing-lists.exportbatches');
     Route::delete('packing-lists/destroy-batch/{batch}/destroy-number/{number}','PackingListController@destroyNumber')->name('packing-lists.destroy-number');
     Route::delete('packing-lists/destroy-batch/{batch}','PackingListController@destroyBatch')->name('packing-lists.destroy-batch');
