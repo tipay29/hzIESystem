@@ -19,7 +19,7 @@ class PO{
 
         $searchWord = request('pls_po');
 
-        return $builder->where('pl_po_cut', 'like', '%'.$searchWord.'%');
+        return $builder->where('cost_brand', 'like', '%'.$searchWord.'%');
 
     }
 

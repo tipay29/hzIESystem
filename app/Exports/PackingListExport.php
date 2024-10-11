@@ -28,7 +28,6 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
 {
 
     protected $packinglists;
-
     protected $shipmarkcount;
     protected $mcqdetailcount;
     protected $packcount;
@@ -918,7 +917,7 @@ class PackingListExport implements FromCollection,WithCustomStartCell,WithHeadin
 
      public function drawings()
      {
-         $drawings = new Drawing();
+        $drawings = new Drawing();
          $drawings->setName('Horizon');
          $drawings->setDescription('Horizon Logo');
          $drawings->setPath(public_path('storage\images\horizonlogo-small.png'));

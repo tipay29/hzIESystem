@@ -38,6 +38,15 @@
                             <div id="v2_pl_div_btn_brand_jw_app"  style="min-height: 50px;" class="col-md-12 div_btn_brand">
                                 <h6 class="text-center mt-2">JACKWOLFSKIN</h6>
                             </div>
+                            <div id="v2_pl_div_btn_brand_zr_app"  style="min-height: 50px;" class="col-md-12 div_btn_brand">
+                                <h6 class="text-center mt-2">ZARA</h6>
+                            </div>
+                            <div id="v2_pl_div_btn_brand_zc_app"  style="min-height: 50px;" class="col-md-12 div_btn_brand">
+                                <h6 class="text-center mt-2">ZAVETTI CANADA</h6>
+                            </div>
+                            <div id="v2_pl_div_btn_brand_mr_app"  style="min-height: 50px;" class="col-md-12 div_btn_brand">
+                                <h6 class="text-center mt-2">MONTERRAIN</h6>
+                            </div>
                         </div>
 
                         <div id="v2_pl_create_drop_zone">
@@ -46,19 +55,15 @@
                                 @csrf
 
                                 <div>
-
                                     <h4 class="text-center"> Check Column Alignment</h4>
-
                                 </div>
 
                                 <div class="dz-default dz-message">
-
                                     <h1> DROP here or CLICK&CHOOSE your PSR</h1>
                                 </div>
                                 <h4 class="text-center"> check the excel extension (xlsx,xl,xls)</h4>
 
                                 <input id="v2_pl_create_brand" type="hidden" name="brandntype" >
-
                             </form>
                         </div>
 

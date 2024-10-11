@@ -86,8 +86,6 @@ class PackingListController extends Controller
 
     public function batch($batch){
 
-
-
         $this->authorize('viewAny',PackingList::class);
 
         $packinglistsdummy = collect();

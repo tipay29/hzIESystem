@@ -209,7 +209,10 @@
                 <option value="NAPAPIJRI" {{request('pls_brand') == "NAPAPIJRI" ? "selected" : ""}}>NAPAPIJRI</option>
                 <option value="TNF" {{request('pls_brand') == "TNF" ? "selected" : ""}}>TNF</option>
                 <option value="VANS" {{request('pls_brand') == "VANS" ? "selected" : ""}}>VANS</option>
+                <option value="ZAVETTI CANADA" {{request('pls_brand') == "ZAVETTI CANADA" ? "selected" : ""}}>ZAVETTI CANADA</option>
+                <option value="MONTERRAIN" {{request('pls_brand') == "MONTERRAIN" ? "selected" : ""}}>MONTERRAIN</option>
             </select>
+
 
         </div>
         <div class="col-md-2">
