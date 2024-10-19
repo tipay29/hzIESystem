@@ -18,7 +18,7 @@
                                                                         ,$packinglists[0]['pl_number_batch']])}}"
                                class="btn btn-outline-success">
                                 Refresh Weight</a>
-                            @if(auth()->user()->id===1)
+{{--                            @if(auth()->user()->id===1)--}}
                             <select name="pl_version" id="pl_version" class="btn btn-outline-info">
                                 <option value="0" selected disabled>Select Version</option>
                                 <option value="1" >Style</option>
@@ -28,7 +28,7 @@
                                 <option value="5" >Lock</option>
                                 <option value="6" >DC</option>
                             </select>
-                            @endif
+{{--                            @endif--}}
 
                             @can('create', App\Models\PackingList::class)
                             <button id="addPOModalBtn" type="button" class="btn btn-outline-info" data-bs-toggle="modal"
