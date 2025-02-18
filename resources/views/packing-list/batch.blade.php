@@ -13,7 +13,6 @@
 
                             <div>
 
-{{--                                @if(auth()->user()->id===1)--}}
                                 <select name="pls_version" id="pls_version" class="btn btn-outline-info">
                                     <option value="0" selected disabled>Select Version</option>
                                     <option value="1" >Style</option>
@@ -24,12 +23,10 @@
                                     <option value="6" >DC</option>
 
                                 </select>
-{{--                                @endif--}}
 
                                 <a href="{{route('packing-lists.index')}}"
                                    class="btn btn-outline-success section-to-no-print">
                                     Lists</a>
-
                                 <a href="{{route('packing-lists.exportbatches',$packinglists[0]->pl_batch)}}"
                                    class="btn btn-outline-success section-to-no-print">
                                     Export</a>
@@ -94,7 +91,7 @@
                                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                                     {{$packinglist->pl_number_batch}} </a>
                                             </td>
-                                            <td scope="col" >
+                                            <td scope="col" >1600
                                             @if($packinglist->pl_status === "Draft")
                                                 <p style="background-color: yellow;">{{$packinglist->pl_status}}</p>
                                             @elseif($packinglist->pl_status === "Canceled")
@@ -145,12 +142,10 @@
                                             <td></td>
                                             <td></td>
                                             <td></td>
-
                                             <td></td>
                                             <td></td>
                                             <td><b>  {{number_format((float)$pl_total_qty)}} </b></td>
                                             <td></td>
-
                                             <td></td>
                                         </tr>
 

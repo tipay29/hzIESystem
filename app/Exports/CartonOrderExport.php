@@ -620,21 +620,21 @@ class CartonOrderExport implements FromCollection,WithCustomStartCell,WithHeadin
         $newcartonform = collect();
 
         foreach($cartonform->carton_order_contents as $carton_order_content){
-            $cartonform = collect($carton_order_content)
-                ->only(['ctn_factory_po','ctn_dc_code','ctn_customer_name','ctn_destination','ctn_master_po','ctn_material',
-                    'ctn_description','ctn_style_size','ctn_po_quantity','ctn_quantity_per_carton']);
-            $cartonform['ctn_specification'] = $carton_order_content->carton->ctn_specification;
-            $cartonform['ctn_size'] = $carton_order_content->carton->ctn_size . 'CM';
-            $cartonform['ctn_quantity'] = $carton_order_content->ctn_quantity;
-            $cartonform['ctn_nw'] = $carton_order_content->ctn_nw_one;
-            $cartonform['ctn_gw'] = $carton_order_content->ctn_gw_one;
-            $cartonform['ctn_fob'] = $carton_order_content->carton->ctn_fob;
-            $cartonform['ctn_total_fob'] = $carton_order_content->carton->ctn_fob*$carton_order_content->ctn_quantity;
-            $this->totalfob = $this->totalfob + $cartonform['ctn_total_fob'];
-            $cartonform['ctn_code'] = $carton_order_content->ctn_code;
-            $cartonform['ctn_collection'] = $carton_order_content->ctn_collection;
+                $cartonform = collect($carton_order_content)
+                    ->only(['ctn_factory_po','ctn_dc_code','ctn_customer_name','ctn_destination','ctn_master_po','ctn_material',
+                        'ctn_description','ctn_style_size','ctn_po_quantity','ctn_quantity_per_carton']);
+                $cartonform['ctn_specification'] = $carton_order_content->carton->ctn_specification;
+                $cartonform['ctn_size'] = $carton_order_content->carton->ctn_size . 'CM';
+                $cartonform['ctn_quantity'] = $carton_order_content->ctn_quantity;
+                $cartonform['ctn_nw'] = $carton_order_content->ctn_nw_one;
+                $cartonform['ctn_gw'] = $carton_order_content->ctn_gw_one;
+                $cartonform['ctn_fob'] = $carton_order_content->carton->ctn_fob;
+                $cartonform['ctn_total_fob'] = $carton_order_content->carton->ctn_fob*$carton_order_content->ctn_quantity;
+                $this->totalfob = $this->totalfob + $cartonform['ctn_total_fob'];
+                $cartonform['ctn_code'] = $carton_order_content->ctn_code;
+                $cartonform['ctn_collection'] = $carton_order_content->ctn_collection;
 //            dd($cartonform);
-            $newcartonform->add($cartonform);
+                $newcartonform->add($cartonform);
         }
         return $newcartonform;
     }
